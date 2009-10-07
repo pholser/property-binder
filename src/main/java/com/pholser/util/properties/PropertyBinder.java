@@ -170,7 +170,7 @@ public final class PropertyBinder<T> {
     }
 
     private static Properties loadProperties( InputStream propertyInput ) throws IOException {
-        Properties properties = new Properties();
+        SubstitutableProperties properties = new SubstitutableProperties();
         properties.load( propertyInput );
         return properties;
     }
