@@ -30,12 +30,11 @@ import static java.lang.reflect.Modifier.*;
 
 import java.lang.reflect.Method;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 
 class ValueConverterFactory {
-    ValueConverter createConverter( Method propertyMethod, Pattern separator ) {
+    ValueConverter createConverter( Method propertyMethod, ValueSeparator separator ) {
         Class<?> valueType = targetTypeFor( propertyMethod );
 
         if ( valueType.isArray() )

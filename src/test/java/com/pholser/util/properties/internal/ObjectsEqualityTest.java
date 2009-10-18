@@ -25,42 +25,41 @@
 
 package com.pholser.util.properties.internal;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Properties;
+import static java.util.Arrays.*;
+import static org.junit.Assert.*;
 
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
+import java.util.Collection;
 
-class ConstructorInvokingValueConverter implements ValueConverter {
-    private final Constructor<?> ctor;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
-    ConstructorInvokingValueConverter( Constructor<?> ctor ) {
-        this.ctor = ctor;
+@RunWith( Parameterized.class )
+public class ObjectsEqualityTest {
+    private final Object first;
+    private final Object second;
+    private final boolean expectedOutcome;
+
+    public ObjectsEqualityTest( Object first, Object second, boolean expectedOutcome ) {
+        this.first = first;
+        this.second = second;
+        this.expectedOutcome = expectedOutcome;
     }
 
-    public Object convert( String raw ) {
-        try {
-            return ctor.newInstance( raw );
-        }
-        catch ( InstantiationException ex ) {
-            throw new ValueConversionException( ex );
-        }
-        catch ( IllegalAccessException ex ) {
-            throw new ValueConversionException( ex );
-        }
-        catch ( IllegalArgumentException ex ) {
-            throw new ValueConversionException( ex );
-        }
-        catch ( InvocationTargetException ex ) {
-            throw new ValueConversionException( ex.getTargetException() );
-        }
+    @Parameters
+    public static Collection<?> testData() {
+        return asList( new Object[][] {
+            { null, null, true },
+            { null, new Object(), false },
+            { new Object(), null, false },
+            { new Object(), new Object(), false },
+            { 1, 1, true }
+        });
     }
 
-    public Object nilValue() {
-        return null;
-    }
-
-    public void resolve( Properties properties ) {
-        // nothing to do here
+    @Test
+    public void assessEquality() {
+        assertEquals( expectedOutcome, Objects.areEqual( first, second ) );
     }
 }

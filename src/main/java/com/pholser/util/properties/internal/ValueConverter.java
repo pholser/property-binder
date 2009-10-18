@@ -25,8 +25,12 @@
 
 package com.pholser.util.properties.internal;
 
+import java.util.Properties;
+
 interface ValueConverter {
     Object convert( String raw );
 
     Object nilValue();
+
+    void resolve( Properties properties );
 }

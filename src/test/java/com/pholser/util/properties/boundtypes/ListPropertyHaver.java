@@ -38,23 +38,24 @@ public interface ListPropertyHaver {
     List<String> stringListProperty();
 
     @BoundProperty( value = "string.list.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     List<String> stringListPropertyWithCustomSeparator();
 
     @BoundProperty( value = "string.list.property.with.default" )
     @DefaultsTo( "g,hh,iii" )
+    @ValuesSeparatedBy
     List<String> stringListPropertyWithDefault();
 
     @BoundProperty( value = "string.list.property.with.default.and.custom.separator" )
     @DefaultsTo( "jjj|kk|L" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     List<String> stringListPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "boolean.list.property" )
     List<Boolean> booleanListProperty();
 
     @BoundProperty( value = "boolean.list.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     List<Boolean> booleanListPropertyWithCustomSeparator();
 
     @BoundProperty( value = "boolean.list.property.with.default" )
@@ -63,14 +64,14 @@ public interface ListPropertyHaver {
 
     @BoundProperty( value = "boolean.list.property.with.default.and.separator" )
     @DefaultsTo( "true|true|true|false" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     List<Boolean> booleanListPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "byte.list.property" )
     List<Byte> byteListProperty();
 
     @BoundProperty( value = "byte.list.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     List<Byte> byteListPropertyWithCustomSeparator();
 
     @BoundProperty( value = "byte.list.property.with.default" )
@@ -79,14 +80,14 @@ public interface ListPropertyHaver {
 
     @BoundProperty( value = "byte.list.property.with.default.and.separator" )
     @DefaultsTo( "36|37|38|39" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     List<Byte> byteListPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "character.list.property" )
     List<Character> characterListProperty();
 
     @BoundProperty( value = "character.list.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     List<Character> characterListPropertyWithCustomSeparator();
 
     @BoundProperty( value = "character.list.property.with.default" )
@@ -95,14 +96,14 @@ public interface ListPropertyHaver {
 
     @BoundProperty( value = "character.list.property.with.default.and.separator" )
     @DefaultsTo( "z|0|1|2" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     List<Character> characterListPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "double.list.property" )
     List<Double> doubleListProperty();
 
     @BoundProperty( value = "double.list.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     List<Double> doubleListPropertyWithCustomSeparator();
 
     @BoundProperty( value = "double.list.property.with.default" )
@@ -111,14 +112,14 @@ public interface ListPropertyHaver {
 
     @BoundProperty( value = "double.list.property.with.default.and.separator" )
     @DefaultsTo( "-13.0|-14.0|-15.0|-16.0" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     List<Double> doubleListPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "float.list.property" )
     List<Float> floatListProperty();
 
     @BoundProperty( value = "float.list.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     List<Float> floatListPropertyWithCustomSeparator();
 
     @BoundProperty( value = "float.list.property.with.default" )
@@ -127,14 +128,14 @@ public interface ListPropertyHaver {
 
     @BoundProperty( value = "float.list.property.with.default.and.separator" )
     @DefaultsTo( "2.3|2.4|2.5|2.6" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     List<Float> floatListPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "integer.list.property" )
     List<Integer> integerListProperty();
 
     @BoundProperty( value = "integer.list.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     List<Integer> integerListPropertyWithCustomSeparator();
 
     @BoundProperty( value = "integer.list.property.with.default" )
@@ -143,14 +144,14 @@ public interface ListPropertyHaver {
 
     @BoundProperty( value = "integer.list.property.with.default.and.separator" )
     @DefaultsTo( "-13|-14|-15|-16" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     List<Integer> integerListPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "long.list.property" )
     List<Long> longListProperty();
 
     @BoundProperty( value = "long.list.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     List<Long> longListPropertyWithCustomSeparator();
 
     @BoundProperty( value = "long.list.property.with.default" )
@@ -159,14 +160,14 @@ public interface ListPropertyHaver {
 
     @BoundProperty( value = "long.list.property.with.default.and.separator" )
     @DefaultsTo( "56|57|58|59" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     List<Long> longListPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "short.list.property" )
     List<Short> shortListProperty();
 
     @BoundProperty( value = "short.list.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     List<Short> shortListPropertyWithCustomSeparator();
 
     @BoundProperty( value = "short.list.property.with.default" )
@@ -175,14 +176,14 @@ public interface ListPropertyHaver {
 
     @BoundProperty( value = "short.list.property.with.default.and.separator" )
     @DefaultsTo( "-32|-33|-34|-35" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     List<Short> shortListPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "big.integer.list.property" )
     List<BigInteger> bigIntegerListProperty();
 
     @BoundProperty( value = "big.integer.list.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     List<BigInteger> bigIntegerListPropertyWithCustomSeparator();
 
     @BoundProperty( value = "big.integer.list.property.with.default" )
@@ -191,14 +192,14 @@ public interface ListPropertyHaver {
 
     @BoundProperty( value = "big.integer.list.property.with.default.and.separator" )
     @DefaultsTo( "131|132|133" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     List<BigInteger> bigIntegerListPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "big.decimal.list.property" )
     List<BigDecimal> bigDecimalListProperty();
 
     @BoundProperty( value = "big.decimal.list.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     List<BigDecimal> bigDecimalListPropertyWithCustomSeparator();
 
     @BoundProperty( value = "big.decimal.list.property.with.default" )
@@ -207,14 +208,14 @@ public interface ListPropertyHaver {
 
     @BoundProperty( value = "big.decimal.list.property.with.default.and.separator" )
     @DefaultsTo( "3456.78|9012.34" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     List<BigDecimal> bigDecimalListPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "enum.list.property" )
     List<Trinary> enumListProperty();
 
     @BoundProperty( value = "enum.list.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     List<Trinary> enumListPropertyWithCustomSeparator();
 
     @BoundProperty( value = "enum.list.property.with.default" )
@@ -223,7 +224,7 @@ public interface ListPropertyHaver {
 
     @BoundProperty( value = "enum.list.property.with.default.and.separator" )
     @DefaultsTo( "NO|MAYBE|YES|MAYBE" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     List<Trinary> enumListPropertyWithDefaultAndSeparator();
 
     @SuppressWarnings( "unchecked" )
@@ -232,7 +233,7 @@ public interface ListPropertyHaver {
 
     @SuppressWarnings( "unchecked" )
     @BoundProperty( value = "raw.list.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     List rawListPropertyWithCustomSeparator();
 
     @SuppressWarnings( "unchecked" )
@@ -243,14 +244,14 @@ public interface ListPropertyHaver {
     @SuppressWarnings( "unchecked" )
     @BoundProperty( value = "raw.list.property.with.default.and.separator" )
     @DefaultsTo( "NO|MAYBE|YES|MAYBE" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     List rawListPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "huh.list.property" )
     List<?> huhListProperty();
 
     @BoundProperty( value = "huh.list.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     List<?> huhListPropertyWithCustomSeparator();
 
     @BoundProperty( value = "huh.list.property.with.default" )
@@ -259,7 +260,7 @@ public interface ListPropertyHaver {
 
     @BoundProperty( value = "huh.list.property.with.default.and.separator" )
     @DefaultsTo( "NO|MAYBE|YES" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     List<?> huhListPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "missing.list.property" )

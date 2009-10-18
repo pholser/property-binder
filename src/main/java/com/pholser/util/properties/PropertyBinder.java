@@ -61,7 +61,7 @@ public final class PropertyBinder<T> {
      * <ol>
      *   <li>Must be an interface with no superinterfaces.</li>
      *
-     *   <li>Every method maps to a properties file key.  It can be marked with {@link BoundProperty} to indicate what
+     *   <li>Every method maps to a properties file key.  It can be marked with {@link BoundProperty} to indicate the
      *   properties file key; if not, the key is the fully qualified name of the PICA interface + '.' + the method's
      *   name.</li>
      *
@@ -86,8 +86,8 @@ public final class PropertyBinder<T> {
      *
      *   If a value type has both of these, the {@code valueOf} method takes priority over the constructor.</li>
      *
-     *   <li>A List type may be a raw List or a {@code List<?>}.  The underlying values are {@code String}s in such
-     *   cases.</li>
+     *   <li>A List type may be a raw List or a {@code List&lt;?&gt;}.  The underlying values are {@code String}s
+     *   in such cases.</li>
      *
      *   <li>If the method specifies a default value via {@link ValuesSeparatedBy}, that value must be convertible
      *   to the return type of the method.</li>
@@ -120,7 +120,7 @@ public final class PropertyBinder<T> {
         if ( properties == null )
             throw new NullPointerException( "attempt to bind null " + Properties.class.getSimpleName() + " object" );
 
-        return validatedSchema.createTypedProxyFor( properties );
+        return validatedSchema.evaluate( properties );
     }
 
     /**
@@ -163,10 +163,7 @@ public final class PropertyBinder<T> {
      * @return a typed system property accessor
      */
     public static SystemProperties getSystemProperties() {
-        RawSystemProperties systemProperties =
-            PropertyBinder.forType( RawSystemProperties.class ).bind( System.getProperties() );
-
-        return new SystemProperties( systemProperties );
+        return PropertyBinder.forType( SystemProperties.class ).bind( System.getProperties() );
     }
 
     private static Properties loadProperties( InputStream propertyInput ) throws IOException {

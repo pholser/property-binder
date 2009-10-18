@@ -37,7 +37,7 @@ public interface ArrayPropertyHaver {
     String[] stringArrayProperty();
 
     @BoundProperty( value = "string.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     String[] stringArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "string.array.property.with.default" )
@@ -46,14 +46,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "string.array.property.with.default.and.custom.separator" )
     @DefaultsTo( "jjj|kk|L" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     String[] stringArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "primitive.boolean.array.property" )
     boolean[] primitiveBooleanArrayProperty();
 
     @BoundProperty( value = "primitive.boolean.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     boolean[] primitiveBooleanArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "primitive.boolean.array.property.with.default" )
@@ -62,14 +62,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "primitive.boolean.array.property.with.default.and.separator" )
     @DefaultsTo( "true|true|true|false" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     boolean[] primitiveBooleanArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "wrapped.boolean.array.property" )
     Boolean[] wrappedBooleanArrayProperty();
 
     @BoundProperty( value = "wrapped.boolean.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     Boolean[] wrappedBooleanArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "wrapped.boolean.array.property.with.default" )
@@ -78,14 +78,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "wrapped.boolean.array.property.with.default.and.separator" )
     @DefaultsTo( "true|true|true|false" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     Boolean[] wrappedBooleanArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "primitive.byte.array.property" )
     byte[] primitiveByteArrayProperty();
 
     @BoundProperty( value = "primitive.byte.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     byte[] primitiveByteArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "primitive.byte.array.property.with.default" )
@@ -94,14 +94,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "primitive.byte.array.property.with.default.and.separator" )
     @DefaultsTo( "29|30|31|32" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     byte[] primitiveByteArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "wrapped.byte.array.property" )
     Byte[] wrappedByteArrayProperty();
 
     @BoundProperty( value = "wrapped.byte.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     Byte[] wrappedByteArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "wrapped.byte.array.property.with.default" )
@@ -110,14 +110,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "wrapped.byte.array.property.with.default.and.separator" )
     @DefaultsTo( "36|37|38|39" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     Byte[] wrappedByteArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "primitive.character.array.property" )
     char[] primitiveCharacterArrayProperty();
 
     @BoundProperty( value = "primitive.character.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     char[] primitiveCharacterArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "primitive.character.array.property.with.default" )
@@ -126,14 +126,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "primitive.character.array.property.with.default.and.separator" )
     @DefaultsTo( "m|n|o|p" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     char[] primitiveCharacterArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "wrapped.character.array.property" )
     Character[] wrappedCharacterArrayProperty();
 
     @BoundProperty( value = "wrapped.character.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     Character[] wrappedCharacterArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "wrapped.character.array.property.with.default" )
@@ -142,14 +142,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "wrapped.character.array.property.with.default.and.separator" )
     @DefaultsTo( "z|0|1|2" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     Character[] wrappedCharacterArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "primitive.double.array.property" )
     double[] primitiveDoubleArrayProperty();
 
     @BoundProperty( value = "primitive.double.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     double[] primitiveDoubleArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "primitive.double.array.property.with.default" )
@@ -158,14 +158,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "primitive.double.array.property.with.default.and.separator" )
     @DefaultsTo( "-6.0|-7.0|-8.0|-9.0" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     double[] primitiveDoubleArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "wrapped.double.array.property" )
     Double[] wrappedDoubleArrayProperty();
 
     @BoundProperty( value = "wrapped.double.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     Double[] wrappedDoubleArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "wrapped.double.array.property.with.default" )
@@ -174,14 +174,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "wrapped.double.array.property.with.default.and.separator" )
     @DefaultsTo( "-13.0|-14.0|-15.0|-16.0" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     Double[] wrappedDoubleArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "primitive.float.array.property" )
     float[] primitiveFloatArrayProperty();
 
     @BoundProperty( value = "primitive.float.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     float[] primitiveFloatArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "primitive.float.array.property.with.default" )
@@ -190,14 +190,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "primitive.float.array.property.with.default.and.separator" )
     @DefaultsTo( "1.6|1.7|1.8|1.9" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     float[] primitiveFloatArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "wrapped.float.array.property" )
     Float[] wrappedFloatArrayProperty();
 
     @BoundProperty( value = "wrapped.float.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     Float[] wrappedFloatArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "wrapped.float.array.property.with.default" )
@@ -206,14 +206,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "wrapped.float.array.property.with.default.and.separator" )
     @DefaultsTo( "2.3|2.4|2.5|2.6" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     Float[] wrappedFloatArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "primitive.integer.array.property" )
     int[] primitiveIntegerArrayProperty();
 
     @BoundProperty( value = "primitive.integer.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     int[] primitiveIntegerArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "primitive.integer.array.property.with.default" )
@@ -222,14 +222,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "primitive.integer.array.property.with.default.and.separator" )
     @DefaultsTo( "-6|-7|-8|-9" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     int[] primitiveIntegerArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "wrapped.integer.array.property" )
     Integer[] wrappedIntegerArrayProperty();
 
     @BoundProperty( value = "wrapped.integer.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     Integer[] wrappedIntegerArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "wrapped.integer.array.property.with.default" )
@@ -238,14 +238,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "wrapped.integer.array.property.with.default.and.separator" )
     @DefaultsTo( "-13|-14|-15|-16" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     Integer[] wrappedIntegerArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "primitive.long.array.property" )
     long[] primitiveLongArrayProperty();
 
     @BoundProperty( value = "primitive.long.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     long[] primitiveLongArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "primitive.long.array.property.with.default" )
@@ -254,14 +254,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "primitive.long.array.property.with.default.and.separator" )
     @DefaultsTo( "49|50|51|52" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     long[] primitiveLongArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "wrapped.long.array.property" )
     Long[] wrappedLongArrayProperty();
 
     @BoundProperty( value = "wrapped.long.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     Long[] wrappedLongArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "wrapped.long.array.property.with.default" )
@@ -270,14 +270,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "wrapped.long.array.property.with.default.and.separator" )
     @DefaultsTo( "56|57|58|59" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     Long[] wrappedLongArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "primitive.short.array.property" )
     short[] primitiveShortArrayProperty();
 
     @BoundProperty( value = "primitive.short.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     short[] primitiveShortArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "primitive.short.array.property.with.default" )
@@ -286,14 +286,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "primitive.short.array.property.with.default.and.separator" )
     @DefaultsTo( "-25|-26|-27|-28" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     short[] primitiveShortArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "wrapped.short.array.property" )
     Short[] wrappedShortArrayProperty();
 
     @BoundProperty( value = "wrapped.short.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     Short[] wrappedShortArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "wrapped.short.array.property.with.default" )
@@ -302,14 +302,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "wrapped.short.array.property.with.default.and.separator" )
     @DefaultsTo( "-32|-33|-34|-35" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     Short[] wrappedShortArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "big.integer.array.property" )
     BigInteger[] bigIntegerArrayProperty();
 
     @BoundProperty( value = "big.integer.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     BigInteger[] bigIntegerArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "big.integer.array.property.with.default" )
@@ -318,14 +318,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "big.integer.array.property.with.default.and.separator" )
     @DefaultsTo( "131|132|133" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     BigInteger[] bigIntegerArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "big.decimal.array.property" )
     BigDecimal[] bigDecimalArrayProperty();
 
     @BoundProperty( value = "big.decimal.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     BigDecimal[] bigDecimalArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "big.decimal.array.property.with.default" )
@@ -334,14 +334,14 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "big.decimal.array.property.with.default.and.separator" )
     @DefaultsTo( "3456.78|9012.34" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     BigDecimal[] bigDecimalArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "enum.array.property" )
     Trinary[] enumArrayProperty();
 
     @BoundProperty( value = "enum.array.property.with.custom.separator" )
-    @ValuesSeparatedBy( "\\s*,\\s*" )
+    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
     Trinary[] enumArrayPropertyWithCustomSeparator();
 
     @BoundProperty( value = "enum.array.property.with.default" )
@@ -350,7 +350,7 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty( value = "enum.array.property.with.default.and.separator" )
     @DefaultsTo( "NO|MAYBE|YES|MAYBE" )
-    @ValuesSeparatedBy( "\\|" )
+    @ValuesSeparatedBy( pattern = "\\|" )
     Trinary[] enumArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( value = "missing.primitive.array.property" )

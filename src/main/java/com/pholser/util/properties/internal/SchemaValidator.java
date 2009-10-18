@@ -31,21 +31,20 @@ import static com.pholser.util.properties.internal.Types.*;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ValuesSeparatedBy;
 import com.pholser.util.properties.internal.exceptions.AppliedSeparatorToNonAggregateTypeException;
 import com.pholser.util.properties.internal.exceptions.BoundTypeNotAnInterfaceException;
 import com.pholser.util.properties.internal.exceptions.InterfaceHasSuperinterfacesException;
 import com.pholser.util.properties.internal.exceptions.MalformedDefaultValueException;
-import com.pholser.util.properties.internal.exceptions.MalformedSeparatorException;
+import com.pholser.util.properties.internal.exceptions.MultipleSeparatorSpecificationException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedAggregateTypeException;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 public class SchemaValidator {
     private final ValueConverterFactory converterFactory = new ValueConverterFactory();
+
+    private final ValueSeparatorFactory separatorFactory = new ValueSeparatorFactory();
 
     public <T> ValidatedSchema<T> validate( Class<T> schema ) {
         ensureInterface( schema );
@@ -53,7 +52,7 @@ public class SchemaValidator {
 
         Map<String, ValueConverter> converters = new HashMap<String, ValueConverter>();
         Map<String, Object> defaultValues = new HashMap<String, Object>();
-        Map<String, Pattern> separators = new HashMap<String, Pattern>();
+        Map<String, ValueSeparator> separators = new HashMap<String, ValueSeparator>();
 
         for ( Method each : schema.getDeclaredMethods() ) {
             String propertyName = propertyNameFor( each );
@@ -81,29 +80,26 @@ public class SchemaValidator {
             throw new UnsupportedAggregateTypeException( method );
     }
 
-    private void collectSeparatorIfAggregateType( Map<String, Pattern> separators, Method method,
+    private void collectSeparatorIfAggregateType( Map<String, ValueSeparator> separators, Method method,
         String propertyName ) {
 
+        boolean isAggregate = isAggregateType( method.getReturnType() );
         ValuesSeparatedBy separator = method.getAnnotation( ValuesSeparatedBy.class );
-        if ( separator != null && !isAggregateType( method.getReturnType() ) )
-            throw new AppliedSeparatorToNonAggregateTypeException( method );
+        if ( separator != null ) {
+            if ( !isAggregate )
+                throw new AppliedSeparatorToNonAggregateTypeException( method );
 
-        Pattern regex;
-        if ( separator == null )
-            regex = Pattern.compile( "," );
-        else {
-            try {
-                regex = Pattern.compile( separator.value() );
-            }
-            catch ( PatternSyntaxException ex ) {
-                throw new MalformedSeparatorException( separator, method, ex );
+            if ( !( separator.pattern().equals( annotationDefault( ValuesSeparatedBy.class, "pattern" ) )
+                || separator.valueOf().equals( annotationDefault( ValuesSeparatedBy.class, "valueOf" ) ) ) ) {
+                throw new MultipleSeparatorSpecificationException( separator, method );
             }
         }
 
-        separators.put( propertyName, regex );
+        if ( isAggregate )
+            separators.put( propertyName, separatorFactory.createSeparator( separator, method ) );
     }
 
-    private void collectConverter( Map<String, ValueConverter> converters, Map<String, Pattern> separators,
+    private void collectConverter( Map<String, ValueConverter> converters, Map<String, ValueSeparator> separators,
         Method method, String propertyName ) {
 
         converters.put(

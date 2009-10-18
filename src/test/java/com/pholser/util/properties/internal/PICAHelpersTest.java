@@ -23,15 +23,15 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.boundtypes;
+package com.pholser.util.properties.internal;
 
-import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
-import com.pholser.util.properties.ValuesSeparatedBy;
 
-public interface BadValueSeparatorPropertyHaver {
-    @BoundProperty( "bad.value.separator.property" )
-    @DefaultsTo( "1" )
-    @ValuesSeparatedBy( pattern = "*!&@^#(*!@&" )
-    int[] badDefaultValueProperty();
+import org.junit.Test;
+
+public class PICAHelpersTest {
+    @Test( expected = AssertionError.class )
+    public void shouldRejectBadMethodNameOnAnnotation() {
+        PICAHelpers.annotationDefault( DefaultsTo.class, "!@#!@#" );
+    }
 }

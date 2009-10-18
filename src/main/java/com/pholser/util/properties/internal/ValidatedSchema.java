@@ -43,7 +43,12 @@ public class ValidatedSchema<T> {
         this.converters = converters;
     }
 
-    public T createTypedProxyFor( Properties properties ) {
+    public T evaluate( Properties properties ) {
+        resolveConverters( properties );
+        return createTypedProxyFor( properties );
+    }
+
+    T createTypedProxyFor( Properties properties ) {
         return schema.cast(
             newProxyInstance(
                 schema.getClassLoader(),
@@ -63,5 +68,10 @@ public class ValidatedSchema<T> {
 
     String getName() {
         return schema.getName();
+    }
+
+    private void resolveConverters( Properties properties ) {
+        for ( ValueConverter each : converters.values() )
+            each.resolve( properties );
     }
 }

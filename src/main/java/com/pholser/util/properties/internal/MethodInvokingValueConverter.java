@@ -27,6 +27,7 @@ package com.pholser.util.properties.internal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Properties;
 
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
@@ -59,5 +60,9 @@ class MethodInvokingValueConverter implements ValueConverter {
 
     public Object nilValue() {
         return null;
+    }
+
+    public void resolve( Properties properties ) {
+        // nothing to do here
     }
 }

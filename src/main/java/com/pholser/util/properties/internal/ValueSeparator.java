@@ -23,15 +23,12 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.boundtypes;
+package com.pholser.util.properties.internal;
 
-import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.DefaultsTo;
-import com.pholser.util.properties.ValuesSeparatedBy;
+import java.util.Properties;
 
-public interface BadValueSeparatorPropertyHaver {
-    @BoundProperty( "bad.value.separator.property" )
-    @DefaultsTo( "1" )
-    @ValuesSeparatedBy( pattern = "*!&@^#(*!@&" )
-    int[] badDefaultValueProperty();
+interface ValueSeparator {
+    String[] separate( String raw );
+
+    void resolve( Properties properties );
 }

@@ -28,21 +28,21 @@ package com.pholser.util.properties.internal;
 import static com.pholser.util.properties.internal.ValueConverterFactory.*;
 
 import java.lang.reflect.Array;
-import java.util.regex.Pattern;
+import java.util.Properties;
 
 class ArrayValueConverter implements ValueConverter {
     private final Class<?> componentType;
     private final ValueConverter componentTypeConverter;
-    private final Pattern separator;
+    private final ValueSeparator separator;
 
-    public ArrayValueConverter( Class<?> arrayType, Pattern separator ) {
+    public ArrayValueConverter( Class<?> arrayType, ValueSeparator separator ) {
         this.componentType = arrayType.getComponentType();
         this.componentTypeConverter = createScalarConverter( componentType );
         this.separator = separator;
     }
 
     public Object convert( String raw ) {
-        String[] pieces = separator.split( raw );
+        String[] pieces = separator.separate( raw );
         Object array = Array.newInstance( componentType, pieces.length );
         for ( int i = 0; i < pieces.length; ++i )
             Array.set( array, i, componentTypeConverter.convert( pieces[ i ] ) );
@@ -52,5 +52,9 @@ class ArrayValueConverter implements ValueConverter {
 
     public Object nilValue() {
         return Array.newInstance( componentType, 0 );
+    }
+
+    public void resolve( Properties properties ) {
+        separator.resolve( properties );
     }
 }

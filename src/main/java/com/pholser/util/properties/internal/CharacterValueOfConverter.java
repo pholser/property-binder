@@ -25,6 +25,8 @@
 
 package com.pholser.util.properties.internal;
 
+import java.util.Properties;
+
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 class CharacterValueOfConverter implements ValueConverter {
@@ -37,5 +39,9 @@ class CharacterValueOfConverter implements ValueConverter {
 
     public Object nilValue() {
         return null;
+    }
+
+    public void resolve( Properties properties ) {
+        // nothing to do here
     }
 }

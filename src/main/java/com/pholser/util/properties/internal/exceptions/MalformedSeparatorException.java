@@ -27,14 +27,13 @@ package com.pholser.util.properties.internal.exceptions;
 
 import java.lang.reflect.Method;
 
-import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ValuesSeparatedBy;
 
 public class MalformedSeparatorException extends IllegalArgumentException {
     private static final long serialVersionUID = 1L;
 
-    public MalformedSeparatorException( ValuesSeparatedBy separator, Method method, Throwable cause ) {
-        super( "Cannot convert value [" + separator.value() + "] of @" + DefaultsTo.class.getSimpleName()
+    public MalformedSeparatorException( String separator, Method method, Throwable cause ) {
+        super( "Cannot convert pattern [" + separator + "] of @" + ValuesSeparatedBy.class.getSimpleName()
             + " for method " + method.getName() + " on " + method.getDeclaringClass()
             + " to " + method.getReturnType(), cause );
     }

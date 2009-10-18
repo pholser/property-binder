@@ -23,15 +23,18 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.boundtypes;
+package com.pholser.util.properties.internal.exceptions;
 
-import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.DefaultsTo;
+import java.lang.reflect.Method;
+
 import com.pholser.util.properties.ValuesSeparatedBy;
 
-public interface BadValueSeparatorPropertyHaver {
-    @BoundProperty( "bad.value.separator.property" )
-    @DefaultsTo( "1" )
-    @ValuesSeparatedBy( pattern = "*!&@^#(*!@&" )
-    int[] badDefaultValueProperty();
+public class MultipleSeparatorSpecificationException extends IllegalArgumentException {
+    private static final long serialVersionUID = 1L;
+
+    public MultipleSeparatorSpecificationException( ValuesSeparatedBy separator, Method method ) {
+        super( "Marker @" + ValuesSeparatedBy.class.getSimpleName() + " on method " + method.getName()
+            + " of " + method.getDeclaringClass() + " specifies both a non-default pattern [" + separator.pattern()
+            + "] and valueOf [" + separator.valueOf() + ']' );
+    }
 }

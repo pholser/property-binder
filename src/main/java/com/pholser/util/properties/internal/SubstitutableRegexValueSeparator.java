@@ -23,15 +23,29 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.boundtypes;
+package com.pholser.util.properties.internal;
 
-import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.DefaultsTo;
-import com.pholser.util.properties.ValuesSeparatedBy;
+import static com.pholser.util.properties.SubstitutableProperties.*;
 
-public interface BadValueSeparatorPropertyHaver {
-    @BoundProperty( "bad.value.separator.property" )
-    @DefaultsTo( "1" )
-    @ValuesSeparatedBy( pattern = "*!&@^#(*!@&" )
-    int[] badDefaultValueProperty();
+import java.lang.reflect.Method;
+import java.util.Properties;
+
+class SubstitutableRegexValueSeparator implements ValueSeparator {
+    private final String pattern;
+    private final Method method;
+    private RegexValueSeparator separator;
+
+    SubstitutableRegexValueSeparator( String pattern, Method method ) {
+        this.pattern = pattern;
+        this.method = method;
+    }
+
+    public String[] separate( String raw ) {
+        return separator.separate( raw );
+    }
+
+    public void resolve( Properties properties ) {
+        String substituted = substitute( pattern, properties );
+        separator = new RegexValueSeparator( substituted, method );
+    }
 }

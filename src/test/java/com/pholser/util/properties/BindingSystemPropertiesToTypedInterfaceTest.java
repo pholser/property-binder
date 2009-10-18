@@ -28,7 +28,7 @@ package com.pholser.util.properties;
 import static org.junit.Assert.*;
 
 import java.io.File;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -123,16 +123,6 @@ public class BindingSystemPropertiesToTypedInterfaceTest {
     }
 
     @Test
-    public void shouldGiveRawJavaClassPath() {
-        assertEquals( System.getProperty( "java.class.path" ), systemProperties.rawJavaClassPath() );
-    }
-
-    @Test
-    public void shouldGiveRawJavaLibraryPath() {
-        assertEquals( System.getProperty( "java.library.path" ), systemProperties.rawJavaLibraryPath() );
-    }
-
-    @Test
     public void shouldGiveJavaIoTmpdir() {
         assertEquals( System.getProperty( "java.io.tmpdir" ), systemProperties.javaIoTmpdir().getPath() + '/' );
     }
@@ -140,11 +130,6 @@ public class BindingSystemPropertiesToTypedInterfaceTest {
     @Test
     public void shouldGiveJavaCompiler() {
         assertEquals( System.getProperty( "java.compiler" ), systemProperties.javaCompiler() );
-    }
-
-    @Test
-    public void shouldGiveRawJavaExtDirs() {
-        assertEquals( System.getProperty( "java.ext.dirs" ), systemProperties.rawJavaExtDirs() );
     }
 
     @Test
@@ -194,27 +179,23 @@ public class BindingSystemPropertiesToTypedInterfaceTest {
 
     @Test
     public void shouldGiveJavaClassPath() {
-        assertEquals( System.getProperty( "java.class.path" ), join( systemProperties.javaClassPath() ) );
+        assertEquals( toFiles( System.getProperty( "java.class.path" ) ), systemProperties.javaClassPath() );
     }
 
     @Test
     public void shouldGiveJavaLibraryPath() {
-        assertEquals( System.getProperty( "java.library.path" ), join( systemProperties.javaLibraryPath() ) );
+        assertEquals( toFiles( System.getProperty( "java.library.path" ) ), systemProperties.javaLibraryPath() );
     }
 
     @Test
     public void shouldGiveJavaExtDirs() {
-        assertEquals( System.getProperty( "java.ext.dirs" ), join( systemProperties.javaExtDirs() ) );
+        assertEquals( toFiles( System.getProperty( "java.ext.dirs" ) ), systemProperties.javaExtDirs() );
     }
 
-    private static String join( List<File> files ) {
-        StringBuilder builder = new StringBuilder();
-        for ( Iterator<File> iter = files.iterator(); iter.hasNext(); ) {
-            builder.append( iter.next().getPath() );
-            if ( iter.hasNext() )
-                builder.append( System.getProperty( "path.separator" ) );
-        }
-
-        return builder.toString();
+    private static List<File> toFiles( String path ) {
+        List<File> files = new ArrayList<File>();
+        for ( String each : path.split( System.getProperty( "path.separator" ) ) )
+            files.add( new File( each ) );
+        return files;
     }
 }

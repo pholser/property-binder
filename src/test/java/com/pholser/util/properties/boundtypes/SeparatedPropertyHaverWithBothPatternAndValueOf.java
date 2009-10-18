@@ -25,13 +25,15 @@
 
 package com.pholser.util.properties.boundtypes;
 
+import java.util.List;
+
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ValuesSeparatedBy;
 
-public interface BadValueSeparatorPropertyHaver {
-    @BoundProperty( "bad.value.separator.property" )
-    @DefaultsTo( "1" )
-    @ValuesSeparatedBy( pattern = "*!&@^#(*!@&" )
-    int[] badDefaultValueProperty();
+public interface SeparatedPropertyHaverWithBothPatternAndValueOf {
+    @BoundProperty( "separated.property.with.both.pattern.and.valueOf" )
+    @DefaultsTo( "2" )
+    @ValuesSeparatedBy( pattern = ";", valueOf = ":" )
+    List<Integer> badSeparatorProperty();
 }

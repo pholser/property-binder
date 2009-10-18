@@ -31,22 +31,22 @@ import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
+import java.util.Properties;
 
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 
 class ListValueConverter implements ValueConverter {
-    private final Pattern separator;
+    private final ValueSeparator separator;
     private final ValueConverter elementTypeConverter;
 
-    ListValueConverter( Type valueType, Pattern separator ) {
+    ListValueConverter( Type valueType, ValueSeparator separator ) {
         this.separator = separator;
         this.elementTypeConverter = createScalarConverter( deduceElementType( valueType ) );
     }
 
     public Object convert( String raw ) {
         List<Object> values = new ArrayList<Object>();
-        String[] pieces = separator.split( raw );
+        String[] pieces = separator.separate( raw );
         for ( int i = 0; i < pieces.length; ++i )
             values.add( elementTypeConverter.convert( pieces[ i ] ) );
 
@@ -74,5 +74,9 @@ class ListValueConverter implements ValueConverter {
 
     public Object nilValue() {
         return new ArrayList<Object>();
+    }
+
+    public void resolve( Properties properties ) {
+        separator.resolve( properties );
     }
 }
