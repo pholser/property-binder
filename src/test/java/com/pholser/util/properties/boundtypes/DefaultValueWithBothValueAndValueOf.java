@@ -23,18 +23,13 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal.exceptions;
+package com.pholser.util.properties.boundtypes;
 
-import java.lang.reflect.Method;
-
+import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
-public class MalformedDefaultValueException extends IllegalArgumentException {
-    private static final long serialVersionUID = 1L;
-
-    public MalformedDefaultValueException( String defaultValue, Method method, Throwable cause ) {
-        super( "Cannot convert value [" + defaultValue + " of @" + DefaultsTo.class.getSimpleName()
-            + " for method " + method.getName() + " on " + method.getDeclaringClass()
-            + " to " + method.getReturnType(), cause );
-    }
+public interface DefaultValueWithBothValueAndValueOf {
+    @BoundProperty( "property.with.both.default.value.and.valueOf" )
+    @DefaultsTo( value = "NO|MAYBE|YES|MAYBE", valueOf = "[enum.array.property]" )
+    Trinary[] propertyWithBothDefaultValueAndValueOf();
 }

@@ -23,18 +23,12 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal.exceptions;
+package com.pholser.util.properties.internal;
 
-import java.lang.reflect.Method;
+import java.util.Properties;
 
-import com.pholser.util.properties.DefaultsTo;
+interface DefaultValue {
+    Object evaluate();
 
-public class MalformedDefaultValueException extends IllegalArgumentException {
-    private static final long serialVersionUID = 1L;
-
-    public MalformedDefaultValueException( String defaultValue, Method method, Throwable cause ) {
-        super( "Cannot convert value [" + defaultValue + " of @" + DefaultsTo.class.getSimpleName()
-            + " for method " + method.getName() + " on " + method.getDeclaringClass()
-            + " to " + method.getReturnType(), cause );
-    }
+    void resolve( Properties properties );
 }

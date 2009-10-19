@@ -34,7 +34,9 @@ import java.lang.annotation.Target;
 /**
  * <p>Mark an interface method with this annotation to indicate a default value for the properties file key
  * indicated by {@link BoundProperty}.  If no property is associated with the key for the method, the default value
- * will be returned instead.</p>
+ * will be returned instead.  The default can be a plain value given by {@link #value()} or a value comprised
+ * in whole or in part of the values of other properties, given by {@link #valueOf()}.  References to other
+ * properties in a {@link #valueOf()} expression are delimited by {@code [} and {@code ]}.</p>
  *
  * <p>Default values for aggregate types can use a separator given by {@link ValuesSeparatedBy}.</p>
  *
@@ -46,5 +48,7 @@ public @interface DefaultsTo {
     /**
      * String representation of the default value for the properties file key associated with the marked method.
      */
-    String value();
+    String value() default "";
+
+    String valueOf() default "";
 }

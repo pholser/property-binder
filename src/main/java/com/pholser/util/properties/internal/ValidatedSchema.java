@@ -34,10 +34,12 @@ import java.util.Properties;
 
 public class ValidatedSchema<T> {
     private final Class<T> schema;
-    private final Map<String, ?> defaults;
+    private final Map<String, DefaultValue> defaults;
     private final Map<String, ValueConverter> converters;
 
-    ValidatedSchema( Class<T> schema, Map<String, ?> defaultValues, Map<String, ValueConverter> converters ) {
+    ValidatedSchema( Class<T> schema, Map<String, DefaultValue> defaultValues,
+        Map<String, ValueConverter> converters ) {
+
         this.schema = schema;
         this.defaults = defaultValues;
         this.converters = converters;
@@ -45,6 +47,7 @@ public class ValidatedSchema<T> {
 
     public T evaluate( Properties properties ) {
         resolveConverters( properties );
+        resolveDefaultValues( properties );
         return createTypedProxyFor( properties );
     }
 
@@ -62,7 +65,7 @@ public class ValidatedSchema<T> {
         if ( properties.containsKey( propertyName ) )
             return converter.convert( properties.getProperty( propertyName ) );
         if ( defaults.containsKey( propertyName ) )
-            return defaults.get( propertyName );
+            return defaults.get( propertyName ).evaluate();
         return converter.nilValue();
     }
 
@@ -72,6 +75,11 @@ public class ValidatedSchema<T> {
 
     private void resolveConverters( Properties properties ) {
         for ( ValueConverter each : converters.values() )
+            each.resolve( properties );
+    }
+
+    private void resolveDefaultValues( Properties properties ) {
+        for ( DefaultValue each : defaults.values() )
             each.resolve( properties );
     }
 }

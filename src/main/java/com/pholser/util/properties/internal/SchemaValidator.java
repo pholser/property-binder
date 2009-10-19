@@ -36,22 +36,24 @@ import com.pholser.util.properties.ValuesSeparatedBy;
 import com.pholser.util.properties.internal.exceptions.AppliedSeparatorToNonAggregateTypeException;
 import com.pholser.util.properties.internal.exceptions.BoundTypeNotAnInterfaceException;
 import com.pholser.util.properties.internal.exceptions.InterfaceHasSuperinterfacesException;
-import com.pholser.util.properties.internal.exceptions.MalformedDefaultValueException;
+import com.pholser.util.properties.internal.exceptions.MultipleDefaultValueSpecificationException;
 import com.pholser.util.properties.internal.exceptions.MultipleSeparatorSpecificationException;
+import com.pholser.util.properties.internal.exceptions.NoDefaultValueSpecificationException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedAggregateTypeException;
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 public class SchemaValidator {
     private final ValueConverterFactory converterFactory = new ValueConverterFactory();
 
     private final ValueSeparatorFactory separatorFactory = new ValueSeparatorFactory();
 
+    private final DefaultValueFactory defaultValueFactory = new DefaultValueFactory();
+
     public <T> ValidatedSchema<T> validate( Class<T> schema ) {
         ensureInterface( schema );
         ensureNoSuperinterfaces( schema );
 
         Map<String, ValueConverter> converters = new HashMap<String, ValueConverter>();
-        Map<String, Object> defaultValues = new HashMap<String, Object>();
+        Map<String, DefaultValue> defaultValues = new HashMap<String, DefaultValue>();
         Map<String, ValueSeparator> separators = new HashMap<String, ValueSeparator>();
 
         for ( Method each : schema.getDeclaredMethods() ) {
@@ -89,8 +91,8 @@ public class SchemaValidator {
             if ( !isAggregate )
                 throw new AppliedSeparatorToNonAggregateTypeException( method );
 
-            if ( !( separator.pattern().equals( annotationDefault( ValuesSeparatedBy.class, "pattern" ) )
-                || separator.valueOf().equals( annotationDefault( ValuesSeparatedBy.class, "valueOf" ) ) ) ) {
+            if ( !( separator.pattern().equals( annotationDefault( ValuesSeparatedBy.class, "pattern" ) ) || separator
+                .valueOf().equals( annotationDefault( ValuesSeparatedBy.class, "valueOf" ) ) ) ) {
                 throw new MultipleSeparatorSpecificationException( separator, method );
             }
         }
@@ -102,29 +104,30 @@ public class SchemaValidator {
     private void collectConverter( Map<String, ValueConverter> converters, Map<String, ValueSeparator> separators,
         Method method, String propertyName ) {
 
-        converters.put(
-            propertyName,
-            converterFactory.createConverter( method, separators.get( propertyName ) ) );
+        converters.put( propertyName, converterFactory.createConverter( method, separators.get( propertyName ) ) );
     }
 
-    private void collectDefaultValue( Map<String, Object> defaults, ValueConverter converter, Method method,
+    private void collectDefaultValue( Map<String, DefaultValue> defaults, ValueConverter converter, Method method,
         String propertyName ) {
 
-        Object defaultValue = defaultValue( method, converter );
+        DefaultValue defaultValue = defaultValue( method, converter );
         if ( defaultValue != null )
             defaults.put( propertyName, defaultValue );
     }
 
-    private Object defaultValue( Method method, ValueConverter converter ) {
-        DefaultsTo defaultValue = method.getAnnotation( DefaultsTo.class );
-        if ( defaultValue == null )
+    private DefaultValue defaultValue( Method method, ValueConverter converter ) {
+        DefaultsTo defaultValueSpec = method.getAnnotation( DefaultsTo.class );
+        if ( defaultValueSpec == null )
             return null;
 
-        try {
-            return converter.convert( defaultValue.value() );
-        }
-        catch ( ValueConversionException ex ) {
-            throw new MalformedDefaultValueException( defaultValue, method, ex );
-        }
+        boolean valueIsDefault = defaultValueSpec.value().equals( annotationDefault( DefaultsTo.class, "value" ) );
+        boolean valueOfIsDefault =
+            defaultValueSpec.valueOf().equals( annotationDefault( DefaultsTo.class, "valueOf" ) );
+        if ( !( valueIsDefault || valueOfIsDefault ) )
+            throw new MultipleDefaultValueSpecificationException( defaultValueSpec, method );
+        if ( valueIsDefault && valueOfIsDefault )
+            throw new NoDefaultValueSpecificationException( method );
+
+        return defaultValueFactory.createDefaultValue( defaultValueSpec, converter, method );
     }
 }

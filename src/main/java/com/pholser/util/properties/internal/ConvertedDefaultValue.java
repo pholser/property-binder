@@ -23,18 +23,40 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal.exceptions;
+package com.pholser.util.properties.internal;
 
 import java.lang.reflect.Method;
+import java.util.Properties;
 
 import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.internal.exceptions.MalformedDefaultValueException;
+import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
-public class MalformedDefaultValueException extends IllegalArgumentException {
-    private static final long serialVersionUID = 1L;
+class ConvertedDefaultValue implements DefaultValue {
+    private final Object converted;
 
-    public MalformedDefaultValueException( String defaultValue, Method method, Throwable cause ) {
-        super( "Cannot convert value [" + defaultValue + " of @" + DefaultsTo.class.getSimpleName()
-            + " for method " + method.getName() + " on " + method.getDeclaringClass()
-            + " to " + method.getReturnType(), cause );
+    private ConvertedDefaultValue( String value, ValueConverter converter, Method method ) {
+        try {
+            this.converted = converter.convert( value );
+        }
+        catch ( ValueConversionException ex ) {
+            throw new MalformedDefaultValueException( value, method, ex );
+        }
+    }
+
+    static ConvertedDefaultValue fromValue( DefaultsTo defaultValueSpec, ValueConverter converter, Method method ) {
+        return new ConvertedDefaultValue( defaultValueSpec.value(), converter, method );
+    }
+
+    static ConvertedDefaultValue fromValueOf( String valueOf, ValueConverter converter, Method method ) {
+        return new ConvertedDefaultValue( valueOf, converter, method );
+    }
+
+    public Object evaluate() {
+        return converted;
+    }
+
+    public void resolve( Properties properties ) {
+        // nothing to do here
     }
 }

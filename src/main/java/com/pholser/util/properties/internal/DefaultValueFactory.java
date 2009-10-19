@@ -23,18 +23,21 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal.exceptions;
+package com.pholser.util.properties.internal;
+
+import static com.pholser.util.properties.internal.PICAHelpers.*;
 
 import java.lang.reflect.Method;
 
 import com.pholser.util.properties.DefaultsTo;
 
-public class MalformedDefaultValueException extends IllegalArgumentException {
-    private static final long serialVersionUID = 1L;
+class DefaultValueFactory {
+    DefaultValue createDefaultValue( DefaultsTo defaultValueSpec, ValueConverter converter, Method method ) {
+        Object valueDefault = annotationDefault( DefaultsTo.class, "value" );
 
-    public MalformedDefaultValueException( String defaultValue, Method method, Throwable cause ) {
-        super( "Cannot convert value [" + defaultValue + " of @" + DefaultsTo.class.getSimpleName()
-            + " for method " + method.getName() + " on " + method.getDeclaringClass()
-            + " to " + method.getReturnType(), cause );
+        if ( valueDefault.equals( defaultValueSpec.value() ) )
+            return new SubstitutableDefaultValue( defaultValueSpec, converter, method );
+
+        return ConvertedDefaultValue.fromValue( defaultValueSpec, converter, method );
     }
 }

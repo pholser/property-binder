@@ -23,18 +23,33 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal.exceptions;
+package com.pholser.util.properties.internal;
+
+import static com.pholser.util.properties.SubstitutableProperties.*;
 
 import java.lang.reflect.Method;
+import java.util.Properties;
 
 import com.pholser.util.properties.DefaultsTo;
 
-public class MalformedDefaultValueException extends IllegalArgumentException {
-    private static final long serialVersionUID = 1L;
+class SubstitutableDefaultValue implements DefaultValue {
+    private final DefaultsTo defaultValueSpec;
+    private final ValueConverter converter;
+    private final Method method;
+    private ConvertedDefaultValue converted;
 
-    public MalformedDefaultValueException( String defaultValue, Method method, Throwable cause ) {
-        super( "Cannot convert value [" + defaultValue + " of @" + DefaultsTo.class.getSimpleName()
-            + " for method " + method.getName() + " on " + method.getDeclaringClass()
-            + " to " + method.getReturnType(), cause );
+    public SubstitutableDefaultValue( DefaultsTo defaultValueSpec, ValueConverter converter, Method method ) {
+        this.defaultValueSpec = defaultValueSpec;
+        this.converter = converter;
+        this.method = method;
+    }
+
+    public Object evaluate() {
+        return converted.evaluate();
+    }
+
+    public void resolve( Properties properties ) {
+        String substituted = substitute( defaultValueSpec.valueOf(), properties );
+        this.converted = ConvertedDefaultValue.fromValueOf( substituted, converter, method );
     }
 }

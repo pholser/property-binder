@@ -32,6 +32,8 @@ import java.util.Properties;
 import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypePropertyHaver;
 import com.pholser.util.properties.boundtypes.BadDefaultValuePropertyHaver;
 import com.pholser.util.properties.boundtypes.BadValueSeparatorPropertyHaver;
+import com.pholser.util.properties.boundtypes.DefaultValueWithBothValueAndValueOf;
+import com.pholser.util.properties.boundtypes.DefaultValueWithNeitherValueNorValueOf;
 import com.pholser.util.properties.boundtypes.InterfaceWithSuperinterfaces;
 import com.pholser.util.properties.boundtypes.ListOfArrayPropertyHaver;
 import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypePropertyHaver;
@@ -51,7 +53,9 @@ import com.pholser.util.properties.internal.exceptions.BoundTypeNotAnInterfaceEx
 import com.pholser.util.properties.internal.exceptions.InterfaceHasSuperinterfacesException;
 import com.pholser.util.properties.internal.exceptions.MalformedDefaultValueException;
 import com.pholser.util.properties.internal.exceptions.MalformedSeparatorException;
+import com.pholser.util.properties.internal.exceptions.MultipleDefaultValueSpecificationException;
 import com.pholser.util.properties.internal.exceptions.MultipleSeparatorSpecificationException;
+import com.pholser.util.properties.internal.exceptions.NoDefaultValueSpecificationException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedAggregateTypeException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 
@@ -165,5 +169,15 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends B
     @Test( expected = InterfaceHasSuperinterfacesException.class )
     public void shouldRejectTypeWithSuperinterfaces() {
         PropertyBinder.forType( InterfaceWithSuperinterfaces.class );
+    }
+
+    @Test( expected = MultipleDefaultValueSpecificationException.class )
+    public void shouldRejectDefaultValueSpecWithBothValueAndValueOf() {
+        PropertyBinder.forType( DefaultValueWithBothValueAndValueOf.class );
+    }
+
+    @Test( expected = NoDefaultValueSpecificationException.class )
+    public void shouldRejectDefaultValueSpecWithNeitherValueNorValueOf() {
+        PropertyBinder.forType( DefaultValueWithNeitherValueNorValueOf.class );
     }
 }
