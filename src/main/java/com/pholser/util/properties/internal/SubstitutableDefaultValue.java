@@ -38,7 +38,7 @@ class SubstitutableDefaultValue implements DefaultValue {
     private final Method method;
     private ConvertedDefaultValue converted;
 
-    public SubstitutableDefaultValue( DefaultsTo defaultValueSpec, ValueConverter converter, Method method ) {
+    SubstitutableDefaultValue( DefaultsTo defaultValueSpec, ValueConverter converter, Method method ) {
         this.defaultValueSpec = defaultValueSpec;
         this.converter = converter;
         this.method = method;

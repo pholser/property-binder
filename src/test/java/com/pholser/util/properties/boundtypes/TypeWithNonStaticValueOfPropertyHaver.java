@@ -34,7 +34,7 @@ public interface TypeWithNonStaticValueOfPropertyHaver {
     TypeWithNonStaticValueOf typeWithNonStaticValueOfProperty();
 
     @SuppressWarnings( "all" )
-    public class TypeWithNonStaticValueOf {
+    class TypeWithNonStaticValueOf {
         public TypeWithNonStaticValueOf valueOf( String value ) {
             return null;
         }

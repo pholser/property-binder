@@ -48,10 +48,15 @@ import java.lang.annotation.Target;
 @Retention( RUNTIME )
 public @interface ValuesSeparatedBy {
     /**
-     * A {@linkplain java.util.regex.Pattern regular expression} specifying a separator to be used on values of
+     * @return a {@linkplain java.util.regex.Pattern regular expression} specifying a separator to be used on values of
      * a given property.
      */
     String pattern() default ",";
 
+    /**
+     * @return an expression evaluating to a {@linkplain java.util.regex.Pattern regular expression} specifying a
+     * separator to be used on values of a given property.  This expression can be given in terms of property
+     * references.
+     */
     String valueOf() default "";
 }

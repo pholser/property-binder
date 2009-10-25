@@ -120,7 +120,8 @@ public final class PropertyBinder<T> {
         if ( properties == null )
             throw new NullPointerException( "attempt to bind null " + Properties.class.getSimpleName() + " object" );
 
-        return validatedSchema.evaluate( properties );
+        Properties copy = (Properties) properties.clone();
+        return validatedSchema.evaluate( copy );
     }
 
     /**

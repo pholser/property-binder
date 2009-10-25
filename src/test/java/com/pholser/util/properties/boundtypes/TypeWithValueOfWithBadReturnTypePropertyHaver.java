@@ -33,7 +33,7 @@ public interface TypeWithValueOfWithBadReturnTypePropertyHaver {
     @DefaultsTo( "boo" )
     TypeWithValueOfWithBadReturnType typeWithValueOfWithBadReturnType();
 
-    public class TypeWithValueOfWithBadReturnType {
+    class TypeWithValueOfWithBadReturnType {
         public static String valueOf( String value ) {
             return value;
         }

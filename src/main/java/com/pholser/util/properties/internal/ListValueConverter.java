@@ -46,9 +46,8 @@ class ListValueConverter implements ValueConverter {
 
     public Object convert( String raw ) {
         List<Object> values = new ArrayList<Object>();
-        String[] pieces = separator.separate( raw );
-        for ( int i = 0; i < pieces.length; ++i )
-            values.add( elementTypeConverter.convert( pieces[ i ] ) );
+        for ( String each : separator.separate( raw ) )
+            values.add( elementTypeConverter.convert( each ) );
 
         return values;
     }

@@ -41,7 +41,7 @@ import java.lang.annotation.Target;
 @Retention( RUNTIME )
 public @interface BoundProperty {
     /**
-     * The properties file key to associate with the marked method.
+     * @return the properties file key to associate with the marked method.
      */
     String value();
 }

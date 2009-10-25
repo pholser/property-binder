@@ -34,7 +34,7 @@ public interface TypeWithNonPublicValueOfPropertyHaver {
     TypeWithNonPublicValueOf typeWithNonPublicValueOfProperty();
 
     @SuppressWarnings( "all" )
-    public class TypeWithNonPublicValueOf {
+    class TypeWithNonPublicValueOf {
         static TypeWithNonPublicValueOf valueOf( String value ) {
             return null;
         }

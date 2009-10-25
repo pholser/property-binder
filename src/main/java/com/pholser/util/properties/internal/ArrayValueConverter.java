@@ -35,7 +35,7 @@ class ArrayValueConverter implements ValueConverter {
     private final ValueConverter componentTypeConverter;
     private final ValueSeparator separator;
 
-    public ArrayValueConverter( Class<?> arrayType, ValueSeparator separator ) {
+    ArrayValueConverter( Class<?> arrayType, ValueSeparator separator ) {
         this.componentType = arrayType.getComponentType();
         this.componentTypeConverter = createScalarConverter( componentType );
         this.separator = separator;
