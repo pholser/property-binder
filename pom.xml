@@ -6,7 +6,7 @@
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>property-binder</name>
-  <description>Enables typed retrieval of properties based on a PICA</description>
+  <description>Enables typed retrieval of properties based on an annotated interface</description>
  
   <licenses>
     <license>
@@ -85,6 +85,12 @@
           <headerLocation>${basedir}/conf/MIT-LICENSE.txt</headerLocation>
         </configuration>
       </plugin>
+      <plugin>
+        <artifactId>maven-site-plugin</artifactId>
+        <configuration>
+          <templateFile>src/site/site.vm</templateFile>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
@@ -132,5 +138,20 @@
       </plugin>
     </plugins>
   </reporting>
-
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>pholser-geekisp-repo</id>
+      <name>Pholser's Repo at GeekISP</name>
+      <url>sftp://login.geekisp.com/home/pholser/maven</url>
+      <layout>default</layout>
+    </repository>
+    <snapshotRepository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>pholser-geekisp-repo-snapshots</id>
+      <name>JOpt Simple Snapshot Repository</name>
+      <url>sftp://login.geekisp.com/home/pholser/maven-snapshots</url>
+      <layout>default</layout>
+    </snapshotRepository>
+  </distributionManagement>
 </project>
