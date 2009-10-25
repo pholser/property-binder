@@ -16,6 +16,10 @@
     </license>
   </licenses>
 
+  <scm>
+    <connection>svn://svn.geekisp.com/pholser-repo/java/property-binder</connection>
+  </scm>
+
   <developers>
     <developer>
       <id>pholser</id>
@@ -138,6 +142,7 @@
       </plugin>
     </plugins>
   </reporting>
+
   <distributionManagement>
     <repository>
       <uniqueVersion>false</uniqueVersion>
