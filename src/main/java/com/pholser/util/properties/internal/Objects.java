@@ -24,7 +24,7 @@
  */
 package com.pholser.util.properties.internal;
 
-public class Objects {
+public final class Objects {
     static {
         new Objects();
     }

@@ -46,12 +46,12 @@ import java.lang.annotation.Target;
 @Retention( RUNTIME )
 public @interface DefaultsTo {
     /**
-     * @return string representation of the default value for the properties file key associated with the marked method.
+     * String representation of the default value for the properties file key associated with the marked method.
      */
     String value() default "";
 
     /**
-     * @return expression to give the string representation of a default value for the properties file key
+     * Expression to give the string representation of a default value for the properties file key
      * associated with the marked method.  This expression can be given in terms of property references.
      */
     String valueOf() default "";

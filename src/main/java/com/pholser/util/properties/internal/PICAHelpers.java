@@ -30,7 +30,7 @@ import java.lang.reflect.Method;
 
 import com.pholser.util.properties.BoundProperty;
 
-class PICAHelpers {
+final class PICAHelpers {
     static {
         new PICAHelpers();
     }

@@ -32,7 +32,7 @@ import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.internal.exceptions.MalformedDefaultValueException;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
-class ConvertedDefaultValue implements DefaultValue {
+final class ConvertedDefaultValue implements DefaultValue {
     private final Object converted;
 
     private ConvertedDefaultValue( String value, ValueConverter converter, Method method ) {
