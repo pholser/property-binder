@@ -86,7 +86,7 @@ public final class PropertyBinder<T> {
      *
      *   If a value type has both of these, the {@code valueOf} method takes priority over the constructor.</li>
      *
-     *   <li>A List type may be a raw List or a {@code List&lt;?&gt;}.  The underlying values are {@code String}s
+     *   <li>A List type may be a raw List or a {@code List<?>}.  The underlying values are {@code String}s
      *   in such cases.</li>
      *
      *   <li>If the method specifies a default value via {@link ValuesSeparatedBy}, that value must be convertible

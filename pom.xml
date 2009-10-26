@@ -17,7 +17,7 @@
   </licenses>
 
   <scm>
-    <connection>svn://svn.geekisp.com/pholser-repo/java/property-binder</connection>
+    <connection>scm:svn:svn://svn.geekisp.com/pholser-repo/java/property-binder</connection>
   </scm>
 
   <developers>

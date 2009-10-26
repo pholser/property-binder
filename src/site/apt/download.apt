@@ -1,0 +1,23 @@
+                                       --------
+                                       Download
+                                       --------
+
+    Releases of Property Binder are synced to the central Maven repository.  Declare a
+    dependency element in your POM like so:
+
++---------------------------------------------
+...
+<dependencies>
+  ...
+  <dependency>
+    <groupId>com.pholser</groupId>
+    <artifactId>property-binder</artifactId>
+    <version>@JOPT_SIMPLE_VERSION@</version>
+  </dependency>
+  ...
+</dependencies>
+...
++---------------------------------------------
+
+    If you're not using Maven, you can still download the newer releases from the Maven
+    repository manually, {{{http://repo1.maven.org/maven2/com/pholser/property-binder} here}}.
