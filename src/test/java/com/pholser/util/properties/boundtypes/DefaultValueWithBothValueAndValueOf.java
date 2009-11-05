@@ -31,5 +31,5 @@ import com.pholser.util.properties.DefaultsTo;
 public interface DefaultValueWithBothValueAndValueOf {
     @BoundProperty( "property.with.both.default.value.and.valueOf" )
     @DefaultsTo( value = "NO|MAYBE|YES|MAYBE", valueOf = "[enum.array.property]" )
-    Trinary[] propertyWithBothDefaultValueAndValueOf();
+    Ternary[] propertyWithBothDefaultValueAndValueOf();
 }

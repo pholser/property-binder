@@ -212,20 +212,20 @@ public interface ListPropertyHaver {
     List<BigDecimal> bigDecimalListPropertyWithDefaultAndSeparator();
 
     @BoundProperty( "enum.list.property" )
-    List<Trinary> enumListProperty();
+    List<Ternary> enumListProperty();
 
     @BoundProperty( "enum.list.property.with.custom.separator" )
     @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
-    List<Trinary> enumListPropertyWithCustomSeparator();
+    List<Ternary> enumListPropertyWithCustomSeparator();
 
     @BoundProperty( "enum.list.property.with.default" )
     @DefaultsTo( "YES,NO,NO,MAYBE,YES" )
-    List<Trinary> enumListPropertyWithDefault();
+    List<Ternary> enumListPropertyWithDefault();
 
     @BoundProperty( "enum.list.property.with.default.and.separator" )
     @DefaultsTo( "NO|MAYBE|YES|MAYBE" )
     @ValuesSeparatedBy( pattern = "\\|" )
-    List<Trinary> enumListPropertyWithDefaultAndSeparator();
+    List<Ternary> enumListPropertyWithDefaultAndSeparator();
 
     @SuppressWarnings( "unchecked" )
     @BoundProperty( "raw.list.property" )

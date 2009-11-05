@@ -25,6 +25,6 @@
 
 package com.pholser.util.properties.boundtypes;
 
-public enum Trinary {
+public enum Ternary {
     YES, NO, MAYBE
 }

@@ -338,20 +338,20 @@ public interface ArrayPropertyHaver {
     BigDecimal[] bigDecimalArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( "enum.array.property" )
-    Trinary[] enumArrayProperty();
+    Ternary[] enumArrayProperty();
 
     @BoundProperty( "enum.array.property.with.custom.separator" )
     @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
-    Trinary[] enumArrayPropertyWithCustomSeparator();
+    Ternary[] enumArrayPropertyWithCustomSeparator();
 
     @BoundProperty( "enum.array.property.with.default" )
     @DefaultsTo( "YES,NO,NO,MAYBE,YES" )
-    Trinary[] enumArrayPropertyWithDefault();
+    Ternary[] enumArrayPropertyWithDefault();
 
     @BoundProperty( "enum.array.property.with.default.and.separator" )
     @DefaultsTo( "NO|MAYBE|YES|MAYBE" )
     @ValuesSeparatedBy( pattern = "\\|" )
-    Trinary[] enumArrayPropertyWithDefaultAndSeparator();
+    Ternary[] enumArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( "missing.primitive.array.property" )
     int[] missingPrimitiveArrayProperty();

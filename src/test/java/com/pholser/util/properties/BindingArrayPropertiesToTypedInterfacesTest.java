@@ -26,14 +26,14 @@
 package com.pholser.util.properties;
 
 import static com.pholser.util.properties.ArrayUtils.*;
-import static com.pholser.util.properties.boundtypes.Trinary.*;
+import static com.pholser.util.properties.boundtypes.Ternary.*;
 import static java.util.Collections.*;
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import com.pholser.util.properties.boundtypes.ArrayPropertyHaver;
-import com.pholser.util.properties.boundtypes.Trinary;
+import com.pholser.util.properties.boundtypes.Ternary;
 
 import org.junit.Test;
 
@@ -555,27 +555,27 @@ public class BindingArrayPropertiesToTypedInterfacesTest extends TypedBindingTes
 
     @Test
     public void shouldBindSeparatedEnumValuedPropertyToEnumArrayReturningMethod() {
-        assertEquals( toList( new Trinary[] { YES, YES, NO, MAYBE, YES } ), toList( bound.enumArrayProperty() ) );
+        assertEquals( toList( new Ternary[] { YES, YES, NO, MAYBE, YES } ), toList( bound.enumArrayProperty() ) );
     }
 
     @Test
     public void shouldBindEnumValuedPropertyWithCustomSeparatorToEnumArrayReturningMethod() {
         assertEquals(
-            toList( new Trinary[] { NO, NO, MAYBE, MAYBE } ),
+            toList( new Ternary[] { NO, NO, MAYBE, MAYBE } ),
             toList( bound.enumArrayPropertyWithCustomSeparator() ) );
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForEnumArrayProperty() {
         assertEquals(
-            toList( new Trinary[] { YES, NO, NO, MAYBE, YES } ),
+            toList( new Ternary[] { YES, NO, NO, MAYBE, YES } ),
             toList( bound.enumArrayPropertyWithDefault() ) );
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForEnumArrayPropertyWithSeparator() {
         assertEquals(
-            toList( new Trinary[] { NO, MAYBE, YES, MAYBE } ),
+            toList( new Ternary[] { NO, MAYBE, YES, MAYBE } ),
             toList( bound.enumArrayPropertyWithDefaultAndSeparator() ) );
     }
 

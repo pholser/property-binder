@@ -25,7 +25,7 @@
 
 package com.pholser.util.properties;
 
-import static com.pholser.util.properties.boundtypes.Trinary.*;
+import static com.pholser.util.properties.boundtypes.Ternary.*;
 import static java.util.Arrays.*;
 import static java.util.Collections.*;
 import static org.junit.Assert.*;

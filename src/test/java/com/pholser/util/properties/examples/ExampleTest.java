@@ -1,13 +1,16 @@
 package com.pholser.util.properties.examples;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.Arrays;
+import static java.math.BigDecimal.*;
 import static java.util.Arrays.*;
 
 import com.pholser.util.properties.PropertyBinder;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import static com.pholser.util.properties.boundtypes.Ternary.*;
+import static org.junit.Assert.*;
 
 public class ExampleTest {
     private PropertyBinder<ExamplePICA> binder;
@@ -46,6 +49,16 @@ public class ExampleTest {
 
     @Test
     public void shouldConvertCommaSeparatedValuedPropertyToList() {
-        assertEquals( Arrays.asList( 'd', 'e', 'f' ), bound.charListProperty() );
+        assertEquals( asList( 'd', 'e', 'f' ), bound.charListProperty() );
+    }
+
+    @Test
+    public void shouldHonorDifferentSeparatorsForAggregateProperties() {
+        assertEquals( asList( YES, NO, YES, MAYBE ), bound.listOfEnumsWithSeparator() );
+    }
+
+    @Test
+    public void shouldHonorDefaultValueIndicationWhenPropertyNotPresent() {
+        assertEquals( TEN, bound.bigDecimalPropertyWithDefault() );
     }
 }

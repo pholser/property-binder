@@ -84,7 +84,8 @@ public final class PropertyBinder<T> {
      *     <li>a {@code public} constructor which takes one argument, of type {@link String}</li>
      *   </ul>
      *
-     *   If a value type has both of these, the {@code valueOf} method takes priority over the constructor.</li>
+     *   If a value type has both of these, the {@code valueOf} method takes priority over the constructor.
+     *   Note that {@code enum}s have a {@code valueOf} method.</li>
      *
      *   <li>A List type may be a raw List or a {@code List<?>}.  The underlying values are {@code String}s
      *   in such cases.</li>

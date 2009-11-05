@@ -189,11 +189,11 @@ public interface ScalarPropertyHaver {
     BigDecimal bigDecimalPropertyWithDefault();
 
     @BoundProperty( "enum.property" )
-    Trinary enumProperty();
+    Ternary enumProperty();
 
     @BoundProperty( "enum.property" )
     @DefaultsTo( "YES" )
-    Trinary enumPropertyWithDefault();
+    Ternary enumPropertyWithDefault();
 
     @BoundProperty( "missing.property" )
     String missingProperty();
@@ -490,18 +490,18 @@ public interface ScalarPropertyHaver {
     BigDecimal[] bigDecimalArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty( "enum.array.property" )
-    Trinary[] enumArrayProperty();
+    Ternary[] enumArrayProperty();
 
     @BoundProperty( "enum.array.property.with.custom.separator" )
     @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
-    Trinary[] enumArrayPropertyWithCustomSeparator();
+    Ternary[] enumArrayPropertyWithCustomSeparator();
 
     @BoundProperty( "enum.array.property.with.default" )
     @DefaultsTo( "YES,NO,NO,MAYBE,YES" )
-    Trinary[] enumArrayPropertyWithDefault();
+    Ternary[] enumArrayPropertyWithDefault();
 
     @BoundProperty( "enum.array.property.with.default.and.separator" )
     @DefaultsTo( "NO|MAYBE|YES|MAYBE" )
     @ValuesSeparatedBy( pattern = "\\|" )
-    Trinary[] enumArrayPropertyWithDefaultAndSeparator();
+    Ternary[] enumArrayPropertyWithDefaultAndSeparator();
 }
