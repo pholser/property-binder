@@ -44,9 +44,6 @@ public class SubstitutableProperties extends Properties {
     private static final long serialVersionUID = 1L;
     private static final Pattern REFERENCE = Pattern.compile( "\\[(.*?)\\]" );
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String getProperty( String key ) {
         return substitute( super.getProperty( key ), this );
