@@ -29,6 +29,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Properties;
 
+import static com.pholser.util.properties.internal.Reflection.*;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 class MethodInvokingValueConverter implements ValueConverter {
@@ -42,16 +43,7 @@ class MethodInvokingValueConverter implements ValueConverter {
 
     public Object convert( String raw ) {
         try {
-            return clazz.cast( method.invoke( null, raw ) );
-        }
-        catch ( IllegalAccessException ex ) {
-            throw new ValueConversionException( ex );
-        }
-        catch ( InvocationTargetException ex ) {
-            throw new ValueConversionException( ex.getTargetException() );
-        }
-        catch ( IllegalArgumentException ex ) {
-            throw new ValueConversionException( ex );
+            return clazz.cast( invokeQuietly( method, null, raw ) );
         }
         catch ( ClassCastException ex ) {
             throw new ValueConversionException( ex );

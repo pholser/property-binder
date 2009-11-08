@@ -33,10 +33,12 @@ import java.util.Map;
 final class PrimitiveClasses {
     private static final Map<Class<?>, Class<?>> WRAPPERS;
 
+    private static final int SMALL_PRIME = 13;
+
     static {
         new PrimitiveClasses();
 
-        Map<Class<?>, Class<?>> wrappers = new HashMap<Class<?>, Class<?>>( 13 );
+        Map<Class<?>, Class<?>> wrappers = new HashMap<Class<?>, Class<?>>( SMALL_PRIME );
         wrappers.put( Boolean.TYPE, Boolean.class );
         wrappers.put( Byte.TYPE, Byte.class );
         wrappers.put( Character.TYPE, Character.class );

@@ -25,17 +25,14 @@
 
 package com.pholser.util.properties.internal;
 
-import static com.pholser.util.properties.internal.PICAHelpers.*;
-
 import java.lang.reflect.Method;
 
 import com.pholser.util.properties.DefaultsTo;
+import static com.pholser.util.properties.internal.PICAHelpers.*;
 
 class DefaultValueFactory {
     DefaultValue createDefaultValue( DefaultsTo defaultValueSpec, ValueConverter converter, Method method ) {
-        Object valueDefault = annotationDefault( DefaultsTo.class, "value" );
-
-        if ( valueDefault.equals( defaultValueSpec.value() ) )
+        if ( isDefaultDefaultValue( defaultValueSpec ) )
             return new SubstitutableDefaultValue( defaultValueSpec, converter, method );
 
         return ConvertedDefaultValue.fromValue( defaultValueSpec, converter, method );

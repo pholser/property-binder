@@ -25,22 +25,12 @@
 
 package com.pholser.util.properties.internal;
 
-import java.lang.reflect.Method;
+import com.pholser.util.properties.DefaultsTo;
+import org.junit.Test;
 
-import com.pholser.util.properties.ValuesSeparatedBy;
-import static com.pholser.util.properties.internal.PICAHelpers.*;
-
-class ValueSeparatorFactory {
-    ValueSeparator createSeparator( ValuesSeparatedBy separatorSpec, Method method ) {
-        Object patternDefault = annotationDefault( ValuesSeparatedBy.class, "pattern" );
-        return separatorSpec == null
-            ? new RegexValueSeparator( patternDefault.toString(), method )
-            : createSeparatorBasedOnSpec( separatorSpec, method );
-    }
-
-    private ValueSeparator createSeparatorBasedOnSpec( ValuesSeparatedBy separatorSpec, Method method ) {
-        if ( isDefaultPattern( separatorSpec ) && !isDefaultSeparatorValueOf( separatorSpec ) )
-            return new SubstitutableRegexValueSeparator( separatorSpec.valueOf(), method );
-        return new RegexValueSeparator( separatorSpec.pattern(), method );
+public class ReflectionTest {
+    @Test( expected = AssertionError.class )
+    public void shouldRejectBadMethodNameWhenInvokingMethod() {
+        Reflection.invokeQuietly( String.class, "IUYPQIWE", "" );
     }
 }

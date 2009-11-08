@@ -25,22 +25,42 @@
 
 package com.pholser.util.properties.internal;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Properties;
 
-import com.pholser.util.properties.ValuesSeparatedBy;
-import static com.pholser.util.properties.internal.PICAHelpers.*;
+import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
-class ValueSeparatorFactory {
-    ValueSeparator createSeparator( ValuesSeparatedBy separatorSpec, Method method ) {
-        Object patternDefault = annotationDefault( ValuesSeparatedBy.class, "pattern" );
-        return separatorSpec == null
-            ? new RegexValueSeparator( patternDefault.toString(), method )
-            : createSeparatorBasedOnSpec( separatorSpec, method );
+final class Reflection {
+    static {
+        new Reflection();
     }
 
-    private ValueSeparator createSeparatorBasedOnSpec( ValuesSeparatedBy separatorSpec, Method method ) {
-        if ( isDefaultPattern( separatorSpec ) && !isDefaultSeparatorValueOf( separatorSpec ) )
-            return new SubstitutableRegexValueSeparator( separatorSpec.valueOf(), method );
-        return new RegexValueSeparator( separatorSpec.pattern(), method );
+    private Reflection() {
+        // nothing to do here
+    }
+
+    static Object invokeQuietly( Class<?> targetClass, String methodName, Object target, Object... args ) {
+        try {
+            return invokeQuietly( targetClass.getMethod( methodName ), target, args );
+        }
+        catch ( NoSuchMethodException ex ) {
+            throw new AssertionError( ex );
+        }
+    }
+
+    static Object invokeQuietly( Method method, Object target, Object... args ) {
+        try {
+            return method.invoke( target, args );
+        }
+        catch ( IllegalAccessException ex ) {
+            throw new ValueConversionException( ex );
+        }
+        catch ( InvocationTargetException ex ) {
+            throw new ValueConversionException( ex.getTargetException() );
+        }
+        catch ( IllegalArgumentException ex ) {
+            throw new ValueConversionException( ex );
+        }
     }
 }

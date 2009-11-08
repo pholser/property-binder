@@ -26,9 +26,14 @@
 package com.pholser.util.properties.internal;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import com.pholser.util.properties.BoundProperty;
+import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.ValuesSeparatedBy;
+import static com.pholser.util.properties.internal.Reflection.*;
+import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 final class PICAHelpers {
     static {
@@ -51,5 +56,28 @@ final class PICAHelpers {
         catch ( NoSuchMethodException ex ) {
             throw new AssertionError( ex );
         }
+    }
+
+    static boolean isDefault( Object annotation, Class<? extends Annotation> annotationClass,
+        String methodName ) {
+
+        Object annotationDefault = annotationDefault( annotationClass, methodName );
+        return annotationDefault.equals( invokeQuietly( annotationClass, methodName, annotation ) );
+    }
+
+    static boolean isDefaultSeparatorValueOf( ValuesSeparatedBy separatorSpec ) {
+        return isDefault( separatorSpec, ValuesSeparatedBy.class, "valueOf" );
+    }
+
+    static boolean isDefaultPattern( ValuesSeparatedBy separatorSpec ) {
+        return isDefault( separatorSpec, ValuesSeparatedBy.class, "pattern" );
+    }
+
+    static boolean isDefaultDefaultValue( DefaultsTo defaultValueSpec ) {
+        return isDefault( defaultValueSpec, DefaultsTo.class, "value" );
+    }
+
+    static boolean isDefaultDefaultValueOf( DefaultsTo defaultValueSpec ) {
+        return isDefault( defaultValueSpec, DefaultsTo.class, "valueOf" );
     }
 }

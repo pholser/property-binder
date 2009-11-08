@@ -91,8 +91,7 @@ public class SchemaValidator {
             if ( !isAggregate )
                 throw new AppliedSeparatorToNonAggregateTypeException( method );
 
-            if ( !( separator.pattern().equals( annotationDefault( ValuesSeparatedBy.class, "pattern" ) ) || separator
-                .valueOf().equals( annotationDefault( ValuesSeparatedBy.class, "valueOf" ) ) ) ) {
+            if ( !( isDefaultPattern( separator ) || isDefaultSeparatorValueOf( separator ) ) ) {
                 throw new MultipleSeparatorSpecificationException( separator, method );
             }
         }
@@ -110,19 +109,18 @@ public class SchemaValidator {
     private void collectDefaultValue( Map<String, DefaultValue> defaults, ValueConverter converter, Method method,
         String propertyName ) {
 
-        DefaultValue defaultValue = defaultValue( method, converter );
+        DefaultValue defaultValue = createDefaultValue( method, converter );
         if ( defaultValue != null )
             defaults.put( propertyName, defaultValue );
     }
 
-    private DefaultValue defaultValue( Method method, ValueConverter converter ) {
+    private DefaultValue createDefaultValue( Method method, ValueConverter converter ) {
         DefaultsTo defaultValueSpec = method.getAnnotation( DefaultsTo.class );
         if ( defaultValueSpec == null )
             return null;
 
-        boolean valueIsDefault = defaultValueSpec.value().equals( annotationDefault( DefaultsTo.class, "value" ) );
-        boolean valueOfIsDefault =
-            defaultValueSpec.valueOf().equals( annotationDefault( DefaultsTo.class, "valueOf" ) );
+        boolean valueIsDefault = isDefaultDefaultValue( defaultValueSpec );
+        boolean valueOfIsDefault = isDefaultDefaultValueOf( defaultValueSpec );
         if ( !( valueIsDefault || valueOfIsDefault ) )
             throw new MultipleDefaultValueSpecificationException( defaultValueSpec, method );
         if ( valueIsDefault && valueOfIsDefault )
