@@ -105,30 +105,9 @@ public final class PropertyBinder<T> {
     }
 
     /**
-     * <p>Binds the given properties to an instance of this binder's PICA.</p>
-     *
-     * <p>After binding, invoking a PICA method returns the value of the property it represents if that property is
-     * present; else the value given by the method's {@link DefaultsTo} marker if present; else {@code null} for
-     * scalar types, a zero-length array for array types, and an {@linkplain java.util.Collection#isEmpty() empty list}
-     * for list types.  If the PICA method returns a primitive type and neither a property nor its default is present,
-     * the PICA method will raise {@link NullPointerException}.</p>
-     *
-     * @param properties a properties object to be bound
-     * @return a PICA instance bound to the properties
-     * @throws NullPointerException if {@code properties} is {@code null}
-     */
-    public T bind( Properties properties ) {
-        if ( properties == null )
-            throw new NullPointerException( "attempt to bind null " + Properties.class.getSimpleName() + " object" );
-
-        Properties copy = (Properties) properties.clone();
-        return validatedSchema.evaluate( copy );
-    }
-
-    /**
      * <p>Binds the properties purported to be in the given input stream to an instance of this binder's PICA.</p>
      *
-     * @see #bind(Properties)
+     * @see #bind(File)
      * @param propertyInput an input stream containing properties to be bound
      * @return a PICA instance bound to the properties
      * @throws IOException if there is a problem reading from the input stream
@@ -141,7 +120,13 @@ public final class PropertyBinder<T> {
     /**
      * <p>Binds the properties purported to be in the given file to an instance of this binder's PICA.</p>
      *
-     * @see #bind(Properties)
+     * <p>After binding, invoking a PICA method returns the value of the property it represents if that property is
+     * present; else the value given by the method's {@link DefaultsTo} marker if present; else {@code null} for
+     * scalar types, a zero-length array for array types, and an {@linkplain java.util.Collection#isEmpty() empty list}
+     * for list types.  If the PICA method returns a primitive type and neither a property nor its default is present,
+     * the PICA method will raise {@link NullPointerException}.</p>
+     *
+     * @see #bind(InputStream)
      * @param propertiesFile a file containing properties to be bound
      * @return a PICA instance bound to the properties
      * @throws IOException if there is a problem reading from the file
@@ -157,6 +142,11 @@ public final class PropertyBinder<T> {
         finally {
             closeQuietly( propertyInput );
         }
+    }
+
+    T bind( Properties properties ) {
+        Properties copy = (Properties) properties.clone();
+        return validatedSchema.evaluate( copy );
     }
 
     /**
