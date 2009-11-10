@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.pholser</groupId>
   <artifactId>property-binder</artifactId>
   <packaging>jar</packaging>
-  <version>1.0-rc1-SNAPSHOT</version>
+  <version>1.0-rc1</version>
   <name>property-binder</name>
   <description>Enables typed retrieval of properties based on an annotated interface</description>
  
@@ -17,7 +16,7 @@
   </licenses>
 
   <scm>
-    <connection>scm:svn:svn://svn.geekisp.com/pholser-repo/java/property-binder</connection>
+    <connection>scm:svn:svn://svn.geekisp.com/pholser-repo/java/property-binder/tags/property-binder-1.0-rc1</connection>
   </scm>
 
   <developers>
