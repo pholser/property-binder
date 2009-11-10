@@ -188,5 +188,9 @@
       <url>sftp://login.geekisp.com/home/pholser/maven-snapshots</url>
       <layout>default</layout>
     </snapshotRepository>
+    <site>
+      <id>pholser.com</id>
+      <url>scp://login.geekisp.com/home/pholser/www.pholser.com/htdocs/software/property-binder/</url>
+    </site>
   </distributionManagement>
 </project>
