@@ -51,7 +51,7 @@ public class SubstitutableProperties extends Properties {
 
     /**
      * Performs property value substitution on the given value, drawing on the values of the given collection
-     * of properties.
+     * of properties.  If a property reference cannot be resolved, it will be replaced with the zero-length string.
      *
      * @param value the value to perform substitution on
      * @param properties the properties from which to draw substitution values
@@ -72,8 +72,10 @@ public class SubstitutableProperties extends Properties {
     private static String substituteReferences( String value, Properties properties ) {
         Matcher matcher = REFERENCE.matcher( value );
         StringBuffer buffer = new StringBuffer();
-        while ( matcher.find() )
-            matcher.appendReplacement( buffer, properties.getProperty( matcher.group( 1 ) ) );
+        while ( matcher.find() ) {
+            String reference = properties.getProperty( matcher.group( 1 ) );
+            matcher.appendReplacement( buffer, reference == null ? "" : reference );
+        }
         matcher.appendTail( buffer );
         return buffer.toString();
     }
