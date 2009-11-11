@@ -3,7 +3,7 @@
   <groupId>com.pholser</groupId>
   <artifactId>property-binder</artifactId>
   <packaging>jar</packaging>
-  <version>1.0-rc3-SNAPSHOT</version>
+  <version>1.0-rc2-SNAPSHOT</version>
   <name>property-binder</name>
   <description>Enables typed retrieval of properties based on an annotated interface</description>
  
