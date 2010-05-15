@@ -35,26 +35,26 @@ class ArrayValueConverter implements ValueConverter {
     private final ValueConverter componentTypeConverter;
     private final ValueSeparator separator;
 
-    ArrayValueConverter( Class<?> arrayType, ValueSeparator separator ) {
+    ArrayValueConverter(Class<?> arrayType, ValueSeparator separator) {
         this.componentType = arrayType.getComponentType();
-        this.componentTypeConverter = createScalarConverter( componentType );
+        this.componentTypeConverter = createScalarConverter(componentType);
         this.separator = separator;
     }
 
-    public Object convert( String raw ) {
-        String[] pieces = separator.separate( raw );
-        Object array = Array.newInstance( componentType, pieces.length );
-        for ( int i = 0; i < pieces.length; ++i )
-            Array.set( array, i, componentTypeConverter.convert( pieces[ i ] ) );
+    public Object convert(String raw) {
+        String[] pieces = separator.separate(raw);
+        Object array = Array.newInstance(componentType, pieces.length);
+        for (int i = 0; i < pieces.length; ++i)
+            Array.set(array, i, componentTypeConverter.convert(pieces[i]));
 
         return array;
     }
 
     public Object nilValue() {
-        return Array.newInstance( componentType, 0 );
+        return Array.newInstance(componentType, 0);
     }
 
-    public void resolve( Properties properties ) {
-        separator.resolve( properties );
+    public void resolve(Properties properties) {
+        separator.resolve(properties);
     }
 }

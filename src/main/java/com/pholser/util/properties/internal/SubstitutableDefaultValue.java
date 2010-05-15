@@ -38,7 +38,7 @@ class SubstitutableDefaultValue implements DefaultValue {
     private final Method method;
     private ConvertedDefaultValue converted;
 
-    SubstitutableDefaultValue( DefaultsTo defaultValueSpec, ValueConverter converter, Method method ) {
+    SubstitutableDefaultValue(DefaultsTo defaultValueSpec, ValueConverter converter, Method method) {
         this.defaultValueSpec = defaultValueSpec;
         this.converter = converter;
         this.method = method;
@@ -48,8 +48,8 @@ class SubstitutableDefaultValue implements DefaultValue {
         return converted.evaluate();
     }
 
-    public void resolve( Properties properties ) {
-        String substituted = substitute( defaultValueSpec.valueOf(), properties );
-        this.converted = ConvertedDefaultValue.fromValueOf( substituted, converter, method );
+    public void resolve(Properties properties) {
+        String substituted = substitute(defaultValueSpec.valueOf(), properties);
+        this.converted = ConvertedDefaultValue.fromValueOf(substituted, converter, method);
     }
 }

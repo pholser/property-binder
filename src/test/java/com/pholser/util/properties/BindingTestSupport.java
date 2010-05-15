@@ -33,6 +33,6 @@ public abstract class BindingTestSupport {
 
     @Before
     public final void initializeBinderAndPropertiesFile() {
-        propertiesFile = new File( "src/test/resources/test.properties" );
+        propertiesFile = new File("src/test/resources/test.properties");
     }
 }

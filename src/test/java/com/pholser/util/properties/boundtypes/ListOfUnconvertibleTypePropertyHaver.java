@@ -29,7 +29,7 @@ import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
 public interface ListOfUnconvertibleTypePropertyHaver {
-    @BoundProperty( "list.of.unconvertible.type.property" )
-    @DefaultsTo( "boo" )
+    @BoundProperty("list.of.unconvertible.type.property")
+    @DefaultsTo("boo")
     Object[] listOfUnconvertibleTypeProperty();
 }

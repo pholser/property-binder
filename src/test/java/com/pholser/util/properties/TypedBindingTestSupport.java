@@ -38,21 +38,21 @@ public abstract class TypedBindingTestSupport<T> extends BindingTestSupport {
 
     @Before
     public final void initializeBoundType() throws Exception {
-        binder = PropertyBinder.forType( boundType() );
-        bound = binder.bind( propertiesFile );
+        binder = PropertyBinder.forType(boundType());
+        bound = binder.bind(propertiesFile);
     }
 
     protected abstract Class<T> boundType();
 
-    protected void assertPropertiesEqual( Object expected, Object actual ) throws Exception {
-        for ( Method each : boundType().getDeclaredMethods() ) {
-            Object expectedBound = each.invoke( expected );
-            Object boundActual = each.invoke( actual );
+    protected void assertPropertiesEqual(Object expected, Object actual) throws Exception {
+        for (Method each : boundType().getDeclaredMethods()) {
+            Object expectedBound = each.invoke(expected);
+            Object boundActual = each.invoke(actual);
 
-            if ( each.getReturnType().isArray() )
-                assertEquals( toList( expectedBound ), toList( boundActual ) );
+            if (each.getReturnType().isArray())
+                assertEquals(toList(expectedBound), toList(boundActual));
             else
-                assertEquals( expectedBound, boundActual );
+                assertEquals(expectedBound, boundActual);
         }
     }
 }

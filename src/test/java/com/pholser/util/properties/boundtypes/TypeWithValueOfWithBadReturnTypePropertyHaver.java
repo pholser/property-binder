@@ -29,12 +29,12 @@ import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
 public interface TypeWithValueOfWithBadReturnTypePropertyHaver {
-    @BoundProperty( "type.with.value.of.with.bad.return.type.property" )
-    @DefaultsTo( "boo" )
+    @BoundProperty("type.with.value.of.with.bad.return.type.property")
+    @DefaultsTo("boo")
     TypeWithValueOfWithBadReturnType typeWithValueOfWithBadReturnType();
 
     class TypeWithValueOfWithBadReturnType {
-        public static String valueOf( String value ) {
+        public static String valueOf(String value) {
             return value;
         }
     }

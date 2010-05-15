@@ -36,30 +36,30 @@ public class InvokingObjectMethodsOnBoundInterfaceTest
 
     @Test
     public void shouldRespondToEqualsByTestingIdentity() throws Exception {
-        PropertyFacade second = binder.bind( propertiesFile );
-        assertEquals( bound, bound );
-        assertFalse( bound.equals( second ) );
-        assertEquals( second, second );
-        assertFalse( second.equals( bound ) );
+        PropertyFacade second = binder.bind(propertiesFile);
+        assertEquals(bound, bound);
+        assertFalse(bound.equals(second));
+        assertEquals(second, second);
+        assertFalse(second.equals(bound));
     }
 
     @Test
     public void shouldRespondToHashCodeByGivingIdentityHashCode() {
-        assertEquals( identityHashCode( bound ), bound.hashCode() );
+        assertEquals(identityHashCode(bound), bound.hashCode());
     }
 
     @Test
     public void shouldRespondToToStringByGivingProperties() {
-        assertThat( bound.toString(), containsString( "wrapped.integer" ) );
+        assertThat(bound.toString(), containsString("wrapped.integer"));
     }
 
     @Override
-    protected Class<InvokingObjectMethodsOnBoundInterfaceTest.PropertyFacade> boundType() {
+    protected Class<PropertyFacade> boundType() {
         return PropertyFacade.class;
     }
 
     interface PropertyFacade {
-        @BoundProperty( value = "string.property" )
+        @BoundProperty(value = "string.property")
         String stringProperty();
     }
 }

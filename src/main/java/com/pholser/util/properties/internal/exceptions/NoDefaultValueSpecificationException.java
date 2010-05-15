@@ -32,8 +32,8 @@ import com.pholser.util.properties.DefaultsTo;
 public class NoDefaultValueSpecificationException extends IllegalArgumentException {
     private static final long serialVersionUID = 1L;
 
-    public NoDefaultValueSpecificationException( Method method ) {
-        super( "Marker @" + DefaultsTo.class.getSimpleName() + " on method " + method.getName()
-            + " of " + method.getDeclaringClass() + " specifies neither a value nor valueOf" );
+    public NoDefaultValueSpecificationException(Method method) {
+        super("Marker @" + DefaultsTo.class.getSimpleName() + " on method " + method.getName()
+            + " of " + method.getDeclaringClass() + " specifies neither a value nor valueOf");
     }
 }

@@ -30,8 +30,8 @@ import java.lang.reflect.Method;
 public class UnsupportedAggregateTypeException extends IllegalArgumentException {
     private static final long serialVersionUID = 1L;
 
-    public UnsupportedAggregateTypeException( Method method ) {
-        super( "Method " + method.getName() + " on " + method.getDeclaringClass()
-            + " returns " + method.getReturnType() + ", which is not a supported aggregate type" );
+    public UnsupportedAggregateTypeException(Method method) {
+        super("Method " + method.getName() + " on " + method.getDeclaringClass()
+            + " returns " + method.getReturnType() + ", which is not a supported aggregate type");
     }
 }

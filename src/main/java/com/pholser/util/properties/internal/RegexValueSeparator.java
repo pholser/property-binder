@@ -35,20 +35,19 @@ import com.pholser.util.properties.internal.exceptions.MalformedSeparatorExcepti
 class RegexValueSeparator implements ValueSeparator {
     private final Pattern regex;
 
-    RegexValueSeparator( String pattern, Method method ) {
+    RegexValueSeparator(String pattern, Method method) {
         try {
-            regex = Pattern.compile( pattern );
-        }
-        catch ( PatternSyntaxException ex ) {
-            throw new MalformedSeparatorException( pattern, method, ex );
+            regex = Pattern.compile(pattern);
+        } catch (PatternSyntaxException ex) {
+            throw new MalformedSeparatorException(pattern, method, ex);
         }
     }
 
-    public String[] separate( String raw ) {
-        return regex.split( raw );
+    public String[] separate(String raw) {
+        return regex.split(raw);
     }
 
-    public void resolve( Properties properties ) {
+    public void resolve(Properties properties) {
         // nothing to do here
     }
 }

@@ -29,13 +29,13 @@ import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
 public interface TypeWithNonStaticValueOfPropertyHaver {
-    @BoundProperty( "type.with.non.static.value.of.property" )
-    @DefaultsTo( "boo" )
+    @BoundProperty("type.with.non.static.value.of.property")
+    @DefaultsTo("boo")
     TypeWithNonStaticValueOf typeWithNonStaticValueOfProperty();
 
-    @SuppressWarnings( "all" )
+    @SuppressWarnings("all")
     class TypeWithNonStaticValueOf {
-        public TypeWithNonStaticValueOf valueOf( String value ) {
+        public TypeWithNonStaticValueOf valueOf(String value) {
             return null;
         }
     }

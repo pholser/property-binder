@@ -37,11 +37,11 @@ final class Types {
         // nothing to do here
     }
 
-    static boolean isSupportedAggregateType( Class<?> clazz ) {
-        return clazz.isArray() || List.class.equals( clazz );
+    static boolean isSupportedAggregateType(Class<?> clazz) {
+        return clazz.isArray() || List.class.equals(clazz);
     }
 
-    static boolean isAggregateType( Class<?> clazz ) {
-        return clazz.isArray() || Collection.class.isAssignableFrom( clazz );
+    static boolean isAggregateType(Class<?> clazz) {
+        return clazz.isArray() || Collection.class.isAssignableFrom(clazz);
     }
 }

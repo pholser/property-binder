@@ -25,12 +25,11 @@
 
 package com.pholser.util.properties.internal;
 
-import com.pholser.util.properties.DefaultsTo;
 import org.junit.Test;
 
 public class ReflectionTest {
-    @Test( expected = AssertionError.class )
+    @Test(expected = AssertionError.class)
     public void shouldRejectBadMethodNameWhenInvokingMethod() {
-        Reflection.invokeQuietly( String.class, "IUYPQIWE", "" );
+        Reflection.invokeQuietly(String.class, "IUYPQIWE", "");
     }
 }

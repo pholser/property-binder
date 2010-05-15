@@ -35,13 +35,13 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-@RunWith( Parameterized.class )
+@RunWith(Parameterized.class)
 public class ObjectsEqualityTest {
     private final Object first;
     private final Object second;
     private final boolean expectedOutcome;
 
-    public ObjectsEqualityTest( Object first, Object second, boolean expectedOutcome ) {
+    public ObjectsEqualityTest(Object first, Object second, boolean expectedOutcome) {
         this.first = first;
         this.second = second;
         this.expectedOutcome = expectedOutcome;
@@ -49,7 +49,7 @@ public class ObjectsEqualityTest {
 
     @Parameters
     public static Collection<?> testData() {
-        return asList( new Object[][] {
+        return asList(new Object[][] {
             { null, null, true },
             { null, new Object(), false },
             { new Object(), null, false },
@@ -60,6 +60,6 @@ public class ObjectsEqualityTest {
 
     @Test
     public void assessEquality() {
-        assertEquals( expectedOutcome, Objects.areEqual( first, second ) );
+        assertEquals(expectedOutcome, Objects.areEqual(first, second));
     }
 }

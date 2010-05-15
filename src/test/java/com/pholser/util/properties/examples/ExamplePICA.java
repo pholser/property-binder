@@ -11,7 +11,7 @@ import com.pholser.util.properties.boundtypes.Ternary;
 public interface ExamplePICA {
     String unadorned();
 
-    @BoundProperty( "unconverted.property" )
+    @BoundProperty("unconverted.property")
     String annotated();
 
     int intProperty();
@@ -22,9 +22,9 @@ public interface ExamplePICA {
 
     List<Character> charListProperty();
 
-    @ValuesSeparatedBy( pattern = "\\s*,\\s*" )
+    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
     List<Ternary> listOfEnumsWithSeparator();
 
-    @DefaultsTo( value = "10" )
+    @DefaultsTo(value = "10")
     BigDecimal bigDecimalPropertyWithDefault();
 }

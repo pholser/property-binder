@@ -30,18 +30,18 @@ import java.util.Properties;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 class CharacterValueOfConverter implements ValueConverter {
-    public Object convert( String raw ) {
-        if ( raw.length() != 1 )
-            throw new ValueConversionException( "cannot convert [" + raw + "] to " + Character.class );
+    public Object convert(String raw) {
+        if (raw.length() != 1)
+            throw new ValueConversionException("cannot convert [" + raw + "] to " + Character.class);
 
-        return raw.charAt( 0 );
+        return raw.charAt(0);
     }
 
     public Object nilValue() {
         return null;
     }
 
-    public void resolve( Properties properties ) {
+    public void resolve(Properties properties) {
         // nothing to do here
     }
 }

@@ -28,6 +28,6 @@ package com.pholser.util.properties.boundtypes;
 import com.pholser.util.properties.BoundProperty;
 
 public interface MissingPrimitivePropertyHaver {
-    @BoundProperty( "missing.character.property" )
+    @BoundProperty("missing.character.property")
     char missingCharacterProperty();
 }

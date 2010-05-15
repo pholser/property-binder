@@ -32,10 +32,10 @@ import com.pholser.util.properties.ValuesSeparatedBy;
 public class AppliedSeparatorToNonAggregateTypeException extends IllegalArgumentException {
     private static final long serialVersionUID = 1L;
 
-    public AppliedSeparatorToNonAggregateTypeException( Method method ) {
-        super( "Applied @" + ValuesSeparatedBy.class.getSimpleName() + " to method " + method.getName()
+    public AppliedSeparatorToNonAggregateTypeException(Method method) {
+        super("Applied @" + ValuesSeparatedBy.class.getSimpleName() + " to method " + method.getName()
             + " on " + method.getDeclaringClass()
             + ", which is not declared to return a supported aggregate type (returns "
-            + method.getReturnType().getSimpleName() + ')' );
+            + method.getReturnType().getSimpleName() + ')');
     }
 }

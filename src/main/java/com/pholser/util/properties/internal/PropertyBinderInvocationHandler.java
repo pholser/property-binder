@@ -35,24 +35,24 @@ public class PropertyBinderInvocationHandler implements InvocationHandler {
     private final Properties properties;
     private final ValidatedSchema<?> validatedSchema;
 
-    public PropertyBinderInvocationHandler( Properties properties, ValidatedSchema<?> validatedSchema ) {
+    public PropertyBinderInvocationHandler(Properties properties, ValidatedSchema<?> validatedSchema) {
         this.properties = properties;
         this.validatedSchema = validatedSchema;
     }
 
-    public Object invoke( Object proxy, Method method, Object[] args ) {
-        if ( Object.class.equals( method.getDeclaringClass() ) )
-            return handleObjectMethod( proxy, method, args );
+    public Object invoke(Object proxy, Method method, Object[] args) {
+        if (Object.class.equals(method.getDeclaringClass()))
+            return handleObjectMethod(proxy, method, args);
 
-        return validatedSchema.convert( properties, method );
+        return validatedSchema.convert(properties, method);
     }
 
-    private Object handleObjectMethod( Object proxy, Method method, Object[] args ) {
-        if ( "equals".equals( method.getName() ) )
-            return proxy == args[ 0 ];
+    private Object handleObjectMethod(Object proxy, Method method, Object[] args) {
+        if ("equals".equals(method.getName()))
+            return proxy == args[0];
 
-        if ( "hashCode".equals( method.getName() ) )
-            return identityHashCode( proxy );
+        if ("hashCode".equals(method.getName()))
+            return identityHashCode(proxy);
 
         return handleToString();
     }

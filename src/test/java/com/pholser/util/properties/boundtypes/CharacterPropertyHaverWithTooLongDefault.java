@@ -29,7 +29,7 @@ import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
 public interface CharacterPropertyHaverWithTooLongDefault {
-    @BoundProperty( "char.property" )
-    @DefaultsTo( "ab" )
+    @BoundProperty("char.property")
+    @DefaultsTo("ab")
     char charProperty();
 }

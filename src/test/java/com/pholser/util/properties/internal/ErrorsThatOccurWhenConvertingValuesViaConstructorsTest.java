@@ -40,57 +40,55 @@ public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
     @Test
     public void shouldTransformInvocationTargetExceptions() throws Exception {
         Constructor<ConstructorRaisesException> ctor =
-            ConstructorRaisesException.class.getDeclaredConstructor( String.class );
+            ConstructorRaisesException.class.getDeclaredConstructor(String.class);
+
         try {
-            new ConstructorInvokingValueConverter( ctor ).convert( "" );
+            new ConstructorInvokingValueConverter(ctor).convert("");
             fail();
-        }
-        catch ( ValueConversionException expected ) {
-            assertThat( expected.getCause(), is( UnsupportedOperationException.class ) );
+        } catch (ValueConversionException expected) {
+            assertThat(expected.getCause(), is(UnsupportedOperationException.class));
         }
     }
 
     @Test
     public void shouldTransformIllegalArgumentExceptions() throws Exception {
         Constructor<HasPlainOldConstructor> ctor = HasPlainOldConstructor.class.getDeclaredConstructor();
+
         try {
-            new ConstructorInvokingValueConverter( ctor ).convert( "" );
+            new ConstructorInvokingValueConverter(ctor).convert("");
             fail();
-        }
-        catch ( ValueConversionException expected ) {
-            assertThat( expected.getCause(), is( IllegalArgumentException.class ) );
+        } catch (ValueConversionException expected) {
+            assertThat(expected.getCause(), is(IllegalArgumentException.class));
         }
     }
 
     @Test
     public void shouldTransformIllegalAccessExceptions() throws Exception {
         Constructor<ForTriggeringIllegalAccess> ctor =
-            ForTriggeringIllegalAccess.class.getDeclaredConstructor( String.class );
+            ForTriggeringIllegalAccess.class.getDeclaredConstructor(String.class);
 
         try {
-            new ConstructorInvokingValueConverter( ctor ).convert( "" );
+            new ConstructorInvokingValueConverter(ctor).convert("");
             fail();
-        }
-        catch ( ValueConversionException expected ) {
-            assertThat( expected.getCause(), is( IllegalAccessException.class ) );
+        } catch (ValueConversionException expected) {
+            assertThat(expected.getCause(), is(IllegalAccessException.class));
         }
     }
 
     @Test
     public void shouldTransformInstantiationExceptions() throws Exception {
-        Constructor<CannotBeInstantiated> ctor = CannotBeInstantiated.class.getDeclaredConstructor( String.class );
+        Constructor<CannotBeInstantiated> ctor = CannotBeInstantiated.class.getDeclaredConstructor(String.class);
 
         try {
-            new ConstructorInvokingValueConverter( ctor ).convert( "" );
+            new ConstructorInvokingValueConverter(ctor).convert("");
             fail();
-        }
-        catch ( ValueConversionException expected ) {
-            assertThat( expected.getCause(), is( InstantiationException.class ) );
+        } catch (ValueConversionException expected) {
+            assertThat(expected.getCause(), is(InstantiationException.class));
         }
     }
 
     static class ConstructorRaisesException {
-        ConstructorRaisesException( @SuppressWarnings( "unused" ) String argument ) {
+        ConstructorRaisesException(@SuppressWarnings("unused") String argument) {
             throw new UnsupportedOperationException();
         }
     }
@@ -100,7 +98,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
     }
 
     abstract static class CannotBeInstantiated {
-        CannotBeInstantiated( @SuppressWarnings( "unused" ) String argument ) {
+        CannotBeInstantiated(@SuppressWarnings("unused") String argument) {
             // nothing to do here
         }
     }

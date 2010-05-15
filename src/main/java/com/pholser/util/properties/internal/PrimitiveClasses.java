@@ -38,24 +38,24 @@ final class PrimitiveClasses {
     static {
         new PrimitiveClasses();
 
-        Map<Class<?>, Class<?>> wrappers = new HashMap<Class<?>, Class<?>>( SMALL_PRIME );
-        wrappers.put( Boolean.TYPE, Boolean.class );
-        wrappers.put( Byte.TYPE, Byte.class );
-        wrappers.put( Character.TYPE, Character.class );
-        wrappers.put( Double.TYPE, Double.class );
-        wrappers.put( Float.TYPE, Float.class );
-        wrappers.put( Integer.TYPE, Integer.class );
-        wrappers.put( Long.TYPE, Long.class );
-        wrappers.put( Short.TYPE, Short.class );
-        wrappers.put( Void.TYPE, Void.class );
-        WRAPPERS = unmodifiableMap( wrappers );
+        Map<Class<?>, Class<?>> wrappers = new HashMap<Class<?>, Class<?>>(SMALL_PRIME);
+        wrappers.put(Boolean.TYPE, Boolean.class);
+        wrappers.put(Byte.TYPE, Byte.class);
+        wrappers.put(Character.TYPE, Character.class);
+        wrappers.put(Double.TYPE, Double.class);
+        wrappers.put(Float.TYPE, Float.class);
+        wrappers.put(Integer.TYPE, Integer.class);
+        wrappers.put(Long.TYPE, Long.class);
+        wrappers.put(Short.TYPE, Short.class);
+        wrappers.put(Void.TYPE, Void.class);
+        WRAPPERS = unmodifiableMap(wrappers);
     }
 
     private PrimitiveClasses() {
         // nothing to do here
     }
 
-    static Class<?> wrapperIfPrimitive( Class<?> type ) {
-        return WRAPPERS.containsKey( type ) ? WRAPPERS.get( type ) : type;
+    static Class<?> wrapperIfPrimitive(Class<?> type) {
+        return WRAPPERS.containsKey(type) ? WRAPPERS.get(type) : type;
     }
 }

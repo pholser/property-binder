@@ -30,5 +30,5 @@ import java.util.Properties;
 interface DefaultValue {
     Object evaluate();
 
-    void resolve( Properties properties );
+    void resolve(Properties properties);
 }

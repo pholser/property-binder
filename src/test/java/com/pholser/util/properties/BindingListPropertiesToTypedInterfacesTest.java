@@ -42,319 +42,299 @@ public class BindingListPropertiesToTypedInterfacesTest extends TypedBindingTest
     }
 
     @Test
-    public void shouldBindSeparatedStringValuedPropertyToStringListReturningMethod() {
-        assertEquals( asList( "aaa", "bbb", "ccc" ), bound.stringListProperty() );
+    public void shouldBindSeparatedStringValuedPropertyToStringListMethod() {
+        assertEquals(asList("aaa", "bbb", "ccc"), bound.stringListProperty());
     }
 
     @Test
-    public void shouldBindSeparatedStringValuedPropertyWithCustomSeparatorToStringListReturningMethod() {
-        assertEquals( asList( "dd", "eeee", "fffff" ), bound.stringListPropertyWithCustomSeparator() );
+    public void shouldBindSeparatedStringValuedPropertyWithCustomSeparatorToStringListMethod() {
+        assertEquals(asList("dd", "eeee", "fffff"), bound.stringListPropertyWithCustomSeparator());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForStringListValuedProperty() {
-        assertEquals( asList( "g", "hh", "iii" ), bound.stringListPropertyWithDefault() );
+        assertEquals(asList("g", "hh", "iii"), bound.stringListPropertyWithDefault());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForStringListValuedPropertyWithCustomSeparator() {
-        assertEquals( asList( "jjj", "kk", "L" ), bound.stringListPropertyWithDefaultAndSeparator() );
+        assertEquals(asList("jjj", "kk", "L"), bound.stringListPropertyWithDefaultAndSeparator());
     }
 
     @Test
-    public void shouldBindSeparatedBooleanValuedPropertyToBooleanListReturningMethod() {
-        assertEquals( asList( true, false, false, true ), bound.booleanListProperty() );
+    public void shouldBindSeparatedBooleanValuedPropertyToBooleanListMethod() {
+        assertEquals(asList(true, false, false, true), bound.booleanListProperty());
     }
 
     @Test
-    public void shouldBindBooleanValuedPropertyWithCustomSeparatorToBooleanListReturningMethod() {
-        assertEquals( asList( false, true ), bound.booleanListPropertyWithCustomSeparator() );
+    public void shouldBindBooleanValuedPropertyWithCustomSeparatorToBooleanListMethod() {
+        assertEquals(asList(false, true), bound.booleanListPropertyWithCustomSeparator());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForBooleanListProperty() {
-        assertEquals( asList( false, false, true, false, true ), bound.booleanListPropertyWithDefault() );
+        assertEquals(asList(false, false, true, false, true), bound.booleanListPropertyWithDefault());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForBooleanListPropertyWithSeparator() {
-        assertEquals( asList( true, true, true, false ), bound.booleanListPropertyWithDefaultAndSeparator() );
+        assertEquals(asList(true, true, true, false), bound.booleanListPropertyWithDefaultAndSeparator());
     }
 
     @Test
-    public void shouldBindSeparatedByteValuedPropertyToByteListReturningMethod() {
-        assertEquals(
-            asList( Byte.valueOf( "6" ), Byte.valueOf( "7" ), Byte.valueOf( "8" ), Byte.valueOf( "9" ) ),
-            bound.byteListProperty() );
+    public void shouldBindSeparatedByteValuedPropertyToByteListMethod() {
+        assertEquals(asList(Byte.valueOf("6"), Byte.valueOf("7"), Byte.valueOf("8"), Byte.valueOf("9")),
+            bound.byteListProperty());
     }
 
     @Test
-    public void shouldBindByteValuedPropertyWithCustomSeparatorToByteListReturningMethod() {
-        assertEquals(
-            asList( Byte.valueOf( "45" ), Byte.valueOf( "57" ) ),
-            bound.byteListPropertyWithCustomSeparator() );
+    public void shouldBindByteValuedPropertyWithCustomSeparatorToByteListMethod() {
+        assertEquals(asList(Byte.valueOf("45"), Byte.valueOf("57")), bound.byteListPropertyWithCustomSeparator());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForByteListProperty() {
-        assertEquals(
-            asList( Byte.valueOf( "33" ), Byte.valueOf( "34" ), Byte.valueOf( "35" ) ),
-            bound.byteListPropertyWithDefault() );
+        assertEquals(asList(Byte.valueOf("33"), Byte.valueOf("34"), Byte.valueOf("35")),
+            bound.byteListPropertyWithDefault());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForByteListPropertyWithSeparator() {
-        assertEquals(
-            asList( Byte.valueOf( "36" ), Byte.valueOf( "37" ), Byte.valueOf( "38" ), Byte.valueOf( "39" ) ),
-            bound.byteListPropertyWithDefaultAndSeparator() );
+        assertEquals(asList(Byte.valueOf("36"), Byte.valueOf("37"), Byte.valueOf("38"), Byte.valueOf("39")),
+            bound.byteListPropertyWithDefaultAndSeparator());
     }
 
     @Test
-    public void shouldBindSeparatedCharacterValuedPropertyToCharacterListReturningMethod() {
-        assertEquals( asList( 'q', 'r', 's', 't' ), bound.characterListProperty() );
+    public void shouldBindSeparatedCharacterValuedPropertyToCharacterListMethod() {
+        assertEquals(asList('q', 'r', 's', 't'), bound.characterListProperty());
     }
 
     @Test
-    public void shouldBindCharacterValuedPropertyWithCustomSeparatorToCharacterListReturningMethod() {
-        assertEquals( asList( 'u', 'v' ), bound.characterListPropertyWithCustomSeparator() );
+    public void shouldBindCharacterValuedPropertyWithCustomSeparatorToCharacterListMethod() {
+        assertEquals(asList('u', 'v'), bound.characterListPropertyWithCustomSeparator());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForCharacterListProperty() {
-        assertEquals( asList( 'w', 'x', 'y' ), bound.characterListPropertyWithDefault() );
+        assertEquals(asList('w', 'x', 'y'), bound.characterListPropertyWithDefault());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForCharacterListPropertyWithSeparator() {
-        assertEquals( asList( 'z', '0', '1', '2' ), bound.characterListPropertyWithDefaultAndSeparator() );
+        assertEquals(asList('z', '0', '1', '2'), bound.characterListPropertyWithDefaultAndSeparator());
     }
 
     @Test
-    public void shouldBindSeparatedDoubleValuedPropertyToDoubleListReturningMethod() {
-        assertEquals( asList( -1.0, -2.0, -3.0, -4.0 ), bound.doubleListProperty() );
+    public void shouldBindSeparatedDoubleValuedPropertyToDoubleListMethod() {
+        assertEquals(asList(-1.0, -2.0, -3.0, -4.0), bound.doubleListProperty());
     }
 
     @Test
-    public void shouldBindDoubleValuedPropertyWithCustomSeparatorToDoubleListReturningMethod() {
-        assertEquals( asList( -5.0, -6.0 ), bound.doubleListPropertyWithCustomSeparator() );
+    public void shouldBindDoubleValuedPropertyWithCustomSeparatorToDoubleListMethod() {
+        assertEquals(asList(-5.0, -6.0), bound.doubleListPropertyWithCustomSeparator());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForDoubleListProperty() {
-        assertEquals( asList( -10.0, -11.0, -12.0 ), bound.doubleListPropertyWithDefault() );
+        assertEquals(asList(-10.0, -11.0, -12.0), bound.doubleListPropertyWithDefault());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForDoubleListPropertyWithSeparator() {
-        assertEquals( asList( -13.0, -14.0, -15.0, -16.0 ), bound.doubleListPropertyWithDefaultAndSeparator() );
+        assertEquals(asList(-13.0, -14.0, -15.0, -16.0), bound.doubleListPropertyWithDefaultAndSeparator());
     }
 
     @Test
-    public void shouldBindSeparatedFloatValuedPropertyToFloatListReturningMethod() {
-        assertEquals( asList( 4.8F, 4.9F, 5.0F, 5.1F ), bound.floatListProperty() );
+    public void shouldBindSeparatedFloatValuedPropertyToFloatListMethod() {
+        assertEquals(asList(4.8F, 4.9F, 5.0F, 5.1F), bound.floatListProperty());
     }
 
     @Test
-    public void shouldBindFloatValuedPropertyWithCustomSeparatorToFloatListReturningMethod() {
-        assertEquals( asList( 5.2F, 5.3F ), bound.floatListPropertyWithCustomSeparator() );
+    public void shouldBindFloatValuedPropertyWithCustomSeparatorToFloatListMethod() {
+        assertEquals(asList(5.2F, 5.3F), bound.floatListPropertyWithCustomSeparator());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForFloatListProperty() {
-        assertEquals( asList( 2.0F, 2.1F, 2.2F ), bound.floatListPropertyWithDefault() );
+        assertEquals(asList(2.0F, 2.1F, 2.2F), bound.floatListPropertyWithDefault());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForFloatListPropertyWithSeparator() {
-        assertEquals( asList( 2.3F, 2.4F, 2.5F, 2.6F ), bound.floatListPropertyWithDefaultAndSeparator() );
+        assertEquals(asList(2.3F, 2.4F, 2.5F, 2.6F), bound.floatListPropertyWithDefaultAndSeparator());
     }
 
     @Test
-    public void shouldBindSeparatedIntegerValuedPropertyToIntegerListReturningMethod() {
-        assertEquals( asList( -18, -19, -20, -21 ), bound.integerListProperty() );
+    public void shouldBindSeparatedIntegerValuedPropertyToIntegerListMethod() {
+        assertEquals(asList(-18, -19, -20, -21), bound.integerListProperty());
     }
 
     @Test
-    public void shouldBindIntegerValuedPropertyWithCustomSeparatorToIntegerListReturningMethod() {
-        assertEquals( asList( -22, -23 ), bound.integerListPropertyWithCustomSeparator() );
+    public void shouldBindIntegerValuedPropertyWithCustomSeparatorToIntegerListMethod() {
+        assertEquals(asList(-22, -23), bound.integerListPropertyWithCustomSeparator());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForIntegerListProperty() {
-        assertEquals( asList( -10, -11, -12 ), bound.integerListPropertyWithDefault() );
+        assertEquals(asList(-10, -11, -12), bound.integerListPropertyWithDefault());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForIntegerListPropertyWithSeparator() {
-        assertEquals( asList( -13, -14, -15, -16 ), bound.integerListPropertyWithDefaultAndSeparator() );
+        assertEquals(asList(-13, -14, -15, -16), bound.integerListPropertyWithDefaultAndSeparator());
     }
 
     @Test
-    public void shouldBindSeparatedLongValuedPropertyToLongListReturningMethod() {
-        assertEquals( asList( 18L, 19L, 20L, 21L ), bound.longListProperty() );
+    public void shouldBindSeparatedLongValuedPropertyToLongListMethod() {
+        assertEquals(asList(18L, 19L, 20L, 21L), bound.longListProperty());
     }
 
     @Test
-    public void shouldBindLongValuedPropertyWithCustomSeparatorToLongListReturningMethod() {
-        assertEquals( asList( 22L, 23L ), bound.longListPropertyWithCustomSeparator() );
+    public void shouldBindLongValuedPropertyWithCustomSeparatorToLongListMethod() {
+        assertEquals(asList(22L, 23L), bound.longListPropertyWithCustomSeparator());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForLongListProperty() {
-        assertEquals( asList( 53L, 54L, 55L ), bound.longListPropertyWithDefault() );
+        assertEquals(asList(53L, 54L, 55L), bound.longListPropertyWithDefault());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForLongListPropertyWithSeparator() {
-        assertEquals( asList( 56L, 57L, 58L, 59L ), bound.longListPropertyWithDefaultAndSeparator() );
+        assertEquals(asList(56L, 57L, 58L, 59L), bound.longListPropertyWithDefaultAndSeparator());
     }
 
     @Test
-    public void shouldBindSeparatedShortValuedPropertyToShortListReturningMethod() {
-        assertEquals(
-            asList( Short.valueOf( "66" ), Short.valueOf( "67" ), Short.valueOf( "68" ), Short.valueOf( "69" ) ),
-            bound.shortListProperty() );
+    public void shouldBindSeparatedShortValuedPropertyToShortListMethod() {
+        assertEquals(asList(Short.valueOf("66"), Short.valueOf("67"), Short.valueOf("68"), Short.valueOf("69")),
+            bound.shortListProperty());
     }
 
     @Test
-    public void shouldBindShortValuedPropertyWithCustomSeparatorToShortListReturningMethod() {
-        assertEquals(
-            asList( Short.valueOf( "70" ), Short.valueOf( "71" ) ),
-            bound.shortListPropertyWithCustomSeparator() );
+    public void shouldBindShortValuedPropertyWithCustomSeparatorToShortListMethod() {
+        assertEquals(asList(Short.valueOf("70"), Short.valueOf("71")), bound.shortListPropertyWithCustomSeparator());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForShortListProperty() {
-        assertEquals(
-            asList( Short.valueOf( "-29" ), Short.valueOf( "-30" ), Short.valueOf( "-31" ) ),
-            bound.shortListPropertyWithDefault() );
+        assertEquals(asList(Short.valueOf("-29"), Short.valueOf("-30"), Short.valueOf("-31")),
+            bound.shortListPropertyWithDefault());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForShortListPropertyWithSeparator() {
-        assertEquals(
-            asList( Short.valueOf( "-32" ), Short.valueOf( "-33" ), Short.valueOf( "-34" ), Short.valueOf( "-35" ) ),
-            bound.shortListPropertyWithDefaultAndSeparator() );
+        assertEquals(asList(Short.valueOf("-32"), Short.valueOf("-33"), Short.valueOf("-34"), Short.valueOf("-35")),
+            bound.shortListPropertyWithDefaultAndSeparator());
     }
 
     @Test
-    public void shouldBindSeparatedBigIntegerValuedPropertyToBigIntegerListReturningMethod() {
-        assertEquals(
-            asList( BigInteger.valueOf( 124 ), BigInteger.valueOf( 125 ) ),
-            bound.bigIntegerListProperty() );
+    public void shouldBindSeparatedBigIntegerValuedPropertyToBigIntegerListMethod() {
+        assertEquals(asList(BigInteger.valueOf(124), BigInteger.valueOf(125)), bound.bigIntegerListProperty());
     }
 
     @Test
-    public void shouldBindBigIntegerValuedPropertyWithCustomSeparatorToBigIntegerListReturningMethod() {
-        assertEquals(
-            asList( BigInteger.valueOf( 126 ), BigInteger.valueOf( 127 ) ),
-            bound.bigIntegerListPropertyWithCustomSeparator() );
+    public void shouldBindBigIntegerValuedPropertyWithCustomSeparatorToBigIntegerListMethod() {
+        assertEquals(asList(BigInteger.valueOf(126), BigInteger.valueOf(127)),
+            bound.bigIntegerListPropertyWithCustomSeparator());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForBigIntegerListProperty() {
-        assertEquals(
-            asList( BigInteger.valueOf( 128 ), BigInteger.valueOf( 129 ), BigInteger.valueOf( 130 ) ),
-            bound.bigIntegerListPropertyWithDefault() );
+        assertEquals(asList(BigInteger.valueOf(128), BigInteger.valueOf(129), BigInteger.valueOf(130)),
+            bound.bigIntegerListPropertyWithDefault());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForBigIntegerListPropertyWithSeparator() {
-        assertEquals(
-            asList( BigInteger.valueOf( 131 ), BigInteger.valueOf( 132 ), BigInteger.valueOf( 133 ) ),
-            bound.bigIntegerListPropertyWithDefaultAndSeparator() );
+        assertEquals(asList(BigInteger.valueOf(131), BigInteger.valueOf(132), BigInteger.valueOf(133)),
+            bound.bigIntegerListPropertyWithDefaultAndSeparator());
     }
 
     @Test
-    public void shouldBindSeparatedBigDecimalValuedPropertyToBigDecimalListReturningMethod() {
-        assertEquals(
-            asList( new BigDecimal( "56.78" ), new BigDecimal( "90.12" ) ),
-            bound.bigDecimalListProperty() );
+    public void shouldBindSeparatedBigDecimalValuedPropertyToBigDecimalListMethod() {
+        assertEquals(asList(new BigDecimal("56.78"), new BigDecimal("90.12")), bound.bigDecimalListProperty());
     }
 
     @Test
-    public void shouldBindBigDecimalValuedPropertyWithCustomSeparatorToBigDecimalListReturningMethod() {
-        assertEquals(
-            asList( new BigDecimal( "34.567" ), new BigDecimal( "89.012" ) ),
-            bound.bigDecimalListPropertyWithCustomSeparator() );
+    public void shouldBindBigDecimalValuedPropertyWithCustomSeparatorToBigDecimalListMethod() {
+        assertEquals(asList(new BigDecimal("34.567"), new BigDecimal("89.012")),
+            bound.bigDecimalListPropertyWithCustomSeparator());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForBigDecimalListProperty() {
-        assertEquals(
-            asList( new BigDecimal( "345.67" ), new BigDecimal( "890.12" ) ),
-            bound.bigDecimalListPropertyWithDefault() );
+        assertEquals(asList(new BigDecimal("345.67"), new BigDecimal("890.12")),
+            bound.bigDecimalListPropertyWithDefault());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForBigDecimalListPropertyWithSeparator() {
-        assertEquals(
-            asList( new BigDecimal( "3456.78" ), new BigDecimal( "9012.34" ) ),
-            bound.bigDecimalListPropertyWithDefaultAndSeparator() );
+        assertEquals(asList(new BigDecimal("3456.78"), new BigDecimal("9012.34")),
+            bound.bigDecimalListPropertyWithDefaultAndSeparator());
     }
 
     @Test
-    public void shouldBindSeparatedEnumValuedPropertyToEnumListReturningMethod() {
-        assertEquals( asList( YES, YES, NO, MAYBE, YES ), bound.enumListProperty() );
+    public void shouldBindSeparatedEnumValuedPropertyToEnumListMethod() {
+        assertEquals(asList(YES, YES, NO, MAYBE, YES), bound.enumListProperty());
     }
 
     @Test
-    public void shouldBindEnumValuedPropertyWithCustomSeparatorToEnumListReturningMethod() {
-        assertEquals( asList( NO, NO, MAYBE, MAYBE ), bound.enumListPropertyWithCustomSeparator() );
+    public void shouldBindEnumValuedPropertyWithCustomSeparatorToEnumListMethod() {
+        assertEquals(asList(NO, NO, MAYBE, MAYBE), bound.enumListPropertyWithCustomSeparator());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForEnumListProperty() {
-        assertEquals( asList( YES, NO, NO, MAYBE, YES ), bound.enumListPropertyWithDefault() );
+        assertEquals(asList(YES, NO, NO, MAYBE, YES), bound.enumListPropertyWithDefault());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForEnumListPropertyWithSeparator() {
-        assertEquals( asList( NO, MAYBE, YES, MAYBE ), bound.enumListPropertyWithDefaultAndSeparator() );
+        assertEquals(asList(NO, MAYBE, YES, MAYBE), bound.enumListPropertyWithDefaultAndSeparator());
     }
 
     @Test
-    public void shouldBindSeparatedStringValuedPropertyToRawListReturningMethod() {
-        assertEquals( asList( "aaa", "bbb", "ccc" ), bound.rawListProperty() );
+    public void shouldBindSeparatedStringValuedPropertyToRawListMethod() {
+        assertEquals(asList("aaa", "bbb", "ccc"), bound.rawListProperty());
     }
 
     @Test
-    public void shouldBindSeparatedStringValuedPropertyWithCustomSeparatorToRawListReturningMethod() {
-        assertEquals( asList( "dd", "eeee", "fffff" ), bound.rawListPropertyWithCustomSeparator() );
+    public void shouldBindSeparatedStringValuedPropertyWithCustomSeparatorToRawListMethod() {
+        assertEquals(asList("dd", "eeee", "fffff"), bound.rawListPropertyWithCustomSeparator());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForRawListValuedProperty() {
-        assertEquals( asList( "YES", "NO", "NO", "MAYBE", "YES" ), bound.rawListPropertyWithDefault() );
+        assertEquals(asList("YES", "NO", "NO", "MAYBE", "YES"), bound.rawListPropertyWithDefault());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForRawListValuedPropertyWithCustomSeparator() {
-        assertEquals( asList( "NO", "MAYBE", "YES", "MAYBE" ), bound.rawListPropertyWithDefaultAndSeparator() );
+        assertEquals(asList("NO", "MAYBE", "YES", "MAYBE"), bound.rawListPropertyWithDefaultAndSeparator());
     }
 
     @Test
-    public void shouldBindSeparatedStringValuedPropertyToHuhListReturningMethod() {
-        assertEquals( asList( "xx", "yyy", "zzzz" ), bound.huhListProperty() );
+    public void shouldBindSeparatedStringValuedPropertyToHuhListMethod() {
+        assertEquals(asList("xx", "yyy", "zzzz"), bound.huhListProperty());
     }
 
     @Test
-    public void shouldBindSeparatedStringValuedPropertyWithCustomSeparatorToHuhListReturningMethod() {
-        assertEquals( asList( "u", "vv", "www" ), bound.huhListPropertyWithCustomSeparator() );
+    public void shouldBindSeparatedStringValuedPropertyWithCustomSeparatorToHuhListMethod() {
+        assertEquals(asList("u", "vv", "www"), bound.huhListPropertyWithCustomSeparator());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForHuhListValuedProperty() {
-        assertEquals( asList( "YES", "NO", "MAYBE" ), bound.huhListPropertyWithDefault() );
+        assertEquals(asList("YES", "NO", "MAYBE"), bound.huhListPropertyWithDefault());
     }
 
     @Test
     public void shouldBeAbleToSupplyDefaultForHuhListValuedPropertyWithCustomSeparator() {
-        assertEquals( asList( "NO", "MAYBE", "YES" ), bound.huhListPropertyWithDefaultAndSeparator() );
+        assertEquals(asList("NO", "MAYBE", "YES"), bound.huhListPropertyWithDefaultAndSeparator());
     }
 
     @Test
     public void shouldGiveEmptyListForMissingListProperty() {
-        assertEquals( emptyList(), bound.missingListProperty() );
+        assertEquals(emptyList(), bound.missingListProperty());
     }
 }

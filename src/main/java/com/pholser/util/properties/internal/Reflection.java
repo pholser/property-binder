@@ -27,7 +27,6 @@ package com.pholser.util.properties.internal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Properties;
 
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
@@ -40,27 +39,23 @@ final class Reflection {
         // nothing to do here
     }
 
-    static Object invokeQuietly( Class<?> targetClass, String methodName, Object target, Object... args ) {
+    static Object invokeQuietly(Class<?> targetClass, String methodName, Object target, Object... args) {
         try {
-            return invokeQuietly( targetClass.getMethod( methodName ), target, args );
-        }
-        catch ( NoSuchMethodException ex ) {
-            throw new AssertionError( ex );
+            return invokeQuietly(targetClass.getMethod(methodName), target, args);
+        } catch (NoSuchMethodException ex) {
+            throw new AssertionError(ex);
         }
     }
 
-    static Object invokeQuietly( Method method, Object target, Object... args ) {
+    static Object invokeQuietly(Method method, Object target, Object... args) {
         try {
-            return method.invoke( target, args );
-        }
-        catch ( IllegalAccessException ex ) {
-            throw new ValueConversionException( ex );
-        }
-        catch ( InvocationTargetException ex ) {
-            throw new ValueConversionException( ex.getTargetException() );
-        }
-        catch ( IllegalArgumentException ex ) {
-            throw new ValueConversionException( ex );
+            return method.invoke(target, args);
+        } catch (IllegalAccessException ex) {
+            throw new ValueConversionException(ex);
+        } catch (InvocationTargetException ex) {
+            throw new ValueConversionException(ex.getTargetException());
+        } catch (IllegalArgumentException ex) {
+            throw new ValueConversionException(ex);
         }
     }
 }

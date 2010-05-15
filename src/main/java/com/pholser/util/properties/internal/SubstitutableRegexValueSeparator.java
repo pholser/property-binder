@@ -35,17 +35,17 @@ class SubstitutableRegexValueSeparator implements ValueSeparator {
     private final Method method;
     private RegexValueSeparator separator;
 
-    SubstitutableRegexValueSeparator( String pattern, Method method ) {
+    SubstitutableRegexValueSeparator(String pattern, Method method) {
         this.pattern = pattern;
         this.method = method;
     }
 
-    public String[] separate( String raw ) {
-        return separator.separate( raw );
+    public String[] separate(String raw) {
+        return separator.separate(raw);
     }
 
-    public void resolve( Properties properties ) {
-        String substituted = substitute( pattern, properties );
-        separator = new RegexValueSeparator( substituted, method );
+    public void resolve(Properties properties) {
+        String substituted = substitute(pattern, properties);
+        separator = new RegexValueSeparator(substituted, method);
     }
 }

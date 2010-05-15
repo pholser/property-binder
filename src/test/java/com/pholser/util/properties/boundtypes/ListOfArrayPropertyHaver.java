@@ -31,7 +31,7 @@ import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
 public interface ListOfArrayPropertyHaver {
-    @BoundProperty( "list.of.int.array" )
-    @DefaultsTo( "1,2" )
+    @BoundProperty("list.of.int.array")
+    @DefaultsTo("1,2")
     List<int[]> listOfArray();
 }

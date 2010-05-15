@@ -40,59 +40,54 @@ import org.junit.Test;
 public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
     @Test
     public void shouldTransformInvocationTargetExceptions() throws Exception {
-        Method method = MethodRaisesException.class.getDeclaredMethod( "raisesException", String.class );
+        Method method = MethodRaisesException.class.getDeclaredMethod("raisesException", String.class);
 
         try {
-            new MethodInvokingValueConverter( method, Void.class ).convert( "" );
+            new MethodInvokingValueConverter(method, Void.class).convert("");
             fail();
-        }
-        catch ( ValueConversionException expected ) {
-            assertThat( expected.getCause(), is( UnsupportedOperationException.class ) );
+        } catch (ValueConversionException expected) {
+            assertThat(expected.getCause(), is(UnsupportedOperationException.class));
         }
     }
 
     @Test
     public void shouldTransformIllegalArgumentExceptions() throws Exception {
-        Method method = Calendar.class.getDeclaredMethod( "getInstance" );
+        Method method = Calendar.class.getDeclaredMethod("getInstance");
 
         try {
-            new MethodInvokingValueConverter( method, Calendar.class ).convert( "" );
+            new MethodInvokingValueConverter(method, Calendar.class).convert("");
             fail();
-        }
-        catch ( ValueConversionException expected ) {
-            assertThat( expected.getCause(), is( IllegalArgumentException.class ) );
+        } catch (ValueConversionException expected) {
+            assertThat(expected.getCause(), is(IllegalArgumentException.class));
         }
     }
 
     @Test
     public void shouldTransformIllegalAccessExceptions() throws Exception {
-        Method method =
-            ForTriggeringIllegalAccess.class.getDeclaredMethod( "valueOf", String.class );
+        Method method = ForTriggeringIllegalAccess.class.getDeclaredMethod("valueOf", String.class);
 
         try {
-            new MethodInvokingValueConverter( method, String.class ).convert( "" );
+            new MethodInvokingValueConverter(method, String.class).convert("");
             fail();
-        }
-        catch ( ValueConversionException expected ) {
-            assertThat( expected.getCause(), is( IllegalAccessException.class ) );
+        } catch (ValueConversionException expected) {
+            assertThat(expected.getCause(), is(IllegalAccessException.class));
         }
     }
 
     @Test
     public void shouldTransformClassCastExceptions() throws Exception {
-        Method method = Integer.class.getDeclaredMethod( "valueOf", String.class );
+        Method method = Integer.class.getDeclaredMethod("valueOf", String.class);
 
         try {
-            new MethodInvokingValueConverter( method, Boolean.class ).convert( "2" );
+            new MethodInvokingValueConverter(method, Boolean.class).convert("2");
             fail();
-        }
-        catch ( ValueConversionException expected ) {
-            assertThat( expected.getCause(), is( ClassCastException.class ) );
+        } catch (ValueConversionException expected) {
+            assertThat(expected.getCause(), is(ClassCastException.class));
         }
     }
 
     static class MethodRaisesException {
-        static void raisesException( @SuppressWarnings( "unused" ) String argument ) {
+        static void raisesException(@SuppressWarnings("unused") String argument) {
             throw new UnsupportedOperationException();
         }
     }

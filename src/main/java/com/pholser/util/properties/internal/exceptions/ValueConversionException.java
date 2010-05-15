@@ -28,11 +28,11 @@ package com.pholser.util.properties.internal.exceptions;
 public class ValueConversionException extends IllegalArgumentException {
     private static final long serialVersionUID = -1L;
 
-    public ValueConversionException( String message ) {
-        super( message );
+    public ValueConversionException(String message) {
+        super(message);
     }
 
-    public ValueConversionException( Throwable cause ) {
-        super( cause );
+    public ValueConversionException(Throwable cause) {
+        super(cause);
     }
 }

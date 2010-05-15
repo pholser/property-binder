@@ -34,25 +34,21 @@ import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 class ConstructorInvokingValueConverter implements ValueConverter {
     private final Constructor<?> ctor;
 
-    ConstructorInvokingValueConverter( Constructor<?> ctor ) {
+    ConstructorInvokingValueConverter(Constructor<?> ctor) {
         this.ctor = ctor;
     }
 
-    public Object convert( String raw ) {
+    public Object convert(String raw) {
         try {
-            return ctor.newInstance( raw );
-        }
-        catch ( InstantiationException ex ) {
-            throw new ValueConversionException( ex );
-        }
-        catch ( IllegalAccessException ex ) {
-            throw new ValueConversionException( ex );
-        }
-        catch ( IllegalArgumentException ex ) {
-            throw new ValueConversionException( ex );
-        }
-        catch ( InvocationTargetException ex ) {
-            throw new ValueConversionException( ex.getTargetException() );
+            return ctor.newInstance(raw);
+        } catch (InstantiationException ex) {
+            throw new ValueConversionException(ex);
+        } catch (IllegalAccessException ex) {
+            throw new ValueConversionException(ex);
+        } catch (IllegalArgumentException ex) {
+            throw new ValueConversionException(ex);
+        } catch (InvocationTargetException ex) {
+            throw new ValueConversionException(ex.getTargetException());
         }
     }
 
@@ -60,7 +56,7 @@ class ConstructorInvokingValueConverter implements ValueConverter {
         return null;
     }
 
-    public void resolve( Properties properties ) {
+    public void resolve(Properties properties) {
         // nothing to do here
     }
 }

@@ -28,7 +28,7 @@ package com.pholser.util.properties.internal;
 import java.util.Properties;
 
 interface ValueSeparator {
-    String[] separate( String raw );
+    String[] separate(String raw);
 
-    void resolve( Properties properties );
+    void resolve(Properties properties);
 }

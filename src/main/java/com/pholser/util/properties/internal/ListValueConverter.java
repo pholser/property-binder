@@ -39,43 +39,43 @@ class ListValueConverter implements ValueConverter {
     private final ValueSeparator separator;
     private final ValueConverter elementTypeConverter;
 
-    ListValueConverter( Type valueType, ValueSeparator separator ) {
+    ListValueConverter(Type valueType, ValueSeparator separator) {
         this.separator = separator;
-        this.elementTypeConverter = createScalarConverter( deduceElementType( valueType ) );
+        this.elementTypeConverter = createScalarConverter(deduceElementType(valueType));
     }
 
-    public Object convert( String raw ) {
+    public Object convert(String raw) {
         List<Object> values = new ArrayList<Object>();
-        for ( String each : separator.separate( raw ) )
-            values.add( elementTypeConverter.convert( each ) );
+        for (String each : separator.separate(raw))
+            values.add(elementTypeConverter.convert(each));
 
         return values;
     }
 
-    private static Class<?> deduceElementType( Type valueType ) {
-        if ( !( valueType instanceof ParameterizedType ) )
+    private static Class<?> deduceElementType(Type valueType) {
+        if (!(valueType instanceof ParameterizedType))
             return String.class;
 
         ParameterizedType parameterized = (ParameterizedType) valueType;
-        Type genericType = parameterized.getActualTypeArguments()[ 0 ];
-        if ( genericType instanceof Class<?> )
+        Type genericType = parameterized.getActualTypeArguments()[0];
+        if (genericType instanceof Class<?>)
             return (Class<?>) genericType;
 
-        if ( genericType instanceof WildcardType ) {
+        if (genericType instanceof WildcardType) {
             WildcardType wildcarded = (WildcardType) genericType;
             Type[] upperBounds = wildcarded.getUpperBounds();
-            if ( wildcarded.getLowerBounds().length == 0 && Object.class.equals( upperBounds[ 0 ] ) )
+            if (wildcarded.getLowerBounds().length == 0 && Object.class.equals(upperBounds[0]))
                 return String.class;
         }
 
-        throw new UnsupportedValueTypeException( valueType );
+        throw new UnsupportedValueTypeException(valueType);
     }
 
     public Object nilValue() {
         return new ArrayList<Object>();
     }
 
-    public void resolve( Properties properties ) {
-        separator.resolve( properties );
+    public void resolve(Properties properties) {
+        separator.resolve(properties);
     }
 }

@@ -31,7 +31,9 @@ import java.net.URL;
 import java.util.List;
 
 /**
- * <p>PICA interface for the standard {@link System#getProperties() system properties}.</p>
+ * <p>
+ * PICA interface for the standard {@link System#getProperties() system properties}.
+ * </p>
  *
  * @author <a href="http://www.pholser.com">Paul Holser</a>
  */
@@ -41,7 +43,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.version}
      */
-    @BoundProperty( "java.version" )
+    @BoundProperty("java.version")
     String javaVersion();
 
     /**
@@ -49,7 +51,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.vendor}
      */
-    @BoundProperty( "java.vendor" )
+    @BoundProperty("java.vendor")
     String javaVendor();
 
     /**
@@ -57,7 +59,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.vendor.url}
      */
-    @BoundProperty( "java.vendor.url" )
+    @BoundProperty("java.vendor.url")
     URL javaVendorUrl();
 
     /**
@@ -65,7 +67,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.home}
      */
-    @BoundProperty( "java.home" )
+    @BoundProperty("java.home")
     File javaHome();
 
     /**
@@ -73,7 +75,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.vm.specification.version}
      */
-    @BoundProperty( "java.vm.specification.version" )
+    @BoundProperty("java.vm.specification.version")
     String javaVmSpecificationVersion();
 
     /**
@@ -81,7 +83,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.vm.specification.vendor}
      */
-    @BoundProperty( "java.vm.specification.vendor" )
+    @BoundProperty("java.vm.specification.vendor")
     String javaVmSpecificationVendor();
 
     /**
@@ -89,7 +91,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.vm.specification.name}
      */
-    @BoundProperty( "java.vm.specification.name" )
+    @BoundProperty("java.vm.specification.name")
     String javaVmSpecificationName();
 
     /**
@@ -97,7 +99,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.vm.version}
      */
-    @BoundProperty( "java.vm.version" )
+    @BoundProperty("java.vm.version")
     String javaVmVersion();
 
     /**
@@ -105,7 +107,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.vendor}
      */
-    @BoundProperty( "java.vm.vendor" )
+    @BoundProperty("java.vm.vendor")
     String javaVmVendor();
 
     /**
@@ -113,7 +115,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.vm.name}
      */
-    @BoundProperty( "java.vm.name" )
+    @BoundProperty("java.vm.name")
     String javaVmName();
 
     /**
@@ -121,7 +123,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.specification.version}
      */
-    @BoundProperty( "java.specification.version" )
+    @BoundProperty("java.specification.version")
     String javaSpecificationVersion();
 
     /**
@@ -129,7 +131,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.specification.vendor}
      */
-    @BoundProperty( "java.specification.vendor" )
+    @BoundProperty("java.specification.vendor")
     String javaSpecificationVendor();
 
     /**
@@ -137,7 +139,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.specification.name}
      */
-    @BoundProperty( "java.specification.name" )
+    @BoundProperty("java.specification.name")
     String javaSpecificationName();
 
     /**
@@ -145,7 +147,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.class.version}
      */
-    @BoundProperty( "java.class.version" )
+    @BoundProperty("java.class.version")
     BigDecimal javaClassVersion();
 
     /**
@@ -153,8 +155,8 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.class.path}
      */
-    @BoundProperty( "java.class.path" )
-    @ValuesSeparatedBy( valueOf = "[path.separator]" )
+    @BoundProperty("java.class.path")
+    @ValuesSeparatedBy(valueOf = "[path.separator]")
     List<File> javaClassPath();
 
     /**
@@ -162,8 +164,8 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.library.path}
      */
-    @BoundProperty( "java.library.path" )
-    @ValuesSeparatedBy( valueOf = "[path.separator]" )
+    @BoundProperty("java.library.path")
+    @ValuesSeparatedBy(valueOf = "[path.separator]")
     List<File> javaLibraryPath();
 
     /**
@@ -171,7 +173,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.io.tmpdir}
      */
-    @BoundProperty( "java.io.tmpdir" )
+    @BoundProperty("java.io.tmpdir")
     File javaIoTmpdir();
 
     /**
@@ -179,7 +181,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.compiler}
      */
-    @BoundProperty( "java.compiler" )
+    @BoundProperty("java.compiler")
     String javaCompiler();
 
     /**
@@ -187,8 +189,8 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code java.ext.dirs}
      */
-    @BoundProperty( "java.ext.dirs" )
-    @ValuesSeparatedBy( valueOf = "[path.separator]" )
+    @BoundProperty("java.ext.dirs")
+    @ValuesSeparatedBy(valueOf = "[path.separator]")
     List<File> javaExtDirs();
 
     /**
@@ -196,7 +198,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code os.name}
      */
-    @BoundProperty( "os.name" )
+    @BoundProperty("os.name")
     String osName();
 
     /**
@@ -204,7 +206,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code os.arch}
      */
-    @BoundProperty( "os.arch" )
+    @BoundProperty("os.arch")
     String osArch();
 
     /**
@@ -212,7 +214,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code os.version}
      */
-    @BoundProperty( "os.version" )
+    @BoundProperty("os.version")
     String osVersion();
 
     /**
@@ -220,7 +222,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code file.separator}
      */
-    @BoundProperty( "file.separator" )
+    @BoundProperty("file.separator")
     char fileSeparator();
 
     /**
@@ -228,7 +230,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code path.separator}
      */
-    @BoundProperty( "path.separator" )
+    @BoundProperty("path.separator")
     char pathSeparator();
 
     /**
@@ -236,7 +238,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code line.separator}
      */
-    @BoundProperty( "line.separator" )
+    @BoundProperty("line.separator")
     String lineSeparator();
 
     /**
@@ -244,7 +246,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code user.name}
      */
-    @BoundProperty( "user.name" )
+    @BoundProperty("user.name")
     String userName();
 
     /**
@@ -252,7 +254,7 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code user.home}
      */
-    @BoundProperty( "user.home" )
+    @BoundProperty("user.home")
     File userHome();
 
     /**
@@ -260,6 +262,6 @@ public interface SystemProperties {
      *
      * @return {@link System#getProperty(String) System.getProperty} of {@code user.dir}
      */
-    @BoundProperty( "user.dir" )
+    @BoundProperty("user.dir")
     File userDir();
 }

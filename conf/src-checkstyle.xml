@@ -53,9 +53,6 @@
         </module>
         <module name="NoWhitespaceBefore"/>
         <module name="OperatorWrap"/>
-        <module name="ParenPad">
-            <property name="option" value="space"/>
-        </module>
         <module name="TypecastParenPad"/>
         <module name="TabCharacter"/>
         <module name="WhitespaceAfter"/>

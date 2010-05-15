@@ -43,22 +43,22 @@ public class BindingPropertiesObjectsToTypedInterfacesTest extends TypedBindingT
 
     @Before
     public final void initializeProperties() throws Exception {
-        inputStream = new FileInputStream( propertiesFile );
+        inputStream = new FileInputStream(propertiesFile);
         properties = new Properties();
-        properties.load( inputStream );
+        properties.load(inputStream);
     }
 
     @After
     public final void closeInputStream() {
-        closeQuietly( inputStream );
+        closeQuietly(inputStream);
     }
 
     @Test
     public void shouldLoadFromPropertiesObject() throws Exception {
-        ScalarPropertyHaver fromFile = binder.bind( propertiesFile );
-        ScalarPropertyHaver fromObject = binder.bind( properties );
+        ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
+        ScalarPropertyHaver fromObject = binder.bind(properties);
 
-        assertPropertiesEqual( fromFile, fromObject );
+        assertPropertiesEqual(fromFile, fromObject);
     }
 
     @Override

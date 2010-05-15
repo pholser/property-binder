@@ -35,28 +35,27 @@ import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 final class ConvertedDefaultValue implements DefaultValue {
     private final Object converted;
 
-    private ConvertedDefaultValue( String value, ValueConverter converter, Method method ) {
+    private ConvertedDefaultValue(String value, ValueConverter converter, Method method) {
         try {
-            this.converted = converter.convert( value );
-        }
-        catch ( ValueConversionException ex ) {
-            throw new MalformedDefaultValueException( value, method, ex );
+            this.converted = converter.convert(value);
+        } catch (ValueConversionException ex) {
+            throw new MalformedDefaultValueException(value, method, ex);
         }
     }
 
-    static ConvertedDefaultValue fromValue( DefaultsTo defaultValueSpec, ValueConverter converter, Method method ) {
-        return new ConvertedDefaultValue( defaultValueSpec.value(), converter, method );
+    static ConvertedDefaultValue fromValue(DefaultsTo defaultValueSpec, ValueConverter converter, Method method) {
+        return new ConvertedDefaultValue(defaultValueSpec.value(), converter, method);
     }
 
-    static ConvertedDefaultValue fromValueOf( String valueOf, ValueConverter converter, Method method ) {
-        return new ConvertedDefaultValue( valueOf, converter, method );
+    static ConvertedDefaultValue fromValueOf(String valueOf, ValueConverter converter, Method method) {
+        return new ConvertedDefaultValue(valueOf, converter, method);
     }
 
     public Object evaluate() {
         return converted;
     }
 
-    public void resolve( Properties properties ) {
+    public void resolve(Properties properties) {
         // nothing to do here
     }
 }

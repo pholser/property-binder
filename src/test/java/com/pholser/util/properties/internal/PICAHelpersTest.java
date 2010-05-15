@@ -30,8 +30,8 @@ import com.pholser.util.properties.DefaultsTo;
 import org.junit.Test;
 
 public class PICAHelpersTest {
-    @Test( expected = AssertionError.class )
+    @Test(expected = AssertionError.class)
     public void shouldRejectBadMethodNameOnAnnotation() {
-        PICAHelpers.annotationDefault( DefaultsTo.class, "!@#!@#" );
+        PICAHelpers.annotationDefault(DefaultsTo.class, "!@#!@#");
     }
 }

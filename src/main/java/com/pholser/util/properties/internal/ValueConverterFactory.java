@@ -34,62 +34,59 @@ import java.util.List;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 
 class ValueConverterFactory {
-    ValueConverter createConverter( Method propertyMethod, ValueSeparator separator ) {
-        Class<?> valueType = targetTypeFor( propertyMethod );
+    ValueConverter createConverter(Method propertyMethod, ValueSeparator separator) {
+        Class<?> valueType = targetTypeFor(propertyMethod);
 
-        if ( valueType.isArray() )
-            return new ArrayValueConverter( valueType, separator );
+        if (valueType.isArray())
+            return new ArrayValueConverter(valueType, separator);
 
-        if ( List.class.equals( valueType ) )
-            return new ListValueConverter( propertyMethod.getGenericReturnType(), separator );
+        if (List.class.equals(valueType))
+            return new ListValueConverter(propertyMethod.getGenericReturnType(), separator);
 
-        return createScalarConverter( valueType );
+        return createScalarConverter(valueType);
     }
 
-    static ValueConverter createScalarConverter( Class<?> valueType ) {
-        Class<?> returnType = wrapperIfPrimitive( valueType );
+    static ValueConverter createScalarConverter(Class<?> valueType) {
+        Class<?> returnType = wrapperIfPrimitive(valueType);
 
-        ValueConverter valueOf = valueOfConverter( returnType );
-        if ( valueOf != null )
+        ValueConverter valueOf = valueOfConverter(returnType);
+        if (valueOf != null)
             return valueOf;
 
-        ValueConverter constructor = constructorConverter( returnType );
-        if ( constructor != null )
+        ValueConverter constructor = constructorConverter(returnType);
+        if (constructor != null)
             return constructor;
 
-        throw new UnsupportedValueTypeException( valueType );
+        throw new UnsupportedValueTypeException(valueType);
     }
 
-    private static ValueConverter valueOfConverter( Class<?> valueType ) {
-        if ( Character.class.equals( valueType ) )
+    private static ValueConverter valueOfConverter(Class<?> valueType) {
+        if (Character.class.equals(valueType))
             return new CharacterValueOfConverter();
         try {
-            Method valueOf = valueType.getDeclaredMethod( "valueOf", String.class );
-            return meetsConverterRequirements( valueOf, valueType )
-                ? new MethodInvokingValueConverter( valueOf, valueType )
+            Method valueOf = valueType.getDeclaredMethod("valueOf", String.class);
+            return meetsConverterRequirements(valueOf, valueType) ? new MethodInvokingValueConverter(valueOf, valueType)
                 : null;
-        }
-        catch ( NoSuchMethodException ignored ) {
+        } catch (NoSuchMethodException ignored) {
             return null;
         }
     }
 
-    private static ValueConverter constructorConverter( Class<?> valueType ) {
+    private static ValueConverter constructorConverter(Class<?> valueType) {
         try {
-            return new ConstructorInvokingValueConverter( valueType.getConstructor( String.class ) );
-        }
-        catch ( NoSuchMethodException ignored ) {
+            return new ConstructorInvokingValueConverter(valueType.getConstructor(String.class));
+        } catch (NoSuchMethodException ignored) {
             return null;
         }
     }
 
-    private static boolean meetsConverterRequirements( Method method, Class<?> expectedReturnType ) {
+    private static boolean meetsConverterRequirements(Method method, Class<?> expectedReturnType) {
         int modifiers = method.getModifiers();
-        return isPublic( modifiers ) && isStatic( modifiers ) && expectedReturnType.equals( method.getReturnType() );
+        return isPublic(modifiers) && isStatic(modifiers) && expectedReturnType.equals(method.getReturnType());
     }
 
-    private Class<?> targetTypeFor( Method method ) {
+    private Class<?> targetTypeFor(Method method) {
         Class<?> returnType = method.getReturnType();
-        return returnType.isPrimitive() ? wrapperIfPrimitive( returnType ) : returnType;
+        return returnType.isPrimitive() ? wrapperIfPrimitive(returnType) : returnType;
     }
 }

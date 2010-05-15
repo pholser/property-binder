@@ -30,7 +30,7 @@ import java.lang.reflect.Type;
 public class UnsupportedValueTypeException extends IllegalArgumentException {
     private static final long serialVersionUID = 1L;
 
-    public UnsupportedValueTypeException( Type type ) {
-        super( type + " is not a value type" );
+    public UnsupportedValueTypeException(Type type) {
+        super(type + " is not a value type");
     }
 }

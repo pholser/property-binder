@@ -37,35 +37,31 @@ public class ValidatedSchema<T> {
     private final Map<String, DefaultValue> defaults;
     private final Map<String, ValueConverter> converters;
 
-    ValidatedSchema( Class<T> schema, Map<String, DefaultValue> defaultValues,
-        Map<String, ValueConverter> converters ) {
-
+    ValidatedSchema(Class<T> schema, Map<String, DefaultValue> defaultValues, Map<String, ValueConverter> converters) {
         this.schema = schema;
         this.defaults = defaultValues;
         this.converters = converters;
     }
 
-    public T evaluate( Properties properties ) {
-        resolveConverters( properties );
-        resolveDefaultValues( properties );
-        return createTypedProxyFor( properties );
+    public T evaluate(Properties properties) {
+        resolveConverters(properties);
+        resolveDefaultValues(properties);
+        return createTypedProxyFor(properties);
     }
 
-    T createTypedProxyFor( Properties properties ) {
-        return schema.cast(
-            newProxyInstance(
-                schema.getClassLoader(),
-                new Class<?>[] { schema },
-                new PropertyBinderInvocationHandler( properties, this ) ) );
+    T createTypedProxyFor(Properties properties) {
+        return schema.cast(newProxyInstance(schema.getClassLoader(),
+            new Class<?>[] { schema },
+            new PropertyBinderInvocationHandler(properties, this)));
     }
 
-    Object convert( Properties properties, Method method ) {
-        String propertyName = propertyNameFor( method );
-        ValueConverter converter = converters.get( propertyName );
-        if ( properties.containsKey( propertyName ) )
-            return converter.convert( properties.getProperty( propertyName ) );
-        if ( defaults.containsKey( propertyName ) )
-            return defaults.get( propertyName ).evaluate();
+    Object convert(Properties properties, Method method) {
+        String propertyName = propertyNameFor(method);
+        ValueConverter converter = converters.get(propertyName);
+        if (properties.containsKey(propertyName))
+            return converter.convert(properties.getProperty(propertyName));
+        if (defaults.containsKey(propertyName))
+            return defaults.get(propertyName).evaluate();
         return converter.nilValue();
     }
 
@@ -73,13 +69,13 @@ public class ValidatedSchema<T> {
         return schema.getName();
     }
 
-    private void resolveConverters( Properties properties ) {
-        for ( ValueConverter each : converters.values() )
-            each.resolve( properties );
+    private void resolveConverters(Properties properties) {
+        for (ValueConverter each : converters.values())
+            each.resolve(properties);
     }
 
-    private void resolveDefaultValues( Properties properties ) {
-        for ( DefaultValue each : defaults.values() )
-            each.resolve( properties );
+    private void resolveDefaultValues(Properties properties) {
+        for (DefaultValue each : defaults.values())
+            each.resolve(properties);
     }
 }

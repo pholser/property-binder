@@ -30,10 +30,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ArrayUtils {
-    static List<Object> toList( Object array ) {
+    static List<Object> toList(Object array) {
         List<Object> items = new ArrayList<Object>();
-        for ( int i = 0, length = Array.getLength( array ); i < length; ++i )
-            items.add( Array.get( array, i ) );
+        for (int i = 0, length = Array.getLength(array); i < length; ++i)
+            items.add(Array.get(array, i));
         return items;
     }
 }

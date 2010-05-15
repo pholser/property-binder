@@ -31,7 +31,7 @@ import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
 public interface LowerBoundedListPropertyHaver {
-    @BoundProperty( "lower.bounded.list" )
-    @DefaultsTo( "3,4" )
+    @BoundProperty("lower.bounded.list")
+    @DefaultsTo("3,4")
     List<? super Number> lowerBoundedList();
 }

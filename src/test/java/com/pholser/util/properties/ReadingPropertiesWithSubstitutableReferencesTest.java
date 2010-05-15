@@ -42,37 +42,37 @@ public class ReadingPropertiesWithSubstitutableReferencesTest {
 
     @Test
     public void shouldSubstituteReferencesToPropertiesInTheCollection() {
-        substitutable.setProperty( "one", "1" );
-        substitutable.setProperty( "two", "2" );
-        substitutable.setProperty( "first", "look out for number [one]" );
-        substitutable.setProperty( "second", "We're #[two]" );
+        substitutable.setProperty("one", "1");
+        substitutable.setProperty("two", "2");
+        substitutable.setProperty("first", "look out for number [one]");
+        substitutable.setProperty("second", "We're #[two]");
 
-        assertEquals( "look out for number 1", substitutable.getProperty( "first" ) );
-        assertEquals( "We're #2", substitutable.getProperty( "second" ) );
+        assertEquals("look out for number 1", substitutable.getProperty("first"));
+        assertEquals("We're #2", substitutable.getProperty("second"));
     }
 
     @Test
     public void shouldAllowDepthOfReferences() {
-        substitutable.setProperty( "one", "1" );
-        substitutable.setProperty( "two", "2[one]" );
-        substitutable.setProperty( "three", "3[one]3[two]" );
-        substitutable.setProperty( "four", "4[three]4[two]4[one]" );
+        substitutable.setProperty("one", "1");
+        substitutable.setProperty("two", "2[one]");
+        substitutable.setProperty("three", "3[one]3[two]");
+        substitutable.setProperty("four", "4[three]4[two]4[one]");
 
-        assertEquals( "43132142141", substitutable.getProperty( "four" ) );
+        assertEquals("43132142141", substitutable.getProperty("four"));
     }
 
     @Test
     public void shouldBeOkayWithRegexMetacharactersInPropertyReferences() {
-        substitutable.setProperty( "se.pa.ra.ted", "1" );
-        substitutable.setProperty( "reference", "3 + [se.pa.ra.ted]" );
+        substitutable.setProperty("se.pa.ra.ted", "1");
+        substitutable.setProperty("reference", "3 + [se.pa.ra.ted]");
 
-        assertEquals( "3 + 1", substitutable.getProperty( "reference" ) );
+        assertEquals("3 + 1", substitutable.getProperty("reference"));
     }
 
     @Test
     public void shouldReplaceUnresolvedPropertyReferencesWithZeroLengthString() {
-        substitutable.setProperty( "other.reference", "4 + [se_pa_ra_ted]" );
+        substitutable.setProperty("other.reference", "4 + [se_pa_ra_ted]");
 
-        assertEquals( "4 + ", substitutable.getProperty( "other.reference" ) );
+        assertEquals("4 + ", substitutable.getProperty("other.reference"));
     }
 }
