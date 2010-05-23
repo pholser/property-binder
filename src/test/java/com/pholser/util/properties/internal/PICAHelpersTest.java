@@ -26,7 +26,6 @@
 package com.pholser.util.properties.internal;
 
 import com.pholser.util.properties.DefaultsTo;
-
 import org.junit.Test;
 
 public class PICAHelpersTest {

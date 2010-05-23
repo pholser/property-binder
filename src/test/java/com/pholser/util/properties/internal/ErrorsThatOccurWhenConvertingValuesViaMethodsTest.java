@@ -25,17 +25,15 @@
 
 package com.pholser.util.properties.internal;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
 import java.lang.reflect.Method;
 import java.util.Calendar;
 
-import com.pholser.util.properties.internal.MethodInvokingValueConverter;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import com.pholser.util.properties.testonly.ForTriggeringIllegalAccess;
-
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
     @Test

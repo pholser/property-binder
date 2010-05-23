@@ -25,10 +25,10 @@
 
 package com.pholser.util.properties.internal;
 
-import static com.pholser.util.properties.internal.ValueConverterFactory.*;
-
 import java.lang.reflect.Array;
 import java.util.Properties;
+
+import static com.pholser.util.properties.internal.ValueConverterFactory.*;
 
 class ArrayValueConverter implements ValueConverter {
     private final Class<?> componentType;

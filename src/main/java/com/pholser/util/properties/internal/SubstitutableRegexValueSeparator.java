@@ -25,10 +25,10 @@
 
 package com.pholser.util.properties.internal;
 
-import static com.pholser.util.properties.SubstitutableProperties.*;
-
 import java.lang.reflect.Method;
 import java.util.Properties;
+
+import static com.pholser.util.properties.SubstitutableProperties.*;
 
 class SubstitutableRegexValueSeparator implements ValueSeparator {
     private final String pattern;

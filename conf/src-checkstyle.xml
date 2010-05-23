@@ -62,9 +62,6 @@
         <module name="LeftCurly">
             <property name="maxLineLength" value="120"/>
         </module>
-        <module name="RightCurly">
-            <property name="option" value="alone"/>
-        </module>
         <module name="AvoidNestedBlocks">
             <property name="allowInSwitchCase" value="true"/>
         </module>

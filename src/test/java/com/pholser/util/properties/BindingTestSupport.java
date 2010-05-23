@@ -26,6 +26,7 @@
 package com.pholser.util.properties;
 
 import java.io.File;
+
 import org.junit.Before;
 
 public abstract class BindingTestSupport {

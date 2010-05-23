@@ -25,12 +25,10 @@
 
 package com.pholser.util.properties.internal;
 
-import static com.pholser.util.properties.internal.PICAHelpers.*;
-import static com.pholser.util.properties.internal.Types.*;
-
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ValuesSeparatedBy;
 import com.pholser.util.properties.internal.exceptions.AppliedSeparatorToNonAggregateTypeException;
@@ -40,6 +38,9 @@ import com.pholser.util.properties.internal.exceptions.MultipleDefaultValueSpeci
 import com.pholser.util.properties.internal.exceptions.MultipleSeparatorSpecificationException;
 import com.pholser.util.properties.internal.exceptions.NoDefaultValueSpecificationException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedAggregateTypeException;
+
+import static com.pholser.util.properties.internal.PICAHelpers.*;
+import static com.pholser.util.properties.internal.Types.*;
 
 public class SchemaValidator {
     private final ValueConverterFactory converterFactory = new ValueConverterFactory();

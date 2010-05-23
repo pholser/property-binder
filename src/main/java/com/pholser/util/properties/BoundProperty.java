@@ -25,17 +25,15 @@
 
 package com.pholser.util.properties;
 
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.*;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.*;
+
 /**
- * <p>
  * Mark an interface method with this annotation to indicate that it should return the value associated with a
  * given key from a properties file, converted to the type indicated by the method's return type.
- * </p>
  *
  * @author <a href="http://www.pholser.com">Paul Holser</a>
  */

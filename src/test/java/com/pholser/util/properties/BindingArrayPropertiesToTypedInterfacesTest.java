@@ -25,17 +25,18 @@
 
 package com.pholser.util.properties;
 
-import static com.pholser.util.properties.ArrayUtils.*;
-import static com.pholser.util.properties.boundtypes.Ternary.*;
-import static java.util.Collections.*;
-import static org.junit.Assert.*;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
+
+import static java.util.Collections.*;
+
 import com.pholser.util.properties.boundtypes.ArrayPropertyHaver;
 import com.pholser.util.properties.boundtypes.Ternary;
-
 import org.junit.Test;
+
+import static com.pholser.util.properties.ArrayUtils.*;
+import static com.pholser.util.properties.boundtypes.Ternary.*;
+import static org.junit.Assert.*;
 
 public class BindingArrayPropertiesToTypedInterfacesTest extends TypedBindingTestSupport<ArrayPropertyHaver> {
     @Override

@@ -2,11 +2,11 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.pholser</groupId>
   <artifactId>property-binder</artifactId>
+  <version>1.0-rc3-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <version>1.0-rc2-SNAPSHOT</version>
   <name>property-binder</name>
   <description>Enables typed retrieval of properties based on an annotated interface</description>
- 
+  <url>http://www.pholser.com/software/property-binder</url>
   <licenses>
     <license>
       <name>The MIT License</name>
@@ -14,11 +14,10 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-
   <scm>
-    <connection>scm:svn:svn://svn.geekisp.com/pholser-repo/java/property-binder</connection>
+    <connection>scm:svn:svn://svn.geekisp.com/pholser-repo/java/property-binder/trunk</connection>
+    <url>scm:svn:https://svn.geekisp.com/pholser-repo/java/property-binder/trunk</url>
   </scm>
-
   <developers>
     <developer>
       <id>pholser</id>
@@ -124,6 +123,19 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -174,18 +186,14 @@
 
   <distributionManagement>
     <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>pholser-geekisp-repo</id>
-      <name>Pholser's Repo at GeekISP</name>
-      <url>sftp://login.geekisp.com/home/pholser/maven</url>
-      <layout>default</layout>
+      <id>sonatype-nexus-releases</id>
+      <name>Sonatype Nexus Releases</name>
+      <url>http://oss.sonatype.org/service/local/staging/deploy/maven2</url>
     </repository>
     <snapshotRepository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>pholser-geekisp-repo-snapshots</id>
-      <name>JOpt Simple Snapshot Repository</name>
-      <url>sftp://login.geekisp.com/home/pholser/maven-snapshots</url>
-      <layout>default</layout>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>http://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
     <site>
       <id>pholser.com</id>

@@ -25,13 +25,14 @@
 
 package com.pholser.util.properties.internal;
 
-import static com.pholser.util.properties.internal.PrimitiveClasses.*;
-import static java.lang.reflect.Modifier.*;
-
 import java.lang.reflect.Method;
 import java.util.List;
 
+import static java.lang.reflect.Modifier.*;
+
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
+
+import static com.pholser.util.properties.internal.PrimitiveClasses.*;
 
 class ValueConverterFactory {
     ValueConverter createConverter(Method propertyMethod, ValueSeparator separator) {
@@ -65,7 +66,8 @@ class ValueConverterFactory {
             return new CharacterValueOfConverter();
         try {
             Method valueOf = valueType.getDeclaredMethod("valueOf", String.class);
-            return meetsConverterRequirements(valueOf, valueType) ? new MethodInvokingValueConverter(valueOf, valueType)
+            return meetsConverterRequirements(valueOf, valueType)
+                ? new MethodInvokingValueConverter(valueOf, valueType)
                 : null;
         } catch (NoSuchMethodException ignored) {
             return null;

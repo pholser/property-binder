@@ -25,26 +25,22 @@
 
 package com.pholser.util.properties;
 
-import static org.apache.commons.io.IOUtils.*;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.pholser.util.properties.internal.ValidatedSchema;
 import com.pholser.util.properties.internal.SchemaValidator;
+import com.pholser.util.properties.internal.ValidatedSchema;
+
+import static org.apache.commons.io.IOUtils.*;
 
 /**
- * <p>
  * Creates instances of proxies that provide typed access to values in properties files via the <acronym
- * title="Proxied Interfaces Configured with Annotations">PICA</acronym> technique.
- * </p>
+ * title="Proxied Interfaces Configured with Annotations">PICA</acronym> technique.</p>
  *
- * <p>
  * Inspired by <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/">this blog entry</a>.
- * </p>
  *
  * @param <T> the type of bound property accessor objects this binder creates
  * @author <a href="http://www.pholser.com">Paul Holser</a>
@@ -53,18 +49,14 @@ public final class PropertyBinder<T> {
     private final ValidatedSchema<T> validatedSchema;
 
     private PropertyBinder(Class<T> schema) {
-        this.validatedSchema = new SchemaValidator().validate(schema);
+        validatedSchema = new SchemaValidator().validate(schema);
     }
 
     /**
-     * <p>
      * Creates a new properties file accessor from the given PICA schema.
-     * </p>
      *
-     * <p>
      * The PICA schema is validated to ensure that there are no inconsistencies. Here are the constraints placed
      * on the PICA schema:
-     * </p>
      *
      * <ol>
      * <li>Must be an interface with no superinterfaces.</li>
@@ -103,59 +95,43 @@ public final class PropertyBinder<T> {
      * to the return type of the method.</li>
      * </ol>
      *
-     * @param <U>
-     *            the type of bound property accessor objects this binder creates
-     * @param schema
-     *            the PICA type used to configure the accessor and provide access to properties
+     * @param <U> the type of bound property accessor objects this binder creates
+     * @param schema the PICA type used to configure the accessor and provide access to properties
      * @return a new property binder that binds instances of {@code} schema to properties objects
-     * @throws NullPointerException
-     *             if {@code schema} is {@code null}
-     * @throws IllegalArgumentException
-     *             if {@code schema}'s configuration is invalid in any way
+     * @throws NullPointerException if {@code schema} is {@code null}
+     * @throws IllegalArgumentException if {@code schema}'s configuration is invalid in any way
      */
     public static <U> PropertyBinder<U> forType(Class<U> schema) {
         return new PropertyBinder<U>(schema);
     }
 
     /**
-     * <p>
-     * Binds the properties purported to be in the given input stream to an instance of this binder's PICA.
-     * </p>
+     * Binds the properties purported to be in the given input stream to an instance of this binder's PICA.>
      *
      * @see #bind(File)
-     * @param propertyInput
-     *            an input stream containing properties to be bound
+     * @param propertyInput an input stream containing properties to be bound
      * @return a PICA instance bound to the properties
-     * @throws IOException
-     *             if there is a problem reading from the input stream
-     * @throws NullPointerException
-     *             if {@code propertyInput} is {@code null}
+     * @throws IOException if there is a problem reading from the input stream
+     * @throws NullPointerException if {@code propertyInput} is {@code null}
      */
     public T bind(InputStream propertyInput) throws IOException {
         return bind(loadProperties(propertyInput));
     }
 
     /**
-     * <p>
      * Binds the properties purported to be in the given file to an instance of this binder's PICA.
-     * </p>
      *
-     * <p>
      * After binding, invoking a PICA method returns the value of the property it represents if that property is
      * present; else the value given by the method's {@link DefaultsTo} marker if present; else {@code null} for
      * scalar types, a zero-length array for array types, and an {@linkplain java.util.Collection#isEmpty()
      * empty list} for list types. If the PICA method returns a primitive type and neither a property nor its
      * default is present, the PICA method will raise {@link NullPointerException}.
-     * </p>
      *
      * @see #bind(InputStream)
-     * @param propertiesFile
-     *            a file containing properties to be bound
+     * @param propertiesFile a file containing properties to be bound
      * @return a PICA instance bound to the properties
-     * @throws IOException
-     *             if there is a problem reading from the file
-     * @throws NullPointerException
-     *             if {@code propertiesFile} is {@code null}
+     * @throws IOException if there is a problem reading from the file
+     * @throws NullPointerException if {@code propertiesFile} is {@code null}
      */
     public T bind(File propertiesFile) throws IOException {
         FileInputStream propertyInput = null;

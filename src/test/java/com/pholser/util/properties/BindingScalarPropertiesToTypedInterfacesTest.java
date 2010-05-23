@@ -25,14 +25,14 @@
 
 package com.pholser.util.properties;
 
-import static com.pholser.util.properties.boundtypes.Ternary.*;
-import static org.junit.Assert.*;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
 import org.junit.Test;
+
+import static com.pholser.util.properties.boundtypes.Ternary.*;
+import static org.junit.Assert.*;
 
 public class BindingScalarPropertiesToTypedInterfacesTest extends TypedBindingTestSupport<ScalarPropertyHaver> {
     @Override

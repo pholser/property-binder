@@ -25,7 +25,6 @@
 
 package com.pholser.util.properties.internal;
 
-import static com.pholser.util.properties.internal.ValueConverterFactory.*;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
@@ -34,6 +33,8 @@ import java.util.List;
 import java.util.Properties;
 
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
+
+import static com.pholser.util.properties.internal.ValueConverterFactory.*;
 
 class ListValueConverter implements ValueConverter {
     private final ValueSeparator separator;

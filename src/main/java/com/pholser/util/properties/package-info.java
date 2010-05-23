@@ -24,9 +24,9 @@
  */
 
 /**
- * <p>A PICA scheme for addressing Java properties files in a typed manner.</p>
+ * A PICA scheme for addressing Java properties files in a typed manner.
  *
- * <p>Inspired by <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/">this blog entry</a>.
+ * Inspired by <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/">this blog entry</a>.
  */
 
 package com.pholser.util.properties;

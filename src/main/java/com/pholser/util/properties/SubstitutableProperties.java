@@ -25,19 +25,16 @@
 
 package com.pholser.util.properties;
 
-import static com.pholser.util.properties.internal.Objects.*;
-
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.pholser.util.properties.internal.Objects.*;
+
 /**
- * <p>
  * Properties class with support for property values which can be comprised of the values of other properties.
  * Such values specify other property keys delimited by {@code [} and {@code ]}.
- * </p>
  *
- * <p>
  * Inspired by <a href="http://www2.sys-con.com/ITSG/virtualcd/Java/archives/0612/mair/index.html">Enabling
  * Constant Substitution in Property Values</a>.
  *
@@ -56,10 +53,8 @@ public class SubstitutableProperties extends Properties {
      * Performs property value substitution on the given value, drawing on the values of the given collection of
      * properties. If a property reference cannot be resolved, it will be replaced with the zero-length string.
      *
-     * @param value
-     *            the value to perform substitution on
-     * @param properties
-     *            the properties from which to draw substitution values
+     * @param value the value to perform substitution on
+     * @param properties the properties from which to draw substitution values
      * @return the result of the substitution
      */
     public static String substitute(String value, Properties properties) {

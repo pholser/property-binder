@@ -25,12 +25,13 @@
 
 package com.pholser.util.properties.internal;
 
-import static com.pholser.util.properties.internal.PICAHelpers.*;
-import static java.lang.reflect.Proxy.*;
-
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Properties;
+
+import static java.lang.reflect.Proxy.*;
+
+import static com.pholser.util.properties.internal.PICAHelpers.*;
 
 public class ValidatedSchema<T> {
     private final Class<T> schema;

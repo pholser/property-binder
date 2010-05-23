@@ -26,6 +26,7 @@
 package com.pholser.util.properties.boundtypes;
 
 import java.util.Collection;
+
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 

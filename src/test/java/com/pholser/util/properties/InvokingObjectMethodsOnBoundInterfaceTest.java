@@ -26,10 +26,11 @@
 package com.pholser.util.properties;
 
 import static java.lang.System.*;
-import static org.junit.Assert.*;
-import static org.junit.matchers.JUnitMatchers.*;
 
 import org.junit.Test;
+
+import static org.junit.Assert.*;
+import static org.junit.matchers.JUnitMatchers.*;
 
 public class InvokingObjectMethodsOnBoundInterfaceTest
     extends TypedBindingTestSupport<InvokingObjectMethodsOnBoundInterfaceTest.PropertyFacade> {

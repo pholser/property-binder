@@ -25,14 +25,14 @@
 
 package com.pholser.util.properties;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class BindingSystemPropertiesToTypedInterfaceTest {
     private SystemProperties systemProperties;

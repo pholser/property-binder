@@ -28,6 +28,7 @@ package com.pholser.util.properties.internal;
 import java.lang.reflect.Method;
 
 import com.pholser.util.properties.DefaultsTo;
+
 import static com.pholser.util.properties.internal.PICAHelpers.*;
 
 class DefaultValueFactory {

@@ -25,21 +25,18 @@
 
 package com.pholser.util.properties;
 
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.*;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.*;
+
 /**
- * <p>
  * Mark an interface method with this annotation to indicate a regular expression that separates multiple values
  * of the value for the properties file key indicated by {@link BoundProperty}. This makes sense only on methods
  * which return array types or {@link java.util.List}s. If the method is not marked with this annotation, the
  * separator is taken to be "{@code ,}" (single comma, no surrounding whitespaces).
- * </p>
- *
- * <p>
+
  * Use {@link #pattern()} to specify a plain regular expression, or {@link #valueOf()} to specify a regular
  * expression parts of which can be comprised of the values of bound properties. The keys of such properties are
  * delimited in the pattern by {@code [} and {@code ]}. It is illegal to specify both {@link #pattern()} and

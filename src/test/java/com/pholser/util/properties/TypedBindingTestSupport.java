@@ -25,12 +25,12 @@
 
 package com.pholser.util.properties;
 
-import static com.pholser.util.properties.ArrayUtils.*;
-import static org.junit.Assert.*;
-
 import java.lang.reflect.Method;
 
 import org.junit.Before;
+
+import static com.pholser.util.properties.ArrayUtils.*;
+import static org.junit.Assert.*;
 
 public abstract class TypedBindingTestSupport<T> extends BindingTestSupport {
     protected PropertyBinder<T> binder;

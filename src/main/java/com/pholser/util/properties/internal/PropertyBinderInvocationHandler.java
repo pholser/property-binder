@@ -25,11 +25,11 @@
 
 package com.pholser.util.properties.internal;
 
-import static java.lang.System.*;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.Properties;
+
+import static java.lang.System.*;
 
 public class PropertyBinderInvocationHandler implements InvocationHandler {
     private final Properties properties;

@@ -25,10 +25,10 @@
 
 package com.pholser.util.properties.internal;
 
-import static java.util.Collections.*;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import static java.util.Collections.*;
 
 final class PrimitiveClasses {
     private static final Map<Class<?>, Class<?>> WRAPPERS;

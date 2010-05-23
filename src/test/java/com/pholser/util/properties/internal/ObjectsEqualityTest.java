@@ -25,15 +25,16 @@
 
 package com.pholser.util.properties.internal;
 
-import static java.util.Arrays.*;
-import static org.junit.Assert.*;
-
 import java.util.Collection;
+
+import static java.util.Arrays.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+
+import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
 public class ObjectsEqualityTest {
