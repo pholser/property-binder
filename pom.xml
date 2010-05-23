@@ -123,19 +123,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 
@@ -151,7 +138,7 @@
           <links>
             <link>http://java.sun.com/j2se/1.5.0/docs/api</link>
           </links>
-          <bottom><![CDATA[<i>&copy; Copyright 2009 Paul R. Holser, Jr.  All rights reserved. Licensed under The MIT License. pholser@alumni.rice.edu</i>]]></bottom>
+          <bottom><![CDATA[<i>&copy; Copyright 2009-2010 Paul R. Holser, Jr. All rights reserved. Licensed under The MIT License. pholser@alumni.rice.edu</i>]]></bottom>
         </configuration>
         <reportSets>
           <reportSet>
@@ -200,4 +187,33 @@
       <url>scp://login.geekisp.com/home/pholser/www.pholser.com/htdocs/software/property-binder/</url>
     </site>
   </distributionManagement>
+
+  <profiles>
+    <profile>
+      <id>release-sign-artifacts</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
