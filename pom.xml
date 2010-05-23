@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.pholser</groupId>
   <artifactId>property-binder</artifactId>
-  <version>1.0-rc3</version>
+  <version>1.0-rc4-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>property-binder</name>
   <description>Enables typed retrieval of properties based on an annotated interface</description>
@@ -15,8 +15,8 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:svn:svn://svn.geekisp.com/pholser-repo/java/property-binder/tags/property-binder-1.0-rc3</connection>
-    <url>scm:svn:https://svn.geekisp.com/pholser-repo/java/property-binder/tags/property-binder-1.0-rc3</url>
+    <connection>scm:svn:svn://svn.geekisp.com/pholser-repo/java/property-binder/trunk</connection>
+    <url>scm:svn:https://svn.geekisp.com/pholser-repo/java/property-binder/trunk</url>
   </scm>
   <developers>
     <developer>
