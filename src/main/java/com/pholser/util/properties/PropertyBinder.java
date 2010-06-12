@@ -106,7 +106,7 @@ public final class PropertyBinder<T> {
     }
 
     /**
-     * Binds the properties purported to be in the given input stream to an instance of this binder's PICA.>
+     * Binds the properties purported to be in the given input stream to an instance of this binder's PICA.
      *
      * @see #bind(File)
      * @param propertyInput an input stream containing properties to be bound
