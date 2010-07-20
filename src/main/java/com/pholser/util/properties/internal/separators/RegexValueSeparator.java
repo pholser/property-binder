@@ -23,19 +23,31 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.separators;
 
 import java.lang.reflect.Method;
+import java.util.Properties;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
-import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.internal.exceptions.MalformedSeparatorException;
 
-import static com.pholser.util.properties.internal.PICAHelpers.*;
+class RegexValueSeparator implements ValueSeparator {
+    private final Pattern regex;
 
-class DefaultValueFactory {
-    DefaultValue createDefaultValue(DefaultsTo defaultValueSpec, ValueConverter converter, Method method) {
-        if (isDefaultDefaultValue(defaultValueSpec))
-            return new SubstitutableDefaultValue(defaultValueSpec, converter, method);
+    RegexValueSeparator(String pattern, Method method) {
+        try {
+            regex = Pattern.compile(pattern);
+        } catch (PatternSyntaxException ex) {
+            throw new MalformedSeparatorException(pattern, method, ex);
+        }
+    }
 
-        return ConvertedDefaultValue.fromValue(defaultValueSpec, converter, method);
+    public String[] separate(String raw) {
+        return regex.split(raw);
+    }
+
+    public void resolve(Properties properties) {
+        // nothing to do here
     }
 }

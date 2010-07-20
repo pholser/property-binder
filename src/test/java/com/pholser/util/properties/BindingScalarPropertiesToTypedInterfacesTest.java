@@ -27,6 +27,8 @@ package com.pholser.util.properties;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
 import org.junit.Test;
@@ -253,5 +255,12 @@ public class BindingScalarPropertiesToTypedInterfacesTest extends TypedBindingTe
     @Test
     public void shouldBeAbleToSupplyDefaultForEnumValuedProperty() {
         assertEquals(MAYBE, bound.enumPropertyWithDefault());
+    }
+
+    @Test
+    public void shouldBindDateValuedPropertyToDateReturningMethodUsingParsePatterns() throws Exception {
+        Date expected = new SimpleDateFormat("yyyy").parse("2010");
+
+        assertEquals(expected, bound.datePropertyWithParsePatterns());
     }
 }

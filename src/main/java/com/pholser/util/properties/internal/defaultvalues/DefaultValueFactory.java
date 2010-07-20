@@ -23,12 +23,20 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.defaultvalues;
 
-import java.util.Properties;
+import java.lang.reflect.Method;
 
-interface DefaultValue {
-    Object evaluate();
+import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.internal.conversions.ValueConverter;
 
-    void resolve(Properties properties);
+import static com.pholser.util.properties.internal.PICAHelpers.*;
+
+public class DefaultValueFactory {
+    public DefaultValue createDefaultValue(DefaultsTo defaultValueSpec, ValueConverter converter, Method method) {
+        if (isDefaultDefaultValue(defaultValueSpec))
+            return new SubstitutableDefaultValue(defaultValueSpec, converter, method);
+
+        return ConvertedDefaultValue.fromValue(defaultValueSpec, converter, method);
+    }
 }

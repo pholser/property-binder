@@ -23,28 +23,37 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.defaultvalues;
 
 import java.lang.reflect.Method;
 import java.util.Properties;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
-import com.pholser.util.properties.internal.exceptions.MalformedSeparatorException;
+import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.internal.conversions.ValueConverter;
+import com.pholser.util.properties.internal.exceptions.MalformedDefaultValueException;
+import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
-class RegexValueSeparator implements ValueSeparator {
-    private final Pattern regex;
+final class ConvertedDefaultValue implements DefaultValue {
+    private final Object converted;
 
-    RegexValueSeparator(String pattern, Method method) {
+    private ConvertedDefaultValue(String value, ValueConverter converter, Method method) {
         try {
-            regex = Pattern.compile(pattern);
-        } catch (PatternSyntaxException ex) {
-            throw new MalformedSeparatorException(pattern, method, ex);
+            this.converted = converter.convert(value);
+        } catch (ValueConversionException ex) {
+            throw new MalformedDefaultValueException(value, method, ex);
         }
     }
 
-    public String[] separate(String raw) {
-        return regex.split(raw);
+    static ConvertedDefaultValue fromValue(DefaultsTo defaultValueSpec, ValueConverter converter, Method method) {
+        return new ConvertedDefaultValue(defaultValueSpec.value(), converter, method);
+    }
+
+    static ConvertedDefaultValue fromValueOf(String valueOf, ValueConverter converter, Method method) {
+        return new ConvertedDefaultValue(valueOf, converter, method);
+    }
+
+    public Object evaluate() {
+        return converted;
     }
 
     public void resolve(Properties properties) {

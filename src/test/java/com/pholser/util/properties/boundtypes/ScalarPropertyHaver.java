@@ -27,6 +27,9 @@ package com.pholser.util.properties.boundtypes;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Date;
+
+import com.pholser.util.properties.ParsePatterns;
 
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
@@ -504,4 +507,8 @@ public interface ScalarPropertyHaver {
     @DefaultsTo("NO|MAYBE|YES|MAYBE")
     @ValuesSeparatedBy(pattern = "\\|")
     Ternary[] enumArrayPropertyWithDefaultAndSeparator();
+
+    @BoundProperty("date.property.with.parse.patterns")
+    @ParsePatterns({"yyyy"})
+    Date datePropertyWithParsePatterns();
 }

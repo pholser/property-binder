@@ -23,29 +23,21 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties;
 
-import java.lang.reflect.Method;
-import java.util.Properties;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
-import static com.pholser.util.properties.SubstitutableProperties.*;
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.*;
 
-class SubstitutableRegexValueSeparator implements ValueSeparator {
-    private final String pattern;
-    private final Method method;
-    private RegexValueSeparator separator;
-
-    SubstitutableRegexValueSeparator(String pattern, Method method) {
-        this.pattern = pattern;
-        this.method = method;
-    }
-
-    public String[] separate(String raw) {
-        return separator.separate(raw);
-    }
-
-    public void resolve(Properties properties) {
-        String substituted = substitute(pattern, properties);
-        separator = new RegexValueSeparator(substituted, method);
-    }
+/**
+ * Mark an interface method with this annotation to indicate...
+ *
+ * @author <a href="http://www.pholser.com">Paul Holser</a>
+ */
+@Target(METHOD)
+@Retention(RUNTIME)
+public @interface ParsePatterns {
+    String[] value();
 }

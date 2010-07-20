@@ -23,39 +23,34 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.defaultvalues;
 
 import java.lang.reflect.Method;
 import java.util.Properties;
 
 import com.pholser.util.properties.DefaultsTo;
-import com.pholser.util.properties.internal.exceptions.MalformedDefaultValueException;
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
+import com.pholser.util.properties.internal.conversions.ValueConverter;
 
-final class ConvertedDefaultValue implements DefaultValue {
-    private final Object converted;
+import static com.pholser.util.properties.SubstitutableProperties.*;
 
-    private ConvertedDefaultValue(String value, ValueConverter converter, Method method) {
-        try {
-            this.converted = converter.convert(value);
-        } catch (ValueConversionException ex) {
-            throw new MalformedDefaultValueException(value, method, ex);
-        }
-    }
+class SubstitutableDefaultValue implements DefaultValue {
+    private final DefaultsTo defaultValueSpec;
+    private final ValueConverter converter;
+    private final Method method;
+    private ConvertedDefaultValue converted;
 
-    static ConvertedDefaultValue fromValue(DefaultsTo defaultValueSpec, ValueConverter converter, Method method) {
-        return new ConvertedDefaultValue(defaultValueSpec.value(), converter, method);
-    }
-
-    static ConvertedDefaultValue fromValueOf(String valueOf, ValueConverter converter, Method method) {
-        return new ConvertedDefaultValue(valueOf, converter, method);
+    SubstitutableDefaultValue(DefaultsTo defaultValueSpec, ValueConverter converter, Method method) {
+        this.defaultValueSpec = defaultValueSpec;
+        this.converter = converter;
+        this.method = method;
     }
 
     public Object evaluate() {
-        return converted;
+        return converted.evaluate();
     }
 
     public void resolve(Properties properties) {
-        // nothing to do here
+        String substituted = substitute(defaultValueSpec.valueOf(), properties);
+        this.converted = ConvertedDefaultValue.fromValueOf(substituted, converter, method);
     }
 }

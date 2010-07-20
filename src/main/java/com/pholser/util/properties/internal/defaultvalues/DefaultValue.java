@@ -23,38 +23,12 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.defaultvalues;
 
-import java.lang.reflect.Array;
 import java.util.Properties;
 
-import static com.pholser.util.properties.internal.ValueConverterFactory.*;
+public interface DefaultValue {
+    Object evaluate();
 
-class ArrayValueConverter implements ValueConverter {
-    private final Class<?> componentType;
-    private final ValueConverter componentTypeConverter;
-    private final ValueSeparator separator;
-
-    ArrayValueConverter(Class<?> arrayType, ValueSeparator separator) {
-        this.componentType = arrayType.getComponentType();
-        this.componentTypeConverter = createScalarConverter(componentType);
-        this.separator = separator;
-    }
-
-    public Object convert(String raw) {
-        String[] pieces = separator.separate(raw);
-        Object array = Array.newInstance(componentType, pieces.length);
-        for (int i = 0; i < pieces.length; ++i)
-            Array.set(array, i, componentTypeConverter.convert(pieces[i]));
-
-        return array;
-    }
-
-    public Object nilValue() {
-        return Array.newInstance(componentType, 0);
-    }
-
-    public void resolve(Properties properties) {
-        separator.resolve(properties);
-    }
+    void resolve(Properties properties);
 }

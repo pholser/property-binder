@@ -23,14 +23,40 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.conversions;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 
-interface ValueConverter {
-    Object convert(String raw);
+import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
-    Object nilValue();
+public class ConstructorInvokingValueConverter implements ValueConverter {
+    private final Constructor<?> ctor;
 
-    void resolve(Properties properties);
+    public ConstructorInvokingValueConverter(Constructor<?> ctor) {
+        this.ctor = ctor;
+    }
+
+    public Object convert(String raw) {
+        try {
+            return ctor.newInstance(raw);
+        } catch (InstantiationException ex) {
+            throw new ValueConversionException(ex);
+        } catch (IllegalAccessException ex) {
+            throw new ValueConversionException(ex);
+        } catch (IllegalArgumentException ex) {
+            throw new ValueConversionException(ex);
+        } catch (InvocationTargetException ex) {
+            throw new ValueConversionException(ex.getTargetException());
+        }
+    }
+
+    public Object nilValue() {
+        return null;
+    }
+
+    public void resolve(Properties properties) {
+        // nothing to do here
+    }
 }

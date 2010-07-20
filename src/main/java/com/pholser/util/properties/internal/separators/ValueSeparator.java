@@ -23,11 +23,11 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.separators;
 
 import java.util.Properties;
 
-interface ValueSeparator {
+public interface ValueSeparator {
     String[] separate(String raw);
 
     void resolve(Properties properties);

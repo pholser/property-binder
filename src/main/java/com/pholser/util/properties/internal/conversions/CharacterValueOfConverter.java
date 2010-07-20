@@ -23,25 +23,25 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.conversions;
 
-import java.lang.reflect.Method;
+import java.util.Properties;
 
-import com.pholser.util.properties.ValuesSeparatedBy;
+import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
-import static com.pholser.util.properties.internal.PICAHelpers.*;
+class CharacterValueOfConverter implements ValueConverter {
+    public Object convert(String raw) {
+        if (raw.length() != 1)
+            throw new ValueConversionException("cannot convert [" + raw + "] to " + Character.class);
 
-class ValueSeparatorFactory {
-    ValueSeparator createSeparator(ValuesSeparatedBy separatorSpec, Method method) {
-        Object patternDefault = annotationDefault(ValuesSeparatedBy.class, "pattern");
-        return separatorSpec == null
-            ? new RegexValueSeparator(patternDefault.toString(), method)
-            : createSeparatorBasedOnSpec(separatorSpec, method);
+        return raw.charAt(0);
     }
 
-    private ValueSeparator createSeparatorBasedOnSpec(ValuesSeparatedBy separatorSpec, Method method) {
-        if (isDefaultPattern(separatorSpec) && !isDefaultSeparatorValueOf(separatorSpec))
-            return new SubstitutableRegexValueSeparator(separatorSpec.valueOf(), method);
-        return new RegexValueSeparator(separatorSpec.pattern(), method);
+    public Object nilValue() {
+        return null;
+    }
+
+    public void resolve(Properties properties) {
+        // nothing to do here
     }
 }

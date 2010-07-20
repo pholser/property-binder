@@ -23,40 +23,42 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.conversions;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Array;
 import java.util.Properties;
 
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
+import com.pholser.util.properties.ParsePatterns;
 
-class ConstructorInvokingValueConverter implements ValueConverter {
-    private final Constructor<?> ctor;
+import com.pholser.util.properties.internal.separators.ValueSeparator;
 
-    ConstructorInvokingValueConverter(Constructor<?> ctor) {
-        this.ctor = ctor;
+import static com.pholser.util.properties.internal.conversions.ValueConverterFactory.*;
+
+class ArrayValueConverter implements ValueConverter {
+    private final Class<?> componentType;
+    private final ValueConverter componentTypeConverter;
+    private final ValueSeparator separator;
+
+    ArrayValueConverter(Class<?> arrayType, ValueSeparator separator, ParsePatterns parsePatterns) {
+        this.componentType = arrayType.getComponentType();
+        this.componentTypeConverter = createScalarConverter(componentType, parsePatterns);
+        this.separator = separator;
     }
 
     public Object convert(String raw) {
-        try {
-            return ctor.newInstance(raw);
-        } catch (InstantiationException ex) {
-            throw new ValueConversionException(ex);
-        } catch (IllegalAccessException ex) {
-            throw new ValueConversionException(ex);
-        } catch (IllegalArgumentException ex) {
-            throw new ValueConversionException(ex);
-        } catch (InvocationTargetException ex) {
-            throw new ValueConversionException(ex.getTargetException());
-        }
+        String[] pieces = separator.separate(raw);
+        Object array = Array.newInstance(componentType, pieces.length);
+        for (int i = 0; i < pieces.length; ++i)
+            Array.set(array, i, componentTypeConverter.convert(pieces[i]));
+
+        return array;
     }
 
     public Object nilValue() {
-        return null;
+        return Array.newInstance(componentType, 0);
     }
 
     public void resolve(Properties properties) {
-        // nothing to do here
+        separator.resolve(properties);
     }
 }

@@ -23,11 +23,12 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.conversions;
 
 import java.lang.reflect.Method;
 import java.util.Calendar;
 
+import com.pholser.util.properties.internal.conversions.MethodInvokingValueConverter;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import com.pholser.util.properties.testonly.ForTriggeringIllegalAccess;
 import org.junit.Test;
@@ -84,8 +85,8 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
         }
     }
 
-    static class MethodRaisesException {
-        static void raisesException(@SuppressWarnings("unused") String argument) {
+    public static class MethodRaisesException {
+        public static void raisesException(@SuppressWarnings("unused") String argument) {
             throw new UnsupportedOperationException();
         }
     }

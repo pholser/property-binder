@@ -23,32 +23,40 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.conversions;
 
 import java.lang.reflect.Method;
+import java.util.Date;
 import java.util.List;
 
 import static java.lang.reflect.Modifier.*;
 
+import com.pholser.util.properties.ParsePatterns;
+
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
+import com.pholser.util.properties.internal.separators.ValueSeparator;
 
 import static com.pholser.util.properties.internal.PrimitiveClasses.*;
 
-class ValueConverterFactory {
-    ValueConverter createConverter(Method propertyMethod, ValueSeparator separator) {
+public class ValueConverterFactory {
+    public ValueConverter createConverter(Method propertyMethod, ValueSeparator separator) {
         Class<?> valueType = targetTypeFor(propertyMethod);
+        ParsePatterns parsePatterns = propertyMethod.getAnnotation(ParsePatterns.class);
 
         if (valueType.isArray())
-            return new ArrayValueConverter(valueType, separator);
+            return new ArrayValueConverter(valueType, separator, parsePatterns);
 
         if (List.class.equals(valueType))
-            return new ListValueConverter(propertyMethod.getGenericReturnType(), separator);
+            return new ListValueConverter(propertyMethod.getGenericReturnType(), separator, parsePatterns);
 
-        return createScalarConverter(valueType);
+        return createScalarConverter(valueType, parsePatterns);
     }
 
-    static ValueConverter createScalarConverter(Class<?> valueType) {
+    public static ValueConverter createScalarConverter(Class<?> valueType, ParsePatterns parsePatterns) {
         Class<?> returnType = wrapperIfPrimitive(valueType);
+        ValueConverter pattern = parsePatternsConverter(returnType, parsePatterns);
+        if (pattern != null)
+            return pattern;
 
         ValueConverter valueOf = valueOfConverter(returnType);
         if (valueOf != null)
@@ -61,9 +69,17 @@ class ValueConverterFactory {
         throw new UnsupportedValueTypeException(valueType);
     }
 
+    private static ValueConverter parsePatternsConverter(Class<?> valueType, ParsePatterns parsePatterns) {
+        if (parsePatterns == null)
+            return null;
+
+        return valueType.isAssignableFrom(Date.class) ? new SimpleDateFormatParseValueConverter(parsePatterns) : null;
+    }
+
     private static ValueConverter valueOfConverter(Class<?> valueType) {
         if (Character.class.equals(valueType))
             return new CharacterValueOfConverter();
+
         try {
             Method valueOf = valueType.getDeclaredMethod("valueOf", String.class);
             return meetsConverterRequirements(valueOf, valueType)

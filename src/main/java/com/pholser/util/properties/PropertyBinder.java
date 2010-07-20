@@ -31,8 +31,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.pholser.util.properties.internal.SchemaValidator;
 import com.pholser.util.properties.internal.ValidatedSchema;
+import com.pholser.util.properties.internal.validation.SchemaValidator;
 
 import static org.apache.commons.io.IOUtils.*;
 

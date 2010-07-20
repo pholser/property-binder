@@ -23,39 +23,29 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.separators;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.lang.reflect.Method;
+import java.util.Properties;
 
-import static java.util.Collections.*;
+import static com.pholser.util.properties.SubstitutableProperties.*;
 
-public final class PrimitiveClasses {
-    private static final Map<Class<?>, Class<?>> WRAPPERS;
+class SubstitutableRegexValueSeparator implements ValueSeparator {
+    private final String pattern;
+    private final Method method;
+    private RegexValueSeparator separator;
 
-    private static final int SMALL_PRIME = 13;
-
-    static {
-        new PrimitiveClasses();
-
-        Map<Class<?>, Class<?>> wrappers = new HashMap<Class<?>, Class<?>>(SMALL_PRIME);
-        wrappers.put(Boolean.TYPE, Boolean.class);
-        wrappers.put(Byte.TYPE, Byte.class);
-        wrappers.put(Character.TYPE, Character.class);
-        wrappers.put(Double.TYPE, Double.class);
-        wrappers.put(Float.TYPE, Float.class);
-        wrappers.put(Integer.TYPE, Integer.class);
-        wrappers.put(Long.TYPE, Long.class);
-        wrappers.put(Short.TYPE, Short.class);
-        wrappers.put(Void.TYPE, Void.class);
-        WRAPPERS = unmodifiableMap(wrappers);
+    SubstitutableRegexValueSeparator(String pattern, Method method) {
+        this.pattern = pattern;
+        this.method = method;
     }
 
-    private PrimitiveClasses() {
-        // nothing to do here
+    public String[] separate(String raw) {
+        return separator.separate(raw);
     }
 
-    public static Class<?> wrapperIfPrimitive(Class<?> type) {
-        return WRAPPERS.containsKey(type) ? WRAPPERS.get(type) : type;
+    public void resolve(Properties properties) {
+        String substituted = substitute(pattern, properties);
+        separator = new RegexValueSeparator(substituted, method);
     }
 }

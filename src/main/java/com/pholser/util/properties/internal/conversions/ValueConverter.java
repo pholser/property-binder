@@ -23,33 +23,14 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.conversions;
 
-import java.lang.reflect.Method;
 import java.util.Properties;
 
-import com.pholser.util.properties.DefaultsTo;
+public interface ValueConverter {
+    Object convert(String raw);
 
-import static com.pholser.util.properties.SubstitutableProperties.*;
+    Object nilValue();
 
-class SubstitutableDefaultValue implements DefaultValue {
-    private final DefaultsTo defaultValueSpec;
-    private final ValueConverter converter;
-    private final Method method;
-    private ConvertedDefaultValue converted;
-
-    SubstitutableDefaultValue(DefaultsTo defaultValueSpec, ValueConverter converter, Method method) {
-        this.defaultValueSpec = defaultValueSpec;
-        this.converter = converter;
-        this.method = method;
-    }
-
-    public Object evaluate() {
-        return converted.evaluate();
-    }
-
-    public void resolve(Properties properties) {
-        String substituted = substitute(defaultValueSpec.valueOf(), properties);
-        this.converted = ConvertedDefaultValue.fromValueOf(substituted, converter, method);
-    }
+    void resolve(Properties properties);
 }

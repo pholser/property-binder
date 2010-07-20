@@ -30,7 +30,7 @@ import java.lang.reflect.Method;
 
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
-final class Reflection {
+public final class Reflection {
     static {
         new Reflection();
     }
@@ -39,7 +39,7 @@ final class Reflection {
         // nothing to do here
     }
 
-    static Object invokeQuietly(Class<?> targetClass, String methodName, Object target, Object... args) {
+    public static Object invokeQuietly(Class<?> targetClass, String methodName, Object target, Object... args) {
         try {
             return invokeQuietly(targetClass.getMethod(methodName), target, args);
         } catch (NoSuchMethodException ex) {
@@ -47,7 +47,7 @@ final class Reflection {
         }
     }
 
-    static Object invokeQuietly(Method method, Object target, Object... args) {
+    public static Object invokeQuietly(Method method, Object target, Object... args) {
         try {
             return method.invoke(target, args);
         } catch (IllegalAccessException ex) {

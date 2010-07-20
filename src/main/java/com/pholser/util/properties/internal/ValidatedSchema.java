@@ -31,6 +31,9 @@ import java.util.Properties;
 
 import static java.lang.reflect.Proxy.*;
 
+import com.pholser.util.properties.internal.conversions.ValueConverter;
+import com.pholser.util.properties.internal.defaultvalues.DefaultValue;
+
 import static com.pholser.util.properties.internal.PICAHelpers.*;
 
 public class ValidatedSchema<T> {
@@ -38,7 +41,7 @@ public class ValidatedSchema<T> {
     private final Map<String, DefaultValue> defaults;
     private final Map<String, ValueConverter> converters;
 
-    ValidatedSchema(Class<T> schema, Map<String, DefaultValue> defaultValues, Map<String, ValueConverter> converters) {
+    public ValidatedSchema(Class<T> schema, Map<String, DefaultValue> defaultValues, Map<String, ValueConverter> converters) {
         this.schema = schema;
         this.defaults = defaultValues;
         this.converters = converters;

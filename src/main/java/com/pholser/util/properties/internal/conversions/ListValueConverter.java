@@ -23,7 +23,7 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.conversions;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -32,20 +32,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
+import com.pholser.util.properties.ParsePatterns;
 
-import static com.pholser.util.properties.internal.ValueConverterFactory.*;
+import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
+import com.pholser.util.properties.internal.separators.ValueSeparator;
+
+import static com.pholser.util.properties.internal.conversions.ValueConverterFactory.*;
 
 class ListValueConverter implements ValueConverter {
     private final ValueSeparator separator;
     private final ValueConverter elementTypeConverter;
 
-    ListValueConverter(Type valueType, ValueSeparator separator) {
+    ListValueConverter(Type valueType, ValueSeparator separator, ParsePatterns parsePatterns) {
         this.separator = separator;
-        this.elementTypeConverter = createScalarConverter(deduceElementType(valueType));
+        this.elementTypeConverter = createScalarConverter(deduceElementType(valueType), parsePatterns);
     }
 
-    public Object convert(String raw) {
+    public List<Object> convert(String raw) {
         List<Object> values = new ArrayList<Object>();
         for (String each : separator.separate(raw))
             values.add(elementTypeConverter.convert(each));

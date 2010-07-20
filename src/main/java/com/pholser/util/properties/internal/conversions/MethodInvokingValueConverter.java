@@ -23,18 +23,30 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.conversions;
 
+import java.lang.reflect.Method;
 import java.util.Properties;
 
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
-class CharacterValueOfConverter implements ValueConverter {
-    public Object convert(String raw) {
-        if (raw.length() != 1)
-            throw new ValueConversionException("cannot convert [" + raw + "] to " + Character.class);
+import static com.pholser.util.properties.internal.Reflection.*;
 
-        return raw.charAt(0);
+public class MethodInvokingValueConverter implements ValueConverter {
+    private final Method method;
+    private final Class<?> clazz;
+
+    public MethodInvokingValueConverter(Method method, Class<?> clazz) {
+        this.method = method;
+        this.clazz = clazz;
+    }
+
+    public Object convert(String raw) {
+        try {
+            return clazz.cast(invokeQuietly(method, null, raw));
+        } catch (ClassCastException ex) {
+            throw new ValueConversionException(ex);
+        }
     }
 
     public Object nilValue() {

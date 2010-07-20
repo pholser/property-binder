@@ -23,7 +23,7 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.validation;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -31,6 +31,11 @@ import java.util.Map;
 
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ValuesSeparatedBy;
+import com.pholser.util.properties.internal.ValidatedSchema;
+import com.pholser.util.properties.internal.conversions.ValueConverter;
+import com.pholser.util.properties.internal.conversions.ValueConverterFactory;
+import com.pholser.util.properties.internal.defaultvalues.DefaultValue;
+import com.pholser.util.properties.internal.defaultvalues.DefaultValueFactory;
 import com.pholser.util.properties.internal.exceptions.AppliedSeparatorToNonAggregateTypeException;
 import com.pholser.util.properties.internal.exceptions.BoundTypeNotAnInterfaceException;
 import com.pholser.util.properties.internal.exceptions.InterfaceHasSuperinterfacesException;
@@ -38,6 +43,8 @@ import com.pholser.util.properties.internal.exceptions.MultipleDefaultValueSpeci
 import com.pholser.util.properties.internal.exceptions.MultipleSeparatorSpecificationException;
 import com.pholser.util.properties.internal.exceptions.NoDefaultValueSpecificationException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedAggregateTypeException;
+import com.pholser.util.properties.internal.separators.ValueSeparator;
+import com.pholser.util.properties.internal.separators.ValueSeparatorFactory;
 
 import static com.pholser.util.properties.internal.PICAHelpers.*;
 import static com.pholser.util.properties.internal.Types.*;
@@ -77,7 +84,8 @@ public class SchemaValidator {
     }
 
     private void ensureAggregateTypeIsSupported(Method method) {
-        if (isAggregateType(method.getReturnType()) && !isSupportedAggregateType(method.getReturnType()))
+        Class<?> returnType = method.getReturnType();
+        if (isAggregateType(returnType) && !isSupportedAggregateType(returnType))
             throw new UnsupportedAggregateTypeException(method);
     }
 

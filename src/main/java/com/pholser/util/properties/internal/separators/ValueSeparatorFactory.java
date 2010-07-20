@@ -23,37 +23,25 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.separators;
 
 import java.lang.reflect.Method;
-import java.util.Properties;
 
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
+import com.pholser.util.properties.ValuesSeparatedBy;
 
-import static com.pholser.util.properties.internal.Reflection.*;
+import static com.pholser.util.properties.internal.PICAHelpers.*;
 
-class MethodInvokingValueConverter implements ValueConverter {
-    private final Method method;
-    private final Class<?> clazz;
-
-    MethodInvokingValueConverter(Method method, Class<?> clazz) {
-        this.method = method;
-        this.clazz = clazz;
+public class ValueSeparatorFactory {
+    public ValueSeparator createSeparator(ValuesSeparatedBy separatorSpec, Method method) {
+        Object patternDefault = annotationDefault(ValuesSeparatedBy.class, "pattern");
+        return separatorSpec == null
+            ? new RegexValueSeparator(patternDefault.toString(), method)
+            : createSeparatorBasedOnSpec(separatorSpec, method);
     }
 
-    public Object convert(String raw) {
-        try {
-            return clazz.cast(invokeQuietly(method, null, raw));
-        } catch (ClassCastException ex) {
-            throw new ValueConversionException(ex);
-        }
-    }
-
-    public Object nilValue() {
-        return null;
-    }
-
-    public void resolve(Properties properties) {
-        // nothing to do here
+    private ValueSeparator createSeparatorBasedOnSpec(ValuesSeparatedBy separatorSpec, Method method) {
+        if (isDefaultPattern(separatorSpec) && !isDefaultSeparatorValueOf(separatorSpec))
+            return new SubstitutableRegexValueSeparator(separatorSpec.valueOf(), method);
+        return new RegexValueSeparator(separatorSpec.pattern(), method);
     }
 }
