@@ -27,6 +27,7 @@ package com.pholser.util.properties;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -259,8 +260,15 @@ public class BindingScalarPropertiesToTypedInterfacesTest extends TypedBindingTe
 
     @Test
     public void shouldBindDateValuedPropertyToDateReturningMethodUsingParsePatterns() throws Exception {
-        Date expected = new SimpleDateFormat("yyyy").parse("2010");
+        assertEquals(yyyy("2010"), bound.datePropertyWithParsePatterns());
+    }
 
-        assertEquals(expected, bound.datePropertyWithParsePatterns());
+    @Test
+    public void shouldBeAbleToSupplyDefaultForDateValuedPropertyUsingParsePatterns() throws Exception {
+        assertEquals(yyyy("2003"), bound.datePropertyWithDefaultWithParsePatterns());
+    }
+
+    private Date yyyy(String raw) throws ParseException {
+        return new SimpleDateFormat("yyyy").parse(raw);
     }
 }

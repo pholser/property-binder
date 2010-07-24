@@ -8,12 +8,12 @@ import static java.util.Arrays.*;
 
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
-import com.pholser.util.properties.ParsePatterns;
+import com.pholser.util.properties.ParsedAs;
 
 class SimpleDateFormatParseValueConverter implements ValueConverter {
-    private final ParsePatterns parsePatterns;
+    private final ParsedAs parsePatterns;
 
-    public SimpleDateFormatParseValueConverter(ParsePatterns parsePatterns) {
+    public SimpleDateFormatParseValueConverter(ParsedAs parsePatterns) {
         this.parsePatterns = parsePatterns;
     }
 

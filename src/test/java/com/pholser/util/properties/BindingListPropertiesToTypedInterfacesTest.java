@@ -27,6 +27,9 @@ package com.pholser.util.properties;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static java.util.Arrays.*;
 import static java.util.Collections.*;
@@ -296,6 +299,26 @@ public class BindingListPropertiesToTypedInterfacesTest extends TypedBindingTest
     }
 
     @Test
+    public void shouldBindSeparatedDateValuedPropertyToDateListMethod() throws Exception {
+        assertEquals(asList(M("2"), M("3")), bound.dateListProperty());
+    }
+
+    @Test
+    public void shouldBindDateValuedPropertyWithCustomSeparatorToDateListMethod() throws Exception {
+        assertEquals(asList(M("4"), M("5"), M("6")), bound.dateListPropertyWithCustomSeparator());
+    }
+
+    @Test
+    public void shouldBeAbleToSupplyDefaultForDateListProperty() throws Exception {
+        assertEquals(asList(M("7"), M("8")), bound.dateListPropertyWithDefault());
+    }
+
+    @Test
+    public void shouldBeAbleToSupplyDefaultForDateListPropertyWithSeparator() throws Exception {
+        assertEquals(asList(M("10"), M("11")), bound.dateListPropertyWithDefaultAndSeparator());
+    }
+
+    @Test
     public void shouldBindSeparatedStringValuedPropertyToRawListMethod() {
         assertEquals(asList("aaa", "bbb", "ccc"), bound.rawListProperty());
     }
@@ -338,5 +361,9 @@ public class BindingListPropertiesToTypedInterfacesTest extends TypedBindingTest
     @Test
     public void shouldGiveEmptyListForMissingListProperty() {
         assertEquals(emptyList(), bound.missingListProperty());
+    }
+
+    private Date M(String raw) throws ParseException {
+        return new SimpleDateFormat("M").parse(raw);
     }
 }

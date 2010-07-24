@@ -36,6 +36,9 @@ import static java.lang.annotation.RetentionPolicy.*;
  * given key from a properties file, converted to the type indicated by the method's return type.
  *
  * @author <a href="http://www.pholser.com">Paul Holser</a>
+ * @see DefaultsTo
+ * @see ValuesSeparatedBy
+ * @see ParsedAs
  */
 @Target(METHOD)
 @Retention(RUNTIME)

@@ -27,6 +27,9 @@ package com.pholser.util.properties.boundtypes;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Date;
+
+import com.pholser.util.properties.ParsedAs;
 
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
@@ -358,4 +361,24 @@ public interface ArrayPropertyHaver {
 
     @BoundProperty("missing.object.array.property")
     String[] missingObjectArrayProperty();
+
+    @BoundProperty("date.array.property.with.parse.patterns")
+    @ParsedAs("MMM")
+    Date[] dateArrayPropertyWithParsePatterns();
+
+    @BoundProperty("date.array.property.with.custom.separator.with.parse.patterns")
+    @ParsedAs("MMM")
+    @ValuesSeparatedBy(pattern = "\\.\\.\\.")
+    Date[] dateArrayPropertyWithCustomSeparatorWithParsePatterns();
+
+    @BoundProperty("date.array.property.with.default.with.parse.patterns")
+    @ParsedAs("MMM")
+    @DefaultsTo("Sep,Oct")
+    Date[] dateArrayPropertyWithDefaultWithParsePatterns();
+
+    @BoundProperty("date.array.property.with.default.and.separator.with.parse.patterns")
+    @ParsedAs("MMM")
+    @DefaultsTo("Nov...Dec")
+    @ValuesSeparatedBy(pattern = "\\.\\.\\.")
+    Date[] dateArrayPropertyWithDefaultAndSeparatorWithParsePatterns();
 }

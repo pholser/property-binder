@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.pholser.util.properties.ParsePatterns;
+import com.pholser.util.properties.ParsedAs;
 
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
@@ -43,7 +43,7 @@ class ListValueConverter implements ValueConverter {
     private final ValueSeparator separator;
     private final ValueConverter elementTypeConverter;
 
-    ListValueConverter(Type valueType, ValueSeparator separator, ParsePatterns parsePatterns) {
+    ListValueConverter(Type valueType, ValueSeparator separator, ParsedAs parsePatterns) {
         this.separator = separator;
         this.elementTypeConverter = createScalarConverter(deduceElementType(valueType), parsePatterns);
     }

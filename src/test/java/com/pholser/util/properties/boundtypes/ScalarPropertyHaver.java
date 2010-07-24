@@ -29,7 +29,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 
-import com.pholser.util.properties.ParsePatterns;
+import com.pholser.util.properties.ParsedAs;
 
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
@@ -509,6 +509,11 @@ public interface ScalarPropertyHaver {
     Ternary[] enumArrayPropertyWithDefaultAndSeparator();
 
     @BoundProperty("date.property.with.parse.patterns")
-    @ParsePatterns({"yyyy"})
+    @ParsedAs({"yyyy"})
     Date datePropertyWithParsePatterns();
+
+    @BoundProperty("date.property.with.default.with.parse.patterns")
+    @ParsedAs({"yyyy"})
+    @DefaultsTo("2003")
+    Date datePropertyWithDefaultWithParsePatterns();
 }

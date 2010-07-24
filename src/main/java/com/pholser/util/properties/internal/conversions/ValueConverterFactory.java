@@ -31,7 +31,7 @@ import java.util.List;
 
 import static java.lang.reflect.Modifier.*;
 
-import com.pholser.util.properties.ParsePatterns;
+import com.pholser.util.properties.ParsedAs;
 
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
@@ -41,7 +41,7 @@ import static com.pholser.util.properties.internal.PrimitiveClasses.*;
 public class ValueConverterFactory {
     public ValueConverter createConverter(Method propertyMethod, ValueSeparator separator) {
         Class<?> valueType = targetTypeFor(propertyMethod);
-        ParsePatterns parsePatterns = propertyMethod.getAnnotation(ParsePatterns.class);
+        ParsedAs parsePatterns = propertyMethod.getAnnotation(ParsedAs.class);
 
         if (valueType.isArray())
             return new ArrayValueConverter(valueType, separator, parsePatterns);
@@ -52,7 +52,7 @@ public class ValueConverterFactory {
         return createScalarConverter(valueType, parsePatterns);
     }
 
-    public static ValueConverter createScalarConverter(Class<?> valueType, ParsePatterns parsePatterns) {
+    public static ValueConverter createScalarConverter(Class<?> valueType, ParsedAs parsePatterns) {
         Class<?> returnType = wrapperIfPrimitive(valueType);
         ValueConverter pattern = parsePatternsConverter(returnType, parsePatterns);
         if (pattern != null)
@@ -69,11 +69,13 @@ public class ValueConverterFactory {
         throw new UnsupportedValueTypeException(valueType);
     }
 
-    private static ValueConverter parsePatternsConverter(Class<?> valueType, ParsePatterns parsePatterns) {
+    private static ValueConverter parsePatternsConverter(Class<?> valueType, ParsedAs parsePatterns) {
         if (parsePatterns == null)
             return null;
+        if (valueType.isAssignableFrom(Date.class))
+            return new SimpleDateFormatParseValueConverter(parsePatterns);
 
-        return valueType.isAssignableFrom(Date.class) ? new SimpleDateFormatParseValueConverter(parsePatterns) : null;
+        return null;
     }
 
     private static ValueConverter valueOfConverter(Class<?> valueType) {

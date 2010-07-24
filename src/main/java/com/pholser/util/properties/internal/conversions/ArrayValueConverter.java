@@ -28,7 +28,7 @@ package com.pholser.util.properties.internal.conversions;
 import java.lang.reflect.Array;
 import java.util.Properties;
 
-import com.pholser.util.properties.ParsePatterns;
+import com.pholser.util.properties.ParsedAs;
 
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 
@@ -39,7 +39,7 @@ class ArrayValueConverter implements ValueConverter {
     private final ValueConverter componentTypeConverter;
     private final ValueSeparator separator;
 
-    ArrayValueConverter(Class<?> arrayType, ValueSeparator separator, ParsePatterns parsePatterns) {
+    ArrayValueConverter(Class<?> arrayType, ValueSeparator separator, ParsedAs parsePatterns) {
         this.componentType = arrayType.getComponentType();
         this.componentTypeConverter = createScalarConverter(componentType, parsePatterns);
         this.separator = separator;

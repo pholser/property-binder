@@ -27,7 +27,10 @@ package com.pholser.util.properties.boundtypes;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Date;
 import java.util.List;
+
+import com.pholser.util.properties.ParsedAs;
 
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
@@ -265,4 +268,24 @@ public interface ListPropertyHaver {
 
     @BoundProperty("missing.list.property")
     List<String> missingListProperty();
+
+    @BoundProperty("date.list.property.with.parse.patterns")
+    @ParsedAs("M")
+    List<Date> dateListProperty();
+
+    @BoundProperty("date.list.property.with.custom.separator.with.parse.patterns")
+    @ParsedAs("M")
+    @ValuesSeparatedBy(pattern = "/")
+    List<Date> dateListPropertyWithCustomSeparator();
+
+    @BoundProperty("date.list.property.with.default")
+    @ParsedAs("M")
+    @DefaultsTo("7,8")
+    List<Date> dateListPropertyWithDefault();
+
+    @BoundProperty("date.list.property.with.default.and.separator")
+    @ParsedAs("M")
+    @DefaultsTo("10?11")
+    @ValuesSeparatedBy(pattern = "\\?")
+    List<Date> dateListPropertyWithDefaultAndSeparator();
 }

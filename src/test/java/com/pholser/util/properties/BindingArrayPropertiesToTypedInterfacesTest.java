@@ -27,6 +27,9 @@ package com.pholser.util.properties;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static java.util.Collections.*;
 
@@ -493,6 +496,30 @@ public class BindingArrayPropertiesToTypedInterfacesTest extends TypedBindingTes
     }
 
     @Test
+    public void shouldBindSeparatedDateValuedPropertyToDateArrayMethodWithParsePatterns() throws Exception {
+        assertEquals(toList(new Date[] { MMM("Jan"), MMM("Feb"), MMM("Mar") }),
+            toList(bound.dateArrayPropertyWithParsePatterns()));
+    }
+
+    @Test
+    public void shouldBindDateValuedPropertyWithCustomSeparatorToDateArrayMethod() throws Exception {
+        assertEquals(toList(new Date[] { MMM("Apr"), MMM("May"), MMM("Jun") }),
+            toList(bound.dateArrayPropertyWithCustomSeparatorWithParsePatterns()));
+    }
+
+    @Test
+    public void shouldBeAbleToSupplyDefaultForDateArrayProperty() throws Exception {
+        assertEquals(toList(new Date[] { MMM("Sep"), MMM("Oct") }),
+            toList(bound.dateArrayPropertyWithDefaultWithParsePatterns()));
+    }
+
+    @Test
+    public void shouldBeAbleToSupplyDefaultForDateArrayPropertyWithSeparator() throws Exception {
+        assertEquals(toList(new Date[] { MMM("Nov"), MMM("Dec")}),
+            toList(bound.dateArrayPropertyWithDefaultAndSeparatorWithParsePatterns()));
+    }
+
+    @Test
     public void shouldGiveZeroLengthArrayForMissingPrimitiveArrayProperty() {
         assertEquals(emptyList(), toList(bound.missingPrimitiveArrayProperty()));
     }
@@ -500,5 +527,9 @@ public class BindingArrayPropertiesToTypedInterfacesTest extends TypedBindingTes
     @Test
     public void shouldGiveZeroLengthArrayForMissingObjectArrayProperty() {
         assertEquals(emptyList(), toList(bound.missingObjectArrayProperty()));
+    }
+
+    private Date MMM(String raw) throws ParseException {
+        return new SimpleDateFormat("MMM").parse(raw);
     }
 }
