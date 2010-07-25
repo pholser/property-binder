@@ -38,9 +38,9 @@ public class ConstructorInvokingValueConverter implements ValueConverter {
         this.ctor = ctor;
     }
 
-    public Object convert(String raw) {
+    public Object convert(String raw, Object... args) {
         try {
-            return ctor.newInstance(raw);
+            return ctor.newInstance(String.format(raw, args));
         } catch (InstantiationException ex) {
             throw new ValueConversionException(ex);
         } catch (IllegalAccessException ex) {

@@ -41,9 +41,9 @@ public class MethodInvokingValueConverter implements ValueConverter {
         this.clazz = clazz;
     }
 
-    public Object convert(String raw) {
+    public Object convert(String raw, Object... args) {
         try {
-            return clazz.cast(invokeQuietly(method, null, raw));
+            return clazz.cast(invokeQuietly(method, null, String.format(raw, args)));
         } catch (ClassCastException ex) {
             throw new ValueConversionException(ex);
         }

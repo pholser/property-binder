@@ -59,11 +59,11 @@ public class ValidatedSchema<T> {
             new PropertyBinderInvocationHandler(properties, this)));
     }
 
-    Object convert(Properties properties, Method method) {
+    Object convert(Properties properties, Method method, Object... args) {
         String propertyName = propertyNameFor(method);
         ValueConverter converter = converters.get(propertyName);
         if (properties.containsKey(propertyName))
-            return converter.convert(properties.getProperty(propertyName));
+            return converter.convert(properties.getProperty(propertyName), args);
         if (defaults.containsKey(propertyName))
             return defaults.get(propertyName).evaluate();
         return converter.nilValue();

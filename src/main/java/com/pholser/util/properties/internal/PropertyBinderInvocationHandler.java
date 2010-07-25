@@ -44,7 +44,7 @@ public class PropertyBinderInvocationHandler implements InvocationHandler {
         if (Object.class.equals(method.getDeclaringClass()))
             return handleObjectMethod(proxy, method, args);
 
-        return validatedSchema.convert(properties, method);
+        return validatedSchema.convert(properties, method, args);
     }
 
     private Object handleObjectMethod(Object proxy, Method method, Object[] args) {

@@ -48,10 +48,10 @@ class ListValueConverter implements ValueConverter {
         this.elementTypeConverter = createScalarConverter(deduceElementType(valueType), parsePatterns);
     }
 
-    public List<Object> convert(String raw) {
+    public List<Object> convert(String raw, Object... args) {
         List<Object> values = new ArrayList<Object>();
         for (String each : separator.separate(raw))
-            values.add(elementTypeConverter.convert(each));
+            values.add(elementTypeConverter.convert(each, args));
 
         return values;
     }

@@ -18,10 +18,10 @@ class SimpleDateFormatParseValueConverter implements ValueConverter {
     }
 
     @Override
-    public Object convert(String raw) {
+    public Object convert(String raw, Object... args) {
         for (String each : parsePatterns.value()) {
             try {
-                return new SimpleDateFormat(each).parse(raw);
+                return new SimpleDateFormat(each).parse(String.format(raw, args));
             } catch (ParseException ex) {
                 // try the next pattern
             }

@@ -30,7 +30,7 @@ import java.util.Properties;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 class CharacterValueOfConverter implements ValueConverter {
-    public Object convert(String raw) {
+    public Object convert(String raw, Object... args) {
         if (raw.length() != 1)
             throw new ValueConversionException("cannot convert [" + raw + "] to " + Character.class);
 

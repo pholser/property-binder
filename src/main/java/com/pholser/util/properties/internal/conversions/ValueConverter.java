@@ -28,7 +28,7 @@ package com.pholser.util.properties.internal.conversions;
 import java.util.Properties;
 
 public interface ValueConverter {
-    Object convert(String raw);
+    Object convert(String raw, Object... args);
 
     Object nilValue();
 
