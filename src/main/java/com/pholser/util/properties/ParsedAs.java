@@ -27,16 +27,14 @@ package com.pholser.util.properties;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
 /**
  * Mark an interface method with this annotation to indicate that values for the property represented by the
- * method are parsed according to the given patterns. For {@link Date}-returning methods, the patterns are
- * to be specified as described in {@link SimpleDateFormat}. This annotation is ignored for any other type.
+ * method are parsed according to the given patterns. For {@link java.util.Date}-returning methods, the patterns are
+ * to be specified as described in {@link java.text.SimpleDateFormat}. This annotation is ignored for any other type.
  *
  * @author <a href="http://www.pholser.com">Paul Holser</a>
  * @see BoundProperty

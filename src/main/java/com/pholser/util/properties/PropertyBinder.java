@@ -38,7 +38,7 @@ import static org.apache.commons.io.IOUtils.*;
 
 /**
  * Creates instances of proxies that provide typed access to values in properties files via the <acronym
- * title="Proxied Interfaces Configured with Annotations">PICA</acronym> technique.</p>
+ * title="Proxied Interfaces Configured with Annotations">PICA</acronym> technique.
  *
  * Inspired by <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/">this blog entry</a>.
  *

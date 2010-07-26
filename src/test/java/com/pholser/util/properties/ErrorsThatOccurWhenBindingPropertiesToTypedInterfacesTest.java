@@ -29,6 +29,11 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException;
+
+
+import com.pholser.util.properties.boundtypes.ParsedAsOnMethodOfImproperType;
+
 import com.pholser.util.properties.boundtypes.DatePropertyWithNonLenientValueHaver;
 
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
@@ -190,5 +195,10 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends B
             PropertyBinder.forType(DatePropertyWithNonLenientValueHaver.class).bind(propertiesFile);
 
         bound.datePropertyWithNonLenientValue();
+    }
+
+    @Test(expected = UnsupportedParsedAsTypeException.class)
+    public void shouldRejectParsedAsIfAppliedToTypeOtherThanDate() {
+        PropertyBinder.forType(ParsedAsOnMethodOfImproperType.class);
     }
 }

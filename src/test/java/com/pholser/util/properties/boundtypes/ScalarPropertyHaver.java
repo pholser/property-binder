@@ -201,6 +201,10 @@ public interface ScalarPropertyHaver {
     @BoundProperty("missing.property")
     String missingProperty();
 
+    @BoundProperty("missing.date.property")
+    @ParsedAs("yyyy-MM-dd")
+    Date missingDateProperty();
+
     @BoundProperty("missing.primitive.wrapper.property")
     Integer missingPrimitiveWrapperProperty();
 

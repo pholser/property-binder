@@ -23,15 +23,17 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.boundtypes;
+package com.pholser.util.properties.internal.exceptions;
 
 import java.util.Date;
 
-import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.ParsedAs;
 
-public interface DatePropertyWithNonLenientValueHaver {
-    @BoundProperty("date.property.with.non.lenient.value")
-    @ParsedAs("MM/dd/yyyy")
-    Date datePropertyWithNonLenientValue();
+public class UnsupportedParsedAsTypeException extends IllegalArgumentException {
+    private static final long serialVersionUID = 1L;
+
+    public UnsupportedParsedAsTypeException(Class<?> valueType) {
+        super("Marker @" + ParsedAs.class.getSimpleName() + " is not applicable to methods which return ["
+            + valueType.getName() + "], only " + Date.class.getName());
+    }
 }

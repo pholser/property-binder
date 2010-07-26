@@ -49,6 +49,11 @@ public class BindingScalarPropertiesToTypedInterfacesTest extends TypedBindingTe
     }
 
     @Test
+    public void shouldReturnNullForMissingDateProperty() {
+        assertNull(bound.missingDateProperty());
+    }
+
+    @Test
     public void shouldReturnNullForMissingPrimitiveWrapperProperty() {
         assertNull(bound.missingPrimitiveWrapperProperty());
     }

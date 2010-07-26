@@ -31,6 +31,9 @@ import java.util.List;
 
 import static java.lang.reflect.Modifier.*;
 
+import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException;
+
+
 import com.pholser.util.properties.ParsedAs;
 
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
@@ -74,8 +77,7 @@ public class ValueConverterFactory {
             return null;
         if (valueType.isAssignableFrom(Date.class))
             return new SimpleDateFormatParseValueConverter(parsePatterns);
-
-        return null;
+        throw new UnsupportedParsedAsTypeException(valueType);
     }
 
     private static ValueConverter valueOfConverter(Class<?> valueType) {
