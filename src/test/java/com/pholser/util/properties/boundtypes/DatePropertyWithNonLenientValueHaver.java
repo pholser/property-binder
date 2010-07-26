@@ -7,6 +7,6 @@ import com.pholser.util.properties.ParsedAs;
 
 public interface DatePropertyWithNonLenientValueHaver {
     @BoundProperty("date.property.with.non.lenient.value")
-    @ParsedAs({"MM/dd/yyyy"})
+    @ParsedAs("MM/dd/yyyy")
     Date datePropertyWithNonLenientValue();
 }

@@ -65,9 +65,6 @@ public final class PropertyBinder<T> {
      * the properties file key; if not, the key is the fully qualified name of the PICA interface + '.' + the
      * method's name.</li>
      *
-     * <li>It is not required that the method accept zero arguments, but be advised that any arguments the
-     * method declares are ignored.</li>
-     *
      * <li>The only aggregate return types supported are arrays and {@link java.util.List}.</li>
      *
      * <li>The {@link ValuesSeparatedBy} annotation can be applied only to methods with an aggregate return
@@ -93,6 +90,15 @@ public final class PropertyBinder<T> {
      *
      * <li>If the method specifies a default value via {@link ValuesSeparatedBy}, that value must be convertible
      * to the return type of the method.</li>
+     *
+     * <li>If the method accepts no arguments, the property's value will be converted as is to the type specified
+     * by the method's return type. If the method accepts one or more arguments, the property's value is treated
+     * as a {@linkplain String#format(String, Object...) format string}, and the arguments assigned to the format
+     * specifiers accordingly, before the entire value is converted.</li>
+     *
+     * <li>Methods returning {@link java.util.Date} can be annotated with {@link ParsedAs} to indicate that the
+     * corresponding property's value(s) should be parsed using the given {@linkplain java.text.SimpleDateFormat
+     * date patterns}.
      * </ol>
      *
      * @param <U> the type of bound property accessor objects this binder creates
