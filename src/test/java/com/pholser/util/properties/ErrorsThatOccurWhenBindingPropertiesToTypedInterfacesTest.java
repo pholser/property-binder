@@ -29,6 +29,10 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.pholser.util.properties.boundtypes.DatePropertyWithNonLenientValueHaver;
+
+import com.pholser.util.properties.internal.exceptions.ValueConversionException;
+
 import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypePropertyHaver;
 import com.pholser.util.properties.boundtypes.BadDefaultValuePropertyHaver;
 import com.pholser.util.properties.boundtypes.BadValueSeparatorPropertyHaver;
@@ -178,5 +182,13 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends B
     @Test(expected = NoDefaultValueSpecificationException.class)
     public void shouldRejectDefaultValueSpecWithNeitherValueNorValueOf() {
         PropertyBinder.forType(DefaultValueWithNeitherValueNorValueOf.class);
+    }
+
+    @Test(expected = ValueConversionException.class)
+    public void shouldRejectDatePropertiesThatWouldNotPassNonLenientDateFormats() throws Exception {
+        DatePropertyWithNonLenientValueHaver bound =
+            PropertyBinder.forType(DatePropertyWithNonLenientValueHaver.class).bind(propertiesFile);
+
+        bound.datePropertyWithNonLenientValue();
     }
 }

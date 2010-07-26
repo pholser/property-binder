@@ -21,7 +21,9 @@ class SimpleDateFormatParseValueConverter implements ValueConverter {
     public Object convert(String raw, Object... args) {
         for (String each : parsePatterns.value()) {
             try {
-                return new SimpleDateFormat(each).parse(String.format(raw, args));
+                SimpleDateFormat formatter = new SimpleDateFormat(each);
+                formatter.setLenient(false);
+                return formatter.parse(String.format(raw, args));
             } catch (ParseException ex) {
                 // try the next pattern
             }
