@@ -1,7 +1,10 @@
 package com.pholser.util.properties.examples;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 import static java.math.BigDecimal.*;
 import static java.util.Arrays.*;
@@ -61,5 +64,19 @@ public class ExampleTest {
     @Test
     public void shouldHonorDefaultValueIndicationWhenPropertyNotPresent() {
         assertEquals(TEN, bound.bigDecimalPropertyWithDefault());
+    }
+
+    @Test
+    public void shouldHonorDateFormatSpecificationsForDateProperties() throws Exception {
+        assertEquals(MMddyyyy("02/14/2010"), bound.dateProperty());
+    }
+
+    @Test
+    public void shouldFormatPropertiesCorrespondingToMethodsWithArguments() throws Exception {
+        assertEquals("10 seconds to 12:00:00 AM", bound.argsProperty(10, MMddyyyy("01/01/2011")));
+    }
+
+    private Date MMddyyyy(String raw) throws ParseException {
+        return new SimpleDateFormat("MM/dd/yyyy").parse(raw);
     }
 }

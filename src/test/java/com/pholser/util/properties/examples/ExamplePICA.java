@@ -1,10 +1,12 @@
 package com.pholser.util.properties.examples;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.ValuesSeparatedBy;
 import com.pholser.util.properties.boundtypes.Ternary;
 
@@ -27,4 +29,10 @@ public interface ExamplePICA {
 
     @DefaultsTo(value = "10")
     BigDecimal bigDecimalPropertyWithDefault();
+
+    @BoundProperty("date.property")
+    @ParsedAs({"MM/dd/yyyy", "yyyy-MM-dd"})
+    Date dateProperty();
+
+    String argsProperty(int quantity, Date time);
 }
