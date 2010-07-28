@@ -123,6 +123,26 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>net.sf.jmd</groupId>
+        <artifactId>maven-crap4j-plugin</artifactId>
+        <version>0.1.1-SNAPSHOT</version>
+        <configuration>
+          <projectDir>${basedir}</projectDir>
+          <crap4jHome>/Users/pholser/java/crap4j</crap4jHome>
+          <reportsCrap4j>target/site/crap4j-reports</reportsCrap4j>
+          <libClasspath>lib</libClasspath>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>site</phase>
+            <goals>
+              <goal>crap4j</goal>
+              <goal>crap4jAnt</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
