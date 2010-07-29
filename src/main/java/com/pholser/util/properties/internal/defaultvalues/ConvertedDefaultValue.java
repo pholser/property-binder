@@ -44,8 +44,8 @@ final class ConvertedDefaultValue implements DefaultValue {
         }
     }
 
-    static ConvertedDefaultValue fromValue(DefaultsTo defaultValueSpec, ValueConverter converter, Method method) {
-        return new ConvertedDefaultValue(defaultValueSpec.value(), converter, method);
+    static ConvertedDefaultValue fromValue(DefaultsTo spec, ValueConverter converter, Method method) {
+        return new ConvertedDefaultValue(spec.value(), converter, method);
     }
 
     static ConvertedDefaultValue fromValueOf(String valueOf, ValueConverter converter, Method method) {

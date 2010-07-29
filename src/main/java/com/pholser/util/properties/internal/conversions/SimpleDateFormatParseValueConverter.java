@@ -36,15 +36,15 @@ import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import com.pholser.util.properties.ParsedAs;
 
 class SimpleDateFormatParseValueConverter implements ValueConverter {
-    private final ParsedAs parsePatterns;
+    private final ParsedAs patterns;
 
-    public SimpleDateFormatParseValueConverter(ParsedAs parsePatterns) {
-        this.parsePatterns = parsePatterns;
+    public SimpleDateFormatParseValueConverter(ParsedAs patterns) {
+        this.patterns = patterns;
     }
 
     @Override
     public Object convert(String raw, Object... args) {
-        for (String each : parsePatterns.value()) {
+        for (String each : patterns.value()) {
             try {
                 SimpleDateFormat formatter = new SimpleDateFormat(each);
                 formatter.setLenient(false);
@@ -55,7 +55,7 @@ class SimpleDateFormatParseValueConverter implements ValueConverter {
         }
 
         throw new ValueConversionException(
-            "Could not parse value [" + raw + "] using any of the patterns: " + asList(parsePatterns.value()));
+            "Could not parse value [" + raw + "] using any of the patterns: " + asList(patterns.value()));
     }
 
     @Override

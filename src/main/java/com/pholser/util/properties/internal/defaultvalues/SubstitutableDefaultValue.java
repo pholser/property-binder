@@ -34,13 +34,13 @@ import com.pholser.util.properties.internal.conversions.ValueConverter;
 import static com.pholser.util.properties.SubstitutableProperties.*;
 
 class SubstitutableDefaultValue implements DefaultValue {
-    private final DefaultsTo defaultValueSpec;
+    private final DefaultsTo spec;
     private final ValueConverter converter;
     private final Method method;
     private ConvertedDefaultValue converted;
 
-    SubstitutableDefaultValue(DefaultsTo defaultValueSpec, ValueConverter converter, Method method) {
-        this.defaultValueSpec = defaultValueSpec;
+    SubstitutableDefaultValue(DefaultsTo spec, ValueConverter converter, Method method) {
+        this.spec = spec;
         this.converter = converter;
         this.method = method;
     }
@@ -50,7 +50,7 @@ class SubstitutableDefaultValue implements DefaultValue {
     }
 
     public void resolve(Properties properties) {
-        String substituted = substitute(defaultValueSpec.valueOf(), properties);
+        String substituted = substitute(spec.valueOf(), properties);
         this.converted = ConvertedDefaultValue.fromValueOf(substituted, converter, method);
     }
 }

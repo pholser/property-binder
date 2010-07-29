@@ -55,7 +55,7 @@ public final class PrimitiveClasses {
         // nothing to do here
     }
 
-    public static Class<?> wrapperIfPrimitive(Class<?> type) {
-        return WRAPPERS.containsKey(type) ? WRAPPERS.get(type) : type;
+    public static Class<?> wrapperIfPrimitive(Class<?> clazz) {
+        return WRAPPERS.containsKey(clazz) ? WRAPPERS.get(clazz) : clazz;
     }
 }

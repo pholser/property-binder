@@ -48,32 +48,32 @@ public final class PICAHelpers {
         return marker != null ? marker.value() : method.getDeclaringClass().getName() + '.' + method.getName();
     }
 
-    public static Object annotationDefault(Class<? extends Annotation> type, String methodName) {
+    public static Object annotationDefault(Class<? extends Annotation> clazz, String methodName) {
         try {
-            return type.getMethod(methodName).getDefaultValue();
+            return clazz.getMethod(methodName).getDefaultValue();
         } catch (NoSuchMethodException ex) {
             throw new AssertionError(ex);
         }
     }
 
-    public static boolean isDefault(Object annotation, Class<? extends Annotation> annotationClass, String methodName) {
-        Object annotationDefault = annotationDefault(annotationClass, methodName);
-        return annotationDefault.equals(invokeQuietly(annotationClass, methodName, annotation));
+    public static boolean isDefault(Object annotation, Class<? extends Annotation> clazz, String methodName) {
+        Object annotationDefault = annotationDefault(clazz, methodName);
+        return annotationDefault.equals(invokeQuietly(clazz, methodName, annotation));
     }
 
-    public static boolean isDefaultSeparatorValueOf(ValuesSeparatedBy separatorSpec) {
-        return isDefault(separatorSpec, ValuesSeparatedBy.class, "valueOf");
+    public static boolean isDefaultSeparatorValueOf(ValuesSeparatedBy spec) {
+        return isDefault(spec, ValuesSeparatedBy.class, "valueOf");
     }
 
-    public static boolean isDefaultPattern(ValuesSeparatedBy separatorSpec) {
-        return isDefault(separatorSpec, ValuesSeparatedBy.class, "pattern");
+    public static boolean isDefaultPattern(ValuesSeparatedBy spec) {
+        return isDefault(spec, ValuesSeparatedBy.class, "pattern");
     }
 
-    public static boolean isDefaultDefaultValue(DefaultsTo defaultValueSpec) {
-        return isDefault(defaultValueSpec, DefaultsTo.class, "value");
+    public static boolean isDefaultDefaultValue(DefaultsTo spec) {
+        return isDefault(spec, DefaultsTo.class, "value");
     }
 
-    public static boolean isDefaultDefaultValueOf(DefaultsTo defaultValueSpec) {
-        return isDefault(defaultValueSpec, DefaultsTo.class, "valueOf");
+    public static boolean isDefaultDefaultValueOf(DefaultsTo spec) {
+        return isDefault(spec, DefaultsTo.class, "valueOf");
     }
 }

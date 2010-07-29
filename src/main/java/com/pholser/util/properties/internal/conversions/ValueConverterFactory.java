@@ -44,20 +44,20 @@ import static com.pholser.util.properties.internal.PrimitiveClasses.*;
 public class ValueConverterFactory {
     public ValueConverter createConverter(Method propertyMethod, ValueSeparator separator) {
         Class<?> valueType = targetTypeFor(propertyMethod);
-        ParsedAs parsePatterns = propertyMethod.getAnnotation(ParsedAs.class);
+        ParsedAs patterns = propertyMethod.getAnnotation(ParsedAs.class);
 
         if (valueType.isArray())
-            return new ArrayValueConverter(valueType, separator, parsePatterns);
+            return new ArrayValueConverter(valueType, separator, patterns);
 
         if (List.class.equals(valueType))
-            return new ListValueConverter(propertyMethod.getGenericReturnType(), separator, parsePatterns);
+            return new ListValueConverter(propertyMethod.getGenericReturnType(), separator, patterns);
 
-        return createScalarConverter(valueType, parsePatterns);
+        return createScalarConverter(valueType, patterns);
     }
 
-    public static ValueConverter createScalarConverter(Class<?> valueType, ParsedAs parsePatterns) {
+    public static ValueConverter createScalarConverter(Class<?> valueType, ParsedAs patterns) {
         Class<?> returnType = wrapperIfPrimitive(valueType);
-        ValueConverter pattern = parsePatternsConverter(returnType, parsePatterns);
+        ValueConverter pattern = parsePatternsConverter(returnType, patterns);
         if (pattern != null)
             return pattern;
 
@@ -72,11 +72,11 @@ public class ValueConverterFactory {
         throw new UnsupportedValueTypeException(valueType);
     }
 
-    private static ValueConverter parsePatternsConverter(Class<?> valueType, ParsedAs parsePatterns) {
-        if (parsePatterns == null)
+    private static ValueConverter parsePatternsConverter(Class<?> valueType, ParsedAs patterns) {
+        if (patterns == null)
             return null;
         if (valueType.isAssignableFrom(Date.class))
-            return new SimpleDateFormatParseValueConverter(parsePatterns);
+            return new SimpleDateFormatParseValueConverter(patterns);
         throw new UnsupportedParsedAsTypeException(valueType);
     }
 

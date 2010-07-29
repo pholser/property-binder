@@ -32,16 +32,16 @@ import com.pholser.util.properties.ValuesSeparatedBy;
 import static com.pholser.util.properties.internal.PICAHelpers.*;
 
 public class ValueSeparatorFactory {
-    public ValueSeparator createSeparator(ValuesSeparatedBy separatorSpec, Method method) {
+    public ValueSeparator createSeparator(ValuesSeparatedBy spec, Method method) {
         Object patternDefault = annotationDefault(ValuesSeparatedBy.class, "pattern");
-        return separatorSpec == null
+        return spec == null
             ? new RegexValueSeparator(patternDefault.toString(), method)
-            : createSeparatorBasedOnSpec(separatorSpec, method);
+            : createSeparatorBasedOnSpec(spec, method);
     }
 
-    private ValueSeparator createSeparatorBasedOnSpec(ValuesSeparatedBy separatorSpec, Method method) {
-        if (isDefaultPattern(separatorSpec) && !isDefaultSeparatorValueOf(separatorSpec))
-            return new SubstitutableRegexValueSeparator(separatorSpec.valueOf(), method);
-        return new RegexValueSeparator(separatorSpec.pattern(), method);
+    private ValueSeparator createSeparatorBasedOnSpec(ValuesSeparatedBy spec, Method method) {
+        if (isDefaultPattern(spec) && !isDefaultSeparatorValueOf(spec))
+            return new SubstitutableRegexValueSeparator(spec.valueOf(), method);
+        return new RegexValueSeparator(spec.pattern(), method);
     }
 }

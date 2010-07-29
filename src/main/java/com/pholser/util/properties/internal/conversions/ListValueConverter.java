@@ -41,38 +41,38 @@ import static com.pholser.util.properties.internal.conversions.ValueConverterFac
 
 class ListValueConverter implements ValueConverter {
     private final ValueSeparator separator;
-    private final ValueConverter elementTypeConverter;
+    private final ValueConverter scalarConverter;
 
-    ListValueConverter(Type valueType, ValueSeparator separator, ParsedAs parsePatterns) {
+    ListValueConverter(Type valueType, ValueSeparator separator, ParsedAs patterns) {
         this.separator = separator;
-        this.elementTypeConverter = createScalarConverter(deduceElementType(valueType), parsePatterns);
+        this.scalarConverter = createScalarConverter(deduceElementType(valueType), patterns);
     }
 
     public List<Object> convert(String raw, Object... args) {
         List<Object> values = new ArrayList<Object>();
         for (String each : separator.separate(raw))
-            values.add(elementTypeConverter.convert(each, args));
+            values.add(scalarConverter.convert(each, args));
 
         return values;
     }
 
-    private static Class<?> deduceElementType(Type valueType) {
-        if (!(valueType instanceof ParameterizedType))
+    private static Class<?> deduceElementType(Type type) {
+        if (!(type instanceof ParameterizedType))
             return String.class;
 
-        ParameterizedType parameterized = (ParameterizedType) valueType;
-        Type genericType = parameterized.getActualTypeArguments()[0];
-        if (genericType instanceof Class<?>)
-            return (Class<?>) genericType;
+        ParameterizedType parameterized = (ParameterizedType) type;
+        Type generic = parameterized.getActualTypeArguments()[0];
+        if (generic instanceof Class<?>)
+            return (Class<?>) generic;
 
-        if (genericType instanceof WildcardType) {
-            WildcardType wildcarded = (WildcardType) genericType;
+        if (generic instanceof WildcardType) {
+            WildcardType wildcarded = (WildcardType) generic;
             Type[] upperBounds = wildcarded.getUpperBounds();
             if (wildcarded.getLowerBounds().length == 0 && Object.class.equals(upperBounds[0]))
                 return String.class;
         }
 
-        throw new UnsupportedValueTypeException(valueType);
+        throw new UnsupportedValueTypeException(type);
     }
 
     public Object nilValue() {

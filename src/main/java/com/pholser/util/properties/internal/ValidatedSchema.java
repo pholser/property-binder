@@ -41,11 +41,11 @@ public class ValidatedSchema<T> {
     private final Map<String, DefaultValue> defaults;
     private final Map<String, ValueConverter> converters;
 
-    public ValidatedSchema(Class<T> schema, Map<String, DefaultValue> defaultValues,
+    public ValidatedSchema(Class<T> schema, Map<String, DefaultValue> defaults,
         Map<String, ValueConverter> converters) {
 
         this.schema = schema;
-        this.defaults = defaultValues;
+        this.defaults = defaults;
         this.converters = converters;
     }
 
@@ -62,12 +62,13 @@ public class ValidatedSchema<T> {
     }
 
     Object convert(Properties properties, Method method, Object... args) {
-        String propertyName = propertyNameFor(method);
-        ValueConverter converter = converters.get(propertyName);
-        if (properties.containsKey(propertyName))
-            return converter.convert(properties.getProperty(propertyName), args);
-        if (defaults.containsKey(propertyName))
-            return defaults.get(propertyName).evaluate();
+        String key = propertyNameFor(method);
+        ValueConverter converter = converters.get(key);
+
+        if (properties.containsKey(key))
+            return converter.convert(properties.getProperty(key), args);
+        if (defaults.containsKey(key))
+            return defaults.get(key).evaluate();
         return converter.nilValue();
     }
 

@@ -36,12 +36,12 @@ import static com.pholser.util.properties.internal.conversions.ValueConverterFac
 
 class ArrayValueConverter implements ValueConverter {
     private final Class<?> componentType;
-    private final ValueConverter componentTypeConverter;
+    private final ValueConverter scalarConverter;
     private final ValueSeparator separator;
 
-    ArrayValueConverter(Class<?> arrayType, ValueSeparator separator, ParsedAs parsePatterns) {
+    ArrayValueConverter(Class<?> arrayType, ValueSeparator separator, ParsedAs patterns) {
         this.componentType = arrayType.getComponentType();
-        this.componentTypeConverter = createScalarConverter(componentType, parsePatterns);
+        this.scalarConverter = createScalarConverter(componentType, patterns);
         this.separator = separator;
     }
 
@@ -49,7 +49,7 @@ class ArrayValueConverter implements ValueConverter {
         String[] pieces = separator.separate(raw);
         Object array = Array.newInstance(componentType, pieces.length);
         for (int i = 0; i < pieces.length; ++i)
-            Array.set(array, i, componentTypeConverter.convert(pieces[i], args));
+            Array.set(array, i, scalarConverter.convert(pieces[i], args));
 
         return array;
     }

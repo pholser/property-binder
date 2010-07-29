@@ -59,18 +59,18 @@ public class SchemaValidator {
         ensureNoSuperinterfaces(schema);
 
         Map<String, ValueConverter> converters = new HashMap<String, ValueConverter>();
-        Map<String, DefaultValue> defaultValues = new HashMap<String, DefaultValue>();
+        Map<String, DefaultValue> defaults = new HashMap<String, DefaultValue>();
         Map<String, ValueSeparator> separators = new HashMap<String, ValueSeparator>();
 
         for (Method each : schema.getDeclaredMethods()) {
-            String propertyName = propertyNameFor(each);
+            String key = propertyNameFor(each);
             ensureAggregateTypeIsSupported(each);
-            collectSeparatorIfAggregateType(separators, each, propertyName);
-            collectConverter(converters, separators, each, propertyName);
-            collectDefaultValue(defaultValues, converters.get(propertyName), each, propertyName);
+            collectSeparatorIfAggregateType(separators, each, key);
+            collectConverter(converters, separators, each, key);
+            collectDefaultValue(defaults, converters.get(key), each, key);
         }
 
-        return new ValidatedSchema<T>(schema, defaultValues, converters);
+        return new ValidatedSchema<T>(schema, defaults, converters);
     }
 
     private void ensureInterface(Class<?> schema) {
@@ -90,7 +90,7 @@ public class SchemaValidator {
     }
 
     private void collectSeparatorIfAggregateType(Map<String, ValueSeparator> separators, Method method,
-        String propertyName) {
+        String key) {
 
         boolean isAggregate = isAggregateType(method.getReturnType());
         ValuesSeparatedBy separator = method.getAnnotation(ValuesSeparatedBy.class);
@@ -104,35 +104,35 @@ public class SchemaValidator {
         }
 
         if (isAggregate)
-            separators.put(propertyName, separatorFactory.createSeparator(separator, method));
+            separators.put(key, separatorFactory.createSeparator(separator, method));
     }
 
     private void collectConverter(Map<String, ValueConverter> converters, Map<String, ValueSeparator> separators,
-        Method method, String propertyName) {
+        Method method, String key) {
 
-        converters.put(propertyName, converterFactory.createConverter(method, separators.get(propertyName)));
+        converters.put(key, converterFactory.createConverter(method, separators.get(key)));
     }
 
     private void collectDefaultValue(Map<String, DefaultValue> defaults, ValueConverter converter, Method method,
-        String propertyName) {
+        String key) {
 
         DefaultValue defaultValue = createDefaultValue(method, converter);
         if (defaultValue != null)
-            defaults.put(propertyName, defaultValue);
+            defaults.put(key, defaultValue);
     }
 
     private DefaultValue createDefaultValue(Method method, ValueConverter converter) {
-        DefaultsTo defaultValueSpec = method.getAnnotation(DefaultsTo.class);
-        if (defaultValueSpec == null)
+        DefaultsTo spec = method.getAnnotation(DefaultsTo.class);
+        if (spec == null)
             return null;
 
-        boolean valueIsDefault = isDefaultDefaultValue(defaultValueSpec);
-        boolean valueOfIsDefault = isDefaultDefaultValueOf(defaultValueSpec);
+        boolean valueIsDefault = isDefaultDefaultValue(spec);
+        boolean valueOfIsDefault = isDefaultDefaultValueOf(spec);
         if (!(valueIsDefault || valueOfIsDefault))
-            throw new MultipleDefaultValueSpecificationException(defaultValueSpec, method);
+            throw new MultipleDefaultValueSpecificationException(spec, method);
         if (valueIsDefault && valueOfIsDefault)
             throw new NoDefaultValueSpecificationException(method);
 
-        return defaultValueFactory.createDefaultValue(defaultValueSpec, converter, method);
+        return defaultValueFactory.createDefaultValue(spec, converter, method);
     }
 }

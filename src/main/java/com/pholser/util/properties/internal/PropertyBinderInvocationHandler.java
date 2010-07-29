@@ -33,18 +33,18 @@ import static java.lang.System.*;
 
 public class PropertyBinderInvocationHandler implements InvocationHandler {
     private final Properties properties;
-    private final ValidatedSchema<?> validatedSchema;
+    private final ValidatedSchema<?> schema;
 
-    public PropertyBinderInvocationHandler(Properties properties, ValidatedSchema<?> validatedSchema) {
+    public PropertyBinderInvocationHandler(Properties properties, ValidatedSchema<?> schema) {
         this.properties = properties;
-        this.validatedSchema = validatedSchema;
+        this.schema = schema;
     }
 
     public Object invoke(Object proxy, Method method, Object[] args) {
         if (Object.class.equals(method.getDeclaringClass()))
             return handleObjectMethod(proxy, method, args);
 
-        return validatedSchema.convert(properties, method, args);
+        return schema.convert(properties, method, args);
     }
 
     private Object handleObjectMethod(Object proxy, Method method, Object[] args) {
@@ -58,6 +58,6 @@ public class PropertyBinderInvocationHandler implements InvocationHandler {
     }
 
     private String handleToString() {
-        return validatedSchema.getName() + '[' + properties + ']';
+        return schema.getName() + '[' + properties + ']';
     }
 }

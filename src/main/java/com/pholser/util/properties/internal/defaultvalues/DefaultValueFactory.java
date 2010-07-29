@@ -33,10 +33,10 @@ import com.pholser.util.properties.internal.conversions.ValueConverter;
 import static com.pholser.util.properties.internal.PICAHelpers.*;
 
 public class DefaultValueFactory {
-    public DefaultValue createDefaultValue(DefaultsTo defaultValueSpec, ValueConverter converter, Method method) {
-        if (isDefaultDefaultValue(defaultValueSpec))
-            return new SubstitutableDefaultValue(defaultValueSpec, converter, method);
+    public DefaultValue createDefaultValue(DefaultsTo spec, ValueConverter converter, Method method) {
+        if (isDefaultDefaultValue(spec))
+            return new SubstitutableDefaultValue(spec, converter, method);
 
-        return ConvertedDefaultValue.fromValue(defaultValueSpec, converter, method);
+        return ConvertedDefaultValue.fromValue(spec, converter, method);
     }
 }

@@ -39,9 +39,9 @@ public final class Reflection {
         // nothing to do here
     }
 
-    public static Object invokeQuietly(Class<?> targetClass, String methodName, Object target, Object... args) {
+    public static Object invokeQuietly(Class<?> clazz, String methodName, Object target, Object... args) {
         try {
-            return invokeQuietly(targetClass.getMethod(methodName), target, args);
+            return invokeQuietly(clazz.getMethod(methodName), target, args);
         } catch (NoSuchMethodException ex) {
             throw new AssertionError(ex);
         }
