@@ -30,26 +30,23 @@ import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-
 import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 
 import static com.pholser.util.properties.internal.conversions.ValueConverterFactory.*;
 
-class ListValueConverter implements ValueConverter {
-    private final ValueSeparator separator;
+class ListValueConverter extends AggregateValueConverter {
     private final ValueConverter scalarConverter;
 
     ListValueConverter(Type valueType, ValueSeparator separator, ParsedAs patterns) {
-        this.separator = separator;
+        super(separator);
         this.scalarConverter = createScalarConverter(deduceElementType(valueType), patterns);
     }
 
     public List<Object> convert(String raw, Object... args) {
         List<Object> values = new ArrayList<Object>();
-        for (String each : separator.separate(raw))
+        for (String each : separate(raw))
             values.add(scalarConverter.convert(each, args));
 
         return values;
@@ -66,8 +63,7 @@ class ListValueConverter implements ValueConverter {
 
         if (generic instanceof WildcardType) {
             WildcardType wildcarded = (WildcardType) generic;
-            Type[] upperBounds = wildcarded.getUpperBounds();
-            if (wildcarded.getLowerBounds().length == 0 && Object.class.equals(upperBounds[0]))
+            if (wildcarded.getLowerBounds().length == 0 && Object.class.equals(wildcarded.getUpperBounds()[0]))
                 return String.class;
         }
 
@@ -76,9 +72,5 @@ class ListValueConverter implements ValueConverter {
 
     public Object nilValue() {
         return new ArrayList<Object>();
-    }
-
-    public void resolve(Properties properties) {
-        separator.resolve(properties);
     }
 }

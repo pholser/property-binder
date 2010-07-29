@@ -25,32 +25,23 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import java.lang.reflect.Array;
-import com.pholser.util.properties.ParsedAs;
+import java.util.Properties;
+
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 
-import static com.pholser.util.properties.internal.conversions.ValueConverterFactory.*;
+abstract class AggregateValueConverter implements ValueConverter {
+    private final ValueSeparator separator;
 
-class ArrayValueConverter extends AggregateValueConverter {
-    private final Class<?> componentType;
-    private final ValueConverter scalarConverter;
-
-    ArrayValueConverter(Class<?> arrayType, ValueSeparator separator, ParsedAs patterns) {
-        super(separator);
-        this.componentType = arrayType.getComponentType();
-        this.scalarConverter = createScalarConverter(componentType, patterns);
+    protected AggregateValueConverter(ValueSeparator separator) {
+        this.separator = separator;
     }
 
-    public Object convert(String raw, Object... args) {
-        String[] pieces = separate(raw);
-        Object array = Array.newInstance(componentType, pieces.length);
-        for (int i = 0; i < pieces.length; ++i)
-            Array.set(array, i, scalarConverter.convert(pieces[i], args));
-
-        return array;
+    protected final String[] separate(String raw) {
+        return separator.separate(raw);
     }
 
-    public Object nilValue() {
-        return Array.newInstance(componentType, 0);
+    @Override
+    public final void resolve(Properties properties) {
+        separator.resolve(properties);
     }
 }
