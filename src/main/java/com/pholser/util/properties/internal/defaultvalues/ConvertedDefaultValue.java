@@ -44,12 +44,12 @@ final class ConvertedDefaultValue implements DefaultValue {
         }
     }
 
-    static ConvertedDefaultValue fromValue(DefaultsTo spec, ValueConverter converter, Method method) {
-        return new ConvertedDefaultValue(spec.value(), converter, method);
+    static ConvertedDefaultValue fromDefault(DefaultsTo spec, ValueConverter converter, Method method) {
+        return fromValue(spec.value(), converter, method);
     }
 
-    static ConvertedDefaultValue fromValueOf(String valueOf, ValueConverter converter, Method method) {
-        return new ConvertedDefaultValue(valueOf, converter, method);
+    static ConvertedDefaultValue fromValue(String value, ValueConverter converter, Method method) {
+        return new ConvertedDefaultValue(value, converter, method);
     }
 
     public Object evaluate() {

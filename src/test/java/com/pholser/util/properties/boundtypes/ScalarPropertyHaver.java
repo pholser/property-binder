@@ -29,10 +29,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 
-import com.pholser.util.properties.ParsedAs;
-
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.ValuesSeparatedBy;
 
 public interface ScalarPropertyHaver {

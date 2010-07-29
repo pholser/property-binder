@@ -17,10 +17,10 @@ public class HTMLEntitifier extends BaseFilterReader implements ChainableReader 
     private static final Map<Integer, String> ENTITIES = new HashMap<Integer, String>();
 
     static {
-        ENTITIES.put( (int) '<', "&lt;" );
-        ENTITIES.put( (int) '>', "&gt;" );
-        ENTITIES.put( (int) '"', "&quot;" );
-        ENTITIES.put( (int) '&', "&amp;" );
+        ENTITIES.put((int) '<', "&lt;");
+        ENTITIES.put((int) '>', "&gt;");
+        ENTITIES.put((int) '"', "&quot;");
+        ENTITIES.put((int) '&', "&amp;");
     }
 
     private String replacementData;
@@ -33,35 +33,25 @@ public class HTMLEntitifier extends BaseFilterReader implements ChainableReader 
         // empty on purpose
     }
 
-    /**
-     * @param source where the data to filter comes from
-     */
-    public HTMLEntitifier( Reader source ) {
-        super( source );
+    public HTMLEntitifier(Reader source) {
+        super(source);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Reader chain( Reader source ) {
-        HTMLEntitifier newFilter = new HTMLEntitifier( source );
-        newFilter.setInitialized( true );
-
+    public Reader chain(Reader source) {
+        HTMLEntitifier newFilter = new HTMLEntitifier(source);
+        newFilter.setInitialized(true);
         return newFilter;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int read() throws IOException {
-        if ( !getInitialized() )
-            setInitialized( true );
+        if (!getInitialized())
+            setInitialized(true);
 
-        if ( replacementIndex > -1 ) {
-            char ch = replacementData.charAt( replacementIndex++ );
+        if (replacementIndex > -1) {
+            char ch = replacementData.charAt(replacementIndex++);
 
-            if ( replacementIndex >= replacementData.length() )
+            if (replacementIndex >= replacementData.length())
                 replacementIndex = -1;
 
             return ch;
@@ -69,10 +59,10 @@ public class HTMLEntitifier extends BaseFilterReader implements ChainableReader 
 
         int nextChar = in.read();
 
-        if ( ENTITIES.containsKey( nextChar ) ) {
-            replacementData = ENTITIES.get( nextChar );
+        if (ENTITIES.containsKey(nextChar)) {
+            replacementData = ENTITIES.get(nextChar);
             replacementIndex = 1;
-            return replacementData.charAt( 0 );
+            return replacementData.charAt(0);
         }
 
         return nextChar;

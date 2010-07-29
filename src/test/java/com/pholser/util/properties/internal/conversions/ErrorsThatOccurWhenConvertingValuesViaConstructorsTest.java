@@ -27,7 +27,6 @@ package com.pholser.util.properties.internal.conversions;
 
 import java.lang.reflect.Constructor;
 
-import com.pholser.util.properties.internal.conversions.ConstructorInvokingValueConverter;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import com.pholser.util.properties.testonly.ForTriggeringIllegalAccess;
 import org.junit.Test;

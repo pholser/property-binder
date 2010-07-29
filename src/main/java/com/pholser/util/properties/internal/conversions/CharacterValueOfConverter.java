@@ -25,23 +25,12 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import java.util.Properties;
-
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
-
-class CharacterValueOfConverter implements ValueConverter {
+class CharacterValueOfConverter extends ScalarValueConverter {
     public Object convert(String raw, Object... args) {
         if (raw.length() != 1)
             throw new ValueConversionException("cannot convert [" + raw + "] to " + Character.class);
 
         return raw.charAt(0);
-    }
-
-    public Object nilValue() {
-        return null;
-    }
-
-    public void resolve(Properties properties) {
-        // nothing to do here
     }
 }

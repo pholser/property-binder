@@ -56,7 +56,7 @@ public final class PICAHelpers {
         }
     }
 
-    public static boolean isDefault(Object annotation, Class<? extends Annotation> clazz, String methodName) {
+    private static boolean isDefault(Object annotation, Class<? extends Annotation> clazz, String methodName) {
         Object annotationDefault = annotationDefault(clazz, methodName);
         return annotationDefault.equals(invokeQuietly(clazz, methodName, annotation));
     }

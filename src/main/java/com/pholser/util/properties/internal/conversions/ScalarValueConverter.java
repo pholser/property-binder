@@ -25,39 +25,16 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import java.lang.reflect.Array;
 import java.util.Properties;
 
-import com.pholser.util.properties.ParsedAs;
-import com.pholser.util.properties.internal.separators.ValueSeparator;
-
-import static com.pholser.util.properties.internal.conversions.ValueConverterFactory.*;
-
-class ArrayValueConverter implements ValueConverter {
-    private final Class<?> componentType;
-    private final ValueConverter scalarConverter;
-    private final ValueSeparator separator;
-
-    ArrayValueConverter(Class<?> arrayType, ValueSeparator separator, ParsedAs patterns) {
-        this.componentType = arrayType.getComponentType();
-        this.scalarConverter = createScalarConverter(componentType, patterns);
-        this.separator = separator;
+abstract class ScalarValueConverter implements ValueConverter {
+    @Override
+    public final Object nilValue() {
+        return null;
     }
 
-    public Object convert(String raw, Object... args) {
-        String[] pieces = separator.separate(raw);
-        Object array = Array.newInstance(componentType, pieces.length);
-        for (int i = 0; i < pieces.length; ++i)
-            Array.set(array, i, scalarConverter.convert(pieces[i], args));
-
-        return array;
-    }
-
-    public Object nilValue() {
-        return Array.newInstance(componentType, 0);
-    }
-
-    public void resolve(Properties properties) {
-        separator.resolve(properties);
+    @Override
+    public final void resolve(Properties properties) {
+        // scalars do not resolve
     }
 }

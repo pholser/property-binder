@@ -31,20 +31,20 @@ import java.util.Properties;
 
 import static java.lang.System.*;
 
-public class PropertyBinderInvocationHandler implements InvocationHandler {
+class PropertyBinderInvocationHandler implements InvocationHandler {
     private final Properties properties;
-    private final ValidatedSchema<?> schema;
+    private final ValidatedSchema<?> validated;
 
-    public PropertyBinderInvocationHandler(Properties properties, ValidatedSchema<?> schema) {
+    PropertyBinderInvocationHandler(Properties properties, ValidatedSchema<?> validated) {
         this.properties = properties;
-        this.schema = schema;
+        this.validated = validated;
     }
 
     public Object invoke(Object proxy, Method method, Object[] args) {
         if (Object.class.equals(method.getDeclaringClass()))
             return handleObjectMethod(proxy, method, args);
 
-        return schema.convert(properties, method, args);
+        return validated.convert(properties, method, args);
     }
 
     private Object handleObjectMethod(Object proxy, Method method, Object[] args) {
@@ -58,6 +58,6 @@ public class PropertyBinderInvocationHandler implements InvocationHandler {
     }
 
     private String handleToString() {
-        return schema.getName() + '[' + properties + ']';
+        return validated.getName() + '[' + properties + ']';
     }
 }

@@ -28,10 +28,9 @@ package com.pholser.util.properties.boundtypes;
 import java.util.Date;
 import java.util.List;
 
-import com.pholser.util.properties.ValuesSeparatedBy;
-
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.ParsedAs;
+import com.pholser.util.properties.ValuesSeparatedBy;
 
 public interface ScalarPropertyWithArgsHaver {
     @BoundProperty("string.property.with.arguments")

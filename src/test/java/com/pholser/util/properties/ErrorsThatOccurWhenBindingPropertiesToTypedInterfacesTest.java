@@ -29,19 +29,11 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException;
-
-
-import com.pholser.util.properties.boundtypes.ParsedAsOnMethodOfImproperType;
-
-import com.pholser.util.properties.boundtypes.DatePropertyWithNonLenientValueHaver;
-
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
-
 import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypePropertyHaver;
 import com.pholser.util.properties.boundtypes.BadDefaultValuePropertyHaver;
 import com.pholser.util.properties.boundtypes.BadValueSeparatorPropertyHaver;
 import com.pholser.util.properties.boundtypes.CharacterPropertyHaverWithTooLongDefault;
+import com.pholser.util.properties.boundtypes.DatePropertyWithNonLenientValueHaver;
 import com.pholser.util.properties.boundtypes.DefaultValueWithBothValueAndValueOf;
 import com.pholser.util.properties.boundtypes.DefaultValueWithNeitherValueNorValueOf;
 import com.pholser.util.properties.boundtypes.InterfaceWithSuperinterfaces;
@@ -49,6 +41,7 @@ import com.pholser.util.properties.boundtypes.ListOfArrayPropertyHaver;
 import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypePropertyHaver;
 import com.pholser.util.properties.boundtypes.LowerBoundedListPropertyHaver;
 import com.pholser.util.properties.boundtypes.MissingPrimitivePropertyHaver;
+import com.pholser.util.properties.boundtypes.ParsedAsOnMethodOfImproperType;
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
 import com.pholser.util.properties.boundtypes.SeparatedPropertyHaverWithBothPatternAndValueOf;
 import com.pholser.util.properties.boundtypes.SeparatorOnNonAggregateTypePropertyHaver;
@@ -66,7 +59,9 @@ import com.pholser.util.properties.internal.exceptions.MultipleDefaultValueSpeci
 import com.pholser.util.properties.internal.exceptions.MultipleSeparatorSpecificationException;
 import com.pholser.util.properties.internal.exceptions.NoDefaultValueSpecificationException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedAggregateTypeException;
+import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
+import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import org.junit.Test;
 
 public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends BindingTestSupport {

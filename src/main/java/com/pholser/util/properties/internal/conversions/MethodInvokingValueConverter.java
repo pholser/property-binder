@@ -26,17 +26,16 @@
 package com.pholser.util.properties.internal.conversions;
 
 import java.lang.reflect.Method;
-import java.util.Properties;
 
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 import static com.pholser.util.properties.internal.Reflection.*;
 
-public class MethodInvokingValueConverter implements ValueConverter {
+class MethodInvokingValueConverter extends ScalarValueConverter {
     private final Method method;
     private final Class<?> clazz;
 
-    public MethodInvokingValueConverter(Method method, Class<?> clazz) {
+    MethodInvokingValueConverter(Method method, Class<?> clazz) {
         this.method = method;
         this.clazz = clazz;
     }
@@ -47,13 +46,5 @@ public class MethodInvokingValueConverter implements ValueConverter {
         } catch (ClassCastException ex) {
             throw new ValueConversionException(ex);
         }
-    }
-
-    public Object nilValue() {
-        return null;
-    }
-
-    public void resolve(Properties properties) {
-        // nothing to do here
     }
 }

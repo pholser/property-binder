@@ -27,18 +27,16 @@ package com.pholser.util.properties.internal.conversions;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Properties;
 
 import static java.util.Arrays.*;
 
+import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
-import com.pholser.util.properties.ParsedAs;
-
-class SimpleDateFormatParseValueConverter implements ValueConverter {
+class SimpleDateFormatParseValueConverter extends ScalarValueConverter {
     private final ParsedAs patterns;
 
-    public SimpleDateFormatParseValueConverter(ParsedAs patterns) {
+    SimpleDateFormatParseValueConverter(ParsedAs patterns) {
         this.patterns = patterns;
     }
 
@@ -56,15 +54,5 @@ class SimpleDateFormatParseValueConverter implements ValueConverter {
 
         throw new ValueConversionException(
             "Could not parse value [" + raw + "] using any of the patterns: " + asList(patterns.value()));
-    }
-
-    @Override
-    public Object nilValue() {
-        return null;
-    }
-
-    @Override
-    public void resolve(Properties properties) {
-        // nothing to do here
     }
 }

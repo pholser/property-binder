@@ -51,6 +51,6 @@ class SubstitutableDefaultValue implements DefaultValue {
 
     public void resolve(Properties properties) {
         String substituted = substitute(spec.valueOf(), properties);
-        this.converted = ConvertedDefaultValue.fromValueOf(substituted, converter, method);
+        converted = ConvertedDefaultValue.fromValue(substituted, converter, method);
     }
 }

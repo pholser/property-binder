@@ -37,6 +37,6 @@ public class DefaultValueFactory {
         if (isDefaultDefaultValue(spec))
             return new SubstitutableDefaultValue(spec, converter, method);
 
-        return ConvertedDefaultValue.fromValue(spec, converter, method);
+        return ConvertedDefaultValue.fromDefault(spec, converter, method);
     }
 }

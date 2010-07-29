@@ -23,14 +23,14 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties.internal.conversions;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.Collections.*;
 
-public final class PrimitiveClasses {
+final class PrimitiveClasses {
     private static final Map<Class<?>, Class<?>> WRAPPERS;
 
     private static final int SMALL_PRIME = 13;
@@ -55,7 +55,7 @@ public final class PrimitiveClasses {
         // nothing to do here
     }
 
-    public static Class<?> wrapperIfPrimitive(Class<?> clazz) {
+    static Class<?> wrapperIfPrimitive(Class<?> clazz) {
         return WRAPPERS.containsKey(clazz) ? WRAPPERS.get(clazz) : clazz;
     }
 }

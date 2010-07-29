@@ -46,10 +46,10 @@ import static org.apache.commons.io.IOUtils.*;
  * @author <a href="http://www.pholser.com">Paul Holser</a>
  */
 public final class PropertyBinder<T> {
-    private final ValidatedSchema<T> validatedSchema;
+    private final ValidatedSchema<T> validated;
 
     private PropertyBinder(Class<T> schema) {
-        validatedSchema = new SchemaValidator().validate(schema);
+        validated = new SchemaValidator().validate(schema);
     }
 
     /**
@@ -152,7 +152,7 @@ public final class PropertyBinder<T> {
 
     T bind(Properties properties) {
         Properties copy = (Properties) properties.clone();
-        return validatedSchema.evaluate(copy);
+        return validated.evaluate(copy);
     }
 
     /**

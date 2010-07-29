@@ -27,14 +27,13 @@ package com.pholser.util.properties.internal.conversions;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Properties;
 
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
-public class ConstructorInvokingValueConverter implements ValueConverter {
+class ConstructorInvokingValueConverter extends ScalarValueConverter {
     private final Constructor<?> ctor;
 
-    public ConstructorInvokingValueConverter(Constructor<?> ctor) {
+    ConstructorInvokingValueConverter(Constructor<?> ctor) {
         this.ctor = ctor;
     }
 
@@ -50,13 +49,5 @@ public class ConstructorInvokingValueConverter implements ValueConverter {
         } catch (InvocationTargetException ex) {
             throw new ValueConversionException(ex.getTargetException());
         }
-    }
-
-    public Object nilValue() {
-        return null;
-    }
-
-    public void resolve(Properties properties) {
-        // nothing to do here
     }
 }

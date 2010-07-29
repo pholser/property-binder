@@ -31,15 +31,13 @@ import java.util.List;
 
 import static java.lang.reflect.Modifier.*;
 
-import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException;
-
-
 import com.pholser.util.properties.ParsedAs;
-
+import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 
-import static com.pholser.util.properties.internal.PrimitiveClasses.*;
+import static com.pholser.util.properties.internal.conversions.PrimitiveClasses.*;
+
 
 public class ValueConverterFactory {
     public ValueConverter createConverter(Method propertyMethod, ValueSeparator separator) {
