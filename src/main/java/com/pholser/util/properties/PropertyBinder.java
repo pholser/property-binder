@@ -34,7 +34,7 @@ import java.util.Properties;
 import com.pholser.util.properties.internal.ValidatedSchema;
 import com.pholser.util.properties.internal.validation.SchemaValidator;
 
-import static org.apache.commons.io.IOUtils.*;
+import static com.pholser.util.properties.internal.IO.*;
 
 /**
  * Creates instances of proxies that provide typed access to values in properties files via the <acronym

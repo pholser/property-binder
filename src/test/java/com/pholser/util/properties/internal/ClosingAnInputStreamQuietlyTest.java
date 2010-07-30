@@ -23,45 +23,59 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties;
+package com.pholser.util.properties.internal;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.Properties;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
-import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import static com.pholser.util.properties.internal.IO.*;
+import static org.junit.Assert.*;
 
-public class BindingPropertiesObjectsToTypedInterfacesTest extends TypedBindingTestSupport<ScalarPropertyHaver> {
-    private InputStream inputStream;
-    private Properties properties;
-
-    @Before
-    public final void initializeProperties() throws Exception {
-        inputStream = new FileInputStream(propertiesFile);
-        properties = new Properties();
-        properties.load(inputStream);
-    }
-
-    @After
-    public final void closeInputStream() {
-        closeQuietly(inputStream);
+public class ClosingAnInputStreamQuietlyTest {
+    @Test
+    public void shouldDoNothingIfStreamNull() {
+        closeQuietly(null);
     }
 
     @Test
-    public void shouldLoadFromPropertiesObject() throws Exception {
-        ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
-        ScalarPropertyHaver fromObject = binder.bind(properties);
+    public void shouldCloseWithoutIncidentIfStreamNotNullAndNoExceptionThrown() {
+        FakeInputStream fake = new FakeInputStream();
 
-        assertPropertiesEqual(fromFile, fromObject);
+        closeQuietly(fake);
+
+        assertTrue(fake.closed);
     }
 
-    @Override
-    protected Class<ScalarPropertyHaver> boundType() {
-        return ScalarPropertyHaver.class;
+    @Test
+    public void shouldCloseWithoutIncidentIfStreamNotNullAndExceptionThrown() {
+        FakeInputStream fake = new PukeOnCloseInputStream();
+
+        closeQuietly(fake);
+
+        assertTrue(fake.closed);
+    }
+
+    static class FakeInputStream extends ByteArrayInputStream {
+        boolean closed;
+
+        FakeInputStream() {
+            super(new byte[0]);
+        }
+
+        @Override
+        public void close() throws IOException {
+            closed = true;
+            super.close();
+        }
+    }
+
+    static class PukeOnCloseInputStream extends FakeInputStream {
+        @Override
+        public void close() throws IOException {
+            super.close();
+            throw new IOException();
+        }
     }
 }

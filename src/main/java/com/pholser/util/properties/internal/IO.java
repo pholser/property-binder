@@ -23,41 +23,26 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties;
+package com.pholser.util.properties.internal;
 
-import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
-import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import static com.pholser.util.properties.internal.IO.*;
-
-public class BindingPropertiesReadFromInputStreamTest extends TypedBindingTestSupport<ScalarPropertyHaver> {
-    private InputStream inputStream;
-
-    @Before
-    public final void initializeInputStream() throws Exception {
-        inputStream = new FileInputStream(propertiesFile);
+public final class IO {
+    static {
+        new IO();
     }
 
-    @After
-    public final void closeInputStream() {
-        closeQuietly(inputStream);
+    private IO() {
+        // nothing to do here
     }
 
-    @Test
-    public void shouldLoadFromInputStream() throws Exception {
-        ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
-        ScalarPropertyHaver fromInputStream = binder.bind(inputStream);
-
-        assertPropertiesEqual(fromFile, fromInputStream);
-    }
-
-    @Override
-    protected Class<ScalarPropertyHaver> boundType() {
-        return ScalarPropertyHaver.class;
+    public static void closeQuietly(InputStream input) {
+        try {
+            if (input != null)
+                input.close();
+        } catch (IOException ignored) {
+            // empty on purpose
+        }
     }
 }
