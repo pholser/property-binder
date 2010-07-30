@@ -10,6 +10,11 @@ Changes in version 2.0
     string format specifiers as in <<<String.format()>>>. Arguments are substituted into the format
     specifier in order prior to the result's conversion to the PICA method's return type.
 
+    * Removing dependency on commons-io. Why bring in the whole library just for
+    <<<IOUtils.closeQuietly()>>>?
+
+    * Internal repackaging/refactoring.
+
 Version 1.0
 
     * First major release.
