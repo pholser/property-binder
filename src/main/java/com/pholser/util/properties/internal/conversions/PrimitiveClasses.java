@@ -32,7 +32,6 @@ import static java.util.Collections.*;
 
 final class PrimitiveClasses {
     private static final Map<Class<?>, Class<?>> WRAPPERS;
-
     private static final int SMALL_PRIME = 13;
 
     static {
