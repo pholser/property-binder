@@ -38,7 +38,6 @@ import com.pholser.util.properties.internal.separators.ValueSeparator;
 
 import static com.pholser.util.properties.internal.conversions.PrimitiveClasses.*;
 
-
 public class ValueConverterFactory {
     public ValueConverter createConverter(Method propertyMethod, ValueSeparator separator) {
         Class<?> valueType = targetTypeFor(propertyMethod);
