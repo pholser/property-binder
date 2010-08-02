@@ -2,6 +2,13 @@
 <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 <module name="Checker">
     <property name="severity" value="warning"/>
+    <module name="Header">
+        <property name="headerFile" value="${checkstyle.header.file}"/>
+        <property name="fileExtensions" value="java"/>
+        <property name="ignoreLines" value="1, 24"/>
+    </module>
+    <module name="FileLength"/>
+    <module name="FileTabCharacter"/>
     <module name="TreeWalker">
         <property name="tabWidth" value="4"/>
         <module name="JavadocType">
@@ -23,15 +30,11 @@
         <module name="ParameterName"/>
         <module name="StaticVariableName"/>
         <module name="TypeName"/>
-        <module name="Header">
-            <property name="headerFile" value="${checkstyle.header.file}"/>
-        </module>
         <module name="AvoidStarImport"/>
         <module name="IllegalImport"/>
         <module name="RedundantImport"/>
         <module name="UnusedImports"/>
         <module name="ExecutableStatementCount"/>
-        <module name="FileLength"/>
         <module name="LineLength">
             <property name="ignorePattern" value="^ *\* *[^ ]+|^ *//.*$"/>
             <property name="max" value="120"/>
@@ -54,7 +57,6 @@
         <module name="NoWhitespaceBefore"/>
         <module name="OperatorWrap"/>
         <module name="TypecastParenPad"/>
-        <module name="TabCharacter"/>
         <module name="WhitespaceAfter"/>
         <module name="ModifierOrder"/>
         <module name="RedundantModifier"/>
@@ -121,13 +123,13 @@
         <module name="CyclomaticComplexity"/>
         <module name="NPathComplexity"/>
         <module name="JavaNCSS"/>
-        <module name="GenericIllegalRegexp">
+        <module name="RegexpSinglelineJava">
             <property name="format" value="System\.out\.println"/>
         </module>
-        <module name="GenericIllegalRegexp">
+        <module name="RegexpSinglelineJava">
             <property name="format" value="System\.err\.println"/>
         </module>
-        <module name="GenericIllegalRegexp">
+        <module name="RegexpSinglelineJava">
             <property name="format" value="\.printStackTrace\("/>
         </module>
         <module name="TodoComment"/>
@@ -137,7 +139,6 @@
         <module name="DescendantToken"/>
         <module name="Indentation"/>
         <module name="TrailingComment"/>
-        <module name="RequiredRegexp"/>
     </module>
     <module name="StrictDuplicateCode">
         <property name="min" value="30"/>
