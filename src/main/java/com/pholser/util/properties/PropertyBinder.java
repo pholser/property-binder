@@ -88,8 +88,8 @@ public final class PropertyBinder<T> {
      * <li>A List type may be a raw List or a {@code List<?>}. The underlying values are {@code String}s in such
      * cases.</li>
      *
-     * <li>If the method specifies a default value via {@link ValuesSeparatedBy}, that value must be convertible
-     * to the return type of the method.</li>
+     * <li>If the method specifies a default value via {@link DefaultsTo}, that value must be convertible to the
+     * return type of the method.</li>
      *
      * <li>If the method accepts no arguments, the property's value will be converted as is to the type specified
      * by the method's return type. If the method accepts one or more arguments, the property's value is treated
