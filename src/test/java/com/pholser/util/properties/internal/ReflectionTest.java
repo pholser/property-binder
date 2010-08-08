@@ -29,7 +29,7 @@ import org.junit.Test;
 
 public class ReflectionTest {
     @Test(expected = AssertionError.class)
-    public void shouldRejectBadMethodNameWhenInvokingMethod() {
+    public void badMethodNameWhenInvokingMethod() {
         Reflection.invokeQuietly(String.class, "IUYPQIWE", "");
     }
 }

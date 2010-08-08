@@ -73,17 +73,17 @@ public class SchemaValidator {
         return new ValidatedSchema<T>(schema, defaults, converters);
     }
 
-    private void ensureInterface(Class<?> schema) {
+    private static void ensureInterface(Class<?> schema) {
         if (!schema.isInterface())
             throw new BoundTypeNotAnInterfaceException(schema);
     }
 
-    private void ensureNoSuperinterfaces(Class<?> schema) {
+    private static void ensureNoSuperinterfaces(Class<?> schema) {
         if (schema.getInterfaces().length != 0)
             throw new InterfaceHasSuperinterfacesException(schema);
     }
 
-    private void ensureAggregateTypeIsSupported(Method method) {
+    private static void ensureAggregateTypeIsSupported(Method method) {
         Class<?> returnType = method.getReturnType();
         if (isAggregateType(returnType) && !isSupportedAggregateType(returnType))
             throw new UnsupportedAggregateTypeException(method);

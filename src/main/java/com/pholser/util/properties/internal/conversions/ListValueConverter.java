@@ -41,9 +41,10 @@ class ListValueConverter extends AggregateValueConverter {
 
     ListValueConverter(Type valueType, ValueSeparator separator, ParsedAs patterns) {
         super(separator);
-        this.scalarConverter = createScalarConverter(deduceElementType(valueType), patterns);
+        scalarConverter = createScalarConverter(deduceElementType(valueType), patterns);
     }
 
+    @Override
     public List<Object> convert(String raw, Object... args) {
         List<Object> values = new ArrayList<Object>();
         for (String each : separate(raw))
@@ -70,6 +71,7 @@ class ListValueConverter extends AggregateValueConverter {
         throw new UnsupportedValueTypeException(type);
     }
 
+    @Override
     public Object nilValue() {
         return new ArrayList<Object>();
     }

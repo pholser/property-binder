@@ -45,10 +45,12 @@ class SubstitutableDefaultValue implements DefaultValue {
         this.method = method;
     }
 
+    @Override
     public Object evaluate() {
         return converted.evaluate();
     }
 
+    @Override
     public void resolve(Properties properties) {
         String substituted = substitute(spec.valueOf(), properties);
         converted = ConvertedDefaultValue.fromValue(substituted, converter, method);

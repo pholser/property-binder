@@ -37,7 +37,7 @@ import static org.junit.Assert.*;
 
 public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
     @Test
-    public void shouldTransformInvocationTargetExceptions() throws Exception {
+    public void transformingInvocationTargetExceptions() throws Exception {
         Method method = MethodRaisesException.class.getDeclaredMethod("raisesException", String.class);
 
         try {
@@ -49,7 +49,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
     }
 
     @Test
-    public void shouldTransformIllegalArgumentExceptions() throws Exception {
+    public void transformingIllegalArgumentExceptions() throws Exception {
         Method method = Calendar.class.getDeclaredMethod("getInstance");
 
         try {
@@ -61,7 +61,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
     }
 
     @Test
-    public void shouldTransformIllegalAccessExceptions() throws Exception {
+    public void transformingIllegalAccessExceptions() throws Exception {
         Method method = ForTriggeringIllegalAccess.class.getDeclaredMethod("valueOf", String.class);
 
         try {
@@ -73,7 +73,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
     }
 
     @Test
-    public void shouldTransformClassCastExceptions() throws Exception {
+    public void transformingClassCastExceptions() throws Exception {
         Method method = Integer.class.getDeclaredMethod("valueOf", String.class);
 
         try {

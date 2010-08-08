@@ -30,6 +30,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ArrayUtils {
+    static {
+        new ArrayUtils();
+    }
+
+    private ArrayUtils() {
+        // nothing to do here
+    }
+
     static List<Object> toList(Object array) {
         List<Object> items = new ArrayList<Object>();
         for (int i = 0, length = Array.getLength(array); i < length; ++i)

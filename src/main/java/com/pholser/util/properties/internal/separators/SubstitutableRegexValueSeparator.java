@@ -40,10 +40,12 @@ class SubstitutableRegexValueSeparator implements ValueSeparator {
         this.method = method;
     }
 
+    @Override
     public String[] separate(String raw) {
         return separator.separate(raw);
     }
 
+    @Override
     public void resolve(Properties properties) {
         String substituted = substitute(pattern, properties);
         separator = new RegexValueSeparator(substituted, method);

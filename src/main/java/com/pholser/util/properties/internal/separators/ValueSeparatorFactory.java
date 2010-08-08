@@ -39,7 +39,7 @@ public class ValueSeparatorFactory {
             : createSeparatorBasedOnSpec(spec, method);
     }
 
-    private ValueSeparator createSeparatorBasedOnSpec(ValuesSeparatedBy spec, Method method) {
+    private static ValueSeparator createSeparatorBasedOnSpec(ValuesSeparatedBy spec, Method method) {
         if (isDefaultPattern(spec) && !isDefaultSeparatorValueOf(spec))
             return new SubstitutableRegexValueSeparator(spec.valueOf(), method);
         return new RegexValueSeparator(spec.pattern(), method);

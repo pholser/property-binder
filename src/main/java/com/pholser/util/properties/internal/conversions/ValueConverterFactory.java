@@ -104,7 +104,7 @@ public class ValueConverterFactory {
         return isPublic(modifiers) && isStatic(modifiers) && expectedReturnType.equals(method.getReturnType());
     }
 
-    private Class<?> targetTypeFor(Method method) {
+    private static Class<?> targetTypeFor(Method method) {
         Class<?> returnType = method.getReturnType();
         return returnType.isPrimitive() ? wrapperIfPrimitive(returnType) : returnType;
     }

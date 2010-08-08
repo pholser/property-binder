@@ -35,12 +35,12 @@ import static org.junit.Assert.*;
 
 public class ClosingAnInputStreamQuietlyTest {
     @Test
-    public void shouldDoNothingIfStreamNull() {
+    public void doingNothingIfStreamNull() {
         closeQuietly(null);
     }
 
     @Test
-    public void shouldCloseWithoutIncidentIfStreamNotNullAndNoExceptionThrown() {
+    public void closingWithoutIncidentIfStreamNotNullAndNoExceptionThrown() {
         FakeInputStream fake = new FakeInputStream();
 
         closeQuietly(fake);
@@ -49,7 +49,7 @@ public class ClosingAnInputStreamQuietlyTest {
     }
 
     @Test
-    public void shouldCloseWithoutIncidentIfStreamNotNullAndExceptionThrown() {
+    public void closingWithoutIncidentIfStreamNotNullAndExceptionThrown() {
         FakeInputStream fake = new PukeOnCloseInputStream();
 
         closeQuietly(fake);

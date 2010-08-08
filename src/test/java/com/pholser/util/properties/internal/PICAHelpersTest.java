@@ -30,7 +30,7 @@ import org.junit.Test;
 
 public class PICAHelpersTest {
     @Test(expected = AssertionError.class)
-    public void shouldRejectBadMethodNameOnAnnotation() {
+    public void badMethodNameOnAnnotation() {
         PICAHelpers.annotationDefault(DefaultsTo.class, "!@#!@#");
     }
 }

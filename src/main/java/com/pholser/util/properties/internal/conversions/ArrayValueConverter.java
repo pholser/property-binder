@@ -37,8 +37,8 @@ class ArrayValueConverter extends AggregateValueConverter {
 
     ArrayValueConverter(Class<?> arrayType, ValueSeparator separator, ParsedAs patterns) {
         super(separator);
-        this.componentType = arrayType.getComponentType();
-        this.scalarConverter = createScalarConverter(componentType, patterns);
+        componentType = arrayType.getComponentType();
+        scalarConverter = createScalarConverter(componentType, patterns);
     }
 
     public Object convert(String raw, Object... args) {
@@ -50,6 +50,7 @@ class ArrayValueConverter extends AggregateValueConverter {
         return array;
     }
 
+    @Override
     public Object nilValue() {
         return Array.newInstance(componentType, 0);
     }

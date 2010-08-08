@@ -28,6 +28,7 @@ package com.pholser.util.properties.internal.conversions;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 class CharacterValueOfConverter extends ScalarValueConverter {
+    @Override
     public Object convert(String raw, Object... args) {
         if (raw.length() != 1)
             throw new ValueConversionException("cannot convert [" + raw + "] to " + Character.class);

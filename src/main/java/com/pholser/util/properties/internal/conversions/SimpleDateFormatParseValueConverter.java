@@ -25,6 +25,7 @@
 
 package com.pholser.util.properties.internal.conversions;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -44,7 +45,7 @@ class SimpleDateFormatParseValueConverter extends ScalarValueConverter {
     public Object convert(String raw, Object... args) {
         for (String each : patterns.value()) {
             try {
-                SimpleDateFormat formatter = new SimpleDateFormat(each);
+                DateFormat formatter = new SimpleDateFormat(each);
                 formatter.setLenient(false);
                 return formatter.parse(String.format(raw, args));
             } catch (ParseException ex) {

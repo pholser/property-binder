@@ -43,10 +43,12 @@ class RegexValueSeparator implements ValueSeparator {
         }
     }
 
+    @Override
     public String[] separate(String raw) {
         return regex.split(raw);
     }
 
+    @Override
     public void resolve(Properties properties) {
         // nothing to do here
     }

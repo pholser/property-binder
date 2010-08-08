@@ -38,7 +38,7 @@ final class ConvertedDefaultValue implements DefaultValue {
 
     private ConvertedDefaultValue(String value, ValueConverter converter, Method method) {
         try {
-            this.converted = converter.convert(value);
+            converted = converter.convert(value);
         } catch (ValueConversionException ex) {
             throw new MalformedDefaultValueException(value, method, ex);
         }
@@ -52,10 +52,12 @@ final class ConvertedDefaultValue implements DefaultValue {
         return new ConvertedDefaultValue(value, converter, method);
     }
 
+    @Override
     public Object evaluate() {
         return converted;
     }
 
+    @Override
     public void resolve(Properties properties) {
         // nothing to do here
     }

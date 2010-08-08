@@ -36,7 +36,7 @@ import static org.junit.Assert.*;
 
 public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
     @Test
-    public void shouldTransformInvocationTargetExceptions() throws Exception {
+    public void transformingInvocationTargetExceptions() throws Exception {
         Constructor<ConstructorRaisesException> ctor =
             ConstructorRaisesException.class.getDeclaredConstructor(String.class);
 
@@ -49,7 +49,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
     }
 
     @Test
-    public void shouldTransformIllegalArgumentExceptions() throws Exception {
+    public void transformingIllegalArgumentExceptions() throws Exception {
         Constructor<HasPlainOldConstructor> ctor = HasPlainOldConstructor.class.getDeclaredConstructor();
 
         try {
@@ -61,7 +61,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
     }
 
     @Test
-    public void shouldTransformIllegalAccessExceptions() throws Exception {
+    public void transformingIllegalAccessExceptions() throws Exception {
         Constructor<ForTriggeringIllegalAccess> ctor =
             ForTriggeringIllegalAccess.class.getDeclaredConstructor(String.class);
 
@@ -74,7 +74,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
     }
 
     @Test
-    public void shouldTransformInstantiationExceptions() throws Exception {
+    public void transformingInstantiationExceptions() throws Exception {
         Constructor<CannotBeInstantiated> ctor = CannotBeInstantiated.class.getDeclaredConstructor(String.class);
 
         try {

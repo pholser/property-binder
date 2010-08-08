@@ -53,7 +53,7 @@ public class BindingPropertiesObjectsToTypedInterfacesTest extends TypedBindingT
     }
 
     @Test
-    public void shouldLoadFromPropertiesObject() throws Exception {
+    public void loadingFromPropertiesObject() throws Exception {
         ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
         ScalarPropertyHaver fromObject = binder.bind(properties);
 

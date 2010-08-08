@@ -41,7 +41,7 @@ public class ReadingPropertiesWithSubstitutableReferencesTest {
     }
 
     @Test
-    public void shouldSubstituteReferencesToPropertiesInTheCollection() {
+    public void substitutingReferencesToPropertiesInTheCollection() {
         substitutable.setProperty("one", "1");
         substitutable.setProperty("two", "2");
         substitutable.setProperty("first", "look out for number [one]");
@@ -52,7 +52,7 @@ public class ReadingPropertiesWithSubstitutableReferencesTest {
     }
 
     @Test
-    public void shouldAllowDepthOfReferences() {
+    public void allowingDepthOfReferences() {
         substitutable.setProperty("one", "1");
         substitutable.setProperty("two", "2[one]");
         substitutable.setProperty("three", "3[one]3[two]");
@@ -62,7 +62,7 @@ public class ReadingPropertiesWithSubstitutableReferencesTest {
     }
 
     @Test
-    public void shouldBeOkayWithRegexMetacharactersInPropertyReferences() {
+    public void allowingRegexMetacharactersInPropertyReferences() {
         substitutable.setProperty("se.pa.ra.ted", "1");
         substitutable.setProperty("reference", "3 + [se.pa.ra.ted]");
 
@@ -70,7 +70,7 @@ public class ReadingPropertiesWithSubstitutableReferencesTest {
     }
 
     @Test
-    public void shouldReplaceUnresolvedPropertyReferencesWithZeroLengthString() {
+    public void replacingUnresolvedPropertyReferencesWithZeroLengthString() {
         substitutable.setProperty("other.reference", "4 + [se_pa_ra_ted]");
 
         assertEquals("4 + ", substitutable.getProperty("other.reference"));

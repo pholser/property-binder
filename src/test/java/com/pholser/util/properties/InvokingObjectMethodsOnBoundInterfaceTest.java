@@ -36,7 +36,7 @@ public class InvokingObjectMethodsOnBoundInterfaceTest
     extends TypedBindingTestSupport<InvokingObjectMethodsOnBoundInterfaceTest.PropertyFacade> {
 
     @Test
-    public void shouldRespondToEqualsByTestingIdentity() throws Exception {
+    public void respondingToEqualsByTestingIdentity() throws Exception {
         PropertyFacade second = binder.bind(propertiesFile);
         assertEquals(bound, bound);
         assertFalse(bound.equals(second));
@@ -45,12 +45,12 @@ public class InvokingObjectMethodsOnBoundInterfaceTest
     }
 
     @Test
-    public void shouldRespondToHashCodeByGivingIdentityHashCode() {
+    public void respondingToHashCodeByGivingIdentityHashCode() {
         assertEquals(identityHashCode(bound), bound.hashCode());
     }
 
     @Test
-    public void shouldRespondToToStringByGivingProperties() {
+    public void respondingToToStringByGivingProperties() {
         assertThat(bound.toString(), containsString("wrapped.integer"));
     }
 

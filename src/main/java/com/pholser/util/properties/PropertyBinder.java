@@ -161,11 +161,11 @@ public final class PropertyBinder<T> {
      * @return a typed system property accessor
      */
     public static SystemProperties getSystemProperties() {
-        return PropertyBinder.forType(SystemProperties.class).bind(System.getProperties());
+        return forType(SystemProperties.class).bind(System.getProperties());
     }
 
     private static Properties loadProperties(InputStream propertyInput) throws IOException {
-        SubstitutableProperties properties = new SubstitutableProperties();
+        Properties properties = new SubstitutableProperties();
         properties.load(propertyInput);
         return properties;
     }
