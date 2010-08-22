@@ -71,7 +71,7 @@ public class SubstitutableProperties extends Properties {
 
     private static String substituteReferences(String value, Properties properties) {
         Matcher matcher = REFERENCE.matcher(value);
-        StringBuffer buffer = new StringBuffer();
+        StringBuffer buffer = new StringBuffer(value.length() * 2);
         while (matcher.find()) {
             String reference = properties.getProperty(matcher.group(1));
             matcher.appendReplacement(buffer, reference == null ? "" : reference);

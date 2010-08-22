@@ -41,6 +41,7 @@ class ArrayValueConverter extends AggregateValueConverter {
         scalarConverter = createScalarConverter(componentType, patterns);
     }
 
+    @Override
     public Object convert(String raw, Object... args) {
         String[] pieces = separate(raw);
         Object array = Array.newInstance(componentType, pieces.length);
