@@ -45,7 +45,7 @@ import static com.pholser.util.properties.internal.IO.*;
  * @param <T> the type of bound property accessor objects this binder creates
  * @author <a href="http://www.pholser.com">Paul Holser</a>
  */
-public final class PropertyBinder<T> {
+public class PropertyBinder<T> {
     private final ValidatedSchema<T> validated;
 
     /**
