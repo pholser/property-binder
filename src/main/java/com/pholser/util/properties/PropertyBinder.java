@@ -48,10 +48,6 @@ import static com.pholser.util.properties.internal.IO.*;
 public final class PropertyBinder<T> {
     private final ValidatedSchema<T> validated;
 
-    private PropertyBinder(Class<T> schema) {
-        validated = new SchemaValidator().validate(schema);
-    }
-
     /**
      * Creates a new properties file accessor from the given PICA schema.
      *
@@ -100,6 +96,19 @@ public final class PropertyBinder<T> {
      * corresponding property's value(s) should be parsed using the given {@linkplain java.text.SimpleDateFormat
      * date patterns}.
      * </ol>
+     *
+     * @param schema the PICA type used to configure the accessor and provide access to properties
+     * @throws NullPointerException if {@code schema} is {@code null}
+     * @throws IllegalArgumentException if {@code schema}'s configuration is invalid in any way
+     */
+    public PropertyBinder(Class<T> schema) {
+        validated = new SchemaValidator().validate(schema);
+    }
+
+    /**
+     * Factory method for property binders. Leverages generics type inference so that if you don't wish to specify
+     * the type more than once at {@linkplain PropertyBinder#PropertyBinder(Class) construction time}, you can call
+     * this method instead (at the expense of not offering a seam for testing).
      *
      * @param <U> the type of bound property accessor objects this binder creates
      * @param schema the PICA type used to configure the accessor and provide access to properties

@@ -38,7 +38,7 @@ public abstract class TypedBindingTestSupport<T> extends BindingTestSupport {
 
     @Before
     public final void initializeBoundType() throws Exception {
-        binder = PropertyBinder.forType(boundType());
+        binder = new PropertyBinder<T>(boundType());
         bound = binder.bind(propertiesFile);
     }
 
