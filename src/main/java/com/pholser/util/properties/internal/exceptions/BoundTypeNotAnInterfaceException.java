@@ -29,6 +29,6 @@ public class BoundTypeNotAnInterfaceException extends IllegalArgumentException {
     private static final long serialVersionUID = 1L;
 
     public BoundTypeNotAnInterfaceException(Class<?> schema) {
-        super("Need an interface as bound type, got " + schema);
+        super("Need a non-annotation interface as bound type, got " + schema);
     }
 }

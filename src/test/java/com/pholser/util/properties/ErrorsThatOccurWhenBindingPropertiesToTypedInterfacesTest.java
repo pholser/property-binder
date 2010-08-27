@@ -70,6 +70,11 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends B
         PropertyBinder.forType(Object.class);
     }
 
+    @Test(expected = InterfaceHasSuperinterfacesException.class)
+    public void annotationClass() {
+        PropertyBinder.forType(SuppressWarnings.class);
+    }
+
     @Test(expected = NullPointerException.class)
     public void nullFile() throws Exception {
         PropertyBinder.forType(ScalarPropertyHaver.class).bind((File) null);

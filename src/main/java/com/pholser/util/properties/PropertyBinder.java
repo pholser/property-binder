@@ -55,17 +55,11 @@ public class PropertyBinder<T> {
      * on the PICA schema:
      *
      * <ol>
-     * <li>Must be an interface with no superinterfaces.</li>
+     * <li>Must be an interface (but not an annotation type) with no superinterfaces.</li>
      *
      * <li>Every method maps to a properties file key. It can be marked with {@link BoundProperty} to indicate
-     * the properties file key; if not, the key is the fully qualified name of the PICA interface + '.' + the
+     * the properties file key; if it is not, the key is the fully qualified name of the PICA interface + '.' + the
      * method's name.</li>
-     *
-     * <li>The only aggregate return types supported are arrays and {@link java.util.List}.</li>
-     *
-     * <li>The {@link ValuesSeparatedBy} annotation can be applied only to methods with an aggregate return
-     * type, and must specify a well-formed {@linkplain java.util.regex.Pattern regular expression} as a
-     * separator.</li>
      *
      * <li>A method's return type must be a <dfn>value type</dfn>, an array of value types, or a List of value
      * types. A value type is any primitive type (except {@code void}), primitive wrapper type (except
@@ -81,13 +75,18 @@ public class PropertyBinder<T> {
      * If a value type has both of these, the {@code valueOf} method takes priority over the constructor. Note
      * that {@code enum}s have a {@code valueOf} method.</li>
      *
-     * <li>A List type may be a raw List or a {@code List<?>}. The underlying values are {@code String}s in such
-     * cases.</li>
+     * <li>The supported aggregate return types are arrays and {@link java.util.List}.</li>
      *
-     * <li>If the method specifies a default value via {@link DefaultsTo}, that value must be convertible to the
+     * <li>The {@link ValuesSeparatedBy} annotation can be applied only to methods with an aggregate return
+     * type, and must specify a well-formed {@linkplain java.util.regex.Pattern regular expression} as a
+     * separator.</li>
+     *
+     * <li>A List type may be a raw List or a {@code List<?>}. The elements are {@code String}s in such cases.</li>
+     *
+     * <li>If a method specifies a default value via {@link DefaultsTo}, that value must be convertible to the
      * return type of the method.</li>
      *
-     * <li>If the method accepts no arguments, the property's value will be converted as is to the type specified
+     * <li>If a method accepts no arguments, the property's value will be converted as is to the type specified
      * by the method's return type. If the method accepts one or more arguments, the property's value is treated
      * as a {@linkplain String#format(String, Object...) format string}, and the arguments assigned to the format
      * specifiers accordingly, before the entire value is converted.</li>
