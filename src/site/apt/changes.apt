@@ -4,7 +4,7 @@
 
 Changes in version 2.0
 
-    * Added <<<@ParsedAs>>> annotation for <<<Date>>>-returning PICA methods.
+    * Adding <<<@ParsedAs>>> annotation for <<<Date>>>-returning PICA methods.
 
     * PICA methods which accept one or more arguments expect that their property values are string format specifiers
     as in <<<String.format()>>>. Arguments are substituted into the format specifier in order prior to the result's
@@ -12,6 +12,13 @@ Changes in version 2.0
 
     * Publishing the constructor of <<<PropertyBinder>>> that the static factory method calls, so as to afford those
     who would use Property Binder a seam for testing purposes.
+
+    * Adding a zero-arg ctor to <<<SubstitutableProperties>>>.
+
+    * Publishing method <<<PropertyBinder.bind(Properties)>>>.
+
+    * <<<SubstitutableProperties.substitute()>>> now an instance method. The internals of Property Binder deal in
+    <<<SubstitutableProperties>>> throughout now.
 
     * Removing dependency on commons-io. Why bring in the whole library just for <<<IOUtils.closeQuietly()>>>?
 
