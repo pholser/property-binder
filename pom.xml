@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.pholser</groupId>
   <artifactId>property-binder</artifactId>
@@ -15,8 +16,9 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:svn:svn://svn.geekisp.com/pholser-repo/java/property-binder/tags/property-binder-1.0</connection>
-    <url>scm:svn:https://svn.geekisp.com/pholser-repo/java/property-binder/tags/property-binder-1.0</url>
+    <connection>scm:git:git://github.com/pholser/property-binder.git</connection>
+    <developerConnection>scm:git:[fetch=]git://github.com/pholser/property-binder.git[push=]ssh://git@github.com:pholser/property-binder.git</developerConnection>
+    <url>http://github.com/pholser/property-binder</url>
   </scm>
   <developers>
     <developer>
@@ -31,7 +33,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.7</version>
+      <version>4.8.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
