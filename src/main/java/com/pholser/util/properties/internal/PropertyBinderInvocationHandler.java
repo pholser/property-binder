@@ -27,15 +27,16 @@ package com.pholser.util.properties.internal;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.util.Properties;
 
 import static java.lang.System.*;
 
+import com.pholser.util.properties.SubstitutableProperties;
+
 class PropertyBinderInvocationHandler implements InvocationHandler {
-    private final Properties properties;
+    private final SubstitutableProperties properties;
     private final ValidatedSchema<?> validated;
 
-    PropertyBinderInvocationHandler(Properties properties, ValidatedSchema<?> validated) {
+    PropertyBinderInvocationHandler(SubstitutableProperties properties, ValidatedSchema<?> validated) {
         this.properties = properties;
         this.validated = validated;
     }

@@ -26,9 +26,9 @@
 package com.pholser.util.properties.internal.defaultvalues;
 
 import java.lang.reflect.Method;
-import java.util.Properties;
 
 import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.SubstitutableProperties;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
 import com.pholser.util.properties.internal.exceptions.MalformedDefaultValueException;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
@@ -58,7 +58,7 @@ final class ConvertedDefaultValue implements DefaultValue {
     }
 
     @Override
-    public void resolve(Properties properties) {
+    public void resolve(SubstitutableProperties properties) {
         // nothing to do here
     }
 }

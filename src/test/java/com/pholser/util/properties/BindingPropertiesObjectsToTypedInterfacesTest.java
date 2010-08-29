@@ -27,6 +27,7 @@ package com.pholser.util.properties;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.util.Properties;
 
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
@@ -35,16 +36,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.pholser.util.properties.internal.IO.*;
+import static org.junit.Assert.*;
 
 public class BindingPropertiesObjectsToTypedInterfacesTest extends TypedBindingTestSupport<ScalarPropertyHaver> {
     private InputStream inputStream;
     private Properties properties;
+    private ScalarPropertyHaver fromObject;
 
     @Before
     public final void initializeProperties() throws Exception {
         inputStream = new FileInputStream(propertiesFile);
         properties = new Properties();
         properties.load(inputStream);
+        fromObject = binder.bind(properties);
     }
 
     @After
@@ -55,9 +59,17 @@ public class BindingPropertiesObjectsToTypedInterfacesTest extends TypedBindingT
     @Test
     public void loadingFromPropertiesObject() throws Exception {
         ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
-        ScalarPropertyHaver fromObject = binder.bind(properties);
 
         assertPropertiesEqual(fromFile, fromObject);
+    }
+
+    @Test
+    public void alteringPropertiesObjectAfterBindingShouldNotAffectPropertiesBoundToPICA() {
+        BigDecimal original = fromObject.bigDecimalProperty();
+
+        properties.setProperty("big.decimal.property", "!@#!@#!@#!@#!@#");
+
+        assertEquals(original, fromObject.bigDecimalProperty());
     }
 
     @Override

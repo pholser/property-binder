@@ -26,10 +26,10 @@
 package com.pholser.util.properties.internal.separators;
 
 import java.lang.reflect.Method;
-import java.util.Properties;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import com.pholser.util.properties.SubstitutableProperties;
 import com.pholser.util.properties.internal.exceptions.MalformedSeparatorException;
 
 class RegexValueSeparator implements ValueSeparator {
@@ -49,7 +49,7 @@ class RegexValueSeparator implements ValueSeparator {
     }
 
     @Override
-    public void resolve(Properties properties) {
+    public void resolve(SubstitutableProperties properties) {
         // nothing to do here
     }
 }

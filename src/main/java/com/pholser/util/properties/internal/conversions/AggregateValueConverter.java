@@ -25,8 +25,7 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import java.util.Properties;
-
+import com.pholser.util.properties.SubstitutableProperties;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 
 abstract class AggregateValueConverter implements ValueConverter {
@@ -41,7 +40,7 @@ abstract class AggregateValueConverter implements ValueConverter {
     }
 
     @Override
-    public final void resolve(Properties properties) {
+    public final void resolve(SubstitutableProperties properties) {
         separator.resolve(properties);
     }
 }

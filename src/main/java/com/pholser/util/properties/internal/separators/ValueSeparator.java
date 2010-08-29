@@ -25,10 +25,10 @@
 
 package com.pholser.util.properties.internal.separators;
 
-import java.util.Properties;
+import com.pholser.util.properties.SubstitutableProperties;
 
 public interface ValueSeparator {
     String[] separate(String raw);
 
-    void resolve(Properties properties);
+    void resolve(SubstitutableProperties properties);
 }

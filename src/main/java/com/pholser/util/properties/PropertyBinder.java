@@ -55,9 +55,9 @@ public class PropertyBinder<T> {
      * on the PICA schema:
      *
      * <ol>
-     * <li>Must be an interface (but not an annotation type) with no superinterfaces.</li>
+     * <li>Must be an interface with no superinterfaces.</li>
      *
-     * <li>Every method maps to a properties file key. It can be marked with {@link BoundProperty} to indicate
+     * <li>Every method maps to a properties file key. A method can be marked with {@link BoundProperty} to indicate
      * the properties file key; if it is not, the key is the fully qualified name of the PICA interface + '.' + the
      * method's name.</li>
      *
@@ -129,7 +129,7 @@ public class PropertyBinder<T> {
      * @throws NullPointerException if {@code propertyInput} is {@code null}
      */
     public T bind(InputStream propertyInput) throws IOException {
-        return bind(loadProperties(propertyInput));
+        return evaluate(loadProperties(propertyInput));
     }
 
     /**
@@ -148,19 +148,32 @@ public class PropertyBinder<T> {
      * @throws NullPointerException if {@code propertiesFile} is {@code null}
      */
     public T bind(File propertiesFile) throws IOException {
-        FileInputStream propertyInput = null;
+        FileInputStream input = null;
 
         try {
-            propertyInput = new FileInputStream(propertiesFile);
-            return bind(propertyInput);
+            input = new FileInputStream(propertiesFile);
+            return bind(input);
         } finally {
-            closeQuietly(propertyInput);
+            closeQuietly(input);
         }
     }
 
-    T bind(Properties properties) {
-        Properties copy = (Properties) properties.clone();
-        return validated.evaluate(copy);
+    /**
+     * Binds the given properties to an instance of this binder's PICA.
+     *
+     * This method binds the PICA to a clone of the given properties. If the caller alters the contents of the
+     * properties object via her reference to it, the properties that the PICA refers to remain unchanged.
+     *
+     * @param properties the properties to be bound
+     * @return a PICA instance bound to the properties
+     * @throws NullPointerException if {@code properties} is {@code null}
+     */
+    public T bind(Properties properties) {
+        return evaluate(new SubstitutableProperties(properties));
+    }
+
+    private T evaluate(SubstitutableProperties properties) {
+        return validated.evaluate(properties);
     }
 
     /**
@@ -172,9 +185,9 @@ public class PropertyBinder<T> {
         return forType(SystemProperties.class).bind(System.getProperties());
     }
 
-    private static Properties loadProperties(InputStream propertyInput) throws IOException {
-        Properties properties = new SubstitutableProperties();
-        properties.load(propertyInput);
+    private static SubstitutableProperties loadProperties(InputStream input) throws IOException {
+        SubstitutableProperties properties = new SubstitutableProperties();
+        properties.load(input);
         return properties;
     }
 }

@@ -25,7 +25,7 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import java.util.Properties;
+import com.pholser.util.properties.SubstitutableProperties;
 
 abstract class ScalarValueConverter implements ValueConverter {
     @Override
@@ -34,7 +34,7 @@ abstract class ScalarValueConverter implements ValueConverter {
     }
 
     @Override
-    public final void resolve(Properties properties) {
+    public final void resolve(SubstitutableProperties properties) {
         // scalars do not resolve
     }
 }

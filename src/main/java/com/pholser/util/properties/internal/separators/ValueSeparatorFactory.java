@@ -29,7 +29,7 @@ import java.lang.reflect.Method;
 
 import com.pholser.util.properties.ValuesSeparatedBy;
 
-import static com.pholser.util.properties.internal.PICAHelpers.*;
+import static com.pholser.util.properties.internal.PICAs.*;
 
 public class ValueSeparatorFactory {
     public ValueSeparator createSeparator(ValuesSeparatedBy spec, Method method) {

@@ -26,9 +26,8 @@
 package com.pholser.util.properties.internal.separators;
 
 import java.lang.reflect.Method;
-import java.util.Properties;
 
-import static com.pholser.util.properties.SubstitutableProperties.*;
+import com.pholser.util.properties.SubstitutableProperties;
 
 class SubstitutableRegexValueSeparator implements ValueSeparator {
     private final String pattern;
@@ -46,8 +45,8 @@ class SubstitutableRegexValueSeparator implements ValueSeparator {
     }
 
     @Override
-    public void resolve(Properties properties) {
-        String substituted = substitute(pattern, properties);
+    public void resolve(SubstitutableProperties properties) {
+        String substituted = properties.substitute(pattern);
         separator = new RegexValueSeparator(substituted, method);
     }
 }

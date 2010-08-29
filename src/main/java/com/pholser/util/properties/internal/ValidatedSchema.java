@@ -27,14 +27,14 @@ package com.pholser.util.properties.internal;
 
 import java.lang.reflect.Method;
 import java.util.Map;
-import java.util.Properties;
 
 import static java.lang.reflect.Proxy.*;
 
+import com.pholser.util.properties.SubstitutableProperties;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
 import com.pholser.util.properties.internal.defaultvalues.DefaultValue;
 
-import static com.pholser.util.properties.internal.PICAHelpers.*;
+import static com.pholser.util.properties.internal.PICAs.*;
 
 public class ValidatedSchema<T> {
     private final Class<T> schema;
@@ -49,19 +49,19 @@ public class ValidatedSchema<T> {
         this.converters = converters;
     }
 
-    public T evaluate(Properties properties) {
+    public T evaluate(SubstitutableProperties properties) {
         resolveConverters(properties);
         resolveDefaultValues(properties);
         return createTypedProxyFor(properties);
     }
 
-    T createTypedProxyFor(Properties properties) {
+    T createTypedProxyFor(SubstitutableProperties properties) {
         return schema.cast(newProxyInstance(schema.getClassLoader(),
             new Class<?>[] { schema },
             new PropertyBinderInvocationHandler(properties, this)));
     }
 
-    Object convert(Properties properties, Method method, Object... args) {
+    Object convert(SubstitutableProperties properties, Method method, Object... args) {
         String key = propertyNameFor(method);
         ValueConverter converter = converters.get(key);
 
@@ -76,12 +76,12 @@ public class ValidatedSchema<T> {
         return schema.getName();
     }
 
-    private void resolveConverters(Properties properties) {
+    private void resolveConverters(SubstitutableProperties properties) {
         for (ValueConverter each : converters.values())
             each.resolve(properties);
     }
 
-    private void resolveDefaultValues(Properties properties) {
+    private void resolveDefaultValues(SubstitutableProperties properties) {
         for (DefaultValue each : defaults.values())
             each.resolve(properties);
     }
