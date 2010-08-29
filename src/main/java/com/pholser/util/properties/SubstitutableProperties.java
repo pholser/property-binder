@@ -72,8 +72,8 @@ public class SubstitutableProperties extends Properties {
     }
 
     /**
-     * Performs property value substitution on the given value, drawing on the values of the given collection of
-     * properties. If a property reference cannot be resolved, it will be replaced with the zero-length string.
+     * Performs property value substitution on the given value, drawing on the values of the receiver's properties.
+     * If a property reference cannot be resolved, it will be replaced with the zero-length string.
      *
      * @param value the value to perform substitution on
      * @return the result of the substitution

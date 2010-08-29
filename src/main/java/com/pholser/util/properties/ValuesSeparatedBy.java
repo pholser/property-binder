@@ -39,8 +39,8 @@ import static java.lang.annotation.RetentionPolicy.*;
  *
  * Use {@link #pattern()} to specify a plain regular expression, or {@link #valueOf()} to specify a regular
  * expression parts of which can be comprised of the values of bound properties. The keys of such properties are
- * delimited in the pattern by {@code [} and {@code ]}. It is illegal to specify both {@link #pattern()} and
- * {@link #valueOf()} at the same time with values other than the default.
+ * delimited in the pattern by {@code [} and {@code ]}. It is illegal to specify both {@code pattern()} and
+ * {@code valueOf()} at the same time with values other than the default.
  *
  * @author <a href="http://www.pholser.com">Paul Holser</a>
  * @see BoundProperty
