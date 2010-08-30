@@ -114,7 +114,8 @@ public class BindingSystemPropertiesToTypedInterfaceTest {
 
     @Test
     public void shouldGiveJavaIoTmpdir() {
-        assertEquals(System.getProperty("java.io.tmpdir"), systemProperties.javaIoTmpdir().getPath() + '/');
+        assertEquals(System.getProperty("java.io.tmpdir"),
+            systemProperties.javaIoTmpdir().getPath() + systemProperties.fileSeparator());
     }
 
     @Test
