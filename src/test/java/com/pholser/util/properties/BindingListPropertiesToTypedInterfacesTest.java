@@ -41,11 +41,6 @@ import static com.pholser.util.properties.boundtypes.Ternary.*;
 import static org.junit.Assert.*;
 
 public class BindingListPropertiesToTypedInterfacesTest extends TypedBindingTestSupport<ListPropertyHaver> {
-    @Override
-    protected Class<ListPropertyHaver> boundType() {
-        return ListPropertyHaver.class;
-    }
-
     @Test
     public void bindingSeparatedStringValuedPropertyToStringListMethod() {
         assertEquals(asList("aaa", "bbb", "ccc"), bound.stringListProperty());
@@ -361,6 +356,11 @@ public class BindingListPropertiesToTypedInterfacesTest extends TypedBindingTest
     @Test
     public void givingEmptyListForMissingListProperty() {
         assertEquals(emptyList(), bound.missingListProperty());
+    }
+
+    @Override
+    protected Class<ListPropertyHaver> boundType() {
+        return ListPropertyHaver.class;
     }
 
     private static Date M(String raw) throws ParseException {

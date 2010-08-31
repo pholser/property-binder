@@ -42,11 +42,6 @@ import static com.pholser.util.properties.boundtypes.Ternary.*;
 import static org.junit.Assert.*;
 
 public class BindingArrayPropertiesToTypedInterfacesTest extends TypedBindingTestSupport<ArrayPropertyHaver> {
-    @Override
-    protected Class<ArrayPropertyHaver> boundType() {
-        return ArrayPropertyHaver.class;
-    }
-
     @Test
     public void bindingSeparatedStringValuedPropertyToStringArrayMethod() {
         assertEquals(toList(new String[] { "aaa", "bbb", "ccc" }), toList(bound.stringArrayProperty()));
@@ -527,6 +522,11 @@ public class BindingArrayPropertiesToTypedInterfacesTest extends TypedBindingTes
     @Test
     public void givingZeroLengthArrayForMissingObjectArrayProperty() {
         assertEquals(emptyList(), toList(bound.missingObjectArrayProperty()));
+    }
+
+    @Override
+    protected Class<ArrayPropertyHaver> boundType() {
+        return ArrayPropertyHaver.class;
     }
 
     private static Date MMM(String raw) throws ParseException {

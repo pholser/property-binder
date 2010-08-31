@@ -50,10 +50,9 @@ public class BindingPropertiesReadFromInputStreamTest extends TypedBindingTestSu
 
     @Test
     public void loadingFromInputStream() throws Exception {
-        ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
         ScalarPropertyHaver fromInputStream = binder.bind(inputStream);
 
-        assertPropertiesEqual(fromFile, fromInputStream);
+        assertPropertiesEqual(bound, fromInputStream);
     }
 
     @Override

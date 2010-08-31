@@ -38,11 +38,6 @@ import static com.pholser.util.properties.boundtypes.Ternary.*;
 import static org.junit.Assert.*;
 
 public class BindingScalarPropertiesToTypedInterfacesTest extends TypedBindingTestSupport<ScalarPropertyHaver> {
-    @Override
-    protected Class<ScalarPropertyHaver> boundType() {
-        return ScalarPropertyHaver.class;
-    }
-
     @Test
     public void missingStringProperty() {
         assertNull(bound.missingProperty());
@@ -271,6 +266,11 @@ public class BindingScalarPropertiesToTypedInterfacesTest extends TypedBindingTe
     @Test
     public void supplyingDefaultForDateValuedPropertyUsingParsePatterns() throws Exception {
         assertEquals(yyyy("2003"), bound.datePropertyWithDefaultWithParsePatterns());
+    }
+
+    @Override
+    protected Class<ScalarPropertyHaver> boundType() {
+        return ScalarPropertyHaver.class;
     }
 
     private Date yyyy(String raw) throws ParseException {
