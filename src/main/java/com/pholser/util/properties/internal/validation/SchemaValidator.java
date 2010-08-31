@@ -58,11 +58,12 @@ public class SchemaValidator {
         ensureInterface(schema);
         ensureNoSuperinterfaces(schema);
 
-        Map<String, ValueConverter> converters = new HashMap<String, ValueConverter>();
-        Map<String, DefaultValue> defaults = new HashMap<String, DefaultValue>();
-        Map<String, ValueSeparator> separators = new HashMap<String, ValueSeparator>();
+        Method[] methods = schema.getDeclaredMethods();
+        Map<String, ValueConverter> converters = new HashMap<String, ValueConverter>(methods.length);
+        Map<String, DefaultValue> defaults = new HashMap<String, DefaultValue>(methods.length);
+        Map<String, ValueSeparator> separators = new HashMap<String, ValueSeparator>(methods.length);
 
-        for (Method each : schema.getDeclaredMethods()) {
+        for (Method each : methods) {
             String key = propertyNameFor(each);
             ensureAggregateTypeIsSupported(each);
             collectSeparatorIfAggregateType(separators, each, key);

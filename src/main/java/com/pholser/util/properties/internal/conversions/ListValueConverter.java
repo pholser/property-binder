@@ -47,8 +47,9 @@ class ListValueConverter extends AggregateValueConverter {
 
     @Override
     public List<Object> convert(String raw, Object... args) {
-        List<Object> values = new ArrayList<Object>();
-        for (String each : separate(raw))
+        String[] pieces = separate(raw);
+        List<Object> values = new ArrayList<Object>(pieces.length);
+        for (String each : pieces)
             values.add(scalarConverter.convert(each, args));
 
         return values;
@@ -74,6 +75,6 @@ class ListValueConverter extends AggregateValueConverter {
 
     @Override
     public Object nilValue() {
-        return new ArrayList<Object>();
+        return new ArrayList<Object>(0);
     }
 }

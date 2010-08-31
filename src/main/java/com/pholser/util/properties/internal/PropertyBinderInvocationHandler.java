@@ -41,6 +41,7 @@ class PropertyBinderInvocationHandler implements InvocationHandler {
         this.validated = validated;
     }
 
+    @Override
     public Object invoke(Object proxy, Method method, Object[] args) {
         if (Object.class.equals(method.getDeclaringClass()))
             return handleObjectMethod(proxy, method, args);
