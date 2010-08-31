@@ -17,12 +17,11 @@ import static com.pholser.util.properties.boundtypes.Ternary.*;
 import static org.junit.Assert.*;
 
 public class ExampleTest {
-    private PropertyBinder<ExamplePICA> binder;
     private ExamplePICA bound;
 
     @Before
     public void initializeFixture() throws Exception {
-        binder = PropertyBinder.forType(ExamplePICA.class);
+        PropertyBinder<ExamplePICA> binder = PropertyBinder.forType(ExamplePICA.class);
         bound = binder.bind(new File("src/test/resources/example.properties"));
     }
 

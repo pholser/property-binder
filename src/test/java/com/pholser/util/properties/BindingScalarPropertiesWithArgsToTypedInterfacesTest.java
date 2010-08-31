@@ -47,9 +47,7 @@ public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
     }
 
     @Test
-    public void passingArgumentsOfVariousTypesToPropertyMethodAndHaveFormattingOccurOnResult()
-        throws Exception {
-
+    public void passingArgumentsOfVariousTypesToPropertyMethodAndHaveFormattingOccurOnResult() throws Exception {
         assertEquals("10 seconds to 12:00:00 AM", bound.stringPropertyWithTypedArguments(10, mmddyyyy("12/22/2003")));
     }
 
