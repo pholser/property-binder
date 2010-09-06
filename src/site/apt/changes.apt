@@ -20,6 +20,8 @@ Changes in version 2.0
 
     * Publishing method <<<PropertyBinder.bind(Properties)>>>.
 
+    * Adding method <<<PropertyBinder.bind(Map<String, String>)>>>.
+
     * <<<SubstitutableProperties.substitute()>>> now an instance method. The internals of Property Binder deal in
     <<<SubstitutableProperties>>> throughout now.
 

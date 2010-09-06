@@ -62,7 +62,11 @@ public class SubstitutableProperties extends Properties {
 
     @Override
     public String getProperty(String key) {
-        return substitute(super.getProperty(key));
+        return substitute(retrieve(key));
+    }
+
+    protected String retrieve(String key) {
+        return super.getProperty(key);
     }
 
     /**
@@ -88,7 +92,7 @@ public class SubstitutableProperties extends Properties {
         Matcher matcher = REFERENCE.matcher(value);
         StringBuffer buffer = new StringBuffer(value.length() * 2);
         while (matcher.find()) {
-            String reference = super.getProperty(matcher.group(1));
+            String reference = retrieve(matcher.group(1));
             matcher.appendReplacement(buffer, reference == null ? "" : reference);
         }
         matcher.appendTail(buffer);

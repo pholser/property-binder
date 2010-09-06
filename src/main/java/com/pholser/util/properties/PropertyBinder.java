@@ -29,6 +29,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Properties;
 
 import com.pholser.util.properties.internal.ValidatedSchema;
@@ -37,8 +38,8 @@ import com.pholser.util.properties.internal.validation.SchemaValidator;
 import static com.pholser.util.properties.internal.IO.*;
 
 /**
- * Creates instances of proxies that provide typed access to values in properties files via the <acronym
- * title="Proxied Interfaces Configured with Annotations">PICA</acronym> technique.
+ * Creates instances of proxies that provide typed access to values in {@link Properties property configurations}
+ * via the <acronym title="Proxied Interfaces Configured with Annotations">PICA</acronym> technique.
  *
  * Inspired by <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/">this blog entry</a>.
  *
@@ -49,7 +50,7 @@ public class PropertyBinder<T> {
     private final ValidatedSchema<T> validated;
 
     /**
-     * Creates a new properties file accessor from the given PICA schema.
+     * Creates a new properties accessor from the given PICA schema.
      *
      * The PICA schema is validated to ensure that there are no inconsistencies. Here are the constraints placed
      * on the PICA schema:
@@ -57,9 +58,9 @@ public class PropertyBinder<T> {
      * <ol>
      * <li>Must be an interface with no superinterfaces.</li>
      *
-     * <li>Every method maps to a properties file key. A method can be marked with {@link BoundProperty} to indicate
-     * the properties file key; if it is not, the key is the fully qualified name of the PICA interface + '.' + the
-     * method's name.</li>
+     * <li>Every method maps to a property name. A method can be marked with {@link BoundProperty} to indicate the
+     * property name; if it is not, the name is the fully qualified name of the PICA interface + '.' + the method's
+     * name.</li>
      *
      * <li>A method's return type must be a <dfn>value type</dfn>, an array of value types, or a List of value
      * types. A value type is any primitive type (except {@code void}), primitive wrapper type (except
@@ -161,14 +162,27 @@ public class PropertyBinder<T> {
     /**
      * Binds the given properties to an instance of this binder's PICA.
      *
-     * This method binds the PICA to a clone of the given properties. If the caller alters the contents of the
-     * properties object via her reference to it, the properties that the PICA refers to remain unchanged.
+     * If the caller alters the contents of the properties object via her reference to it, the properties that the PICA
+     * refers to are affected.
      *
      * @param properties the properties to be bound
      * @return a PICA instance bound to the properties
      */
     public T bind(Properties properties) {
         return evaluate(new SubstitutableProperties(properties));
+    }
+
+    /**
+     * Binds the properties in the given map to an instance of this binder's PICA.
+     *
+     * If the caller alters the contents of the map via her reference to it, the properties that the PICA refers to
+     * are affected.
+     *
+     * @param properties the properties to be bound
+     * @return a PICA instance bound to the properties
+     */
+    public T bind(Map<String, String> properties) {
+        return evaluate(new MapBackedSubstitutableProperties(properties));
     }
 
     private T evaluate(SubstitutableProperties properties) {
