@@ -31,6 +31,7 @@ import java.math.BigDecimal;
 import java.util.Properties;
 
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
+import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -63,13 +64,11 @@ public class BindingPropertiesObjectsToTypedInterfacesTest extends TypedBindingT
         assertPropertiesEqual(fromFile, fromObject);
     }
 
-    @Test
-    public void alteringPropertiesObjectAfterBindingShouldNotAffectPropertiesBoundToPICA() {
-        BigDecimal original = fromObject.bigDecimalProperty();
-
+    @Test(expected = ValueConversionException.class)
+    public void alteringPropertiesObjectAfterBindingAffectsPropertiesBoundToPICA() {
         properties.setProperty("big.decimal.property", "!@#!@#!@#!@#!@#");
 
-        assertEquals(original, fromObject.bigDecimalProperty());
+        fromObject.bigDecimalProperty();
     }
 
     @Override

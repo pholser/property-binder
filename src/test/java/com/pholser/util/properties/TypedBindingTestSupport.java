@@ -50,9 +50,9 @@ public abstract class TypedBindingTestSupport<T> extends BindingTestSupport {
             Object boundActual = each.invoke(actual);
 
             if (each.getReturnType().isArray())
-                assertEquals(toList(expectedBound), toList(boundActual));
+                assertEquals(each.getName(), toList(expectedBound), toList(boundActual));
             else
-                assertEquals(expectedBound, boundActual);
+                assertEquals(each.getName(), expectedBound, boundActual);
         }
     }
 }

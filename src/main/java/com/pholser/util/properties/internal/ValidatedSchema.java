@@ -65,8 +65,9 @@ public class ValidatedSchema<T> {
         String key = propertyNameFor(method);
         ValueConverter converter = converters.get(key);
 
-        if (properties.containsKey(key))
-            return converter.convert(properties.getProperty(key), args);
+        String value = properties.getProperty(key);
+        if (value != null)
+            return converter.convert(value, args);
         if (defaults.containsKey(key))
             return defaults.get(key).evaluate();
         return converter.nilValue();

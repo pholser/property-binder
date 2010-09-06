@@ -166,7 +166,6 @@ public class PropertyBinder<T> {
      *
      * @param properties the properties to be bound
      * @return a PICA instance bound to the properties
-     * @throws NullPointerException if {@code properties} is {@code null}
      */
     public T bind(Properties properties) {
         return evaluate(new SubstitutableProperties(properties));

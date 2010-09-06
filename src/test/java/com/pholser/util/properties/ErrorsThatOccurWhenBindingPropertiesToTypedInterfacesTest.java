@@ -86,11 +86,6 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends B
     }
 
     @Test(expected = NullPointerException.class)
-    public void nullPropertiesObject() {
-        PropertyBinder.forType(ScalarPropertyHaver.class).bind((Properties) null);
-    }
-
-    @Test(expected = NullPointerException.class)
     public void nullClass() {
         PropertyBinder.forType(null);
     }

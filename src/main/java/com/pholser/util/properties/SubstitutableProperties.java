@@ -25,7 +25,6 @@
 
 package com.pholser.util.properties;
 
-import java.util.Enumeration;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -53,17 +52,12 @@ public class SubstitutableProperties extends Properties {
     }
 
     /**
-     * Creates an empty substitutable properties set with all the keys and associated values from another properties
-     * set.
+     * Creates an empty substitutable properties set with defaults specified from another properties set.
      *
-     * @param starters the properties to copy from
-     * @throws NullPointerException if {@code starters} is {@code null}
+     * @param defaults the default values for the new property set
      */
-    public SubstitutableProperties(Properties starters) {
-        for (Enumeration<?> en = starters.propertyNames(); en.hasMoreElements();) {
-            String key = (String) en.nextElement();
-            setProperty(key, starters.getProperty(key));
-        }
+    public SubstitutableProperties(Properties defaults) {
+        super(defaults);
     }
 
     @Override
