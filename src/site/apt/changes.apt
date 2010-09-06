@@ -15,6 +15,9 @@ Changes in version 2.0
 
     * Adding a zero-arg ctor to <<<SubstitutableProperties>>>.
 
+    * Subtle change in <<<SubstitutableProperties(Properties)>>> -- the properties handed to the ctor become the
+    "defaults" rather than hard-and-fast values.
+
     * Publishing method <<<PropertyBinder.bind(Properties)>>>.
 
     * <<<SubstitutableProperties.substitute()>>> now an instance method. The internals of Property Binder deal in
