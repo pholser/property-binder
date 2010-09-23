@@ -31,7 +31,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
+import com.pholser.util.properties.internal.MapBackedSubstitutableProperties;
+import com.pholser.util.properties.internal.ResourceBundleBackedSubstitutableProperties;
 import com.pholser.util.properties.internal.ValidatedSchema;
 import com.pholser.util.properties.internal.validation.SchemaValidator;
 
@@ -183,6 +186,10 @@ public class PropertyBinder<T> {
      */
     public T bind(Map<String, String> properties) {
         return evaluate(new MapBackedSubstitutableProperties(properties));
+    }
+
+    public T bind(ResourceBundle bundle) {
+        return evaluate(new ResourceBundleBackedSubstitutableProperties(bundle));
     }
 
     private T evaluate(SubstitutableProperties properties) {

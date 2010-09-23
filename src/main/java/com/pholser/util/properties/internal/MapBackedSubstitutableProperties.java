@@ -23,16 +23,18 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties;
+package com.pholser.util.properties.internal;
 
 import java.util.Map;
 
-class MapBackedSubstitutableProperties extends SubstitutableProperties {
+import com.pholser.util.properties.SubstitutableProperties;
+
+public class MapBackedSubstitutableProperties extends SubstitutableProperties {
     private static final long serialVersionUID = 1L;
 
     private final Map<String, String> backing;
 
-    MapBackedSubstitutableProperties(Map<String, String> properties) {
+    public MapBackedSubstitutableProperties(Map<String, String> properties) {
         backing = properties;
     }
 
