@@ -27,9 +27,10 @@ package com.pholser.util.properties;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.PropertyResourceBundle;
+import java.util.ResourceBundle;
 
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
@@ -39,20 +40,16 @@ import org.junit.Test;
 
 import static com.pholser.util.properties.internal.IO.*;
 
-public class BindingUntypedMapsToTypedInterfacesTest extends TypedBindingTestSupport<ScalarPropertyHaver> {
+public class BindingStringResourceBundlesToTypedInterfacesTest extends TypedBindingTestSupport<ScalarPropertyHaver> {
     private InputStream inputStream;
-    private Map<String, String> asStringMap;
-    private ScalarPropertyHaver fromMap;
+    private ResourceBundle bundle;
+    private ScalarPropertyHaver fromBundle;
 
     @Before
-    @SuppressWarnings("unchecked")
     public final void initializeProperties() throws Exception {
         inputStream = new FileInputStream(propertiesFile);
-        Properties properties = new Properties();
-        properties.load(inputStream);
-        Map<?, ?> asMap = properties;
-        asStringMap = (Map<String, String>) asMap;
-        fromMap = binder.bind(asStringMap);
+        bundle = new PropertyResourceBundle(inputStream);
+        fromBundle = binder.bind(bundle);
     }
 
     @After
@@ -64,14 +61,7 @@ public class BindingUntypedMapsToTypedInterfacesTest extends TypedBindingTestSup
     public void loadingFromPropertiesObject() throws Exception {
         ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
 
-        assertPropertiesEqual(fromFile, fromMap);
-    }
-
-    @Test(expected = ValueConversionException.class)
-    public void alteringMapAfterBindingAffectsPropertiesBoundToPICA() {
-        asStringMap.put("primitive.integer.property", "!@#!@#!@#!@#!@#");
-
-        fromMap.primitiveIntegerProperty();
+        assertPropertiesEqual(fromFile, fromBundle);
     }
 
     @Override
