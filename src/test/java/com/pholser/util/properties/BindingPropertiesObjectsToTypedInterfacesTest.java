@@ -27,7 +27,6 @@ package com.pholser.util.properties;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.math.BigDecimal;
 import java.util.Properties;
 
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
@@ -37,9 +36,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.pholser.util.properties.internal.IO.*;
-import static org.junit.Assert.*;
 
-public class BindingPropertiesObjectsToTypedInterfacesTest extends TypedBindingTestSupport<ScalarPropertyHaver> {
+public class BindingPropertiesObjectsToTypedInterfacesTest extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
     private InputStream inputStream;
     private Properties properties;
     private ScalarPropertyHaver fromObject;

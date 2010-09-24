@@ -37,7 +37,7 @@ import org.junit.Test;
 import static com.pholser.util.properties.boundtypes.Ternary.*;
 import static org.junit.Assert.*;
 
-public class BindingScalarPropertiesToTypedInterfacesTest extends TypedBindingTestSupport<ScalarPropertyHaver> {
+public class BindingScalarPropertiesToTypedInterfacesTest extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
     @Test
     public void missingStringProperty() {
         assertNull(bound.missingProperty());

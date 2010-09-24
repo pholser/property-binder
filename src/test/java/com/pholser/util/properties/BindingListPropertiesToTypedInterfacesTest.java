@@ -40,7 +40,7 @@ import org.junit.Test;
 import static com.pholser.util.properties.boundtypes.Ternary.*;
 import static org.junit.Assert.*;
 
-public class BindingListPropertiesToTypedInterfacesTest extends TypedBindingTestSupport<ListPropertyHaver> {
+public class BindingListPropertiesToTypedInterfacesTest extends TypedStringBindingTestSupport<ListPropertyHaver> {
     @Test
     public void bindingSeparatedStringValuedPropertyToStringListMethod() {
         assertEquals(asList("aaa", "bbb", "ccc"), bound.stringListProperty());

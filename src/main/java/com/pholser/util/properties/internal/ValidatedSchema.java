@@ -27,6 +27,7 @@ package com.pholser.util.properties.internal;
 
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.Properties;
 
 import static java.lang.reflect.Proxy.*;
 
@@ -61,7 +62,7 @@ public class ValidatedSchema<T> {
             new PropertyBinderInvocationHandler(properties, this)));
     }
 
-    Object convert(SubstitutableProperties properties, Method method, Object... args) {
+    Object convert(Properties properties, Method method, Object... args) {
         String key = propertyNameFor(method);
         ValueConverter converter = converters.get(key);
 

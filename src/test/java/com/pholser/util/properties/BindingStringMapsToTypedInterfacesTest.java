@@ -38,7 +38,7 @@ import org.junit.Test;
 
 import static com.pholser.util.properties.internal.IO.*;
 
-public class BindingStringMapsToTypedInterfacesTest extends TypedBindingTestSupport<ScalarPropertyHaver> {
+public class BindingStringMapsToTypedInterfacesTest extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
     private InputStream inputStream;
     private Map<String, String> asStringMap;
     private ScalarPropertyHaver fromMap;

@@ -39,7 +39,7 @@ import static com.pholser.util.properties.ArrayUtils.*;
 import static org.junit.Assert.*;
 
 public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
-    extends TypedBindingTestSupport<ScalarPropertyWithArgsHaver> {
+    extends TypedStringBindingTestSupport<ScalarPropertyWithArgsHaver> {
 
     @Test
     public void passingArgumentsToPropertyMethodAndHaveFormattingOccurOnResult() {

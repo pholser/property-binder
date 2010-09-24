@@ -33,7 +33,7 @@ import static org.junit.Assert.*;
 import static org.junit.matchers.JUnitMatchers.*;
 
 public class InvokingObjectMethodsOnBoundInterfaceTest
-    extends TypedBindingTestSupport<InvokingObjectMethodsOnBoundInterfaceTest.PropertyFacade> {
+    extends TypedStringBindingTestSupport<InvokingObjectMethodsOnBoundInterfaceTest.PropertyFacade> {
 
     @Test
     public void respondingToEqualsByTestingIdentity() throws Exception {

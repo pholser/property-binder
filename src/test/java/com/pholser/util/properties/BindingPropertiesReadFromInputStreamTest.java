@@ -35,7 +35,7 @@ import org.junit.Test;
 
 import static com.pholser.util.properties.internal.IO.*;
 
-public class BindingPropertiesReadFromInputStreamTest extends TypedBindingTestSupport<ScalarPropertyHaver> {
+public class BindingPropertiesReadFromInputStreamTest extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
     private InputStream inputStream;
 
     @Before

@@ -27,7 +27,6 @@ package com.pholser.util.properties;
 
 import java.io.File;
 import java.io.InputStream;
-import java.util.Properties;
 
 import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypePropertyHaver;
 import com.pholser.util.properties.boundtypes.BadDefaultValuePropertyHaver;
@@ -64,7 +63,7 @@ import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeExcep
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import org.junit.Test;
 
-public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends BindingTestSupport {
+public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends StringBindingTestSupport {
     @Test(expected = BoundTypeNotAnInterfaceException.class)
     public void nonInterfaceClass() {
         PropertyBinder.forType(Object.class);

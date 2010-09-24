@@ -25,15 +25,34 @@
 
 package com.pholser.util.properties;
 
-import java.io.File;
+import java.lang.reflect.Method;
 
 import org.junit.Before;
 
-public abstract class BindingTestSupport {
-    protected File propertiesFile;
+import static com.pholser.util.properties.ArrayUtils.*;
+import static org.junit.Assert.*;
+
+public abstract class TypedStringBindingTestSupport<T> extends StringBindingTestSupport {
+    protected PropertyBinder<T> binder;
+    protected T bound;
 
     @Before
-    public final void initializePropertiesFile() {
-        propertiesFile = new File("src/test/resources/test.properties");
+    public final void initializeBinderAndBoundType() throws Exception {
+        binder = new PropertyBinder<T>(boundType());
+        bound = binder.bind(propertiesFile);
+    }
+
+    protected abstract Class<T> boundType();
+
+    protected void assertPropertiesEqual(Object expected, Object actual) throws Exception {
+        for (Method each : boundType().getDeclaredMethods()) {
+            Object expectedBound = each.invoke(expected);
+            Object boundActual = each.invoke(actual);
+
+            if (each.getReturnType().isArray())
+                assertEquals(each.getName(), toList(expectedBound), toList(boundActual));
+            else
+                assertEquals(each.getName(), expectedBound, boundActual);
+        }
     }
 }

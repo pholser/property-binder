@@ -27,20 +27,18 @@ package com.pholser.util.properties;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.Map;
-import java.util.Properties;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static com.pholser.util.properties.internal.IO.*;
 
-public class BindingStringResourceBundlesToTypedInterfacesTest extends TypedBindingTestSupport<ScalarPropertyHaver> {
+public class BindingStringResourceBundlesToTypedInterfacesTest extends
+    TypedStringBindingTestSupport<ScalarPropertyHaver> {
     private InputStream inputStream;
     private ResourceBundle bundle;
     private ScalarPropertyHaver fromBundle;

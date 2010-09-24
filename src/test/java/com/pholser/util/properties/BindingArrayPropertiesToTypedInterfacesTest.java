@@ -41,7 +41,7 @@ import static com.pholser.util.properties.ArrayUtils.*;
 import static com.pholser.util.properties.boundtypes.Ternary.*;
 import static org.junit.Assert.*;
 
-public class BindingArrayPropertiesToTypedInterfacesTest extends TypedBindingTestSupport<ArrayPropertyHaver> {
+public class BindingArrayPropertiesToTypedInterfacesTest extends TypedStringBindingTestSupport<ArrayPropertyHaver> {
     @Test
     public void bindingSeparatedStringValuedPropertyToStringArrayMethod() {
         assertEquals(toList(new String[] { "aaa", "bbb", "ccc" }), toList(bound.stringArrayProperty()));
