@@ -32,14 +32,14 @@ import com.pholser.util.properties.SubstitutableProperties;
 public class MapBackedSubstitutableProperties extends SubstitutableProperties {
     private static final long serialVersionUID = 1L;
 
-    private final Map<String, String> backing;
+    private final Map<String, ?> backing;
 
-    public MapBackedSubstitutableProperties(Map<String, String> properties) {
+    public MapBackedSubstitutableProperties(Map<String, ?> properties) {
         backing = properties;
     }
 
     @Override
     protected String retrieve(String key) {
-        return backing.get(key);
+        return (String) backing.get(key);
     }
 }

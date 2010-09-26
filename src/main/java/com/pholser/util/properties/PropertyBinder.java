@@ -184,7 +184,7 @@ public class PropertyBinder<T> {
      * @param properties the properties to be bound
      * @return a PICA instance bound to the properties
      */
-    public T bind(Map<String, String> properties) {
+    public T bind(Map<String, ?> properties) {
         return evaluate(new MapBackedSubstitutableProperties(properties));
     }
 
