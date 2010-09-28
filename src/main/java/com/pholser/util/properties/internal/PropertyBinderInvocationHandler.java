@@ -30,13 +30,13 @@ import java.lang.reflect.Method;
 
 import static java.lang.System.*;
 
-import com.pholser.util.properties.SubstitutableProperties;
+import com.pholser.util.properties.PropertySource;
 
 class PropertyBinderInvocationHandler implements InvocationHandler {
-    private final SubstitutableProperties properties;
+    private final PropertySource properties;
     private final ValidatedSchema<?> validated;
 
-    PropertyBinderInvocationHandler(SubstitutableProperties properties, ValidatedSchema<?> validated) {
+    PropertyBinderInvocationHandler(PropertySource properties, ValidatedSchema<?> validated) {
         this.properties = properties;
         this.validated = validated;
     }

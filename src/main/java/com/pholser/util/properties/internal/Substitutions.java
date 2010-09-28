@@ -23,41 +23,46 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal.separators;
+package com.pholser.util.properties.internal;
 
-import java.lang.reflect.Method;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 import com.pholser.util.properties.PropertySource;
-import com.pholser.util.properties.ValuesSeparatedBy;
-import com.pholser.util.properties.internal.exceptions.MalformedSeparatorException;
 
-import static com.pholser.util.properties.internal.PICAs.*;
+import static com.pholser.util.properties.internal.Objects.*;
 
-class RegexValueSeparator implements ValueSeparator {
-    private final Pattern regex;
+public class Substitutions {
+    private static final Pattern REFERENCE = Pattern.compile("\\[(.*?)\\]");
 
-    RegexValueSeparator(String pattern, Method method) {
-        try {
-            regex = Pattern.compile(pattern);
-        } catch (PatternSyntaxException ex) {
-            throw new MalformedSeparatorException(pattern, method, ex);
-        }
+    static {
+        new Substitutions();
     }
 
-    @Override
-    public String[] separate(String raw) {
-        return regex.split(raw);
-    }
-
-    @Override
-    public void resolve(PropertySource properties) {
+    private Substitutions() {
         // nothing to do here
     }
 
-    @Override
-    public boolean isDefault() {
-        return regex.pattern().equals(annotationDefault(ValuesSeparatedBy.class, "pattern"));
+    public static String substitute(PropertySource properties, String value) {
+        String previous = null;
+        String substituted = value;
+
+        while (!areEqual(previous, substituted)) {
+            previous = substituted;
+            substituted = substituteReferences(properties, previous);
+        }
+
+        return substituted;
+    }
+
+    private static String substituteReferences(PropertySource properties, String value) {
+        Matcher matcher = REFERENCE.matcher(value);
+        StringBuffer buffer = new StringBuffer(value.length() * 2);
+        while (matcher.find()) {
+            String reference = (String) properties.propertyFor(matcher.group(1));
+            matcher.appendReplacement(buffer, reference == null ? "" : reference);
+        }
+        matcher.appendTail(buffer);
+        return buffer.toString();
     }
 }

@@ -27,11 +27,14 @@ package com.pholser.util.properties.internal.separators;
 
 import java.lang.reflect.Method;
 
-import com.pholser.util.properties.SubstitutableProperties;
+import com.pholser.util.properties.PropertySource;
+
+import static com.pholser.util.properties.internal.Substitutions.*;
 
 class SubstitutableRegexValueSeparator implements ValueSeparator {
     private final String pattern;
     private final Method method;
+    private boolean isDefault;
     private RegexValueSeparator separator;
 
     SubstitutableRegexValueSeparator(String pattern, Method method) {
@@ -45,8 +48,14 @@ class SubstitutableRegexValueSeparator implements ValueSeparator {
     }
 
     @Override
-    public void resolve(SubstitutableProperties properties) {
-        String substituted = properties.substitute(pattern);
+    public void resolve(PropertySource properties) {
+        String substituted = substitute(properties, pattern);
         separator = new RegexValueSeparator(substituted, method);
+        isDefault = separator.isDefault();
+    }
+
+    @Override
+    public boolean isDefault() {
+        return isDefault;
     }
 }

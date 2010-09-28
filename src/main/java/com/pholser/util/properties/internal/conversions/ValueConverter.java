@@ -25,12 +25,14 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import com.pholser.util.properties.SubstitutableProperties;
+import com.pholser.util.properties.PropertySource;
 
 public interface ValueConverter {
+    Object convert(Object raw, Object... args);
+
     Object convert(String raw, Object... args);
 
     Object nilValue();
 
-    void resolve(SubstitutableProperties properties);
+    void resolve(PropertySource properties);
 }

@@ -28,8 +28,10 @@ package com.pholser.util.properties.internal.defaultvalues;
 import java.lang.reflect.Method;
 
 import com.pholser.util.properties.DefaultsTo;
-import com.pholser.util.properties.SubstitutableProperties;
+import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
+
+import static com.pholser.util.properties.internal.Substitutions.*;
 
 class SubstitutableDefaultValue implements DefaultValue {
     private final DefaultsTo spec;
@@ -49,8 +51,8 @@ class SubstitutableDefaultValue implements DefaultValue {
     }
 
     @Override
-    public void resolve(SubstitutableProperties properties) {
-        String substituted = properties.substitute(spec.valueOf());
+    public void resolve(PropertySource properties) {
+        String substituted = substitute(properties, spec.valueOf());
         converted = ConvertedDefaultValue.fromValue(substituted, converter, method);
     }
 }

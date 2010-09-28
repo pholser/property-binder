@@ -31,6 +31,8 @@ import java.util.List;
 
 import static java.lang.reflect.Modifier.*;
 
+import com.pholser.util.properties.DefaultsTo;
+
 import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
@@ -42,17 +44,20 @@ public class ValueConverterFactory {
     public ValueConverter createConverter(Method propertyMethod, ValueSeparator separator) {
         Class<?> valueType = targetTypeFor(propertyMethod);
         ParsedAs patterns = propertyMethod.getAnnotation(ParsedAs.class);
+        DefaultsTo defaults = propertyMethod.getAnnotation(DefaultsTo.class);
 
         if (valueType.isArray())
-            return new ArrayValueConverter(valueType, separator, patterns);
+            return new ArrayValueConverter(valueType, separator, patterns, defaults);
 
         if (List.class.equals(valueType))
-            return new ListValueConverter(propertyMethod.getGenericReturnType(), separator, patterns);
+            return new ListValueConverter(propertyMethod.getGenericReturnType(), separator, patterns, defaults);
 
-        return createScalarConverter(valueType, patterns);
+        return createScalarConverter(valueType, patterns, defaults, separator);
     }
 
-    public static ValueConverter createScalarConverter(Class<?> valueType, ParsedAs patterns) {
+    public static ValueConverter createScalarConverter(Class<?> valueType, ParsedAs patterns, DefaultsTo defaults,
+        ValueSeparator separator) {
+
         Class<?> returnType = wrapperIfPrimitive(valueType);
         ValueConverter pattern = parsePatternsConverter(returnType, patterns);
         if (pattern != null)
@@ -66,7 +71,10 @@ public class ValueConverterFactory {
         if (constructor != null)
             return constructor;
 
-        throw new UnsupportedValueTypeException(valueType);
+        if (defaults != null || (separator != null && !separator.isDefault()))
+            throw new UnsupportedValueTypeException(valueType);
+
+        return new RawValueConverter();
     }
 
     private static ValueConverter parsePatternsConverter(Class<?> valueType, ParsedAs patterns) {

@@ -31,6 +31,8 @@ import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pholser.util.properties.DefaultsTo;
+
 import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
@@ -40,9 +42,9 @@ import static com.pholser.util.properties.internal.conversions.ValueConverterFac
 class ListValueConverter extends AggregateValueConverter {
     private final ValueConverter scalarConverter;
 
-    ListValueConverter(Type valueType, ValueSeparator separator, ParsedAs patterns) {
+    ListValueConverter(Type valueType, ValueSeparator separator, ParsedAs patterns, DefaultsTo defaults) {
         super(separator);
-        scalarConverter = createScalarConverter(deduceElementType(valueType), patterns);
+        scalarConverter = createScalarConverter(deduceElementType(valueType), patterns, defaults, separator);
     }
 
     @Override

@@ -26,10 +26,8 @@
 package com.pholser.util.properties;
 
 import java.util.Properties;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import static com.pholser.util.properties.internal.Objects.*;
+import static com.pholser.util.properties.internal.Substitutions.*;
 
 /**
  * Properties class with support for property values which can be comprised of the values of other properties.
@@ -40,9 +38,8 @@ import static com.pholser.util.properties.internal.Objects.*;
  *
  * @author <a href="http://www.pholser.com">Paul Holser</a>
  */
-public class SubstitutableProperties extends Properties {
+public class SubstitutableProperties extends Properties implements PropertySource {
     private static final long serialVersionUID = 1L;
-    private static final Pattern REFERENCE = Pattern.compile("\\[(.*?)\\]");
 
     /**
      * Creates an empty substitutable properties set.
@@ -62,40 +59,11 @@ public class SubstitutableProperties extends Properties {
 
     @Override
     public String getProperty(String key) {
-        return substitute(retrieve(key));
+        return substitute(this, super.getProperty(key));
     }
 
-    protected String retrieve(String key) {
-        return super.getProperty(key);
-    }
-
-    /**
-     * Performs property value substitution on the given value, drawing on the values of the receiver's properties.
-     * If a property reference cannot be resolved, it will be replaced with the zero-length string.
-     *
-     * @param value the value to perform substitution on
-     * @return the result of the substitution
-     */
-    public String substitute(String value) {
-        String previous = null;
-        String substituted = value;
-
-        while (!areEqual(previous, substituted)) {
-            previous = substituted;
-            substituted = substituteReferences(previous);
-        }
-
-        return substituted;
-    }
-
-    private String substituteReferences(String value) {
-        Matcher matcher = REFERENCE.matcher(value);
-        StringBuffer buffer = new StringBuffer(value.length() * 2);
-        while (matcher.find()) {
-            String reference = retrieve(matcher.group(1));
-            matcher.appendReplacement(buffer, reference == null ? "" : reference);
-        }
-        matcher.appendTail(buffer);
-        return buffer.toString();
+    @Override
+    public Object propertyFor(String key) {
+        return getProperty(key);
     }
 }

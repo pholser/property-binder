@@ -33,8 +33,10 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import com.pholser.util.properties.internal.MapBackedSubstitutableProperties;
-import com.pholser.util.properties.internal.ResourceBundleBackedSubstitutableProperties;
+import com.pholser.util.properties.internal.ResourceBundlePropertySource;
+
+import com.pholser.util.properties.internal.MapPropertySource;
+
 import com.pholser.util.properties.internal.ValidatedSchema;
 import com.pholser.util.properties.internal.validation.SchemaValidator;
 
@@ -185,14 +187,14 @@ public class PropertyBinder<T> {
      * @return a PICA instance bound to the properties
      */
     public T bind(Map<String, ?> properties) {
-        return evaluate(new MapBackedSubstitutableProperties(properties));
+        return evaluate(new MapPropertySource(properties));
     }
 
     public T bind(ResourceBundle bundle) {
-        return evaluate(new ResourceBundleBackedSubstitutableProperties(bundle));
+        return evaluate(new ResourceBundlePropertySource(bundle));
     }
 
-    private T evaluate(SubstitutableProperties properties) {
+    private T evaluate(PropertySource properties) {
         return validated.evaluate(properties);
     }
 

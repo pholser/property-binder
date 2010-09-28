@@ -23,25 +23,26 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal.conversions;
+package com.pholser.util.properties.internal;
+
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
 import com.pholser.util.properties.PropertySource;
 
-import com.pholser.util.properties.internal.separators.ValueSeparator;
+public class ResourceBundlePropertySource implements PropertySource {
+    private final ResourceBundle backing;
 
-abstract class AggregateValueConverter extends AbstractValueConverter {
-    private final ValueSeparator separator;
-
-    protected AggregateValueConverter(ValueSeparator separator) {
-        this.separator = separator;
-    }
-
-    protected final String[] separate(String raw) {
-        return separator.separate(raw);
+    public ResourceBundlePropertySource(ResourceBundle backing) {
+        this.backing = backing;
     }
 
     @Override
-    public final void resolve(PropertySource properties) {
-        separator.resolve(properties);
+    public Object propertyFor(String key) {
+        try {
+            return backing.getObject(key);
+        } catch (MissingResourceException ex) {
+            return null;
+        }
     }
 }

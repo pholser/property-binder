@@ -26,6 +26,9 @@
 package com.pholser.util.properties.internal.conversions;
 
 import java.lang.reflect.Array;
+
+import com.pholser.util.properties.DefaultsTo;
+
 import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 
@@ -35,10 +38,10 @@ class ArrayValueConverter extends AggregateValueConverter {
     private final Class<?> componentType;
     private final ValueConverter scalarConverter;
 
-    ArrayValueConverter(Class<?> arrayType, ValueSeparator separator, ParsedAs patterns) {
+    ArrayValueConverter(Class<?> arrayType, ValueSeparator separator, ParsedAs patterns, DefaultsTo defaults) {
         super(separator);
         componentType = arrayType.getComponentType();
-        scalarConverter = createScalarConverter(componentType, patterns);
+        scalarConverter = createScalarConverter(componentType, patterns, defaults, separator);
     }
 
     @Override

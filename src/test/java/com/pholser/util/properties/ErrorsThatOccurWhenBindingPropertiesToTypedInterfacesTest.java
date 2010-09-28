@@ -28,7 +28,10 @@ package com.pholser.util.properties;
 import java.io.File;
 import java.io.InputStream;
 
-import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypePropertyHaver;
+import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithValueOfSeparatorPropertyHaver;
+
+import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypeWithDefaultPropertyHaver;
+import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypeWithSeparatorPropertyHaver;
 import com.pholser.util.properties.boundtypes.BadDefaultValuePropertyHaver;
 import com.pholser.util.properties.boundtypes.BadValueSeparatorPropertyHaver;
 import com.pholser.util.properties.boundtypes.CharacterPropertyHaverWithTooLongDefault;
@@ -37,7 +40,8 @@ import com.pholser.util.properties.boundtypes.DefaultValueWithBothValueAndValueO
 import com.pholser.util.properties.boundtypes.DefaultValueWithNeitherValueNorValueOf;
 import com.pholser.util.properties.boundtypes.InterfaceWithSuperinterfaces;
 import com.pholser.util.properties.boundtypes.ListOfArrayPropertyHaver;
-import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypePropertyHaver;
+import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithDefaultPropertyHaver;
+import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithSeparatorPropertyHaver;
 import com.pholser.util.properties.boundtypes.LowerBoundedListPropertyHaver;
 import com.pholser.util.properties.boundtypes.MissingPrimitivePropertyHaver;
 import com.pholser.util.properties.boundtypes.ParsedAsOnMethodOfImproperType;
@@ -110,8 +114,13 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends S
     }
 
     @Test(expected = UnsupportedValueTypeException.class)
-    public void arrayOfUnconvertibleType() {
-        PropertyBinder.forType(ArrayOfUnconvertibleTypePropertyHaver.class);
+    public void arrayOfUnconvertibleTypeWithDefault() {
+        PropertyBinder.forType(ArrayOfUnconvertibleTypeWithDefaultPropertyHaver.class);
+    }
+
+    @Test(expected = UnsupportedValueTypeException.class)
+    public void arrayOfUnconvertibleTypeWithSeparator() {
+        PropertyBinder.forType(ArrayOfUnconvertibleTypeWithSeparatorPropertyHaver.class);
     }
 
     @Test(expected = UnsupportedAggregateTypeException.class)
@@ -120,8 +129,18 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends S
     }
 
     @Test(expected = UnsupportedValueTypeException.class)
-    public void listOfUnconvertibleType() {
-        PropertyBinder.forType(ListOfUnconvertibleTypePropertyHaver.class);
+    public void listOfUnconvertibleTypeWithDefault() {
+        PropertyBinder.forType(ListOfUnconvertibleTypeWithDefaultPropertyHaver.class);
+    }
+
+    @Test(expected = UnsupportedValueTypeException.class)
+    public void listOfUnconvertibleTypeWithSeparator() {
+        PropertyBinder.forType(ListOfUnconvertibleTypeWithSeparatorPropertyHaver.class);
+    }
+
+    @Test(expected = UnsupportedValueTypeException.class)
+    public void listOfUnconvertibleTypeWithValueOfSeparator() {
+        PropertyBinder.forType(ListOfUnconvertibleTypeWithValueOfSeparatorPropertyHaver.class);
     }
 
     @Test(expected = UnsupportedValueTypeException.class)

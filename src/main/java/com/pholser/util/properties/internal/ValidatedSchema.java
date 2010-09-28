@@ -27,11 +27,10 @@ package com.pholser.util.properties.internal;
 
 import java.lang.reflect.Method;
 import java.util.Map;
-import java.util.Properties;
 
 import static java.lang.reflect.Proxy.*;
 
-import com.pholser.util.properties.SubstitutableProperties;
+import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
 import com.pholser.util.properties.internal.defaultvalues.DefaultValue;
 
@@ -50,23 +49,23 @@ public class ValidatedSchema<T> {
         this.converters = converters;
     }
 
-    public T evaluate(SubstitutableProperties properties) {
+    public T evaluate(PropertySource properties) {
         resolveConverters(properties);
         resolveDefaultValues(properties);
         return createTypedProxyFor(properties);
     }
 
-    T createTypedProxyFor(SubstitutableProperties properties) {
+    T createTypedProxyFor(PropertySource properties) {
         return schema.cast(newProxyInstance(schema.getClassLoader(),
             new Class<?>[] { schema },
             new PropertyBinderInvocationHandler(properties, this)));
     }
 
-    Object convert(Properties properties, Method method, Object... args) {
+    Object convert(PropertySource properties, Method method, Object... args) {
         String key = propertyNameFor(method);
         ValueConverter converter = converters.get(key);
 
-        String value = properties.getProperty(key);
+        Object value = properties.propertyFor(key);
         if (value != null)
             return converter.convert(value, args);
         if (defaults.containsKey(key))
@@ -78,12 +77,12 @@ public class ValidatedSchema<T> {
         return schema.getName();
     }
 
-    private void resolveConverters(SubstitutableProperties properties) {
+    private void resolveConverters(PropertySource properties) {
         for (ValueConverter each : converters.values())
             each.resolve(properties);
     }
 
-    private void resolveDefaultValues(SubstitutableProperties properties) {
+    private void resolveDefaultValues(PropertySource properties) {
         for (DefaultValue each : defaults.values())
             each.resolve(properties);
     }

@@ -25,10 +25,10 @@
 
 package com.pholser.util.properties.internal.defaultvalues;
 
-import com.pholser.util.properties.SubstitutableProperties;
+import com.pholser.util.properties.PropertySource;
 
 public interface DefaultValue {
     Object evaluate();
 
-    void resolve(SubstitutableProperties properties);
+    void resolve(PropertySource properties);
 }

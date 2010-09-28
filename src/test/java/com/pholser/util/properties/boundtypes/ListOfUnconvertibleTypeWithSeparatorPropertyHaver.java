@@ -23,25 +23,13 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal.conversions;
+package com.pholser.util.properties.boundtypes;
 
-import com.pholser.util.properties.PropertySource;
+import com.pholser.util.properties.BoundProperty;
+import com.pholser.util.properties.ValuesSeparatedBy;
 
-import com.pholser.util.properties.internal.separators.ValueSeparator;
-
-abstract class AggregateValueConverter extends AbstractValueConverter {
-    private final ValueSeparator separator;
-
-    protected AggregateValueConverter(ValueSeparator separator) {
-        this.separator = separator;
-    }
-
-    protected final String[] separate(String raw) {
-        return separator.separate(raw);
-    }
-
-    @Override
-    public final void resolve(PropertySource properties) {
-        separator.resolve(properties);
-    }
+public interface ListOfUnconvertibleTypeWithSeparatorPropertyHaver {
+    @BoundProperty("list.of.unconvertible.type.property")
+    @ValuesSeparatedBy(pattern = "/")
+    Object[] listOfUnconvertibleTypeProperty();
 }

@@ -25,11 +25,12 @@
 
 package com.pholser.util.properties.boundtypes;
 
-import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.ValuesSeparatedBy;
 
-public interface ArrayOfUnconvertibleTypePropertyHaver {
+import com.pholser.util.properties.BoundProperty;
+
+public interface ArrayOfUnconvertibleTypeWithDefaultPropertyHaver {
     @BoundProperty("array.of.unconvertible.type.property")
-    @DefaultsTo("boo")
+    @ValuesSeparatedBy(pattern = "--")
     Object[] arrayOfUnconvertibleTypeProperty();
 }

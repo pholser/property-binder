@@ -28,8 +28,8 @@ package com.pholser.util.properties.boundtypes;
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
-public interface ListOfUnconvertibleTypePropertyHaver {
-    @BoundProperty("list.of.unconvertible.type.property")
+public interface ArrayOfUnconvertibleTypeWithSeparatorPropertyHaver {
+    @BoundProperty("array.of.unconvertible.type.property")
     @DefaultsTo("boo")
-    Object[] listOfUnconvertibleTypeProperty();
+    Object[] arrayOfUnconvertibleTypeProperty();
 }

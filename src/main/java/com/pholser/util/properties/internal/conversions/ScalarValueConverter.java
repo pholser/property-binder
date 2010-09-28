@@ -25,16 +25,16 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import com.pholser.util.properties.SubstitutableProperties;
+import com.pholser.util.properties.PropertySource;
 
-abstract class ScalarValueConverter implements ValueConverter {
+abstract class ScalarValueConverter extends AbstractValueConverter {
     @Override
     public final Object nilValue() {
         return null;
     }
 
     @Override
-    public final void resolve(SubstitutableProperties properties) {
+    public final void resolve(PropertySource properties) {
         // scalars do not resolve
     }
 }
