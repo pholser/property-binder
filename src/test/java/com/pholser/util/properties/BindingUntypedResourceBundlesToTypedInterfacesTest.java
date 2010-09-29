@@ -2,11 +2,11 @@ package com.pholser.util.properties;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListResourceBundle;
 import java.util.ResourceBundle;
 
 import org.junit.Test;
 
+import static com.pholser.util.properties.ResourceBundles.*;
 import static junit.framework.Assert.*;
 
 public class BindingUntypedResourceBundlesToTypedInterfacesTest {
@@ -127,16 +127,5 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
                 return null;
             }
         }
-    }
-
-    private ResourceBundle bundleWith(final String key, final Object value) {
-        return new ListResourceBundle() {
-            @Override
-            protected Object[][] getContents() {
-                return new Object[][] {
-                    { key, value }
-                };
-            }
-        };
     }
 }

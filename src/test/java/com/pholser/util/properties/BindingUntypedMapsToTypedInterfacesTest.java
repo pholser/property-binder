@@ -8,6 +8,8 @@ import java.util.Map;
 import org.junit.Test;
 
 import static junit.framework.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assume.*;
 
 public class BindingUntypedMapsToTypedInterfacesTest {
     @Test
@@ -133,5 +135,23 @@ public class BindingUntypedMapsToTypedInterfacesTest {
                 return null;
             }
         }
+    }
+
+    @Test
+    public void argMethodsIgnoreArgsIfPropertyValueNotAString() {
+        Object value = new Object();
+        Map<String, Object> items = new HashMap<String, Object>();
+        items.put("key", value);
+        PropertyBinder<ArgMethodHaver> binder = PropertyBinder.forType(ArgMethodHaver.class);
+
+        ArgMethodHaver bound = binder.bind(items);
+
+        assumeThat(bound.valueFor(1, 'a'), is(value));
+        assertSame(value, bound.valueFor(2, 'b'));
+    }
+
+    interface ArgMethodHaver {
+        @BoundProperty("key")
+        Object valueFor(int i, char ch);
     }
 }

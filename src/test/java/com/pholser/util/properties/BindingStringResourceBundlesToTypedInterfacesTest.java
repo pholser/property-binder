@@ -37,8 +37,9 @@ import org.junit.Test;
 
 import static com.pholser.util.properties.internal.IO.*;
 
-public class BindingStringResourceBundlesToTypedInterfacesTest extends
-    TypedStringBindingTestSupport<ScalarPropertyHaver> {
+public class BindingStringResourceBundlesToTypedInterfacesTest
+    extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
+
     private InputStream inputStream;
     private ResourceBundle bundle;
     private ScalarPropertyHaver fromBundle;
