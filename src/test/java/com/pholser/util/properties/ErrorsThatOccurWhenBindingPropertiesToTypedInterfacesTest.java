@@ -27,8 +27,8 @@ package com.pholser.util.properties;
 
 import java.io.File;
 import java.io.InputStream;
-
-import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithValueOfSeparatorPropertyHaver;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypeWithDefaultPropertyHaver;
 import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypeWithSeparatorPropertyHaver;
@@ -42,6 +42,7 @@ import com.pholser.util.properties.boundtypes.InterfaceWithSuperinterfaces;
 import com.pholser.util.properties.boundtypes.ListOfArrayPropertyHaver;
 import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithDefaultPropertyHaver;
 import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithSeparatorPropertyHaver;
+import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithValueOfSeparatorPropertyHaver;
 import com.pholser.util.properties.boundtypes.LowerBoundedListPropertyHaver;
 import com.pholser.util.properties.boundtypes.MissingPrimitivePropertyHaver;
 import com.pholser.util.properties.boundtypes.ParsedAsOnMethodOfImproperType;
@@ -86,6 +87,21 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends S
     @Test(expected = NullPointerException.class)
     public void nullInputStream() throws Exception {
         PropertyBinder.forType(ScalarPropertyHaver.class).bind((InputStream) null);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void nullMap() {
+        PropertyBinder.forType(ScalarPropertyHaver.class).bind((Map<String, ?>) null);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void nullResourceBundle() {
+        PropertyBinder.forType(ScalarPropertyHaver.class).bind((ResourceBundle) null);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void nullPropertySource() {
+        PropertyBinder.forType(ScalarPropertyHaver.class).bind((PropertySource) null);
     }
 
     @Test(expected = NullPointerException.class)

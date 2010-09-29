@@ -185,13 +185,38 @@ public class PropertyBinder<T> {
      *
      * @param properties the properties to be bound
      * @return a PICA instance bound to the properties
+     * @throws NullPointerException if {@code properties} is {@code null}
      */
     public T bind(Map<String, ?> properties) {
         return evaluate(new MapPropertySource(properties));
     }
 
+    /**
+     * Binds the properties in the given resource bundle to an instance of this binder's PICA.
+     *
+     * If the caller manages to alter the contents of the resource bundle somehow, the properties that the PICA
+     * refers to are affected.
+     *
+     * @param bundle the bundle to be bound
+     * @return a PICA instance bound to the bundle
+     * @throws NullPointerException if {@code bundle} is {@code null}
+     */
     public T bind(ResourceBundle bundle) {
         return evaluate(new ResourceBundlePropertySource(bundle));
+    }
+
+    /**
+     * Binds the properties represented by the given property source to an instance of this binder's PICA.
+     *
+     * If the caller manages to affect somehow the responses the property source gives, the properties that the PICA
+     * refers to are affected.
+     *
+     * @param properties the property source to be bound
+     * @return a PICA instance bound to the property source
+     * @throws NullPointerException if {@code properties} is {@code null}
+     */
+    public T bind(PropertySource properties) {
+        return evaluate(properties);
     }
 
     private T evaluate(PropertySource properties) {

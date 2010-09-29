@@ -50,6 +50,9 @@ public class ValidatedSchema<T> {
     }
 
     public T evaluate(PropertySource properties) {
+        if (properties == null)
+            throw new NullPointerException("null properties source");
+
         resolveConverters(properties);
         resolveDefaultValues(properties);
         return createTypedProxyFor(properties);

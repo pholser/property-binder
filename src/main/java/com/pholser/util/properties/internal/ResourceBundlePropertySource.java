@@ -34,6 +34,9 @@ public class ResourceBundlePropertySource implements PropertySource {
     private final ResourceBundle backing;
 
     public ResourceBundlePropertySource(ResourceBundle backing) {
+        if (backing == null)
+            throw new NullPointerException("null backing");
+
         this.backing = backing;
     }
 
