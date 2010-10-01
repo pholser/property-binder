@@ -46,7 +46,7 @@ import com.pholser.util.properties.internal.exceptions.UnsupportedAggregateTypeE
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 import com.pholser.util.properties.internal.separators.ValueSeparatorFactory;
 
-import static com.pholser.util.properties.internal.PICAs.*;
+import static com.pholser.util.properties.internal.Schemata.*;
 import static com.pholser.util.properties.internal.Types.*;
 
 public class SchemaValidator {

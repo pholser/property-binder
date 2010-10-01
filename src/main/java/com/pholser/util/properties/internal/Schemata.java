@@ -34,12 +34,12 @@ import com.pholser.util.properties.ValuesSeparatedBy;
 
 import static com.pholser.util.properties.internal.Reflection.*;
 
-public final class PICAs {
+public final class Schemata {
     static {
-        new PICAs();
+        new Schemata();
     }
 
-    private PICAs() {
+    private Schemata() {
         // nothing to do here
     }
 

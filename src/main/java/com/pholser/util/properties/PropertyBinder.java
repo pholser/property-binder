@@ -43,66 +43,78 @@ import com.pholser.util.properties.internal.validation.SchemaValidator;
 import static com.pholser.util.properties.internal.IO.*;
 
 /**
- * Creates instances of proxies that provide typed access to values in {@link Properties property configurations}
- * via the <acronym title="Proxied Interfaces Configured with Annotations">PICA</acronym> technique.
+ * <p>Creates proxies that provide typed access to values in {@linkplain PropertySource sources of property
+ * configuration} via the <acronym title="Proxied Interfaces Configured with Annotations">PICA</acronym>
+ * technique.</p>
  *
  * Inspired by <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/">this blog entry</a>.
  *
- * @param <T> the type of bound property accessor objects this binder creates
+ * <p>The {@link Class} object given to a binder at {@link PropertyBinder#PropertyBinder(Class) construction time}
+ * should be an interface with no super-interfaces. It is referred to as a "schema". A schema's methods prescribe the
+ * keys of a source of property configuration and the intended types of their associated values. Binding a source of
+ * property configuration to the schema gives the caller a proxy that implements the schema's interface. Invoking a
+ * proxy method attempts to retrieve the value associated with the key prescribed by the invoked method, and to
+ * convert the value to the type prescribed by the method's return value.</p>
+ *
+ * <p>Every schema method maps to a property key. A method can be marked with {@link BoundProperty} to indicate the
+ * property key to be used when the method is invoked; if it is not so marked, the key used is:
+ * fully qualified name of the schema interface + '.' + the method's name.</p>
+ *
+ * <p>Prior to version 3, binders accepted only {@link Properties} and {@link java.util.Map Map}s of string keys
+ * to string values. Beginning with version 3, binders admit sources of property configuration that map string keys
+ * to values of unknown type. If a given value in such a source happens to be a string, that value will undergo
+ * conversion to the method's return type if possible. Any problems with such a conversion will result in runtime
+ * type errors.</p>
+ *
+ * <p>In order for a given property value to be converted from a string, the associated schema method should have a
+ * return type that is a value type, an array of value types, or a {@link java.util.List} of value types. A
+ * <dfn>value type</dfn> is any primitive type, primitive wrapper type, or type which possesses either:</p>
+ *
+ * <ul>
+ *   <li>a {@code public static} method called {@code valueOf} which takes one argument, of type {@link String},
+ *   and whose return type is the type itself</li>
+ *   <li>a {@code public} constructor which takes one argument, of type {@link String}</li>
+ * </ul>
+ *
+ * <p>If a value type has both of these, the {@code valueOf} method takes priority over the constructor. Note that
+ * {@code enum}s have a {@code valueOf} method.</p>
+ *
+ * <p>The supported aggregate return types for schema methods are arrays and {@link java.util.List}. A List type
+ * may be a raw List or a {@code List<?>}. If the underlying property's value is a string, the elements of the list
+ * will undergo conversion from the string; otherwise the value is assumed to be a list and is left untouched.</li>
+ *
+ * <p>The {@link ValuesSeparatedBy} annotation can be applied only to schema methods with an aggregate return type,
+ * and must specify a well-formed {@linkplain java.util.regex.Pattern regular expression} as a separator.</p>
+ *
+ * <p>If a schema method specifies a default value via {@link DefaultsTo}, that value must be convertible to the
+ * return type of the schema method via the above rules.
+ *
+ * <p>If a schema method accepts no arguments, the property's value will be converted via the above rules. If the
+ * schema method accepts one or more arguments, the property's value is treated as a {@linkplain
+ * String#format(String, Object...) format string}, and the arguments assigned to the format specifiers accordingly,
+ * before the entire value is converted. If the property's value is not a string, any arguments to the schema method
+ * are ignored.</p>
+ *
+ * <p>Schema methods returning {@link java.util.Date} can be annotated with {@link ParsedAs} to indicate that the
+ * corresponding property's value(s) should be parsed using the given {@linkplain java.text.SimpleDateFormat date
+ * patterns}.
+ *
+ * <p>After binding, invoking a schema method returns the value of the property it represents if that property is
+ * present; else the value given by the method's {@link DefaultsTo} marker if present; else {@code null} for scalar
+ * types, a zero-length array for array types, and an {@linkplain java.util.Collection#isEmpty() empty list} for
+ * list types. If the schema method returns a primitive type and neither a property nor its default is present, the
+ * method will raise {@link NullPointerException}.</p>
+ *
+ * @param <T> the type of accessor proxies the binder is to create
  * @author <a href="http://www.pholser.com">Paul Holser</a>
  */
 public class PropertyBinder<T> {
     private final ValidatedSchema<T> validated;
 
     /**
-     * Creates a new properties accessor from the given PICA schema.
+     * Creates a new property binder from the given schema.
      *
-     * The PICA schema is validated to ensure that there are no inconsistencies. Here are the constraints placed
-     * on the PICA schema:
-     *
-     * <ol>
-     * <li>Must be an interface with no superinterfaces.</li>
-     *
-     * <li>Every method maps to a property name. A method can be marked with {@link BoundProperty} to indicate the
-     * property name; if it is not, the name is the fully qualified name of the PICA interface + '.' + the method's
-     * name.</li>
-     *
-     * <li>A method's return type must be a <dfn>value type</dfn>, an array of value types, or a List of value
-     * types. A value type is any primitive type (except {@code void}), primitive wrapper type (except
-     * {@link Void}), or type which possesses either:
-     *
-     * <ul>
-     * <li>a {@code public static} method called {@code valueOf} which takes one argument, of type
-     * {@link String}, and whose return type is the type itself</li>
-     *
-     * <li>a {@code public} constructor which takes one argument, of type {@link String}</li>
-     * </ul>
-     *
-     * If a value type has both of these, the {@code valueOf} method takes priority over the constructor. Note
-     * that {@code enum}s have a {@code valueOf} method.</li>
-     *
-     * <li>The supported aggregate return types are arrays and {@link java.util.List}.</li>
-     *
-     * <li>The {@link ValuesSeparatedBy} annotation can be applied only to methods with an aggregate return
-     * type, and must specify a well-formed {@linkplain java.util.regex.Pattern regular expression} as a
-     * separator.</li>
-     *
-     * <li>A List type may be a raw List or a {@code List<?>}. The elements are {@code String}s in such cases.</li>
-     *
-     * <li>If a method specifies a default value via {@link DefaultsTo}, that value must be convertible to the
-     * return type of the method.</li>
-     *
-     * <li>If a method accepts no arguments, the property's value will be converted as is to the type specified
-     * by the method's return type. If the method accepts one or more arguments, the property's value is treated
-     * as a {@linkplain String#format(String, Object...) format string}, and the arguments assigned to the format
-     * specifiers accordingly, before the entire value is converted.</li>
-     *
-     * <li>Methods returning {@link java.util.Date} can be annotated with {@link ParsedAs} to indicate that the
-     * corresponding property's value(s) should be parsed using the given {@linkplain java.text.SimpleDateFormat
-     * date patterns}.
-     * </ol>
-     *
-     * @param schema the PICA type used to configure the accessor and provide access to properties
+     * @param schema the PICA type used to create and configure accessor proxies
      * @throws NullPointerException if {@code schema} is {@code null}
      * @throws IllegalArgumentException if {@code schema}'s configuration is invalid in any way
      */
@@ -115,9 +127,9 @@ public class PropertyBinder<T> {
      * the type more than once at {@linkplain PropertyBinder#PropertyBinder(Class) construction time}, you can call
      * this method instead (at the expense of not offering a seam for testing).
      *
-     * @param <U> the type of bound property accessor objects this binder creates
-     * @param schema the PICA type used to configure the accessor and provide access to properties
-     * @return a new property binder that binds instances of {@code} schema to properties objects
+     * @param <U> the type of property accessor objects the binder is to create
+     * @param schema the PICA type used to create and configure accessor proxies
+     * @return a new property binder that binds proxies to sources of property configuration
      * @throws NullPointerException if {@code schema} is {@code null}
      * @throws IllegalArgumentException if {@code schema}'s configuration is invalid in any way
      */
@@ -126,11 +138,11 @@ public class PropertyBinder<T> {
     }
 
     /**
-     * Binds the properties purported to be in the given input stream to an instance of this binder's PICA.
+     * Makes a new proxy bound to the properties purported to be in the given input stream.
      *
      * @see #bind(File)
      * @param propertyInput an input stream containing properties to be bound
-     * @return a PICA instance bound to the properties
+     * @return a proxy bound to the properties
      * @throws IOException if there is a problem reading from the input stream
      * @throws NullPointerException if {@code propertyInput} is {@code null}
      */
@@ -139,17 +151,11 @@ public class PropertyBinder<T> {
     }
 
     /**
-     * Binds the properties purported to be in the given file to an instance of this binder's PICA.
-     *
-     * After binding, invoking a PICA method returns the value of the property it represents if that property is
-     * present; else the value given by the method's {@link DefaultsTo} marker if present; else {@code null} for
-     * scalar types, a zero-length array for array types, and an {@linkplain java.util.Collection#isEmpty()
-     * empty list} for list types. If the PICA method returns a primitive type and neither a property nor its
-     * default is present, the PICA method will raise {@link NullPointerException}.
+     * Makes a new proxy bound to the properties purported to be in the given file.
      *
      * @see #bind(InputStream)
      * @param propertiesFile a file containing properties to be bound
-     * @return a PICA instance bound to the properties
+     * @return a proxy bound to the properties
      * @throws IOException if there is a problem reading from the file
      * @throws NullPointerException if {@code propertiesFile} is {@code null}
      */
@@ -165,26 +171,26 @@ public class PropertyBinder<T> {
     }
 
     /**
-     * Binds the given properties to an instance of this binder's PICA.
+     * Makes a new proxy bound to the given properties.
      *
-     * If the caller alters the contents of the properties object via her reference to it, the properties that the PICA
-     * refers to are affected.
+     * If the caller alters the contents of the properties object via her reference to it, the properties that the
+     * proxy refers to are affected.
      *
      * @param properties the properties to be bound
-     * @return a PICA instance bound to the properties
+     * @return a proxy bound to the properties
      */
     public T bind(Properties properties) {
         return evaluate(new SubstitutableProperties(properties));
     }
 
     /**
-     * Binds the properties in the given map to an instance of this binder's PICA.
+     * Makes a new proxy bound to the properties in the given map.
      *
-     * If the caller alters the contents of the map via her reference to it, the properties that the PICA refers to
+     * If the caller alters the contents of the map via her reference to it, the properties that the proxy refers to
      * are affected.
      *
      * @param properties the properties to be bound
-     * @return a PICA instance bound to the properties
+     * @return a proxy bound to the properties
      * @throws NullPointerException if {@code properties} is {@code null}
      */
     public T bind(Map<String, ?> properties) {
@@ -192,13 +198,13 @@ public class PropertyBinder<T> {
     }
 
     /**
-     * Binds the properties in the given resource bundle to an instance of this binder's PICA.
+     * Makes a new proxy bound to the properties in the given resource bundle.
      *
-     * If the caller manages to alter the contents of the resource bundle somehow, the properties that the PICA
+     * If the caller manages to alter the contents of the resource bundle somehow, the properties that the proxy
      * refers to are affected.
      *
      * @param bundle the bundle to be bound
-     * @return a PICA instance bound to the bundle
+     * @return a proxy bound to the bundle
      * @throws NullPointerException if {@code bundle} is {@code null}
      */
     public T bind(ResourceBundle bundle) {
@@ -206,27 +212,27 @@ public class PropertyBinder<T> {
     }
 
     /**
-     * Binds the properties represented by the given property source to an instance of this binder's PICA.
+     * Makes a new proxy bound to the properties represented by the given property source.
      *
      * If the caller manages to affect somehow the responses the property source gives, the properties that the PICA
      * refers to are affected.
      *
-     * @param properties the property source to be bound
-     * @return a PICA instance bound to the property source
-     * @throws NullPointerException if {@code properties} is {@code null}
+     * @param source the property source to be bound
+     * @return a proxy bound to the property source
+     * @throws NullPointerException if {@code source} is {@code null}
      */
-    public T bind(PropertySource properties) {
-        return evaluate(properties);
+    public T bind(PropertySource source) {
+        return evaluate(source);
     }
 
-    private T evaluate(PropertySource properties) {
-        return validated.evaluate(properties);
+    private T evaluate(PropertySource source) {
+        return validated.evaluate(source);
     }
 
     /**
-     * Gives a typed accessor for {@linkplain System#getProperties() system properties}.
+     * Makes a new proxy bound to {@linkplain System#getProperties() system properties}.
      *
-     * @return a typed system property accessor
+     * @return a proxy bound to system properties
      */
     public static SystemProperties getSystemProperties() {
         return forType(SystemProperties.class).bind(System.getProperties());

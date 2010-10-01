@@ -33,7 +33,7 @@ import static java.lang.annotation.RetentionPolicy.*;
 
 /**
  * Mark an interface method with this annotation to indicate a regular expression that separates multiple values
- * of the value for the properties file key represented by the method. This makes sense only on methods which return
+ * of the value for the property source key represented by the method. This makes sense only on methods which return
  * array types or {@link java.util.List}s. If the method is not marked with this annotation, the separator is
  * taken to be "{@code ,}" (single comma, no surrounding whitespaces).
  *

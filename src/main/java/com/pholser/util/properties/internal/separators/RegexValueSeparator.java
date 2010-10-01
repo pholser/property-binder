@@ -33,7 +33,7 @@ import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.ValuesSeparatedBy;
 import com.pholser.util.properties.internal.exceptions.MalformedSeparatorException;
 
-import static com.pholser.util.properties.internal.PICAs.*;
+import static com.pholser.util.properties.internal.Schemata.*;
 
 class RegexValueSeparator implements ValueSeparator {
     private final Pattern regex;

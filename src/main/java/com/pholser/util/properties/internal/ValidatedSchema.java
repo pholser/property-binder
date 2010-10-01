@@ -34,7 +34,7 @@ import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
 import com.pholser.util.properties.internal.defaultvalues.DefaultValue;
 
-import static com.pholser.util.properties.internal.PICAs.*;
+import static com.pholser.util.properties.internal.Schemata.*;
 
 public class ValidatedSchema<T> {
     private final Class<T> schema;

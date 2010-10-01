@@ -30,7 +30,7 @@ import java.lang.reflect.Method;
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
 
-import static com.pholser.util.properties.internal.PICAs.*;
+import static com.pholser.util.properties.internal.Schemata.*;
 
 public class DefaultValueFactory {
     public DefaultValue createDefaultValue(DefaultsTo spec, ValueConverter converter, Method method) {

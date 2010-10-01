@@ -28,9 +28,11 @@ package com.pholser.util.properties.internal;
 import com.pholser.util.properties.DefaultsTo;
 import org.junit.Test;
 
-public class PICAsTest {
+import static com.pholser.util.properties.internal.Schemata.*;
+
+public class SchemataTest {
     @Test(expected = AssertionError.class)
     public void badMethodNameOnAnnotation() {
-        PICAs.annotationDefault(DefaultsTo.class, "!@#!@#");
+        annotationDefault(DefaultsTo.class, "!@#!@#");
     }
 }

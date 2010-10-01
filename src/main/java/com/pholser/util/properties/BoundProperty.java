@@ -33,7 +33,7 @@ import static java.lang.annotation.RetentionPolicy.*;
 
 /**
  * Mark an interface method with this annotation to indicate that it should return the value associated with a
- * given key from a properties file, converted to the type indicated by the method's return type.
+ * given key from a property source, converted to the type indicated by the method's return type.
  *
  * @author <a href="http://www.pholser.com">Paul Holser</a>
  * @see DefaultsTo
@@ -44,7 +44,7 @@ import static java.lang.annotation.RetentionPolicy.*;
 @Retention(RUNTIME)
 public @interface BoundProperty {
     /**
-     * The properties file key to associate with the marked method.
+     * The property source key to associate with the marked method.
      */
     String value();
 }
