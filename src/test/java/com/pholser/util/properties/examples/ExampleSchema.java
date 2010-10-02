@@ -10,7 +10,7 @@ import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.ValuesSeparatedBy;
 import com.pholser.util.properties.boundtypes.Ternary;
 
-public interface ExamplePICA {
+public interface ExampleSchema {
     String unadorned();
 
     @BoundProperty("unconverted.property")

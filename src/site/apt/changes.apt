@@ -2,6 +2,15 @@
                                        Change Log
                                        ----------
 
+Changes in version 3.0
+
+    * Admitting any kind of string-to-object source of property configuration, including <<<Map>>>,
+    <<<ResourceBundle>>>, and any implementer of new interface <<<PropertySource>>>.
+
+    * Removed method <<<SubstitutableProperties.substitute()>>>.
+
+    * Internal repackaging/refactoring.
+
 Changes in version 2.0
 
     * Adding <<<@ParsedAs>>> annotation for <<<Date>>>-returning PICA methods.

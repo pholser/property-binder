@@ -49,12 +49,12 @@ import static com.pholser.util.properties.internal.IO.*;
  *
  * Inspired by <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/">this blog entry</a>.
  *
- * <p>The {@link Class} object given to a binder at {@link PropertyBinder#PropertyBinder(Class) construction time}
- * should be an interface with no super-interfaces. It is referred to as a "schema". A schema's methods prescribe the
- * keys of a source of property configuration and the intended types of their associated values. Binding a source of
- * property configuration to the schema gives the caller a proxy that implements the schema's interface. Invoking a
- * proxy method attempts to retrieve the value associated with the key prescribed by the invoked method, and to
- * convert the value to the type prescribed by the method's return value.</p>
+ * <p>The {@link Class} object given to a binder at {@linkplain PropertyBinder#PropertyBinder(Class) construction
+ * time} should be an interface with no super-interfaces. It is referred to as a "schema". A schema's methods
+ * prescribe the keys of a source of property configuration and the intended types of their associated values.
+ * Binding a source of property configuration to the schema gives the caller a proxy that implements the schema's
+ * interface. Invoking a proxy method attempts to retrieve the value associated with the key prescribed by the
+ * invoked method, and to convert the value to the type prescribed by the method's return value.</p>
  *
  * <p>Every schema method maps to a property key. A method can be marked with {@link BoundProperty} to indicate the
  * property key to be used when the method is invoked; if it is not so marked, the key used is:
@@ -214,8 +214,8 @@ public class PropertyBinder<T> {
     /**
      * Makes a new proxy bound to the properties represented by the given property source.
      *
-     * If the caller manages to affect somehow the responses the property source gives, the properties that the PICA
-     * refers to are affected.
+     * If the caller manages to affect somehow the responses the property source gives, the properties that the
+     * schema refers to are affected.
      *
      * @param source the property source to be bound
      * @return a proxy bound to the property source
