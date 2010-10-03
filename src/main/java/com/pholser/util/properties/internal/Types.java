@@ -26,7 +26,6 @@
 package com.pholser.util.properties.internal;
 
 import java.util.Collection;
-import java.util.List;
 
 public final class Types {
     static {
@@ -35,10 +34,6 @@ public final class Types {
 
     private Types() {
         // nothing to do here
-    }
-
-    public static boolean isSupportedAggregateType(Class<?> clazz) {
-        return clazz.isArray() || List.class.equals(clazz);
     }
 
     public static boolean isAggregateType(Class<?> clazz) {

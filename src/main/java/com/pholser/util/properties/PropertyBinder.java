@@ -79,10 +79,6 @@ import static com.pholser.util.properties.internal.IO.*;
  * <p>If a value type has both of these, the {@code valueOf} method takes priority over the constructor. Note that
  * {@code enum}s have a {@code valueOf} method.</p>
  *
- * <p>The supported aggregate return types for schema methods are arrays and {@link java.util.List}. A List type
- * may be a raw List or a {@code List<?>}. If the underlying property's value is a string, the elements of the list
- * will undergo conversion from the string; otherwise the value is assumed to be a list and is left untouched.</li>
- *
  * <p>The {@link ValuesSeparatedBy} annotation can be applied only to schema methods with an aggregate return type,
  * and must specify a well-formed {@linkplain java.util.regex.Pattern regular expression} as a separator.</p>
  *

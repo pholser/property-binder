@@ -52,7 +52,6 @@ import com.pholser.util.properties.boundtypes.SeparatorOnNonAggregateTypePropert
 import com.pholser.util.properties.boundtypes.TypeWithNonPublicValueOfPropertyHaver;
 import com.pholser.util.properties.boundtypes.TypeWithNonStaticValueOfPropertyHaver;
 import com.pholser.util.properties.boundtypes.TypeWithValueOfWithBadReturnTypePropertyHaver;
-import com.pholser.util.properties.boundtypes.UnsupportedAggregateTypePropertyHaver;
 import com.pholser.util.properties.boundtypes.UpperBoundedListPropertyHaver;
 import com.pholser.util.properties.internal.exceptions.AppliedSeparatorToNonAggregateTypeException;
 import com.pholser.util.properties.internal.exceptions.BoundTypeNotAnInterfaceException;
@@ -62,7 +61,6 @@ import com.pholser.util.properties.internal.exceptions.MalformedSeparatorExcepti
 import com.pholser.util.properties.internal.exceptions.MultipleDefaultValueSpecificationException;
 import com.pholser.util.properties.internal.exceptions.MultipleSeparatorSpecificationException;
 import com.pholser.util.properties.internal.exceptions.NoDefaultValueSpecificationException;
-import com.pholser.util.properties.internal.exceptions.UnsupportedAggregateTypeException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
@@ -137,11 +135,6 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends S
     @Test(expected = UnsupportedValueTypeException.class)
     public void arrayOfUnconvertibleTypeWithSeparator() {
         PropertyBinder.forType(ArrayOfUnconvertibleTypeWithSeparatorPropertyHaver.class);
-    }
-
-    @Test(expected = UnsupportedAggregateTypeException.class)
-    public void unsupportedAggregateType() {
-        PropertyBinder.forType(UnsupportedAggregateTypePropertyHaver.class);
     }
 
     @Test(expected = UnsupportedValueTypeException.class)

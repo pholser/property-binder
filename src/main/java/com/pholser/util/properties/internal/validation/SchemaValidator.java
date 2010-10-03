@@ -42,7 +42,6 @@ import com.pholser.util.properties.internal.exceptions.InterfaceHasSuperinterfac
 import com.pholser.util.properties.internal.exceptions.MultipleDefaultValueSpecificationException;
 import com.pholser.util.properties.internal.exceptions.MultipleSeparatorSpecificationException;
 import com.pholser.util.properties.internal.exceptions.NoDefaultValueSpecificationException;
-import com.pholser.util.properties.internal.exceptions.UnsupportedAggregateTypeException;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 import com.pholser.util.properties.internal.separators.ValueSeparatorFactory;
 
@@ -65,7 +64,6 @@ public class SchemaValidator {
 
         for (Method each : methods) {
             String key = propertyNameFor(each);
-            ensureAggregateTypeIsSupported(each);
             collectSeparatorIfAggregateType(separators, each, key);
             collectConverter(converters, separators, each, key);
             collectDefaultValue(defaults, converters.get(key), each, key);
@@ -82,12 +80,6 @@ public class SchemaValidator {
     private static void ensureNoSuperinterfaces(Class<?> schema) {
         if (schema.getInterfaces().length != 0)
             throw new InterfaceHasSuperinterfacesException(schema);
-    }
-
-    private static void ensureAggregateTypeIsSupported(Method method) {
-        Class<?> returnType = method.getReturnType();
-        if (isAggregateType(returnType) && !isSupportedAggregateType(returnType))
-            throw new UnsupportedAggregateTypeException(method);
     }
 
     private void collectSeparatorIfAggregateType(Map<String, ValueSeparator> separators, Method method,
