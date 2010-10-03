@@ -12,7 +12,7 @@
       <filterchain refid="htmlFilter"/>
     </loadfile>
     <loadfile property="example.pica"
-      srcfile="${example.src.dir}/com/pholser/util/properties/examples/ExamplePICA.java">
+      srcfile="${example.src.dir}/com/pholser/util/properties/examples/ExampleSchema.java">
       <filterchain refid="htmlFilter"/>
     </loadfile>
     <loadfile property="example.test"

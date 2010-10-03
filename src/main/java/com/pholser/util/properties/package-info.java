@@ -24,7 +24,7 @@
  */
 
 /**
- * A PICA scheme for addressing Java properties files in a typed manner.
+ * A scheme for addressing Java properties files in a typed manner.
  *
  * Inspired by <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/">this blog entry</a>.
  */
