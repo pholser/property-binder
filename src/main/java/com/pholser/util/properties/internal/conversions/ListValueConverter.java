@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.pholser.util.properties.DefaultsTo;
-
 import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import com.pholser.util.properties.internal.separators.ValueSeparator;

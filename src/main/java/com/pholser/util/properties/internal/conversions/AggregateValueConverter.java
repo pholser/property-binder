@@ -26,7 +26,6 @@
 package com.pholser.util.properties.internal.conversions;
 
 import com.pholser.util.properties.PropertySource;
-
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 
 abstract class AggregateValueConverter extends AbstractValueConverter {

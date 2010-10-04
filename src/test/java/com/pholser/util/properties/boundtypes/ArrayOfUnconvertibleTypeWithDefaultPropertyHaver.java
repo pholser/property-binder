@@ -25,9 +25,8 @@
 
 package com.pholser.util.properties.boundtypes;
 
-import com.pholser.util.properties.ValuesSeparatedBy;
-
 import com.pholser.util.properties.BoundProperty;
+import com.pholser.util.properties.ValuesSeparatedBy;
 
 public interface ArrayOfUnconvertibleTypeWithDefaultPropertyHaver {
     @BoundProperty("array.of.unconvertible.type.property")

@@ -33,10 +33,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import com.pholser.util.properties.internal.ResourceBundlePropertySource;
-
 import com.pholser.util.properties.internal.MapPropertySource;
-
+import com.pholser.util.properties.internal.ResourceBundlePropertySource;
 import com.pholser.util.properties.internal.ValidatedSchema;
 import com.pholser.util.properties.internal.validation.SchemaValidator;
 
@@ -47,7 +45,7 @@ import static com.pholser.util.properties.internal.IO.*;
  * configuration} via the <acronym title="Proxied Interfaces Configured with Annotations">PICA</acronym>
  * technique.</p>
  *
- * Inspired by <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/">this blog entry</a>.
+ * <p>Inspired by <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/">this blog entry</a>.</p>
  *
  * <p>The {@link Class} object given to a binder at {@linkplain PropertyBinder#PropertyBinder(Class) construction
  * time} should be an interface with no super-interfaces. It is referred to as a "schema". A schema's methods

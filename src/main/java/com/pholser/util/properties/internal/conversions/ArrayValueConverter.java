@@ -28,7 +28,6 @@ package com.pholser.util.properties.internal.conversions;
 import java.lang.reflect.Array;
 
 import com.pholser.util.properties.DefaultsTo;
-
 import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 

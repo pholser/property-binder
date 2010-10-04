@@ -32,7 +32,6 @@ import java.util.List;
 import static java.lang.reflect.Modifier.*;
 
 import com.pholser.util.properties.DefaultsTo;
-
 import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
