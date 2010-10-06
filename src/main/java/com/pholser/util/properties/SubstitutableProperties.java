@@ -25,6 +25,7 @@
 
 package com.pholser.util.properties;
 
+import java.util.Enumeration;
 import java.util.Properties;
 
 import static com.pholser.util.properties.internal.Substitutions.*;
@@ -49,7 +50,7 @@ public class SubstitutableProperties extends Properties implements PropertySourc
     }
 
     /**
-     * Creates an empty substitutable properties set with defaults specified from another properties set.
+     * Creates a substitutable properties set with the keys and values of another properties set.
      *
      * @param defaults the default values for the new property set
      */
@@ -65,5 +66,18 @@ public class SubstitutableProperties extends Properties implements PropertySourc
     @Override
     public Object propertyFor(String key) {
         return getProperty(key);
+    }
+
+    @Override
+    public synchronized String toString() {
+        StringBuilder buffer = new StringBuilder("{");
+        for (Enumeration<?> en = propertyNames(); en.hasMoreElements();) {
+            String key = (String) en.nextElement();
+            buffer.append(key).append('=').append(getProperty(key));
+            if (en.hasMoreElements())
+                buffer.append(", ");
+        }
+        buffer.append('}');
+        return buffer.toString();
     }
 }

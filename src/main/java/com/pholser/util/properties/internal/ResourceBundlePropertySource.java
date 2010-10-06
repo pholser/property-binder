@@ -48,4 +48,9 @@ public class ResourceBundlePropertySource implements PropertySource {
             return null;
         }
     }
+
+    @Override
+    public String toString() {
+        return backing.toString();
+    }
 }

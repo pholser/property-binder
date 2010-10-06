@@ -43,4 +43,9 @@ public class MapPropertySource implements PropertySource {
     public Object propertyFor(String key) {
         return backing.get(key);
     }
+
+    @Override
+    public String toString() {
+        return backing.toString();
+    }
 }
