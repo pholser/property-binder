@@ -167,8 +167,8 @@ public class PropertyBinder<T> {
     /**
      * Makes a new proxy bound to the given properties.
      *
-     * If the caller alters the contents of the properties object via her reference to it, the properties that the
-     * proxy refers to are affected.
+     * If, after binding, the caller alters the contents of the properties object via her reference to it,
+     * the properties that the proxy refers to are affected.
      *
      * @param properties the properties to be bound
      * @return a proxy bound to the properties
@@ -180,8 +180,8 @@ public class PropertyBinder<T> {
     /**
      * Makes a new proxy bound to the properties in the given map.
      *
-     * If the caller alters the contents of the map via her reference to it, the properties that the proxy refers to
-     * are affected.
+     * If, after binding, the caller alters the contents of the map via her reference to it, the properties
+     * that the proxy refers to are affected.
      *
      * @param properties the properties to be bound
      * @return a proxy bound to the properties
@@ -194,8 +194,8 @@ public class PropertyBinder<T> {
     /**
      * Makes a new proxy bound to the properties in the given resource bundle.
      *
-     * If the caller manages to alter the contents of the resource bundle somehow, the properties that the proxy
-     * refers to are affected.
+     * If, after binding, the caller manages to alter the contents of the resource bundle somehow, the properties
+     * that the proxy refers to are affected.
      *
      * @param bundle the bundle to be bound
      * @return a proxy bound to the bundle
@@ -208,8 +208,8 @@ public class PropertyBinder<T> {
     /**
      * Makes a new proxy bound to the properties represented by the given property source.
      *
-     * If the caller manages to affect somehow the responses the property source gives, the properties that the
-     * schema refers to are affected.
+     * If, after binding, the caller manages to affect somehow the responses the property source gives, the properties
+     * that the schema refers to are affected.
      *
      * @param source the property source to be bound
      * @return a proxy bound to the property source

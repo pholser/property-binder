@@ -9,6 +9,10 @@ Changes in version 3.0
 
     * Removed method <<<SubstitutableProperties.substitute()>>>.
 
+    * Clarified in the Javadoc that after binding to a <<<Properties>>>, <<<Map>>>, <<<ResourceBundle>>>,
+    or <<<PropertySource>>>, if the caller modifies the contents of the bound source of property configuration,
+    the responses given by the proxy can be affected.
+
     * Internal repackaging/refactoring.
 
 Changes in version 2.0
