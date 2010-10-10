@@ -57,11 +57,13 @@ public class ClosingAnInputStreamQuietlyTest {
         assertTrue(fake.closed);
     }
 
-    static class FakeInputStream extends ByteArrayInputStream {
+    private static class FakeInputStream extends ByteArrayInputStream {
+        private static final byte[] BUFFER = new byte[0];
+
         boolean closed;
 
         FakeInputStream() {
-            super(new byte[0]);
+            super(BUFFER);
         }
 
         @Override
@@ -71,7 +73,7 @@ public class ClosingAnInputStreamQuietlyTest {
         }
     }
 
-    static class PukeOnCloseInputStream extends FakeInputStream {
+    private static class PukeOnCloseInputStream extends FakeInputStream {
         @Override
         public void close() throws IOException {
             super.close();

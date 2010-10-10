@@ -37,13 +37,11 @@ class ResourceBundles {
         // nothing to do here
     }
 
-    static ResourceBundle bundleWith(final String key, final Object value) {
+    static ResourceBundle bundleWith(String key, Object value) {
         return bundleWith(new Object[][] { { key, value } });
     }
 
-    static ResourceBundle bundleWith(final String firstKey, final Object firstValue, final String secondKey,
-        final Object secondValue) {
-
+    static ResourceBundle bundleWith(String firstKey, Object firstValue, String secondKey, Object secondValue) {
         return bundleWith(new Object[][] { { firstKey, firstValue }, { secondKey, secondValue } });
     }
 

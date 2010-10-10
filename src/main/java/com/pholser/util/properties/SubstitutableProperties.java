@@ -25,7 +25,6 @@
 
 package com.pholser.util.properties;
 
-import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Properties;
 

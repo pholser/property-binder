@@ -184,8 +184,9 @@ public class BindingSystemPropertiesToTypedInterfaceTest {
     }
 
     private static List<File> toFiles(String path) {
-        List<File> files = new ArrayList<File>();
-        for (String each : path.split(System.getProperty("path.separator")))
+        String[] pieces = path.split(System.getProperty("path.separator"));
+        List<File> files = new ArrayList<File>(pieces.length);
+        for (String each : pieces)
             files.add(new File(each));
         return files;
     }

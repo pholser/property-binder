@@ -32,7 +32,7 @@ import com.pholser.util.properties.PropertySource;
 
 import static com.pholser.util.properties.internal.Objects.*;
 
-public class Substitutions {
+public final class Substitutions {
     private static final Pattern REFERENCE = Pattern.compile("\\[(.*?)\\]");
 
     static {
