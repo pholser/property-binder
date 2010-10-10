@@ -45,6 +45,8 @@ import static java.lang.annotation.RetentionPolicy.*;
 public @interface BoundProperty {
     /**
      * The property source key to associate with the marked method.
+     *
+     * @return a property key
      */
     String value();
 }

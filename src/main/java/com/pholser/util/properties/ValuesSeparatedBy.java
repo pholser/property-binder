@@ -51,6 +51,8 @@ public @interface ValuesSeparatedBy {
     /**
      * A {@linkplain java.util.regex.Pattern regular expression} specifying a separator to be used on values of
      * a given property.
+     *
+     * @return a separator pattern
      */
     String pattern() default ",";
 
@@ -58,6 +60,8 @@ public @interface ValuesSeparatedBy {
      * An expression evaluating to a {@linkplain java.util.regex.Pattern regular expression} specifying a
      * separator to be used on values of a given property. This expression can be given in terms of property
      * references.
+     *
+     * @return a separator pattern expression
      */
     String valueOf() default "";
 }

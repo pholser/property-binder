@@ -26,6 +26,7 @@
 package com.pholser.util.properties.internal.validation;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,7 +47,6 @@ import com.pholser.util.properties.internal.separators.ValueSeparator;
 import com.pholser.util.properties.internal.separators.ValueSeparatorFactory;
 
 import static com.pholser.util.properties.internal.Schemata.*;
-import static com.pholser.util.properties.internal.Types.*;
 
 public class SchemaValidator {
     private final ValueConverterFactory converterFactory = new ValueConverterFactory();
@@ -127,5 +127,9 @@ public class SchemaValidator {
             throw new NoDefaultValueSpecificationException(method);
 
         return defaultValueFactory.createDefaultValue(spec, converter, method);
+    }
+
+    public static boolean isAggregateType(Class<?> clazz) {
+        return clazz.isArray() || Collection.class.isAssignableFrom(clazz);
     }
 }

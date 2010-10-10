@@ -232,7 +232,7 @@ public class PropertyBinder<T> {
         return forType(SystemProperties.class).bind(System.getProperties());
     }
 
-    private static SubstitutableProperties loadProperties(InputStream input) throws IOException {
+    private static PropertySource loadProperties(InputStream input) throws IOException {
         SubstitutableProperties properties = new SubstitutableProperties();
         properties.load(input);
         return properties;

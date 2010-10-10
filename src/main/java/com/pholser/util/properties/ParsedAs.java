@@ -43,7 +43,9 @@ import static java.lang.annotation.RetentionPolicy.*;
 @Retention(RUNTIME)
 public @interface ParsedAs {
     /**
-     * Date patterns.
+     * Date patterns with which to parse a property value.
+     *
+     * @return date patterns
      */
     String[] value();
 }

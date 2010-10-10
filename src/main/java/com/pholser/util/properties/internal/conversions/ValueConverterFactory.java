@@ -27,9 +27,12 @@ package com.pholser.util.properties.internal.conversions;
 
 import java.lang.reflect.Method;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.lang.reflect.Modifier.*;
+import static java.util.Collections.*;
 
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ParsedAs;
@@ -37,9 +40,24 @@ import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeEx
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 
-import static com.pholser.util.properties.internal.conversions.PrimitiveClasses.*;
-
 public class ValueConverterFactory {
+    static final Map<Class<?>, Class<?>> WRAPPERS;
+    static final int SMALL_PRIME = 13;
+
+    static {
+        Map<Class<?>, Class<?>> wrappers = new HashMap<Class<?>, Class<?>>(SMALL_PRIME);
+        wrappers.put(Boolean.TYPE, Boolean.class);
+        wrappers.put(Byte.TYPE, Byte.class);
+        wrappers.put(Character.TYPE, Character.class);
+        wrappers.put(Double.TYPE, Double.class);
+        wrappers.put(Float.TYPE, Float.class);
+        wrappers.put(Integer.TYPE, Integer.class);
+        wrappers.put(Long.TYPE, Long.class);
+        wrappers.put(Short.TYPE, Short.class);
+        wrappers.put(Void.TYPE, Void.class);
+        WRAPPERS = unmodifiableMap(wrappers);
+    }
+
     public ValueConverter createConverter(Method propertyMethod, ValueSeparator separator) {
         Class<?> valueType = targetTypeFor(propertyMethod);
         ParsedAs patterns = propertyMethod.getAnnotation(ParsedAs.class);
@@ -90,7 +108,7 @@ public class ValueConverterFactory {
 
         try {
             Method valueOf = valueType.getDeclaredMethod("valueOf", String.class);
-            return meetsConverterRequirements(valueOf, valueType)
+            return isPotentialConverter(valueOf, valueType)
                 ? new MethodInvokingValueConverter(valueOf, valueType)
                 : null;
         } catch (NoSuchMethodException ignored) {
@@ -106,7 +124,7 @@ public class ValueConverterFactory {
         }
     }
 
-    private static boolean meetsConverterRequirements(Method method, Class<?> expectedReturnType) {
+    private static boolean isPotentialConverter(Method method, Class<?> expectedReturnType) {
         int modifiers = method.getModifiers();
         return isPublic(modifiers) && isStatic(modifiers) && expectedReturnType.equals(method.getReturnType());
     }
@@ -114,5 +132,9 @@ public class ValueConverterFactory {
     private static Class<?> targetTypeFor(Method method) {
         Class<?> returnType = method.getReturnType();
         return returnType.isPrimitive() ? wrapperIfPrimitive(returnType) : returnType;
+    }
+
+    static Class<?> wrapperIfPrimitive(Class<?> clazz) {
+        return WRAPPERS.containsKey(clazz) ? WRAPPERS.get(clazz) : clazz;
     }
 }

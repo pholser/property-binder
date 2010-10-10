@@ -55,7 +55,7 @@ public class Substitutions {
         return substituted;
     }
 
-    private static String substituteReferences(PropertySource properties, String value) {
+    private static String substituteReferences(PropertySource properties, CharSequence value) {
         Matcher matcher = REFERENCE.matcher(value);
         StringBuffer buffer = new StringBuffer(value.length() * 2);
         while (matcher.find()) {

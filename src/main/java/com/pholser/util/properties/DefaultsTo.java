@@ -48,12 +48,16 @@ import static java.lang.annotation.RetentionPolicy.*;
 public @interface DefaultsTo {
     /**
      * String representation of the default value for the property source key associated with the marked method.
+     *
+     * @return a default value
      */
     String value() default "";
 
     /**
      * Expression to give the string representation of a default value for the properties file key associated
      * with the marked method. This expression can be given in terms of property references.
+     *
+     * @return a default value expression
      */
     String valueOf() default "";
 }

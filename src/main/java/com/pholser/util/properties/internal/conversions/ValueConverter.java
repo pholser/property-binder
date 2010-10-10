@@ -28,7 +28,7 @@ package com.pholser.util.properties.internal.conversions;
 import com.pholser.util.properties.PropertySource;
 
 public interface ValueConverter {
-    Object convert(Object raw, Object... args);
+    Object convertRaw(Object raw, Object... args);
 
     Object convert(String raw, Object... args);
 

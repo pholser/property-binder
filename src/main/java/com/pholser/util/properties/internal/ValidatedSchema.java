@@ -70,7 +70,7 @@ public class ValidatedSchema<T> {
 
         Object value = properties.propertyFor(key);
         if (value != null)
-            return converter.convert(value, args);
+            return converter.convertRaw(value, args);
         if (defaults.containsKey(key))
             return defaults.get(key).evaluate();
         return converter.nilValue();
