@@ -30,58 +30,53 @@ import java.util.Calendar;
 
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import com.pholser.util.properties.testonly.ForTriggeringIllegalAccess;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
+import static com.pholser.util.properties.ExceptionMatchers.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import static org.junit.rules.ExpectedException.*;
 
 public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
+    @Rule
+    public final ExpectedException thrown = none();
+
     @Test
     public void transformingInvocationTargetExceptions() throws Exception {
+        thrown.expect(ValueConversionException.class);
+        thrown.expect(causeOfType(UnsupportedOperationException.class));
         Method method = MethodRaisesException.class.getDeclaredMethod("raisesException", String.class);
 
-        try {
-            new MethodInvokingValueConverter(method, Void.class).convert("");
-            fail();
-        } catch (ValueConversionException expected) {
-            assertThat(expected.getCause(), is(UnsupportedOperationException.class));
-        }
+        new MethodInvokingValueConverter(method, Void.class).convert("");
     }
 
     @Test
     public void transformingIllegalArgumentExceptions() throws Exception {
+        thrown.expect(ValueConversionException.class);
+        thrown.expect(causeOfType(IllegalArgumentException.class));
         Method method = Calendar.class.getDeclaredMethod("getInstance");
 
-        try {
-            new MethodInvokingValueConverter(method, Calendar.class).convert("");
-            fail();
-        } catch (ValueConversionException expected) {
-            assertThat(expected.getCause(), is(IllegalArgumentException.class));
-        }
+        new MethodInvokingValueConverter(method, Calendar.class).convert("");
     }
 
     @Test
     public void transformingIllegalAccessExceptions() throws Exception {
+        thrown.expect(ValueConversionException.class);
+        thrown.expect(causeOfType(IllegalAccessException.class));
         Method method = ForTriggeringIllegalAccess.class.getDeclaredMethod("valueOf", String.class);
 
-        try {
-            new MethodInvokingValueConverter(method, String.class).convert("");
-            fail();
-        } catch (ValueConversionException expected) {
-            assertThat(expected.getCause(), is(IllegalAccessException.class));
-        }
+        new MethodInvokingValueConverter(method, String.class).convert("");
     }
 
     @Test
     public void transformingClassCastExceptions() throws Exception {
+        thrown.expect(ValueConversionException.class);
+        thrown.expect(causeOfType(ClassCastException.class));
         Method method = Integer.class.getDeclaredMethod("valueOf", String.class);
 
-        try {
-            new MethodInvokingValueConverter(method, Boolean.class).convert("2");
-            fail();
-        } catch (ValueConversionException expected) {
-            assertThat(expected.getCause(), is(ClassCastException.class));
-        }
+        new MethodInvokingValueConverter(method, Boolean.class).convert("2");
     }
 
     public static class MethodRaisesException {

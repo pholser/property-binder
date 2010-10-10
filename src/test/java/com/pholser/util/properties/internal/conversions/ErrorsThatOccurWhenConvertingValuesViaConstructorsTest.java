@@ -27,62 +27,55 @@ package com.pholser.util.properties.internal.conversions;
 
 import java.lang.reflect.Constructor;
 
+import com.pholser.util.properties.ExceptionMatchers;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import com.pholser.util.properties.testonly.ForTriggeringIllegalAccess;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.junit.rules.ExpectedException.*;
 
 public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
+    @Rule
+    public final ExpectedException thrown = none();
+
     @Test
     public void transformingInvocationTargetExceptions() throws Exception {
+        thrown.expect(ValueConversionException.class);
+        thrown.expect(ExceptionMatchers.causeOfType(UnsupportedOperationException.class));
         Constructor<ConstructorRaisesException> ctor =
             ConstructorRaisesException.class.getDeclaredConstructor(String.class);
 
-        try {
-            new ConstructorInvokingValueConverter(ctor).convert("");
-            fail();
-        } catch (ValueConversionException expected) {
-            assertThat(expected.getCause(), is(UnsupportedOperationException.class));
-        }
+        new ConstructorInvokingValueConverter(ctor).convert("");
     }
 
     @Test
     public void transformingIllegalArgumentExceptions() throws Exception {
+        thrown.expect(ValueConversionException.class);
+        thrown.expect(ExceptionMatchers.causeOfType(IllegalArgumentException.class));
         Constructor<HasPlainOldConstructor> ctor = HasPlainOldConstructor.class.getDeclaredConstructor();
 
-        try {
-            new ConstructorInvokingValueConverter(ctor).convert("");
-            fail();
-        } catch (ValueConversionException expected) {
-            assertThat(expected.getCause(), is(IllegalArgumentException.class));
-        }
+        new ConstructorInvokingValueConverter(ctor).convert("");
     }
 
     @Test
     public void transformingIllegalAccessExceptions() throws Exception {
+        thrown.expect(ValueConversionException.class);
+        thrown.expect(ExceptionMatchers.causeOfType(IllegalAccessException.class));
         Constructor<ForTriggeringIllegalAccess> ctor =
             ForTriggeringIllegalAccess.class.getDeclaredConstructor(String.class);
 
-        try {
-            new ConstructorInvokingValueConverter(ctor).convert("");
-            fail();
-        } catch (ValueConversionException expected) {
-            assertThat(expected.getCause(), is(IllegalAccessException.class));
-        }
+        new ConstructorInvokingValueConverter(ctor).convert("");
     }
 
     @Test
     public void transformingInstantiationExceptions() throws Exception {
+        thrown.expect(ValueConversionException.class);
+        thrown.expect(ExceptionMatchers.causeOfType(InstantiationException.class));
         Constructor<CannotBeInstantiated> ctor = CannotBeInstantiated.class.getDeclaredConstructor(String.class);
 
-        try {
-            new ConstructorInvokingValueConverter(ctor).convert("");
-            fail();
-        } catch (ValueConversionException expected) {
-            assertThat(expected.getCause(), is(InstantiationException.class));
-        }
+        new ConstructorInvokingValueConverter(ctor).convert("");
     }
 
     static class ConstructorRaisesException {

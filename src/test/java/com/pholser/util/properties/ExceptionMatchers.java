@@ -25,24 +25,31 @@
 
 package com.pholser.util.properties;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.junit.internal.matchers.TypeSafeMatcher;
 
-class ArrayUtils {
+public class ExceptionMatchers {
     static {
-        new ArrayUtils();
+        new ExceptionMatchers();
     }
 
-    private ArrayUtils() {
+    private ExceptionMatchers() {
         // nothing to do here
     }
 
-    static List<Object> toList(Object array) {
-        int count = Array.getLength(array);
-        List<Object> items = new ArrayList<Object>(count);
-        for (int i = 0; i < count; ++i)
-            items.add(Array.get(array, i));
-        return items;
+    public static Matcher<?> causeOfType(final Class<? extends Throwable> type) {
+        return new TypeSafeMatcher<Throwable>() {
+            @Override
+            public boolean matchesSafely(Throwable item) {
+                return type.isInstance(item.getCause());
+            }
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("exception with cause whose type is ");
+                description.appendValue(type);
+            }
+        };
     }
 }
