@@ -35,8 +35,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static com.pholser.util.properties.ExceptionMatchers.*;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 import static org.junit.rules.ExpectedException.*;
 
 public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
