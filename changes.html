@@ -12,7 +12,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>Property Binder - a Java library for typed access to properties files - Property Binder</title>
+    <title>Property Binder - a Java library for typed access to properties files - Change Log</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -71,8 +71,8 @@
             <ul>
               
     <li class="none">
-              <strong>Overview</strong>
-        </li>
+                    <a href="index.html">Overview</a>
+          </li>
               
     <li class="none">
                     <a href="download.html">Download</a>
@@ -83,8 +83,8 @@
           </li>
               
     <li class="none">
-                    <a href="changes.html">Change Log</a>
-          </li>
+              <strong>Change Log</strong>
+        </li>
               
     <li class="none">
                     <a href="apidocs/index.html">Javadoc</a>
@@ -146,9 +146,30 @@
     </div>
     <div id="bodyColumn">
       <div id="contentBox">
-        <p>Property Binder is a Java library that provides typed access to entries in properties files. It offers such access by allowing a programmer to provide it a Java interface whose methods represent the keys of the properties file. The methods can be annotated to indicate what property the method represents, what default value(s) it should assume if the property is not present, and what pattern separates the individual values of multi-valued properties.</p>
-<p>Property Binder builds on work described in <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/" class="externalLink"> this blog post</a>. That post, along with a similar technique used on the author's work project for eliminating repetitive boilerplate in <a href="http://springframework.org" class="externalLink"> Spring</a> <a href="http://java.sun.com/javase/6/docs/technotes/guides/jdbc/" class="externalLink"> JDBC</a> <a href="http://static.springsource.org/spring/docs/2.5.6/api/org/springframework/jdbc/object/StoredProcedure.html" class="externalLink"> stored procedures</a>, demonstrate a means of declarative programming in Java that seemed unique and powerful and enough to deserve its own name: PICA (Proxied Interfaces Configured with Annotations). The PICA technique and the beginnings of Property Binder are described in <a href="http://www.devx.com/Java/Article/42492" class="externalLink"> this article</a>.</p>
-<p>I'd love to hear your constructive <a href="mailto:pholser@alumni.rice.edu" class="externalLink"> feedback</a>, especially suggestions for improvements to the library or the site! If your project is using Property Binder, do let me know.</p>
+        <div class="section"><h2>Changes in version 3.0</h2>
+<ul><li>Admitting any kind of string-to-object source of property configuration, including <tt>Map</tt>, <tt>ResourceBundle</tt>, and any implementer of new interface <tt>PropertySource</tt>.</li>
+<li>Removed method <tt>SubstitutableProperties.substitute()</tt>.</li>
+<li>Clarified in the Javadoc that after binding to a <tt>Properties</tt>, <tt>Map</tt>, <tt>ResourceBundle</tt>, or <tt>PropertySource</tt>, if the caller modifies the contents of the bound source of property configuration, the responses given by the proxy can be affected.</li>
+<li>Internal repackaging/refactoring.</li>
+</ul>
+</div>
+<div class="section"><h2>Changes in version 2.0</h2>
+<ul><li>Adding <tt>@ParsedAs</tt> annotation for <tt>Date</tt>-returning PICA methods.</li>
+<li>PICA methods which accept one or more arguments expect that their property values are string format specifiers as in <tt>String.format()</tt>. Arguments are substituted into the format specifier in order prior to the result's conversion to the PICA method's return type.</li>
+<li>Publishing the constructor of <tt>PropertyBinder</tt> that the static factory method calls, so as to afford those who would use Property Binder a seam for testing purposes.</li>
+<li>Adding a zero-arg ctor to <tt>SubstitutableProperties</tt>.</li>
+<li>Subtle change in <tt>SubstitutableProperties(Properties)</tt> -- the properties handed to the ctor become the &quot;defaults&quot; rather than hard-and-fast values.</li>
+<li>Publishing method <tt>PropertyBinder.bind(Properties)</tt>.</li>
+<li>Adding method <tt>PropertyBinder.bind(Map&lt;String, String&gt;)</tt>.</li>
+<li><tt>SubstitutableProperties.substitute()</tt> now an instance method. The internals of Property Binder deal in <tt>SubstitutableProperties</tt> throughout now.</li>
+<li>Removing dependency on commons-io. Why bring in the whole library just for <tt>IOUtils.closeQuietly()</tt>?</li>
+<li>Internal repackaging/refactoring.</li>
+</ul>
+</div>
+<div class="section"><h2>Version 1.0</h2>
+<ul><li>First major release.</li>
+</ul>
+</div>
 
       </div>
     </div>

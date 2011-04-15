@@ -12,7 +12,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>Property Binder - a Java library for typed access to properties files - Property Binder</title>
+    <title>Property Binder - a Java library for typed access to properties files - Download</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -71,12 +71,12 @@
             <ul>
               
     <li class="none">
-              <strong>Overview</strong>
-        </li>
+                    <a href="index.html">Overview</a>
+          </li>
               
     <li class="none">
-                    <a href="download.html">Download</a>
-          </li>
+              <strong>Download</strong>
+        </li>
               
     <li class="none">
                     <a href="examples.html">Examples</a>
@@ -146,9 +146,20 @@
     </div>
     <div id="bodyColumn">
       <div id="contentBox">
-        <p>Property Binder is a Java library that provides typed access to entries in properties files. It offers such access by allowing a programmer to provide it a Java interface whose methods represent the keys of the properties file. The methods can be annotated to indicate what property the method represents, what default value(s) it should assume if the property is not present, and what pattern separates the individual values of multi-valued properties.</p>
-<p>Property Binder builds on work described in <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/" class="externalLink"> this blog post</a>. That post, along with a similar technique used on the author's work project for eliminating repetitive boilerplate in <a href="http://springframework.org" class="externalLink"> Spring</a> <a href="http://java.sun.com/javase/6/docs/technotes/guides/jdbc/" class="externalLink"> JDBC</a> <a href="http://static.springsource.org/spring/docs/2.5.6/api/org/springframework/jdbc/object/StoredProcedure.html" class="externalLink"> stored procedures</a>, demonstrate a means of declarative programming in Java that seemed unique and powerful and enough to deserve its own name: PICA (Proxied Interfaces Configured with Annotations). The PICA technique and the beginnings of Property Binder are described in <a href="http://www.devx.com/Java/Article/42492" class="externalLink"> this article</a>.</p>
-<p>I'd love to hear your constructive <a href="mailto:pholser@alumni.rice.edu" class="externalLink"> feedback</a>, especially suggestions for improvements to the library or the site! If your project is using Property Binder, do let me know.</p>
+        <p>Releases of Property Binder are synced to the central Maven repository. Declare a dependency element in your POM like so:</p>
+<div class="source"><pre>...
+&lt;dependencies&gt;
+  ...
+  &lt;dependency&gt;
+    &lt;groupId&gt;com.pholser&lt;/groupId&gt;
+    &lt;artifactId&gt;property-binder&lt;/artifactId&gt;
+    &lt;version&gt;3.1-SNAPSHOT&lt;/version&gt;
+  &lt;/dependency&gt;
+  ...
+&lt;/dependencies&gt;
+...</pre>
+</div>
+<p>If you're not using Maven, you can still download the newer releases from the Maven repository manually, <a href="http://repo1.maven.org/maven2/com/pholser/property-binder" class="externalLink"> here</a>.</p>
 
       </div>
     </div>

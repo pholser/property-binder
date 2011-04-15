@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Property Binder - a Java library for typed access to properties files - Examples of Usage</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <div id="bannerLeft">
+    
+            property-binder
+    
+            </div>
+                    <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+    
+  
+    
+            <div class="xleft">
+        <span id="projectVersion">Version: 3.1-SNAPSHOT</span>
+              </div>
+            <div class="xright">      
+  
+
+  
+    
+    
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+    
+  
+    
+                   <h5>Property Binder</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Overview</a>
+          </li>
+              
+    <li class="none">
+                    <a href="download.html">Download</a>
+          </li>
+              
+    <li class="none">
+              <strong>Examples</strong>
+        </li>
+              
+    <li class="none">
+                    <a href="changes.html">Change Log</a>
+          </li>
+              
+    <li class="none">
+                    <a href="apidocs/index.html">Javadoc</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+                    
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+                    
+                  
+                  
+                  
+                  
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                                 
+                        
+                        
+            <a href="http://maven.apache.org/" title="Maven" class="poweredBy">
+                            <img  class="poweredBy"  
+                    alt="Maven" 
+                    src="http://maven.apache.org/images/logos/maven-feather.png" 
+                    width="90"
+                    height="30"
+              />
+            </a>
+                               
+  
+
+  
+    
+    
+  
+    
+            <div id="lastPublished">
+        <span id="publishDate">Last Published: April 14, 2011</span>
+              </div>
+            </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>Example</h2>
+<p>Given this properties file:</p>
+<div class="source"><pre>com.pholser.util.properties.examples.ExampleSchema.argsProperty = %d seconds to %tr
+com.pholser.util.properties.examples.ExampleSchema.charArrayProperty = a,b,c
+com.pholser.util.properties.examples.ExampleSchema.charListProperty = d,e,f
+com.pholser.util.properties.examples.ExampleSchema.intProperty = 2
+com.pholser.util.properties.examples.ExampleSchema.listOfEnumsWithSeparator =    YES  , NO,YES,    MAYBE
+com.pholser.util.properties.examples.ExampleSchema.unadorned = no conversion
+com.pholser.util.properties.examples.ExampleSchema.wrappedLongProperty = -1
+date.property = 2010-02-14
+unconverted.property = also no conversion
+</pre>
+</div>
+<p>And this interface:</p>
+<div class="source"><pre>package com.pholser.util.properties.examples;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+
+import com.pholser.util.properties.BoundProperty;
+import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.ParsedAs;
+import com.pholser.util.properties.ValuesSeparatedBy;
+import com.pholser.util.properties.boundtypes.Ternary;
+
+public interface ExampleSchema {
+    String unadorned();
+
+    @BoundProperty(&quot;unconverted.property&quot;)
+    String annotated();
+
+    int intProperty();
+
+    Long wrappedLongProperty();
+
+    char[] charArrayProperty();
+
+    List&lt;Character&gt; charListProperty();
+
+    @ValuesSeparatedBy(pattern = &quot;\\s*,\\s*&quot;)
+    List&lt;Ternary&gt; listOfEnumsWithSeparator();
+
+    @DefaultsTo(value = &quot;10&quot;)
+    BigDecimal bigDecimalPropertyWithDefault();
+
+    @BoundProperty(&quot;date.property&quot;)
+    @ParsedAs({&quot;MM/dd/yyyy&quot;, &quot;yyyy-MM-dd&quot;})
+    Date dateProperty();
+
+    String argsProperty(int quantity, Date time);
+}
+</pre>
+</div>
+<p>Then the following tests should pass:</p>
+<div class="source"><pre>package com.pholser.util.properties.examples;
+
+import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+
+import static java.math.BigDecimal.*;
+import static java.util.Arrays.*;
+
+import com.pholser.util.properties.PropertyBinder;
+import org.junit.Before;
+import org.junit.Test;
+
+import static com.pholser.util.properties.boundtypes.Ternary.*;
+import static org.junit.Assert.*;
+
+public class ExampleTest {
+    private ExampleSchema bound;
+
+    @Before
+    public void initializeFixture() throws Exception {
+        PropertyBinder&lt;ExampleSchema&gt; binder = PropertyBinder.forType(ExampleSchema.class);
+        bound = binder.bind(new File(&quot;src/test/resources/example.properties&quot;));
+    }
+
+    @Test
+    public void bindingToPropertyWithMethodName() {
+        assertEquals(&quot;no conversion&quot;, bound.unadorned());
+    }
+
+    @Test
+    public void bindingToPropertyWithAnnotation() {
+        assertEquals(&quot;also no conversion&quot;, bound.annotated());
+    }
+
+    @Test
+    public void convertingPrimitivePropertyValues() {
+        assertEquals(2, bound.intProperty());
+    }
+
+    @Test
+    public void convertingWrappedPrimitivePropertyValues() {
+        assertEquals(Long.valueOf(-1L), bound.wrappedLongProperty());
+    }
+
+    @Test
+    public void convertingCommaSeparatedValuedPropertyToArray() {
+        assertTrue(Arrays.equals(new char[] { 'a', 'b', 'c' }, bound.charArrayProperty()));
+    }
+
+    @Test
+    public void convertingCommaSeparatedValuedPropertyToList() {
+        assertEquals(asList('d', 'e', 'f'), bound.charListProperty());
+    }
+
+    @Test
+    public void honoringDifferentSeparatorsForAggregateProperties() {
+        assertEquals(asList(YES, NO, YES, MAYBE), bound.listOfEnumsWithSeparator());
+    }
+
+    @Test
+    public void honoringDefaultValueIndicationWhenPropertyNotPresent() {
+        assertEquals(TEN, bound.bigDecimalPropertyWithDefault());
+    }
+
+    @Test
+    public void honoringDateFormatSpecificationsForDateProperties() throws Exception {
+        assertEquals(MMddyyyy(&quot;02/14/2010&quot;), bound.dateProperty());
+    }
+
+    @Test
+    public void formattingPropertiesCorrespondingToMethodsWithArguments() throws Exception {
+        assertEquals(&quot;10 seconds to 12:00:00 AM&quot;, bound.argsProperty(10, MMddyyyy(&quot;01/01/2011&quot;)));
+    }
+
+    private static Date MMddyyyy(String raw) throws ParseException {
+        return new SimpleDateFormat(&quot;MM/dd/yyyy&quot;).parse(raw);
+    }
+}
+</pre>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2011
+    
+          
+  
+
+  
+    
+    
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>
