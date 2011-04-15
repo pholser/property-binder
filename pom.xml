@@ -225,8 +225,8 @@
       <url>http://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
     <site>
-      <id>pholser.com</id>
-      <url>scp://login.geekisp.com/home/pholser/www.pholser.com/htdocs/software/property-binder/</url>
+      <id>github-project-site</id>
+      <url>gitsite:git@github.com/pholser/property-binder.git</url>
     </site>
   </distributionManagement>
 
