@@ -189,6 +189,11 @@ public class BindingScalarPropertiesToTypedInterfacesTest extends TypedStringBin
     }
 
     @Test
+    public void supplyingDefaultForPrimitiveIntegerValuedPropertyFromValueOfAnotherProperty() {
+        assertEquals(23, bound.primitiveIntegerPropertyWithReferentialDefault());
+    }
+
+    @Test
     public void bindingPrimitiveLongValuedPropertyToPrimitiveLongReturningMethod() {
         assertEquals(-2L, bound.primitiveLongProperty());
     }
