@@ -31,7 +31,7 @@ import java.net.URL;
 import java.util.List;
 
 /**
- * PICA interface for the standard {@link System#getProperties() system properties}.
+ * Schema interface for the standard {@link System#getProperties() system properties}.
  *
  * @author <a href="http://www.pholser.com">Paul Holser</a>
  */

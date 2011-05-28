@@ -47,16 +47,16 @@ import static com.pholser.util.properties.internal.IO.*;
  *
  * <p>Inspired by <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/">this blog entry</a>.</p>
  *
- * <p>The {@link Class} object given to a binder at {@linkplain PropertyBinder#PropertyBinder(Class) construction
- * time} should be an interface with no super-interfaces. It is referred to as a "schema". A schema's methods
+ * <p>The {@link Class} given to a binder at {@linkplain PropertyBinder#PropertyBinder(Class) construction time}
+ * should be an interface with no super-interfaces. It is referred to as a <dfn>schema</dfn>. A schema's methods
  * prescribe the keys of a source of property configuration and the intended types of their associated values.
  * Binding a source of property configuration to the schema gives the caller a proxy that implements the schema's
- * interface. Invoking a proxy method attempts to retrieve the value associated with the key prescribed by the
- * invoked method, and to convert the value to the type prescribed by the method's return value.</p>
+ * interface. Invoking a proxy method attempts to retrieve the property value associated with the key prescribed
+ * by the invoked method, and to convert the value to the type prescribed by the method's return value.</p>
  *
  * <p>Every schema method maps to a property key. A method can be marked with {@link BoundProperty} to indicate the
- * property key to be used when the method is invoked; if it is not so marked, the key used is:
- * fully qualified name of the schema interface + '.' + the method's name.</p>
+ * property key to be used when the method is invoked; if it is not so marked, the key used is: fully qualified name
+ * of the schema interface + '.' + the method's name.</p>
  *
  * <p>Prior to version 3, binders accepted only {@link Properties} and {@link java.util.Map Map}s of string keys
  * to string values. Beginning with version 3, binders admit sources of property configuration that map string keys
@@ -108,7 +108,7 @@ public class PropertyBinder<T> {
     /**
      * Creates a new property binder from the given schema.
      *
-     * @param schema the PICA type used to create and configure accessor proxies
+     * @param schema the type used to create and configure accessor proxies
      * @throws NullPointerException if {@code schema} is {@code null}
      * @throws IllegalArgumentException if {@code schema}'s configuration is invalid in any way
      */
@@ -121,8 +121,8 @@ public class PropertyBinder<T> {
      * the type more than once at {@linkplain PropertyBinder#PropertyBinder(Class) construction time}, you can call
      * this method instead (at the expense of not offering a seam for testing).
      *
-     * @param <U> the type of property accessor objects the binder is to create
-     * @param schema the PICA type used to create and configure accessor proxies
+     * @param <U> the type of accessor proxies the binder is to create
+     * @param schema the type used to create and configure accessor proxies
      * @return a new property binder that binds proxies to sources of property configuration
      * @throws NullPointerException if {@code schema} is {@code null}
      * @throws IllegalArgumentException if {@code schema}'s configuration is invalid in any way
@@ -194,8 +194,8 @@ public class PropertyBinder<T> {
     /**
      * Makes a new proxy bound to the properties in the given resource bundle.
      *
-     * If, after binding, the caller manages to alter the contents of the resource bundle somehow, the properties
-     * that the proxy refers to are affected.
+     * If, after binding, the caller alters the contents of the resource bundle, the properties that the proxy refers
+     * to are affected.
      *
      * @param bundle the bundle to be bound
      * @return a proxy bound to the bundle
@@ -208,8 +208,8 @@ public class PropertyBinder<T> {
     /**
      * Makes a new proxy bound to the properties represented by the given property source.
      *
-     * If, after binding, the caller manages to affect somehow the responses the property source gives, the properties
-     * that the schema refers to are affected.
+     * If, after binding, the caller affects the responses the property source gives, the properties that the schema
+     * refers to are affected.
      *
      * @param source the property source to be bound
      * @return a proxy bound to the property source
@@ -224,7 +224,7 @@ public class PropertyBinder<T> {
     }
 
     /**
-     * Makes a new proxy bound to {@linkplain System#getProperties() system properties}.
+     * Makes a new proxy bound to a snapshot of the current {@linkplain System#getProperties() system properties}.
      *
      * @return a proxy bound to system properties
      */

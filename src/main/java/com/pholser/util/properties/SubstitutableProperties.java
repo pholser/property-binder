@@ -50,7 +50,7 @@ public class SubstitutableProperties extends Properties implements PropertySourc
     }
 
     /**
-     * Creates a substitutable properties set with the keys and values of another properties set.
+     * Creates a substitutable properties set with defaults set to the keys and values of another properties set.
      *
      * @param defaults the default values for the new property set
      */

@@ -25,6 +25,7 @@
 
 package com.pholser.util.properties;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
@@ -43,6 +44,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * @author <a href="http://www.pholser.com">Paul Holser</a>
  * @see BoundProperty
  */
+@Documented
 @Target(METHOD)
 @Retention(RUNTIME)
 public @interface DefaultsTo {
