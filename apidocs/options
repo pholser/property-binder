@@ -1,7 +1,7 @@
 -classpath
 '/Users/pholser/java/property-binder/target/classes'
 -encoding
-'MacRoman'
+'UTF-8'
 -public
 -source
 '1.6'
@@ -9,7 +9,7 @@
 '/Users/pholser/java/property-binder/src/main/java'
 -author
 -bottom
-'<i>&copy; Copyright 2009-2010 Paul R. Holser, Jr. All rights reserved. Licensed under The MIT License. pholser@alumni.rice.edu</i>'
+'<i>&copy; Copyright 2009-2011 Paul R. Holser, Jr. All rights reserved. Licensed under The MIT License. pholser@alumni.rice.edu</i>'
 -charset
 'UTF-8'
 -d
