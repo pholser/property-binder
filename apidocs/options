@@ -1,26 +1,26 @@
 -classpath
-'/Users/pholser/java/property-binder/target/checkout/target/classes'
+'/Users/pholser/java/property-binder/target/classes'
 -encoding
 'UTF-8'
 -public
 -source
 '1.6'
 -sourcepath
-'/Users/pholser/java/property-binder/target/checkout/src/main/java'
+'/Users/pholser/java/property-binder/src/main/java'
 -author
 -bottom
 '<i>&copy; Copyright 2009-2011 Paul R. Holser, Jr. All rights reserved. Licensed under The MIT License. pholser@alumni.rice.edu</i>'
 -charset
 'UTF-8'
 -d
-'/Users/pholser/java/property-binder/target/checkout/target/site/apidocs'
+'/Users/pholser/java/property-binder/target/site/apidocs'
 -docencoding
 'UTF-8'
 -doctitle
-'property-binder 3.1 API'
+'property-binder 3.2-SNAPSHOT API'
 -link
 'http://download.oracle.com/javase/6/docs/api'
 -use
 -version
 -windowtitle
-'property-binder 3.1 API'
+'property-binder 3.2-SNAPSHOT API'

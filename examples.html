@@ -42,7 +42,7 @@
   
     
             <div class="xleft">
-        <span id="projectVersion">Version: 3.1</span>
+        <span id="projectVersion">Version: 3.2-SNAPSHOT</span>
               </div>
             <div class="xright">      
   
@@ -140,7 +140,7 @@
   
     
             <div id="lastPublished">
-        <span id="publishDate">Last Published: May 30, 2011</span>
+        <span id="publishDate">Last Published: July 02, 2011</span>
               </div>
             </div>
     </div>
@@ -280,6 +280,97 @@ public class ExampleTest {
 
     private static Date MMddyyyy(String raw) throws ParseException {
         return new SimpleDateFormat(&quot;MM/dd/yyyy&quot;).parse(raw);
+    }
+}
+</pre>
+</div>
+</div>
+<div class="section"><h2>So?</h2>
+<p>By presenting bits of configuration to your application as instances of a Java interface, you decouple the things that use the configuration from the means by which they're read/stored. You thereby enable easier testing of those pieces of your application that use the configuration -- supply mocks or stubs of the interface that answer different values for the configuration properties.</p>
+<p>By letting Property Binder create instances of those interfaces for you, you relieve your application of the grunt work of converting configuration values to sensible Java types, supplying default values, and so forth.</p>
+</div>
+<div class="section"><h2>Other Sources of Configuration</h2>
+<p>Property Binder admits properties files, resource bundles, and string-keyed maps out of the box. You can bind other types of string-keyed configuration by providing an implementation of interface <tt>PropertySource</tt>.</p>
+<p>If you have an XML config file such as this:</p>
+<div class="source"><pre>&lt;config&gt;
+    &lt;timeout&gt;5000&lt;/timeout&gt;
+    &lt;output-file&gt;/home/joeblow/out.txt&lt;/output-file&gt;
+&lt;/config&gt;
+</pre>
+</div>
+<p>You might adapt it for Property Binder's use like so:</p>
+<div class="source"><pre>package com.pholser.util.properties.examples;
+
+import java.io.File;
+
+import com.pholser.util.properties.BoundProperty;
+
+public interface Config {
+    @BoundProperty(&quot;/config/timeout&quot;)
+    long timeout();
+
+    @BoundProperty(&quot;/config/output-file&quot;)
+    File outputFile();
+}
+</pre>
+</div>
+<div class="source"><pre>package com.pholser.util.properties.examples;
+
+import java.io.File;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+
+import com.pholser.util.properties.PropertyBinder;
+import com.pholser.util.properties.PropertySource;
+import org.junit.Before;
+import org.junit.Test;
+import org.w3c.dom.Document;
+
+import static org.junit.Assert.*;
+
+public class XmlConfigTest {
+    private Config config;
+
+    @Before
+    public final void initialize() throws Exception {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document document = builder.parse(getClass().getResourceAsStream(&quot;/config.xml&quot;));
+
+        PropertyBinder&lt;Config&gt; binder = PropertyBinder.forType(Config.class);
+        config = binder.bind(new XmlConfigSource(document));
+    }
+
+    @Test
+    public void retrievesTimeoutValue() {
+        assertEquals(5000L, config.timeout());
+    }
+
+    @Test
+    public void retrievesOutputFileValue() {
+        assertEquals(new File(&quot;/home/joeblow/out.txt&quot;), config.outputFile());
+    }
+}
+
+class XmlConfigSource implements PropertySource {
+    private final Document document;
+    private final XPath xpath;
+
+    XmlConfigSource(Document document) {
+        this.document = document;
+        xpath = XPathFactory.newInstance().newXPath();
+    }
+
+    @Override
+    public Object propertyFor(String key) {
+        try {
+            return xpath.compile(key).evaluate(document);
+        } catch (XPathExpressionException e) {
+            throw new IllegalStateException(e);
+        }
     }
 }
 </pre>
