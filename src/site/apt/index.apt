@@ -8,15 +8,26 @@
     assume if the property is not present, and what pattern separates the individual values of multi-valued
     properties.
 
+    The latest major version of Property Binder admits properties files, resource bundles, and string-keyed maps
+    out of the box. You can bind other types of string-keyed configuration by providing an implementation of
+    interface <<<PropertySource>>>.
+
     Property Binder builds on work described in {{{http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/}
     this blog post}}.  That post, along with a similar technique used on the author's work project for eliminating
-    repetitive boilerplate in {{{http://springframework.org} Spring}}
-    {{{http://java.sun.com/javase/6/docs/technotes/guides/jdbc/} JDBC}}
+    repetitive boilerplate in {{{http://www.springsource.org} Spring}}
+    {{{http://download.oracle.com/javase/6/docs/technotes/guides/jdbc/} JDBC}}
     {{{http://static.springsource.org/spring/docs/2.5.6/api/org/springframework/jdbc/object/StoredProcedure.html}
     stored procedures}}, demonstrate a means of declarative programming in Java that seemed unique and powerful and
     enough to deserve its own name: PICA (Proxied Interfaces Configured with Annotations).  The PICA technique and
     the beginnings of Property Binder are described in {{{http://www.devx.com/Java/Article/42492} this article}}.
 
-    I'd love to hear your constructive {{{mailto:pholser@alumni.rice.edu} feedback}},
-    especially suggestions for improvements to the library or the site!  If your project
-    is using Property Binder, do let me know.
+    Here are some libraries that perform the same duties as Property Binder:
+
+    * {{{https://github.com/brianm/config-magic} config-magic}}
+
+    * {{{http://code.google.com/p/dynamic-property-binder} dynamic-property-binder}}
+
+    * {{{https://github.com/thedarr/java-properties} java-properties}}
+
+    I'd love to hear your constructive {{{mailto:pholser@alumni.rice.edu} feedback}}, especially suggestions for
+    improvements to the library or the site!  If your project is using Property Binder, do let me know.

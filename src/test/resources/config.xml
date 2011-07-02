@@ -1,0 +1,4 @@
+<config>
+    <timeout>5000</timeout>
+    <output-file>/home/joeblow/out.txt</output-file>
+</config>

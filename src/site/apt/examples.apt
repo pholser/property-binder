@@ -21,3 +21,34 @@ Example
 +----------------------------------------------------------------------------------------
 @EXAMPLE_TEST@
 +----------------------------------------------------------------------------------------
+
+So?
+
+    By presenting bits of configuration to your application as instances of a Java interface, you decouple the
+    things that use the configuration from the means by which they're read/stored.  You thereby enable easier
+    testing of those pieces of your application that use the configuration -- supply mocks or stubs of the interface
+    that answer different values for the configuration properties.
+
+    By letting Property Binder create instances of those interfaces for you, you relieve your application of the
+    grunt work of converting configuration values to sensible Java types, supplying default values, and so forth.
+
+Other Sources of Configuration
+
+    Property Binder admits properties files, resource bundles, and string-keyed maps out of the box. You can bind
+    other types of string-keyed configuration by providing an implementation of interface <<<PropertySource>>>.
+
+    If you have an XML config file such as this:
+
++----------------------------------------------------------------------------------------
+@EXAMPLE_XML_FILE@
++----------------------------------------------------------------------------------------
+
+    You might adapt it for Property Binder's use like so:
+
++----------------------------------------------------------------------------------------
+@EXAMPLE_XML_PICA@
++----------------------------------------------------------------------------------------
+
++----------------------------------------------------------------------------------------
+@EXAMPLE_XML_TEST@
++----------------------------------------------------------------------------------------
