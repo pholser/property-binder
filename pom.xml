@@ -46,6 +46,12 @@
       <version>1.7.0</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>commons-configuration</groupId>
+      <artifactId>commons-configuration</artifactId>
+      <version>1.6</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>

@@ -31,6 +31,10 @@
       srcfile="${example.src.dir}/com/pholser/util/properties/examples/XmlConfigTest.java">
       <filterchain refid="htmlFilter"/>
     </loadfile>
+    <loadfile property="example.commons.config"
+      srcfile="${example.src.dir}/com/pholser/util/properties/examples/CommonsConfigPropertySource.java">
+      <filterchain refid="htmlFilter"/>
+    </loadfile>
     <replace dir="${website.staging.dir}" includes="**/*.html">
       <replacefilter token="@PROPERTY_BINDER_VERSION@" value="${project.version}"/>
       <replacefilter token="@EXAMPLE_PROPERTIES_FILE@" value="${example.properties.file}"/>
@@ -39,6 +43,7 @@
       <replacefilter token="@EXAMPLE_XML_FILE@" value="${example.xml.file}"/>
       <replacefilter token="@EXAMPLE_XML_PICA@" value="${example.xml.pica}"/>
       <replacefilter token="@EXAMPLE_XML_TEST@" value="${example.xml.test}"/>
+      <replacefilter token="@EXAMPLE_COMMONS_CONFIG@" value="${example.commons.config}"/>
     </replace>
   </target>
 </project>
