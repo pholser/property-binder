@@ -375,6 +375,26 @@ class XmlConfigSource implements PropertySource {
 }
 </pre>
 </div>
+<p>You could even funnel a <tt>Configuration</tt> from <a href="http://commons.apache.org/configuration/" class="externalLink"> Apache Commons Configuration</a> into Property Binder:</p>
+<div class="source"><pre>package com.pholser.util.properties.examples;
+
+import com.pholser.util.properties.PropertySource;
+import org.apache.commons.configuration.Configuration;
+
+class CommonsConfigPropertySource implements PropertySource {
+    private final Configuration config;
+
+    CommonsConfigPropertySource(Configuration config) {
+        this.config = config;
+    }
+
+    @Override
+    public Object propertyFor(String key) {
+        return config.getProperty(key);
+    }
+}
+</pre>
+</div>
 </div>
 
       </div>
