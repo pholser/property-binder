@@ -2,6 +2,19 @@
                                    Examples of Usage
                                    -----------------
 
+TL;DR
+
+    * Create an interface whose methods represent keys in a properties file, map, resource bundle, or other
+    source of configuration.
+
+    * Annotate the methods of the interface as needed to designate property keys, default values, etc.
+
+    * Create an instance of <<<PropertyBinder>>>, giving it the <<<Class>>> object of your interface.
+
+    * Stamp out instances of your interface that are bound to specific configuration sources using <<<bind()>>>.
+
+    []
+
 Example
 
     Given this properties file:
