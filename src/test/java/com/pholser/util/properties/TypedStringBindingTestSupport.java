@@ -28,8 +28,8 @@ package com.pholser.util.properties;
 import java.lang.reflect.Method;
 
 import org.junit.Before;
+import org.junit.internal.ExactComparisonCriteria;
 
-import static com.pholser.util.properties.ArrayUtils.*;
 import static org.junit.Assert.*;
 
 public abstract class TypedStringBindingTestSupport<T> extends StringBindingTestSupport {
@@ -50,7 +50,7 @@ public abstract class TypedStringBindingTestSupport<T> extends StringBindingTest
             Object boundActual = each.invoke(actual);
 
             if (each.getReturnType().isArray())
-                assertEquals(each.getName(), toList(expectedBound), toList(boundActual));
+                new ExactComparisonCriteria().arrayEquals(each.getName(), expectedBound, boundActual);
             else
                 assertEquals(each.getName(), expectedBound, boundActual);
         }

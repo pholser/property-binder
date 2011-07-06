@@ -35,7 +35,6 @@ import com.pholser.util.properties.boundtypes.ScalarPropertyWithArgsHaver;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import org.junit.Test;
 
-import static com.pholser.util.properties.ArrayUtils.*;
 import static org.junit.Assert.*;
 
 public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
@@ -63,8 +62,7 @@ public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
 
     @Test
     public void applyingArgumentsOfPropertyMethodsToEachOfAnArrayType() {
-        assertEquals(toList(new String[] {"foobar", "barfoo"}),
-            toList(bound.stringArrayPropertyWithArguments("foo", "bar")));
+        assertArrayEquals(new String[] { "foobar", "barfoo" }, bound.stringArrayPropertyWithArguments("foo", "bar"));
     }
 
     @Test
