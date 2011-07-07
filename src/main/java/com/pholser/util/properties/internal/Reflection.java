@@ -31,12 +31,8 @@ import java.lang.reflect.Method;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 public final class Reflection {
-    static {
-        new Reflection();
-    }
-
     private Reflection() {
-        // nothing to do here
+        throw new UnsupportedOperationException();
     }
 
     public static Object invokeQuietly(Class<?> clazz, String methodName, Object target, Object... args) {

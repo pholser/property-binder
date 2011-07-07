@@ -26,12 +26,8 @@
 package com.pholser.util.properties.internal;
 
 public final class Objects {
-    static {
-        new Objects();
-    }
-
     private Objects() {
-        // nothing to do here
+        throw new UnsupportedOperationException();
     }
 
     public static boolean areEqual(Object first, Object second) {

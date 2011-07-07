@@ -25,20 +25,10 @@
 
 package com.pholser.util.properties.internal;
 
-import java.io.IOException;
-import java.io.InputStream;
+import com.pholser.util.properties.UtilityClassesShouldNotBeInstantiated;
 
-public final class IO {
-    private IO() {
-        throw new UnsupportedOperationException();
-    }
-
-    public static void closeQuietly(InputStream input) {
-        try {
-            if (input != null)
-                input.close();
-        } catch (IOException ignored) {
-            // empty on purpose
-        }
+public class SchemataInstantiationTest extends UtilityClassesShouldNotBeInstantiated {
+    public SchemataInstantiationTest() {
+        super(Schemata.class);
     }
 }

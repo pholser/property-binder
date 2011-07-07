@@ -35,12 +35,8 @@ import com.pholser.util.properties.ValuesSeparatedBy;
 import static com.pholser.util.properties.internal.Reflection.*;
 
 public final class Schemata {
-    static {
-        new Schemata();
-    }
-
     private Schemata() {
-        // nothing to do here
+        throw new UnsupportedOperationException();
     }
 
     public static String propertyNameFor(Method method) {

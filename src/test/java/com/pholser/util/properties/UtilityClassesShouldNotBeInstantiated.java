@@ -23,22 +23,36 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
-public final class IO {
-    private IO() {
-        throw new UnsupportedOperationException();
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import static com.pholser.util.properties.ExceptionMatchers.*;
+import static org.junit.rules.ExpectedException.*;
+
+public abstract class UtilityClassesShouldNotBeInstantiated {
+    @Rule
+    public final ExpectedException thrown = none();
+
+    private final Class<?> utility;
+
+    protected UtilityClassesShouldNotBeInstantiated(Class<?> utility) {
+        this.utility = utility;
     }
 
-    public static void closeQuietly(InputStream input) {
-        try {
-            if (input != null)
-                input.close();
-        } catch (IOException ignored) {
-            // empty on purpose
-        }
+    @Test
+    public final void attemptInstantiation() throws Exception {
+        Constructor<?> constructor = utility.getDeclaredConstructor();
+        constructor.setAccessible(true);
+
+        thrown.expect(InvocationTargetException.class);
+        thrown.expect(targetOfType(UnsupportedOperationException.class));
+
+        constructor.newInstance();
     }
 }

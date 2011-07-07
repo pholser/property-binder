@@ -35,12 +35,8 @@ import static com.pholser.util.properties.internal.Objects.*;
 public final class Substitutions {
     private static final Pattern REFERENCE = Pattern.compile("\\[(.*?)\\]");
 
-    static {
-        new Substitutions();
-    }
-
     private Substitutions() {
-        // nothing to do here
+        throw new UnsupportedOperationException();
     }
 
     public static String substitute(PropertySource properties, String value) {

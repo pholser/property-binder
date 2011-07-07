@@ -29,16 +29,14 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.junit.internal.matchers.TypeSafeMatcher;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class ExceptionMatchers {
-    static {
-        new ExceptionMatchers();
-    }
-
     private ExceptionMatchers() {
-        // nothing to do here
+        throw new UnsupportedOperationException();
     }
 
-    public static Matcher<?> causeOfType(final Class<? extends Throwable> type) {
+    public static Matcher<Throwable> causeOfType(final Class<? extends Throwable> type) {
         return new TypeSafeMatcher<Throwable>() {
             @Override
             public boolean matchesSafely(Throwable item) {
@@ -48,6 +46,21 @@ public class ExceptionMatchers {
             @Override
             public void describeTo(Description description) {
                 description.appendText("exception with cause whose type is ");
+                description.appendValue(type);
+            }
+        };
+    }
+
+    public static Matcher<InvocationTargetException> targetOfType(final Class<? extends Throwable> type) {
+        return new TypeSafeMatcher<InvocationTargetException>() {
+            @Override
+            public boolean matchesSafely(InvocationTargetException item) {
+                return type.isInstance(item.getTargetException());
+            }
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("InvocationTargetException with target whose type is ");
                 description.appendValue(type);
             }
         };
