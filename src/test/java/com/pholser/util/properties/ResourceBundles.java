@@ -29,12 +29,8 @@ import java.util.ListResourceBundle;
 import java.util.ResourceBundle;
 
 class ResourceBundles {
-    static {
-        new ResourceBundles();
-    }
-
     private ResourceBundles() {
-        // nothing to do here
+        throw new UnsupportedOperationException();
     }
 
     static ResourceBundle bundleWith(String key, Object value) {
