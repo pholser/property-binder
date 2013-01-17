@@ -43,6 +43,7 @@ class ListValueConverter extends AggregateValueConverter {
 
     ListValueConverter(Type valueType, ValueSeparator separator, ParsedAs patterns, DefaultsTo defaults) {
         super(separator);
+
         scalarConverter = createScalarConverter(deduceElementType(valueType), patterns, defaults, separator);
     }
 
