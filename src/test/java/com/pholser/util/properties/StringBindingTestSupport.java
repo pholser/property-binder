@@ -28,8 +28,14 @@ package com.pholser.util.properties;
 import java.io.File;
 
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
+
+import static org.junit.rules.ExpectedException.*;
 
 public abstract class StringBindingTestSupport {
+    @Rule public final ExpectedException thrown = none();
+
     protected File propertiesFile;
 
     @Before public final void initializePropertiesFile() {

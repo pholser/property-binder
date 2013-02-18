@@ -64,163 +64,199 @@ import com.pholser.util.properties.internal.exceptions.NoDefaultValueSpecificati
 import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
+import org.junit.Before;
 import org.junit.Test;
 
 public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends StringBindingTestSupport {
+    private PropertyBinder<ScalarPropertyHaver> scalar;
+
+    @Before public void setUp() {
+        scalar = PropertyBinder.forType(ScalarPropertyHaver.class);
+    }
+
     @Test(expected = BoundTypeNotAnInterfaceException.class)
     public void nonInterfaceClass() {
         PropertyBinder.forType(Object.class);
     }
 
-    @Test(expected = InterfaceHasSuperinterfacesException.class)
-    public void annotationClass() {
+    @Test public void annotationClass() {
+        thrown.expect(InterfaceHasSuperinterfacesException.class);
+
         PropertyBinder.forType(SuppressWarnings.class);
     }
 
-    @Test(expected = NullPointerException.class)
-    public void nullFile() throws Exception {
-        PropertyBinder.forType(ScalarPropertyHaver.class).bind((File) null);
+    @Test public void nullFile() throws Exception {
+        thrown.expect(NullPointerException.class);
+
+        scalar.bind((File) null);
     }
 
-    @Test(expected = NullPointerException.class)
-    public void nullInputStream() throws Exception {
-        PropertyBinder.forType(ScalarPropertyHaver.class).bind((InputStream) null);
+    @Test public void nullInputStream() throws Exception {
+        thrown.expect(NullPointerException.class);
+
+        scalar.bind((InputStream) null);
     }
 
-    @Test(expected = NullPointerException.class)
-    public void nullMap() {
-        PropertyBinder.forType(ScalarPropertyHaver.class).bind((Map<String, ?>) null);
+    @Test public void nullMap() {
+        thrown.expect(NullPointerException.class);
+
+        scalar.bind((Map<String, ?>) null);
     }
 
-    @Test(expected = NullPointerException.class)
-    public void nullResourceBundle() {
-        PropertyBinder.forType(ScalarPropertyHaver.class).bind((ResourceBundle) null);
+    @Test public void nullResourceBundle() {
+        thrown.expect(NullPointerException.class);
+
+        scalar.bind((ResourceBundle) null);
     }
 
-    @Test(expected = NullPointerException.class)
-    public void nullPropertySource() {
-        PropertyBinder.forType(ScalarPropertyHaver.class).bind((PropertySource) null);
+    @Test public void nullPropertySource() {
+        thrown.expect(NullPointerException.class);
+
+        scalar.bind((PropertySource) null);
     }
 
-    @Test(expected = NullPointerException.class)
-    public void nullClass() {
+    @Test public void nullClass() {
+        thrown.expect(NullPointerException.class);
+
         PropertyBinder.forType(null);
     }
 
-    @Test(expected = MalformedDefaultValueException.class)
-    public void nonSingleCharacterValueForCharacterProperty() {
+    @Test public void nonSingleCharacterValueForCharacterProperty() {
+        thrown.expect(MalformedDefaultValueException.class);
+
         PropertyBinder.forType(CharacterPropertyHaverWithTooLongDefault.class);
     }
 
-    @Test(expected = UnsupportedValueTypeException.class)
-    public void upperBoundedListType() {
+    @Test public void upperBoundedListType() {
+        thrown.expect(UnsupportedValueTypeException.class);
+
         PropertyBinder.forType(UpperBoundedListPropertyHaver.class);
     }
 
-    @Test(expected = UnsupportedValueTypeException.class)
-    public void lowerBoundedListType() {
+    @Test public void lowerBoundedListType() {
+        thrown.expect(UnsupportedValueTypeException.class);
+
         PropertyBinder.forType(LowerBoundedListPropertyHaver.class);
     }
 
-    @Test(expected = UnsupportedValueTypeException.class)
-    public void listOfArrayType() {
+    @Test public void listOfArrayType() {
+        thrown.expect(UnsupportedValueTypeException.class);
+
         PropertyBinder.forType(ListOfArrayPropertyHaver.class);
     }
 
-    @Test(expected = UnsupportedValueTypeException.class)
-    public void arrayOfUnconvertibleTypeWithDefault() {
+    @Test public void arrayOfUnconvertibleTypeWithDefault() {
+        thrown.expect(UnsupportedValueTypeException.class);
+
         PropertyBinder.forType(ArrayOfUnconvertibleTypeWithDefaultPropertyHaver.class);
     }
 
-    @Test(expected = UnsupportedValueTypeException.class)
-    public void arrayOfUnconvertibleTypeWithSeparator() {
+    @Test public void arrayOfUnconvertibleTypeWithSeparator() {
+        thrown.expect(UnsupportedValueTypeException.class);
+
         PropertyBinder.forType(ArrayOfUnconvertibleTypeWithSeparatorPropertyHaver.class);
     }
 
-    @Test(expected = UnsupportedValueTypeException.class)
-    public void listOfUnconvertibleTypeWithDefault() {
+    @Test public void listOfUnconvertibleTypeWithDefault() {
+        thrown.expect(UnsupportedValueTypeException.class);
+
         PropertyBinder.forType(ListOfUnconvertibleTypeWithDefaultPropertyHaver.class);
     }
 
-    @Test(expected = UnsupportedValueTypeException.class)
-    public void listOfUnconvertibleTypeWithSeparator() {
+    @Test public void listOfUnconvertibleTypeWithSeparator() {
+        thrown.expect(UnsupportedValueTypeException.class);
+
         PropertyBinder.forType(ListOfUnconvertibleTypeWithSeparatorPropertyHaver.class);
     }
 
-    @Test(expected = UnsupportedValueTypeException.class)
-    public void listOfUnconvertibleTypeWithValueOfSeparator() {
+    @Test public void listOfUnconvertibleTypeWithValueOfSeparator() {
+        thrown.expect(UnsupportedValueTypeException.class);
+
         PropertyBinder.forType(ListOfUnconvertibleTypeWithValueOfSeparatorPropertyHaver.class);
     }
 
-    @Test(expected = UnsupportedValueTypeException.class)
-    public void typeWithNonPublicValueOf() {
+    @Test public void typeWithNonPublicValueOf() {
+        thrown.expect(UnsupportedValueTypeException.class);
+
         PropertyBinder.forType(TypeWithNonPublicValueOfPropertyHaver.class);
     }
 
-    @Test(expected = UnsupportedValueTypeException.class)
-    public void typeWithNonStaticValueOf() {
+    @Test public void typeWithNonStaticValueOf() {
+        thrown.expect(UnsupportedValueTypeException.class);
+
         PropertyBinder.forType(TypeWithNonStaticValueOfPropertyHaver.class);
     }
 
-    @Test(expected = UnsupportedValueTypeException.class)
-    public void typeWithValueOfWithBadReturnType() {
+    @Test public void typeWithValueOfWithBadReturnType() {
+        thrown.expect(UnsupportedValueTypeException.class);
+
         PropertyBinder.forType(TypeWithValueOfWithBadReturnTypePropertyHaver.class);
     }
 
-    @Test(expected = NullPointerException.class)
-    public void missingPrimitiveProperty() throws Exception {
+    @Test public void missingPrimitiveProperty() throws Exception {
         PropertyBinder<MissingPrimitivePropertyHaver> binder =
             PropertyBinder.forType(MissingPrimitivePropertyHaver.class);
         MissingPrimitivePropertyHaver bound = binder.bind(propertiesFile);
 
+        thrown.expect(NullPointerException.class);
+
         bound.missingCharacterProperty();
     }
 
-    @Test(expected = MalformedDefaultValueException.class)
-    public void badDefaultValue() {
+    @Test public void badDefaultValue() {
+        thrown.expect(MalformedDefaultValueException.class);
+
         PropertyBinder.forType(BadDefaultValuePropertyHaver.class);
     }
 
-    @Test(expected = MalformedSeparatorException.class)
-    public void badValueSeparator() {
+    @Test public void badValueSeparator() {
+        thrown.expect(MalformedSeparatorException.class);
+
         PropertyBinder.forType(BadValueSeparatorPropertyHaver.class);
     }
 
-    @Test(expected = AppliedSeparatorToNonAggregateTypeException.class)
-    public void applyingSeparatorToNonAggregateType() {
+    @Test public void applyingSeparatorToNonAggregateType() {
+        thrown.expect(AppliedSeparatorToNonAggregateTypeException.class);
+
         PropertyBinder.forType(SeparatorOnNonAggregateTypePropertyHaver.class);
     }
 
-    @Test(expected = MultipleSeparatorSpecificationException.class)
-    public void separatorWithBothPatternAndValueOf() {
+    @Test public void separatorWithBothPatternAndValueOf() {
+        thrown.expect(MultipleSeparatorSpecificationException.class);
+
         PropertyBinder.forType(SeparatedPropertyHaverWithBothPatternAndValueOf.class);
     }
 
-    @Test(expected = InterfaceHasSuperinterfacesException.class)
-    public void typeWithSuperinterfaces() {
+    @Test public void typeWithSuperinterfaces() {
+        thrown.expect(InterfaceHasSuperinterfacesException.class);
+
         PropertyBinder.forType(InterfaceWithSuperinterfaces.class);
     }
 
-    @Test(expected = MultipleDefaultValueSpecificationException.class)
-    public void defaultValueSpecWithBothValueAndValueOf() {
+    @Test public void defaultValueSpecWithBothValueAndValueOf() {
+        thrown.expect(MultipleDefaultValueSpecificationException.class);
+
         PropertyBinder.forType(DefaultValueWithBothValueAndValueOf.class);
     }
 
-    @Test(expected = NoDefaultValueSpecificationException.class)
-    public void defaultValueSpecWithNeitherValueNorValueOf() {
+    @Test public void defaultValueSpecWithNeitherValueNorValueOf() {
+        thrown.expect(NoDefaultValueSpecificationException.class);
+
         PropertyBinder.forType(DefaultValueWithNeitherValueNorValueOf.class);
     }
 
-    @Test(expected = ValueConversionException.class)
-    public void datePropertiesThatWouldNotPassNonLenientDateFormats() throws Exception {
+    @Test public void datePropertiesThatWouldNotPassNonLenientDateFormats() throws Exception {
         DatePropertyWithNonLenientValueHaver bound =
             PropertyBinder.forType(DatePropertyWithNonLenientValueHaver.class).bind(propertiesFile);
+
+        thrown.expect(ValueConversionException.class);
 
         bound.datePropertyWithNonLenientValue();
     }
 
-    @Test(expected = UnsupportedParsedAsTypeException.class)
-    public void parsedAsIfAppliedToTypeOtherThanDate() {
+    @Test public void parsedAsIfAppliedToTypeOtherThanDate() {
+        thrown.expect(UnsupportedParsedAsTypeException.class);
+
         PropertyBinder.forType(ParsedAsOnMethodOfImproperType.class);
     }
 }

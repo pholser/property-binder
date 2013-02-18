@@ -48,8 +48,9 @@ public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
         assertEquals("10 seconds to 12:00:00 AM", bound.stringPropertyWithTypedArguments(10, mmddyyyy("12/22/2003")));
     }
 
-    @Test(expected = ValueConversionException.class)
-    public void illTypedArgumentsToPropertyMethodsWithArgs() throws Exception {
+    @Test public void illTypedArgumentsToPropertyMethodsWithArgs() throws Exception {
+        thrown.expect(ValueConversionException.class);
+
         bound.stringPropertyWithIllTypedArguments(10, mmddyyyy("12/22/2003"));
     }
 

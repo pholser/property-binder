@@ -60,9 +60,10 @@ public class BindingPropertiesObjectsToTypedInterfacesTest extends TypedStringBi
         assertPropertiesEqual(fromFile, fromObject);
     }
 
-    @Test(expected = ValueConversionException.class)
-    public void alteringPropertiesObjectAfterBindingDoesNotAffectPropertiesBoundToPICA() {
+    @Test public void alteringPropertiesObjectAfterBindingDoesNotAffectPropertiesBoundToPICA() {
         properties.setProperty("big.decimal.property", "!@#!@#!@#!@#!@#");
+
+        thrown.expect(ValueConversionException.class);
 
         fromObject.bigDecimalProperty();
     }

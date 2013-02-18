@@ -28,33 +28,41 @@ package com.pholser.util.properties;
 import java.util.ResourceBundle;
 
 import com.pholser.util.properties.boundtypes.IntPropertyHaver;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static com.pholser.util.properties.ResourceBundles.*;
+import static org.junit.rules.ExpectedException.*;
 
 public class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTest {
-    @Test(expected = ClassCastException.class)
-    public void returnTypeAndUnderlyingPropertyTypeDisagree() {
+    @Rule public final ExpectedException thrown = none();
+
+    @Test public void returnTypeAndUnderlyingPropertyTypeDisagree() {
         ResourceBundle bundle = bundleWith("i", new Object());
         PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
         IntPropertyHaver bound = binder.bind(bundle);
 
+        thrown.expect(ClassCastException.class);
+
         bound.i();
     }
 
-    @Test(expected = ClassCastException.class)
-    public void primitiveWidening() {
+    @Test public void primitiveWidening() {
         ResourceBundle bundle = bundleWith("i", Byte.valueOf("2"));
         PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
         IntPropertyHaver bound = binder.bind(bundle);
 
+        thrown.expect(ClassCastException.class);
+
         bound.i();
     }
 
-    @Test(expected = ClassCastException.class)
-    public void resolvingASeparatorWithNonStringPropertyValue() {
+    @Test public void resolvingASeparatorWithNonStringPropertyValue() {
         ResourceBundle bundle = bundleWith("bar", "A,B,C", "separator", new Object());
         PropertyBinder<WithValueOfSeparator> binder = PropertyBinder.forType(WithValueOfSeparator.class);
+
+        thrown.expect(ClassCastException.class);
 
         binder.bind(bundle);
     }
@@ -65,10 +73,11 @@ public class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTe
         String[] bar();
     }
 
-    @Test(expected = ClassCastException.class)
-    public void resolvingADefaultValueWithNonStringPropertyValue() {
+    @Test public void resolvingADefaultValueWithNonStringPropertyValue() {
         ResourceBundle bundle = bundleWith("other", new Object());
         PropertyBinder<WithValueOfDefault> binder = PropertyBinder.forType(WithValueOfDefault.class);
+
+        thrown.expect(ClassCastException.class);
 
         binder.bind(bundle);
     }

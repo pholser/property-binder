@@ -63,9 +63,10 @@ public class BindingStringMapsToTypedInterfacesTest extends TypedStringBindingTe
         assertPropertiesEqual(fromFile, fromMap);
     }
 
-    @Test(expected = ValueConversionException.class)
-    public void alteringMapAfterBindingAffectsPropertiesBoundToPICA() {
+    @Test public void alteringMapAfterBindingAffectsPropertiesBoundToPICA() {
         asStringMap.put("primitive.integer.property", "!@#!@#!@#!@#!@#");
+
+        thrown.expect(ValueConversionException.class);
 
         fromMap.primitiveIntegerProperty();
     }
