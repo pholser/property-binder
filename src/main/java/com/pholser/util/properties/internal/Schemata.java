@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -39,9 +39,11 @@ public final class Schemata {
         throw new UnsupportedOperationException();
     }
 
-    public static String propertyNameFor(Method method) {
+    public static BoundProperty propertyMarkerFor(Method method) {
         BoundProperty marker = method.getAnnotation(BoundProperty.class);
-        return marker != null ? marker.value() : method.getDeclaringClass().getName() + '.' + method.getName();
+        return marker != null
+            ? marker
+            : new InternalBoundProperty(method.getDeclaringClass().getName() + '.' + method.getName());
     }
 
     public static Object annotationDefault(Class<? extends Annotation> clazz, String methodName) {

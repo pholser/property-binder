@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -36,8 +36,7 @@ import static com.pholser.util.properties.ExceptionMatchers.*;
 import static org.junit.rules.ExpectedException.*;
 
 public abstract class UtilityClassesShouldNotBeInstantiated {
-    @Rule
-    public final ExpectedException thrown = none();
+    @Rule public final ExpectedException thrown = none();
 
     private final Class<?> utility;
 
@@ -45,8 +44,7 @@ public abstract class UtilityClassesShouldNotBeInstantiated {
         this.utility = utility;
     }
 
-    @Test
-    public final void attemptInstantiation() throws Exception {
+    @Test public final void attemptInstantiation() throws Exception {
         Constructor<?> constructor = utility.getDeclaredConstructor();
         constructor.setAccessible(true);
 

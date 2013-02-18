@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -44,8 +44,7 @@ class ArrayValueConverter extends AggregateValueConverter {
         scalarConverter = createScalarConverter(componentType, patterns, defaults, separator);
     }
 
-    @Override
-    public Object convert(String raw, Object... args) {
+    @Override public Object convert(String raw, Object... args) {
         String[] pieces = separate(raw);
         Object array = Array.newInstance(componentType, pieces.length);
         for (int i = 0; i < pieces.length; ++i)
@@ -54,8 +53,7 @@ class ArrayValueConverter extends AggregateValueConverter {
         return array;
     }
 
-    @Override
-    public Object nilValue() {
+    @Override public Object nilValue() {
         return Array.newInstance(componentType, 0);
     }
 }

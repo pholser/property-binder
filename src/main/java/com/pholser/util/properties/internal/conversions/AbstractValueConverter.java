@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -26,8 +26,7 @@
 package com.pholser.util.properties.internal.conversions;
 
 abstract class AbstractValueConverter implements ValueConverter {
-    @Override
-    public Object convertRaw(Object raw, Object... args) {
+    @Override public Object convertRaw(Object raw, Object... args) {
         return raw instanceof String ? convert((String) raw, args) : raw;
     }
 }

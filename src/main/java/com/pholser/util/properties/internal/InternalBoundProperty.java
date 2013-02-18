@@ -25,40 +25,34 @@
 
 package com.pholser.util.properties.internal;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
+import java.lang.annotation.Annotation;
 
-import static java.lang.System.*;
+import com.pholser.util.properties.BoundProperty;
 
-import com.pholser.util.properties.PropertySource;
+class InternalBoundProperty implements BoundProperty {
+    private final String key;
 
-class PropertyBinderInvocationHandler implements InvocationHandler {
-    private final PropertySource properties;
-    private final ValidatedSchema<?> validated;
-
-    PropertyBinderInvocationHandler(PropertySource properties, ValidatedSchema<?> validated) {
-        this.properties = properties;
-        this.validated = validated;
+    InternalBoundProperty(String key) {
+        this.key = key;
     }
 
-    @Override public Object invoke(Object proxy, Method method, Object[] args) {
-        if (Object.class.equals(method.getDeclaringClass()))
-            return handleObjectMethod(proxy, method, args);
-
-        return validated.convert(properties, method, args);
+    @Override public String value() {
+        return key;
     }
 
-    private Object handleObjectMethod(Object proxy, Method method, Object[] args) {
-        if ("equals".equals(method.getName()))
-            return proxy == args[0];
-
-        if ("hashCode".equals(method.getName()))
-            return identityHashCode(proxy);
-
-        return handleToString();
+    @Override public boolean suppressSubstitution() {
+        return false;
     }
 
-    private String handleToString() {
-        return validated.getName() + '[' + properties + ']';
+    @Override public Class<? extends Annotation> annotationType() {
+        return BoundProperty.class;
+    }
+
+    @Override public boolean equals(Object o) {
+        return o instanceof BoundProperty && value().equals(((BoundProperty) o).value());
+    }
+
+    @Override public int hashCode() {
+        return value().hashCode();
     }
 }

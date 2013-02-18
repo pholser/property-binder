@@ -1,6 +1,12 @@
                                        ----------
                                        Change Log
                                        ----------
+Changes in version 4.0
+
+    * A <<<PropertySource>>> now accepts a <<<BoundProperty>>> as the argument to <<<propertyFor()>>>.
+
+    * Resolved {{{https://github.com/pholser/property-binder/issues/1} gh-1}} by adding the
+    <<<suppressSubstitutions>>> attribute to annotation <<<BoundProperty>>>.
 
 Changes in version 3.1
 

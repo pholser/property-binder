@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -30,6 +30,7 @@ import java.util.Map;
 
 import static java.lang.reflect.Proxy.*;
 
+import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
 import com.pholser.util.properties.internal.defaultvalues.DefaultValue;
@@ -38,11 +39,11 @@ import static com.pholser.util.properties.internal.Schemata.*;
 
 public class ValidatedSchema<T> {
     private final Class<T> schema;
-    private final Map<String, DefaultValue> defaults;
-    private final Map<String, ValueConverter> converters;
+    private final Map<BoundProperty, DefaultValue> defaults;
+    private final Map<BoundProperty, ValueConverter> converters;
 
-    public ValidatedSchema(Class<T> schema, Map<String, DefaultValue> defaults,
-        Map<String, ValueConverter> converters) {
+    public ValidatedSchema(Class<T> schema, Map<BoundProperty, DefaultValue> defaults,
+        Map<BoundProperty, ValueConverter> converters) {
 
         this.schema = schema;
         this.defaults = defaults;
@@ -65,7 +66,7 @@ public class ValidatedSchema<T> {
     }
 
     Object convert(PropertySource properties, Method method, Object... args) {
-        String key = propertyNameFor(method);
+        BoundProperty key = propertyMarkerFor(method);
         ValueConverter converter = converters.get(key);
 
         Object value = properties.propertyFor(key);

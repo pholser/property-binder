@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -43,35 +43,31 @@ public class BindingPropertiesObjectsToTypedInterfacesTest extends TypedStringBi
     private Properties properties;
     private ScalarPropertyHaver fromObject;
 
-    @Before
-    public final void initializeProperties() throws Exception {
+    @Before public final void initializeProperties() throws Exception {
         inputStream = new FileInputStream(propertiesFile);
         properties = new Properties();
         properties.load(inputStream);
         fromObject = binder.bind(properties);
     }
 
-    @After
-    public final void closeInputStream() {
+    @After public final void closeInputStream() {
         closeQuietly(inputStream);
     }
 
-    @Test
-    public void loadingFromPropertiesObject() throws Exception {
+    @Test public void loadingFromPropertiesObject() throws Exception {
         ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
 
         assertPropertiesEqual(fromFile, fromObject);
     }
 
     @Test(expected = ValueConversionException.class)
-    public void alteringPropertiesObjectAfterBindingDoesNotAffectsPropertiesBoundToPICA() {
+    public void alteringPropertiesObjectAfterBindingDoesNotAffectPropertiesBoundToPICA() {
         properties.setProperty("big.decimal.property", "!@#!@#!@#!@#!@#");
 
         fromObject.bigDecimalProperty();
     }
 
-    @Override
-    protected Class<ScalarPropertyHaver> boundType() {
+    @Override protected Class<ScalarPropertyHaver> boundType() {
         return ScalarPropertyHaver.class;
     }
 }

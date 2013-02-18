@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -44,27 +44,23 @@ public class BindingStringResourceBundlesToTypedInterfacesTest
     private ResourceBundle bundle;
     private ScalarPropertyHaver fromBundle;
 
-    @Before
-    public final void initializeProperties() throws Exception {
+    @Before public final void initializeProperties() throws Exception {
         inputStream = new FileInputStream(propertiesFile);
         bundle = new PropertyResourceBundle(inputStream);
         fromBundle = binder.bind(bundle);
     }
 
-    @After
-    public final void closeInputStream() {
+    @After public final void closeInputStream() {
         closeQuietly(inputStream);
     }
 
-    @Test
-    public void loadingFromPropertiesObject() throws Exception {
+    @Test public void loadingFromPropertiesObject() throws Exception {
         ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
 
         assertPropertiesEqual(fromFile, fromBundle);
     }
 
-    @Override
-    protected Class<ScalarPropertyHaver> boundType() {
+    @Override protected Class<ScalarPropertyHaver> boundType() {
         return ScalarPropertyHaver.class;
     }
 }

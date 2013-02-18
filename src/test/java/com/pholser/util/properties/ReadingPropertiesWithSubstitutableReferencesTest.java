@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -35,13 +35,11 @@ import static org.junit.Assert.*;
 public class ReadingPropertiesWithSubstitutableReferencesTest {
     private Properties substitutable;
 
-    @Before
-    public void setUp() {
+    @Before public void setUp() {
         substitutable = new SubstitutableProperties();
     }
 
-    @Test
-    public void substitutingReferencesToPropertiesInTheCollection() {
+    @Test public void substitutingReferencesToPropertiesInTheCollection() {
         substitutable.setProperty("one", "1");
         substitutable.setProperty("two", "2");
         substitutable.setProperty("first", "look out for number [one]");
@@ -51,8 +49,7 @@ public class ReadingPropertiesWithSubstitutableReferencesTest {
         assertEquals("We're #2", substitutable.getProperty("second"));
     }
 
-    @Test
-    public void allowingDepthOfReferences() {
+    @Test public void allowingDepthOfReferences() {
         substitutable.setProperty("one", "1");
         substitutable.setProperty("two", "2[one]");
         substitutable.setProperty("three", "3[one]3[two]");
@@ -61,16 +58,14 @@ public class ReadingPropertiesWithSubstitutableReferencesTest {
         assertEquals("43132142141", substitutable.getProperty("four"));
     }
 
-    @Test
-    public void allowingRegexMetacharactersInPropertyReferences() {
+    @Test public void allowingRegexMetacharactersInPropertyReferences() {
         substitutable.setProperty("se.pa.ra.ted", "1");
         substitutable.setProperty("reference", "3 + [se.pa.ra.ted]");
 
         assertEquals("3 + 1", substitutable.getProperty("reference"));
     }
 
-    @Test
-    public void replacingUnresolvedPropertyReferencesWithZeroLengthString() {
+    @Test public void replacingUnresolvedPropertyReferencesWithZeroLengthString() {
         substitutable.setProperty("other.reference", "4 + [se_pa_ra_ted]");
 
         assertEquals("4 + ", substitutable.getProperty("other.reference"));

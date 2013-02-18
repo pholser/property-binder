@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -25,9 +25,11 @@
 
 package com.pholser.util.properties.internal;
 
+import java.lang.annotation.Annotation;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.PropertySource;
 
 import static com.pholser.util.properties.internal.Objects.*;
@@ -55,7 +57,7 @@ public final class Substitutions {
         Matcher matcher = REFERENCE.matcher(value);
         StringBuffer buffer = new StringBuffer(value.length() * 2);
         while (matcher.find()) {
-            String reference = (String) properties.propertyFor(matcher.group(1));
+            String reference = (String) properties.propertyFor(new InternalBoundProperty(matcher.group(1)));
             matcher.appendReplacement(buffer, reference == null ? "" : reference);
         }
         matcher.appendTail(buffer);

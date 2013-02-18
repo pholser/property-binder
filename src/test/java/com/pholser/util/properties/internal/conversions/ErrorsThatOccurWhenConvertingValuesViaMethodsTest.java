@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -38,11 +38,9 @@ import static com.pholser.util.properties.ExceptionMatchers.*;
 import static org.junit.rules.ExpectedException.*;
 
 public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
-    @Rule
-    public final ExpectedException thrown = none();
+    @Rule public final ExpectedException thrown = none();
 
-    @Test
-    public void transformingInvocationTargetExceptions() throws Exception {
+    @Test public void transformingInvocationTargetExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(causeOfType(UnsupportedOperationException.class));
         Method method = MethodRaisesException.class.getDeclaredMethod("raisesException", String.class);
@@ -50,8 +48,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
         new MethodInvokingValueConverter(method, Void.class).convert("");
     }
 
-    @Test
-    public void transformingIllegalArgumentExceptions() throws Exception {
+    @Test public void transformingIllegalArgumentExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(causeOfType(IllegalArgumentException.class));
         Method method = Calendar.class.getDeclaredMethod("getInstance");
@@ -59,8 +56,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
         new MethodInvokingValueConverter(method, Calendar.class).convert("");
     }
 
-    @Test
-    public void transformingIllegalAccessExceptions() throws Exception {
+    @Test public void transformingIllegalAccessExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(causeOfType(IllegalAccessException.class));
         Method method = ForTriggeringIllegalAccess.class.getDeclaredMethod("valueOf", String.class);
@@ -68,8 +64,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
         new MethodInvokingValueConverter(method, String.class).convert("");
     }
 
-    @Test
-    public void transformingClassCastExceptions() throws Exception {
+    @Test public void transformingClassCastExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(causeOfType(ClassCastException.class));
         Method method = Integer.class.getDeclaredMethod("valueOf", String.class);

@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -43,9 +43,8 @@ public class BindingStringMapsToTypedInterfacesTest extends TypedStringBindingTe
     private Map<String, String> asStringMap;
     private ScalarPropertyHaver fromMap;
 
-    @Before
     @SuppressWarnings("unchecked")
-    public final void initializeProperties() throws Exception {
+    @Before public final void initializeProperties() throws Exception {
         inputStream = new FileInputStream(propertiesFile);
         Properties properties = new Properties();
         properties.load(inputStream);
@@ -54,13 +53,11 @@ public class BindingStringMapsToTypedInterfacesTest extends TypedStringBindingTe
         fromMap = binder.bind(asStringMap);
     }
 
-    @After
-    public final void closeInputStream() {
+    @After public final void closeInputStream() {
         closeQuietly(inputStream);
     }
 
-    @Test
-    public void loadingFromPropertiesObject() throws Exception {
+    @Test public void loadingFromPropertiesObject() throws Exception {
         ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
 
         assertPropertiesEqual(fromFile, fromMap);
@@ -73,8 +70,7 @@ public class BindingStringMapsToTypedInterfacesTest extends TypedStringBindingTe
         fromMap.primitiveIntegerProperty();
     }
 
-    @Override
-    protected Class<ScalarPropertyHaver> boundType() {
+    @Override protected Class<ScalarPropertyHaver> boundType() {
         return ScalarPropertyHaver.class;
     }
 }

@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -46,18 +46,15 @@ class RegexValueSeparator implements ValueSeparator {
         }
     }
 
-    @Override
-    public String[] separate(String raw) {
+    @Override public String[] separate(String raw) {
         return regex.split(raw);
     }
 
-    @Override
-    public void resolve(PropertySource properties) {
+    @Override public void resolve(PropertySource properties) {
         // nothing to do here
     }
 
-    @Override
-    public boolean isDefault() {
+    @Override public boolean isDefault() {
         return regex.pattern().equals(annotationDefault(ValuesSeparatedBy.class, "pattern"));
     }
 }

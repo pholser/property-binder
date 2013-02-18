@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -30,6 +30,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ValuesSeparatedBy;
 import com.pholser.util.properties.internal.ValidatedSchema;
@@ -58,12 +59,12 @@ public class SchemaValidator {
         ensureNoSuperinterfaces(schema);
 
         Method[] methods = schema.getDeclaredMethods();
-        Map<String, ValueConverter> converters = new HashMap<String, ValueConverter>(methods.length);
-        Map<String, DefaultValue> defaults = new HashMap<String, DefaultValue>(methods.length);
-        Map<String, ValueSeparator> separators = new HashMap<String, ValueSeparator>(methods.length);
+        Map<BoundProperty, ValueConverter> converters = new HashMap<BoundProperty, ValueConverter>(methods.length);
+        Map<BoundProperty, DefaultValue> defaults = new HashMap<BoundProperty, DefaultValue>(methods.length);
+        Map<BoundProperty, ValueSeparator> separators = new HashMap<BoundProperty, ValueSeparator>(methods.length);
 
         for (Method each : methods) {
-            String key = propertyNameFor(each);
+            BoundProperty key = propertyMarkerFor(each);
             collectSeparatorIfAggregateType(separators, each, key);
             collectConverter(converters, separators, each, key);
             collectDefaultValue(defaults, converters.get(key), each, key);
@@ -82,8 +83,8 @@ public class SchemaValidator {
             throw new InterfaceHasSuperinterfacesException(schema);
     }
 
-    private void collectSeparatorIfAggregateType(Map<String, ValueSeparator> separators, Method method,
-        String key) {
+    private void collectSeparatorIfAggregateType(Map<BoundProperty, ValueSeparator> separators, Method method,
+        BoundProperty key) {
 
         boolean isAggregate = isAggregateType(method.getReturnType());
         ValuesSeparatedBy separator = method.getAnnotation(ValuesSeparatedBy.class);
@@ -100,14 +101,14 @@ public class SchemaValidator {
             separators.put(key, separatorFactory.createSeparator(separator, method));
     }
 
-    private void collectConverter(Map<String, ValueConverter> converters, Map<String, ValueSeparator> separators,
-        Method method, String key) {
+    private void collectConverter(Map<BoundProperty, ValueConverter> converters,
+        Map<BoundProperty, ValueSeparator> separators, Method method, BoundProperty key) {
 
         converters.put(key, converterFactory.createConverter(method, separators.get(key)));
     }
 
-    private void collectDefaultValue(Map<String, DefaultValue> defaults, ValueConverter converter, Method method,
-        String key) {
+    private void collectDefaultValue(Map<BoundProperty, DefaultValue> defaults, ValueConverter converter, Method method,
+        BoundProperty key) {
 
         DefaultValue defaultValue = createDefaultValue(method, converter);
         if (defaultValue != null)

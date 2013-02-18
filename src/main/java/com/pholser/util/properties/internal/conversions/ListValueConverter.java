@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -47,8 +47,7 @@ class ListValueConverter extends AggregateValueConverter {
         scalarConverter = createScalarConverter(deduceElementType(valueType), patterns, defaults, separator);
     }
 
-    @Override
-    public List<Object> convert(String raw, Object... args) {
+    @Override public List<Object> convert(String raw, Object... args) {
         String[] pieces = separate(raw);
         List<Object> values = new ArrayList<Object>(pieces.length);
         for (String each : pieces)
@@ -75,8 +74,7 @@ class ListValueConverter extends AggregateValueConverter {
         throw new UnsupportedValueTypeException(type);
     }
 
-    @Override
-    public Object nilValue() {
+    @Override public Object nilValue() {
         return new ArrayList<Object>(0);
     }
 }

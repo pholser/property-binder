@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -39,53 +39,44 @@ import static org.junit.Assert.*;
 import static org.junit.matchers.JUnitMatchers.*;
 
 public class CreatingSubstitutablePropertiesWithDefaultsTest {
-    private Properties defaults;
     private SubstitutableProperties properties;
 
-    @Before
-    public void setUp() {
-        defaults = new Properties();
+    @Before public void setUp() {
+        Properties defaults = new Properties();
         defaults.setProperty("first.key", "default.first.value");
         defaults.setProperty("second.key", "default.second.value + [first.key]");
 
         properties = new SubstitutableProperties(defaults);
     }
 
-    @Test
-    public void shouldLeverageDefaults() {
+    @Test public void shouldLeverageDefaults() {
         assertEquals("default.first.value", properties.getProperty("first.key"));
     }
 
-    @Test
-    public void shouldSubstituteWithDefaultValue() {
+    @Test public void shouldSubstituteWithDefaultValue() {
         assertEquals("default.second.value + default.first.value", properties.getProperty("second.key"));
     }
 
-    @Test
-    public void doesNotContainKeysOfDefaults() {
+    @Test public void doesNotContainKeysOfDefaults() {
         assertFalse(properties.containsKey("first.key"));
         assertFalse(properties.containsKey("second.key"));
     }
 
-    @Test
-    public void doesNotContainValuesOfDefaults() {
+    @Test public void doesNotContainValuesOfDefaults() {
         assertFalse(properties.containsValue("default.first.value"));
         assertFalse(properties.containsValue("default.second.value + [first.key]"));
     }
 
-    @Test
-    public void isStillEmpty() {
+    @Test public void isStillEmpty() {
         assertTrue(properties.isEmpty());
     }
 
-    @Test
-    public void cannotGetDefaultValues() {
+    @Test public void cannotGetDefaultValues() {
         assertNull(properties.get("first.key"));
         assertNull(properties.get("second.key"));
     }
 
-    @Test
-    public void enumerationOfPropertyNamesIsNotEmpty() {
+    @Test public void enumerationOfPropertyNamesIsNotEmpty() {
         @SuppressWarnings("unchecked")
         List<String> names = (List<String>) list(properties.propertyNames());
 
@@ -93,26 +84,22 @@ public class CreatingSubstitutablePropertiesWithDefaultsTest {
         assertThat(names, hasItem("second.key"));
     }
 
-    @Test
-    public void stringSetOfPropertyNamesIsNotEmpty() {
+    @Test public void stringSetOfPropertyNamesIsNotEmpty() {
         Set<String> names = properties.stringPropertyNames();
 
         assertThat(names, hasItem("first.key"));
         assertThat(names, hasItem("second.key"));
     }
 
-    @Test
-    public void keysSetIsEmpty() {
+    @Test public void keysSetIsEmpty() {
         assertEquals(emptyList(), list(properties.keys()));
     }
 
-    @Test
-    public void valuesSetIsEmpty() {
+    @Test public void valuesSetIsEmpty() {
         assertEquals(emptyList(), new ArrayList<Object>(properties.values()));
     }
 
-    @Test
-    public void addedValueShouldTrumpDefault() {
+    @Test public void addedValueShouldTrumpDefault() {
         properties.setProperty("first.key", "boo");
 
         assertEquals("default.second.value + boo", properties.getProperty("second.key"));

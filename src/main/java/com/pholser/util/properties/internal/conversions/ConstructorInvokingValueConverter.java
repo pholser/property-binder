@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -37,8 +37,7 @@ class ConstructorInvokingValueConverter extends ScalarValueConverter {
         this.ctor = ctor;
     }
 
-    @Override
-    public Object convert(String raw, Object... args) {
+    @Override public Object convert(String raw, Object... args) {
         try {
             return ctor.newInstance(String.format(raw, args));
         } catch (InstantiationException ex) {

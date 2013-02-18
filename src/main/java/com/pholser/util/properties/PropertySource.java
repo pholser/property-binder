@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -36,5 +36,5 @@ public interface PropertySource {
      * @param key the key to look up
      * @return the value associated with {@code key}, if there is one; else {@code null}
      */
-    Object propertyFor(String key);
+    Object propertyFor(BoundProperty key);
 }

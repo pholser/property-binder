@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -34,13 +34,11 @@ import static com.pholser.util.properties.internal.IO.*;
 import static org.junit.Assert.*;
 
 public class ClosingAnInputStreamQuietlyTest {
-    @Test
-    public void doingNothingIfStreamNull() {
+    @Test public void doingNothingIfStreamNull() {
         closeQuietly(null);
     }
 
-    @Test
-    public void closingWithoutIncidentIfStreamNotNullAndNoExceptionThrown() {
+    @Test public void closingWithoutIncidentIfStreamNotNullAndNoExceptionThrown() {
         FakeInputStream fake = new FakeInputStream();
 
         closeQuietly(fake);
@@ -48,8 +46,7 @@ public class ClosingAnInputStreamQuietlyTest {
         assertTrue(fake.closed);
     }
 
-    @Test
-    public void closingWithoutIncidentIfStreamNotNullAndExceptionThrown() {
+    @Test public void closingWithoutIncidentIfStreamNotNullAndExceptionThrown() {
         FakeInputStream fake = new PukeOnCloseInputStream();
 
         closeQuietly(fake);
@@ -66,16 +63,14 @@ public class ClosingAnInputStreamQuietlyTest {
             super(BUFFER);
         }
 
-        @Override
-        public void close() throws IOException {
+        @Override public void close() throws IOException {
             closed = true;
             super.close();
         }
     }
 
     private static class PukeOnCloseInputStream extends FakeInputStream {
-        @Override
-        public void close() throws IOException {
+        @Override public void close() throws IOException {
             super.close();
             throw new IOException();
         }

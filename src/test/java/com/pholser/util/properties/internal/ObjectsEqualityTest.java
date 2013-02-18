@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -48,8 +48,7 @@ public class ObjectsEqualityTest {
         this.expectedOutcome = expectedOutcome;
     }
 
-    @Parameters
-    public static Collection<?> testData() {
+    @Parameters public static Collection<?> testData() {
         return asList(new Object[][] {
             { null, null, true },
             { null, new Object(), false },
@@ -59,8 +58,7 @@ public class ObjectsEqualityTest {
         });
     }
 
-    @Test
-    public void assessEquality() {
+    @Test public void assessEquality() {
         assertEquals(expectedOutcome, Objects.areEqual(first, second));
     }
 }

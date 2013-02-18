@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -28,8 +28,7 @@ package com.pholser.util.properties.internal.conversions;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 class CharacterValueOfConverter extends ScalarValueConverter {
-    @Override
-    public Object convert(String raw, Object... args) {
+    @Override public Object convert(String raw, Object... args) {
         if (raw.length() != 1)
             throw new ValueConversionException("cannot convert [" + raw + "] to " + Character.class);
 

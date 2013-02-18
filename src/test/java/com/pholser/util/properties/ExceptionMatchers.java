@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -25,11 +25,11 @@
 
 package com.pholser.util.properties;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.junit.internal.matchers.TypeSafeMatcher;
-
-import java.lang.reflect.InvocationTargetException;
+import org.hamcrest.TypeSafeMatcher;
 
 public class ExceptionMatchers {
     private ExceptionMatchers() {
@@ -38,13 +38,11 @@ public class ExceptionMatchers {
 
     public static Matcher<Throwable> causeOfType(final Class<? extends Throwable> type) {
         return new TypeSafeMatcher<Throwable>() {
-            @Override
-            public boolean matchesSafely(Throwable item) {
+            @Override public boolean matchesSafely(Throwable item) {
                 return type.isInstance(item.getCause());
             }
 
-            @Override
-            public void describeTo(Description description) {
+            @Override public void describeTo(Description description) {
                 description.appendText("exception with cause whose type is ");
                 description.appendValue(type);
             }
@@ -52,14 +50,12 @@ public class ExceptionMatchers {
     }
 
     public static Matcher<InvocationTargetException> targetOfType(final Class<? extends Throwable> type) {
-        return new TypeSafeMatcher<InvocationTargetException>() {
-            @Override
-            public boolean matchesSafely(InvocationTargetException item) {
+        return new org.hamcrest.TypeSafeMatcher<InvocationTargetException>() {
+            @Override public boolean matchesSafely(InvocationTargetException item) {
                 return type.isInstance(item.getTargetException());
             }
 
-            @Override
-            public void describeTo(Description description) {
+            @Override public void describeTo(Description description) {
                 description.appendText("InvocationTargetException with target whose type is ");
                 description.appendValue(type);
             }

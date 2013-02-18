@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -37,11 +37,9 @@ import org.junit.rules.ExpectedException;
 import static org.junit.rules.ExpectedException.*;
 
 public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
-    @Rule
-    public final ExpectedException thrown = none();
+    @Rule public final ExpectedException thrown = none();
 
-    @Test
-    public void transformingInvocationTargetExceptions() throws Exception {
+    @Test public void transformingInvocationTargetExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(ExceptionMatchers.causeOfType(UnsupportedOperationException.class));
         Constructor<ConstructorRaisesException> ctor =
@@ -50,8 +48,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
         new ConstructorInvokingValueConverter(ctor).convert("");
     }
 
-    @Test
-    public void transformingIllegalArgumentExceptions() throws Exception {
+    @Test public void transformingIllegalArgumentExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(ExceptionMatchers.causeOfType(IllegalArgumentException.class));
         Constructor<HasPlainOldConstructor> ctor = HasPlainOldConstructor.class.getDeclaredConstructor();
@@ -59,8 +56,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
         new ConstructorInvokingValueConverter(ctor).convert("");
     }
 
-    @Test
-    public void transformingIllegalAccessExceptions() throws Exception {
+    @Test public void transformingIllegalAccessExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(ExceptionMatchers.causeOfType(IllegalAccessException.class));
         Constructor<ForTriggeringIllegalAccess> ctor =
@@ -69,8 +65,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
         new ConstructorInvokingValueConverter(ctor).convert("");
     }
 
-    @Test
-    public void transformingInstantiationExceptions() throws Exception {
+    @Test public void transformingInstantiationExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(ExceptionMatchers.causeOfType(InstantiationException.class));
         Constructor<CannotBeInstantiated> ctor = CannotBeInstantiated.class.getDeclaredConstructor(String.class);

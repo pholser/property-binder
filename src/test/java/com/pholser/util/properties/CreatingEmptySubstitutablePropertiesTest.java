@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -33,13 +33,11 @@ import static org.junit.Assert.*;
 public class CreatingEmptySubstitutablePropertiesTest {
     private SubstitutableProperties properties;
 
-    @Before
-    public void setUp() {
+    @Before public void setUp() {
         properties = new SubstitutableProperties();
     }
 
-    @Test
-    public void empty() {
+    @Test public void empty() {
         assertTrue(properties.isEmpty());
     }
 }

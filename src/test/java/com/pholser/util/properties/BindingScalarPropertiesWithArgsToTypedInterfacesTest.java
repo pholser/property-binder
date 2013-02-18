@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -40,13 +40,11 @@ import static org.junit.Assert.*;
 public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
     extends TypedStringBindingTestSupport<ScalarPropertyWithArgsHaver> {
 
-    @Test
-    public void passingArgumentsToPropertyMethodAndHaveFormattingOccurOnResult() {
+    @Test public void passingArgumentsToPropertyMethodAndHaveFormattingOccurOnResult() {
         assertEquals("foo to the bar", bound.stringPropertyWithArguments("foo", "bar"));
     }
 
-    @Test
-    public void passingArgumentsOfVariousTypesToPropertyMethodAndHaveFormattingOccurOnResult() throws Exception {
+    @Test public void passingArgumentsOfVariousTypesToPropertyMethodAndHaveFormattingOccurOnResult() throws Exception {
         assertEquals("10 seconds to 12:00:00 AM", bound.stringPropertyWithTypedArguments(10, mmddyyyy("12/22/2003")));
     }
 
@@ -55,24 +53,20 @@ public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
         bound.stringPropertyWithIllTypedArguments(10, mmddyyyy("12/22/2003"));
     }
 
-    @Test
-    public void convertingPropertyMethodsWithArgsToTypeOtherThanString() throws Exception {
+    @Test public void convertingPropertyMethodsWithArgsToTypeOtherThanString() throws Exception {
         assertEquals(mmddyyyy("02/24/2010"), bound.datePropertyByMonthDayYear(2, 24, 2010));
     }
 
-    @Test
-    public void applyingArgumentsOfPropertyMethodsToEachOfAnArrayType() {
+    @Test public void applyingArgumentsOfPropertyMethodsToEachOfAnArrayType() {
         assertArrayEquals(new String[] { "foobar", "barfoo" }, bound.stringArrayPropertyWithArguments("foo", "bar"));
     }
 
-    @Test
-    public void applyingArgumentsOfPropertyMethodsToEachOfListTypeWithCustomSeparator() throws Exception {
+    @Test public void applyingArgumentsOfPropertyMethodsToEachOfListTypeWithCustomSeparator() throws Exception {
         assertEquals(asList(mmddyyyy("03/23/2010"), mmddyyyy("03/23/2010")),
             bound.dateListPropertyWithArgumentsAndSeparator(3, 23, 2010));
     }
 
-    @Override
-    protected Class<ScalarPropertyWithArgsHaver> boundType() {
+    @Override protected Class<ScalarPropertyWithArgsHaver> boundType() {
         return ScalarPropertyWithArgsHaver.class;
     }
 

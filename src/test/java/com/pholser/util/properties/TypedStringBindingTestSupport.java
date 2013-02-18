@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -36,8 +36,7 @@ public abstract class TypedStringBindingTestSupport<T> extends StringBindingTest
     protected PropertyBinder<T> binder;
     protected T bound;
 
-    @Before
-    public final void initializeBinderAndBoundType() throws Exception {
+    @Before public final void initializeBinderAndBoundType() throws Exception {
         binder = new PropertyBinder<T>(boundType());
         bound = binder.bind(propertiesFile);
     }

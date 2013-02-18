@@ -7,6 +7,7 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.PropertyBinder;
 import com.pholser.util.properties.PropertySource;
 import org.junit.Before;
@@ -18,8 +19,7 @@ import static org.junit.Assert.*;
 public class XmlConfigTest {
     private Config config;
 
-    @Before
-    public final void initialize() throws Exception {
+    @Before public final void initialize() throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(getClass().getResourceAsStream("/config.xml"));
@@ -28,13 +28,11 @@ public class XmlConfigTest {
         config = binder.bind(new XmlConfigSource(document));
     }
 
-    @Test
-    public void retrievesTimeoutValue() {
+    @Test public void retrievesTimeoutValue() {
         assertEquals(5000L, config.timeout());
     }
 
-    @Test
-    public void retrievesOutputFileValue() {
+    @Test public void retrievesOutputFileValue() {
         assertEquals(new File("/home/joeblow/out.txt"), config.outputFile());
     }
 }
@@ -48,10 +46,9 @@ class XmlConfigSource implements PropertySource {
         xpath = XPathFactory.newInstance().newXPath();
     }
 
-    @Override
-    public Object propertyFor(String key) {
+    @Override public Object propertyFor(BoundProperty key) {
         try {
-            return xpath.compile(key).evaluate(document);
+            return xpath.compile(key.value()).evaluate(document);
         } catch (XPathExpressionException e) {
             throw new IllegalStateException(e);
         }

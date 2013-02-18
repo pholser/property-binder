@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -27,6 +27,7 @@ package com.pholser.util.properties.internal;
 
 import java.util.Map;
 
+import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.PropertySource;
 
 public class MapPropertySource implements PropertySource {
@@ -39,13 +40,11 @@ public class MapPropertySource implements PropertySource {
         this.backing = backing;
     }
 
-    @Override
-    public Object propertyFor(String key) {
-        return backing.get(key);
+    @Override public Object propertyFor(BoundProperty key) {
+        return backing.get(key.value());
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return backing.toString();
     }
 }

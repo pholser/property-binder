@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -45,13 +45,11 @@ class SubstitutableDefaultValue implements DefaultValue {
         this.method = method;
     }
 
-    @Override
-    public Object evaluate() {
+    @Override public Object evaluate() {
         return converted.evaluate();
     }
 
-    @Override
-    public void resolve(PropertySource properties) {
+    @Override public void resolve(PropertySource properties) {
         String substituted = substitute(properties, spec.valueOf());
         converted = ConvertedDefaultValue.fromValue(substituted, converter, method);
     }

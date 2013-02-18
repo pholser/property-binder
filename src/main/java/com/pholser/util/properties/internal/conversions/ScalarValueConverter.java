@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -28,13 +28,11 @@ package com.pholser.util.properties.internal.conversions;
 import com.pholser.util.properties.PropertySource;
 
 abstract class ScalarValueConverter extends AbstractValueConverter {
-    @Override
-    public final Object nilValue() {
+    @Override public final Object nilValue() {
         return null;
     }
 
-    @Override
-    public final void resolve(PropertySource properties) {
+    @Override public final void resolve(PropertySource properties) {
         // scalars do not resolve
     }
 }

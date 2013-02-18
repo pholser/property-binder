@@ -43,8 +43,7 @@ public class HTMLEntitifier extends BaseFilterReader implements ChainableReader 
         return newFilter;
     }
 
-    @Override
-    public int read() throws IOException {
+    @Override public int read() throws IOException {
         if (!getInitialized())
             setInitialized(true);
 

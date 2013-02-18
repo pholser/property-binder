@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -51,4 +51,13 @@ public @interface BoundProperty {
      * @return a property key
      */
     String value();
+
+    /**
+     * <p>Tells whether substitution should be suppressed when resolving this property.</p>
+     *
+     * <p>This would be useful if, for example, you expect the value of your property to be a regex.</p>
+     *
+     * @return {@code true} if substitution should be suppressed
+     */
+    boolean suppressSubstitution() default false;
 }

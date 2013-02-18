@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -42,20 +42,17 @@ class SubstitutableRegexValueSeparator implements ValueSeparator {
         this.method = method;
     }
 
-    @Override
-    public String[] separate(String raw) {
+    @Override public String[] separate(String raw) {
         return separator.separate(raw);
     }
 
-    @Override
-    public void resolve(PropertySource properties) {
+    @Override public void resolve(PropertySource properties) {
         String substituted = substitute(properties, pattern);
         separator = new RegexValueSeparator(substituted, method);
         isDefault = separator.isDefault();
     }
 
-    @Override
-    public boolean isDefault() {
+    @Override public boolean isDefault() {
         return isDefault;
     }
 }

@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -58,18 +58,15 @@ public class SubstitutableProperties extends Properties implements PropertySourc
         super(defaults);
     }
 
-    @Override
-    public String getProperty(String key) {
+    @Override public String getProperty(String key) {
         return substitute(this, super.getProperty(key));
     }
 
-    @Override
-    public Object propertyFor(String key) {
-        return getProperty(key);
+    @Override public Object propertyFor(BoundProperty key) {
+        return key.suppressSubstitution() ? super.getProperty(key.value()) : getProperty(key.value());
     }
 
-    @Override
-    public synchronized String toString() {
+    @Override public synchronized String toString() {
         StringBuilder buffer = new StringBuilder("{");
         for (Enumeration<?> en = propertyNames(); en.hasMoreElements();) {
             String key = (String) en.nextElement();

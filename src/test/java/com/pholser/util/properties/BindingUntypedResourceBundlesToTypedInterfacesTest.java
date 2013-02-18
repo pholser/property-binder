@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -35,8 +35,7 @@ import static com.pholser.util.properties.ResourceBundles.*;
 import static junit.framework.Assert.*;
 
 public class BindingUntypedResourceBundlesToTypedInterfacesTest {
-    @Test
-    public void nonValueType() {
+    @Test public void nonValueType() {
         final Object value = new Object();
         ResourceBundle bundle = bundleWith("any.old.type", value);
         PropertyBinder<NonValueTypeHaver> binder = PropertyBinder.forType(NonValueTypeHaver.class);
@@ -51,8 +50,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
         Object anyOldType();
     }
 
-    @Test
-    public void arrayOfUnconvertibleType() {
+    @Test public void arrayOfUnconvertibleType() {
         Object[] array = new Object[0];
         ResourceBundle bundle = bundleWith("array.of.unconvertible.type", array);
         PropertyBinder<ArrayOfUnconvertibleTypeHaver> binder =
@@ -68,8 +66,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
         Object[] array();
     }
 
-    @Test
-    public void listOfUnconvertibleType() {
+    @Test public void listOfUnconvertibleType() {
         List<Object> list = new ArrayList<Object>();
         ResourceBundle bundle = bundleWith("list.of.unconvertible.type", list);
         PropertyBinder<ListOfUnconvertibleTypeHaver> binder =
@@ -85,8 +82,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
         List<Object> list();
     }
 
-    @Test
-    public void nonPublicValueOf() {
+    @Test public void nonPublicValueOf() {
         NonPublicValueOfHaver.Thing thing = new NonPublicValueOfHaver.Thing();
         ResourceBundle bundle = bundleWith("non.public.value.of", thing);
         PropertyBinder<NonPublicValueOfHaver> binder = PropertyBinder.forType(NonPublicValueOfHaver.class);
@@ -108,8 +104,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
         }
     }
 
-    @Test
-    public void nonStaticValueOf() {
+    @Test public void nonStaticValueOf() {
         NonStaticValueOfHaver.Thing thing = new NonStaticValueOfHaver.Thing();
         ResourceBundle bundle = bundleWith("non.static.value.of", thing);
         PropertyBinder<NonStaticValueOfHaver> binder = PropertyBinder.forType(NonStaticValueOfHaver.class);
@@ -131,8 +126,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
         }
     }
 
-    @Test
-    public void badValueOfReturnType() {
+    @Test public void badValueOfReturnType() {
         BadValueOfTypeHaver.Thing thing = new BadValueOfTypeHaver.Thing();
         ResourceBundle bundle = bundleWith("bad.value.of.type", thing);
         PropertyBinder<BadValueOfTypeHaver> binder = PropertyBinder.forType(BadValueOfTypeHaver.class);

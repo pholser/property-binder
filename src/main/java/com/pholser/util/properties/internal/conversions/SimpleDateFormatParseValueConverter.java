@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2011 Paul R. Holser, Jr.
+ Copyright (c) 2009-2013 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -41,8 +41,7 @@ class SimpleDateFormatParseValueConverter extends ScalarValueConverter {
         this.patterns = patterns;
     }
 
-    @Override
-    public Object convert(String raw, Object... args) {
+    @Override public Object convert(String raw, Object... args) {
         for (String each : patterns.value()) {
             try {
                 DateFormat formatter = new SimpleDateFormat(each);
