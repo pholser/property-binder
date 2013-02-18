@@ -29,9 +29,8 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
-
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
+import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

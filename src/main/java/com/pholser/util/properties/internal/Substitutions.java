@@ -25,11 +25,9 @@
 
 package com.pholser.util.properties.internal;
 
-import java.lang.annotation.Annotation;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.PropertySource;
 
 import static com.pholser.util.properties.internal.Objects.*;
