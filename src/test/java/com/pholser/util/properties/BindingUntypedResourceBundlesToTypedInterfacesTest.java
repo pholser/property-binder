@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
 import org.junit.Test;
 
 import static com.pholser.util.properties.ResourceBundles.*;
-import static junit.framework.Assert.*;
+import static org.junit.Assert.*;
 
 public class BindingUntypedResourceBundlesToTypedInterfacesTest {
     @Test public void nonValueType() {

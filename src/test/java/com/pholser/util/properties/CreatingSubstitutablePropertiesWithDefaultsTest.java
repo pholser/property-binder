@@ -35,8 +35,8 @@ import static java.util.Collections.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import static org.junit.matchers.JUnitMatchers.*;
 
 public class CreatingSubstitutablePropertiesWithDefaultsTest {
     private SubstitutableProperties properties;

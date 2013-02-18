@@ -32,7 +32,6 @@ import java.util.ResourceBundle;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.matchers.JUnitMatchers;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -52,8 +51,8 @@ public class InvokingToStringOnBoundProxiesTest {
 
         String asString = bound.toString();
 
-        assertThat(asString, JUnitMatchers.containsString(Schema.class.getName()));
-        assertThat(asString, JUnitMatchers.containsString(properties.toString()));
+        assertThat(asString, containsString(Schema.class.getName()));
+        assertThat(asString, containsString(properties.toString()));
     }
 
     @Test public void mapSource() {
@@ -62,8 +61,8 @@ public class InvokingToStringOnBoundProxiesTest {
 
         String asString = bound.toString();
 
-        assumeThat(asString, JUnitMatchers.containsString(Schema.class.getName()));
-        assertThat(asString, JUnitMatchers.containsString(properties.toString()));
+        assumeThat(asString, containsString(Schema.class.getName()));
+        assertThat(asString, containsString(properties.toString()));
     }
 
     @Test public void resourceBundleSource() {
@@ -91,8 +90,8 @@ public class InvokingToStringOnBoundProxiesTest {
 
         String asString = bound.toString();
 
-        assumeThat(asString, JUnitMatchers.containsString(Schema.class.getName()));
-        assertThat(asString, JUnitMatchers.containsString("qwerty"));
+        assumeThat(asString, containsString(Schema.class.getName()));
+        assertThat(asString, containsString("qwerty"));
     }
 
     interface Schema {
