@@ -32,4 +32,15 @@ public class InternalBoundPropertyTest {
     @Test public void hashCodeIsThatOfValue() {
         assertEquals("x".hashCode(), boundProperty.hashCode());
     }
+
+    @Test public void equalityVersusBakedInAnnotations() throws Exception {
+        BoundProperty bakedIn = getClass().getDeclaredMethod("x").getAnnotation(BoundProperty.class);
+
+        assertEquals(boundProperty, bakedIn);
+        assertEquals(bakedIn, boundProperty);
+    }
+
+    @BoundProperty("x")
+    private void x() {
+    }
 }
