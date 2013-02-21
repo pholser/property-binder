@@ -29,7 +29,7 @@ public class InternalBoundPropertyTest {
         assertNotEquals(boundProperty, new InternalBoundProperty("y"));
     }
 
-    @Test public void hasCodeIsThatOfValue() {
+    @Test public void hashCodeIsThatOfValue() {
         assertEquals("x".hashCode(), boundProperty.hashCode());
     }
 }
