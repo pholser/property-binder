@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Property Binder - a Java library for typed access to properties files">
-    <publishDate position="navigation-bottom" format="MMMM dd, yyyy"/>
-    <poweredBy>
-        <logo name="Maven" href="http://maven.apache.org/"
-            img="http://maven.apache.org/images/logos/maven-feather.png"/>
-    </poweredBy>
     <body>
         <menu name="Property Binder">
             <item name="Overview" href="index.html"/>
