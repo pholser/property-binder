@@ -226,6 +226,10 @@ public class BindingScalarPropertiesToTypedInterfacesTest extends TypedStringBin
         assertEquals(yyyy("2003"), bound.datePropertyWithDefaultWithParsePatterns());
     }
 
+    @Test public void substitution() throws Exception {
+        assertEquals("really plain", bound.substituted());
+    }
+
     @Test public void canSuppressPropertySubstitutionWhenAsked() throws Exception {
         assertEquals("^27[78]{1}[0-9]{8}$", bound.regex());
     }

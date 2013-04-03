@@ -25,10 +25,12 @@
 
 package com.pholser.util.properties.internal;
 
-import java.util.Map;
-
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.PropertySource;
+
+import java.util.Map;
+
+import static com.pholser.util.properties.internal.Substitutions.*;
 
 public class MapPropertySource implements PropertySource {
     private final Map<String, ?> backing;
@@ -41,7 +43,7 @@ public class MapPropertySource implements PropertySource {
     }
 
     @Override public Object propertyFor(BoundProperty key) {
-        return backing.get(key.value());
+        return maybeSubstitute(this, key, backing.get(key.value()));
     }
 
     @Override public String toString() {

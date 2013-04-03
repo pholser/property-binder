@@ -520,6 +520,9 @@ public interface ScalarPropertyHaver {
     @DefaultsTo("2003")
     Date datePropertyWithDefaultWithParsePatterns();
 
+    @BoundProperty("with.substitution")
+    String substituted();
+
     @BoundProperty(value = "need.to.suppress.substitution", suppressSubstitution = true)
     String regex();
 }

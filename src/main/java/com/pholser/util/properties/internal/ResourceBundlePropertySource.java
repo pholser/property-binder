@@ -25,11 +25,13 @@
 
 package com.pholser.util.properties.internal;
 
+import com.pholser.util.properties.BoundProperty;
+import com.pholser.util.properties.PropertySource;
+
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.PropertySource;
+import static com.pholser.util.properties.internal.Substitutions.*;
 
 public class ResourceBundlePropertySource implements PropertySource {
     private final ResourceBundle backing;
@@ -43,7 +45,7 @@ public class ResourceBundlePropertySource implements PropertySource {
 
     @Override public Object propertyFor(BoundProperty key) {
         try {
-            return backing.getObject(key.value());
+            return maybeSubstitute(this, key, backing.getObject(key.value()));
         } catch (MissingResourceException ex) {
             return null;
         }

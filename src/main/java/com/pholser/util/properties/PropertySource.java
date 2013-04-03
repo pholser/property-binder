@@ -26,8 +26,10 @@
 package com.pholser.util.properties;
 
 /**
- * Implement this interface to present sources of key-value properties (other than {@link java.util.Properties},
- * {@link java.util.Map}, and {@link java.util.ResourceBundle}) to {@link PropertyBinder}.
+ * <p>Implement this interface to present sources of key-value properties (other than {@link java.util.Properties},
+ * {@link java.util.Map}, and {@link java.util.ResourceBundle}) to {@link PropertyBinder}.</p>
+ *
+ * <p>Implementers can choose whether or not to honor features of a </p>
  */
 public interface PropertySource {
     /**

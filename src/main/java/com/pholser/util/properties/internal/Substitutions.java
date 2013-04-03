@@ -28,6 +28,7 @@ package com.pholser.util.properties.internal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.PropertySource;
 
 import static com.pholser.util.properties.internal.Objects.*;
@@ -49,6 +50,10 @@ public final class Substitutions {
         }
 
         return substituted;
+    }
+
+    public static Object maybeSubstitute(PropertySource properties, BoundProperty key, Object value) {
+        return value instanceof String && !key.suppressSubstitution() ? substitute(properties, (String) value) : value;
     }
 
     private static String substituteReferences(PropertySource properties, CharSequence value) {
