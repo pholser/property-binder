@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="1.0" branch-rate="1.0" lines-covered="400" lines-valid="400" branches-covered="134" branches-valid="134" complexity="1.8662420382165605" version="1.9.4.1" timestamp="1309659981707">
+<coverage line-rate="1.0" branch-rate="1.0" lines-covered="399" lines-valid="399" branches-covered="144" branches-valid="144" complexity="1.8841463414634145" version="1.9.4.1" timestamp="1370480369509">
 	<sources>
+		<source>/Users/prholser/java/property-binder/target/checkout/src/main/java</source>
 		<source>--source</source>
-		<source>/Users/pholser/java/property-binder/src/main/java</source>
 	</sources>
 	<packages>
-		<package name="com.pholser.util.properties" line-rate="1.0" branch-rate="1.0" complexity="1.0666666666666667">
+		<package name="com.pholser.util.properties" line-rate="1.0" branch-rate="1.0" complexity="1.0888888888888888">
 			<classes>
 				<class name="com.pholser.util.properties.BoundProperty" filename="com/pholser/util/properties/BoundProperty.java" line-rate="1.0" branch-rate="1.0" complexity="0.0">
 					<methods>
@@ -31,86 +31,86 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="115" hits="2432" branch="false"/>
-								<line number="116" hits="2432" branch="false"/>
-								<line number="117" hits="2248" branch="false"/>
+								<line number="115" hits="331" branch="false"/>
+								<line number="116" hits="331" branch="false"/>
+								<line number="117" hits="308" branch="false"/>
 							</lines>
 						</method>
 						<method name="bind" signature="(Lcom/pholser/util/properties/PropertySource;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="219" hits="32" branch="false"/>
+								<line number="219" hits="4" branch="false"/>
 							</lines>
 						</method>
 						<method name="bind" signature="(Ljava/io/File;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="157" hits="1808" branch="false"/>
-								<line number="160" hits="1808" branch="false"/>
-								<line number="161" hits="1800" branch="false"/>
-								<line number="163" hits="1800" branch="false"/>
+								<line number="157" hits="228" branch="false"/>
+								<line number="160" hits="228" branch="false"/>
+								<line number="161" hits="227" branch="false"/>
+								<line number="163" hits="227" branch="false"/>
 							</lines>
 						</method>
 						<method name="bind" signature="(Ljava/io/InputStream;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="144" hits="1816" branch="false"/>
+								<line number="144" hits="229" branch="false"/>
 							</lines>
 						</method>
 						<method name="bind" signature="(Ljava/util/Map;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="191" hits="120" branch="false"/>
+								<line number="191" hits="15" branch="false"/>
 							</lines>
 						</method>
 						<method name="bind" signature="(Ljava/util/Properties;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="177" hits="248" branch="false"/>
+								<line number="177" hits="31" branch="false"/>
 							</lines>
 						</method>
 						<method name="bind" signature="(Ljava/util/ResourceBundle;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="205" hits="104" branch="false"/>
+								<line number="205" hits="13" branch="false"/>
 							</lines>
 						</method>
 						<method name="evaluate" signature="(Lcom/pholser/util/properties/PropertySource;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="223" hits="2296" branch="false"/>
+								<line number="223" hits="289" branch="false"/>
 							</lines>
 						</method>
 						<method name="forType" signature="(Ljava/lang/Class;)Lcom/pholser/util/properties/PropertyBinder;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="131" hits="760" branch="false"/>
+								<line number="131" hits="120" branch="false"/>
 							</lines>
 						</method>
 						<method name="getSystemProperties" signature="()Lcom/pholser/util/properties/SystemProperties;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="232" hits="224" branch="false"/>
+								<line number="232" hits="28" branch="false"/>
 							</lines>
 						</method>
 						<method name="loadProperties" signature="(Ljava/io/InputStream;)Lcom/pholser/util/properties/PropertySource;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="236" hits="1816" branch="false"/>
-								<line number="237" hits="1816" branch="false"/>
-								<line number="238" hits="1808" branch="false"/>
+								<line number="236" hits="229" branch="false"/>
+								<line number="237" hits="229" branch="false"/>
+								<line number="238" hits="228" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="115" hits="2432" branch="false"/>
-						<line number="116" hits="2432" branch="false"/>
-						<line number="117" hits="2248" branch="false"/>
-						<line number="131" hits="760" branch="false"/>
-						<line number="144" hits="1816" branch="false"/>
-						<line number="157" hits="1808" branch="false"/>
-						<line number="160" hits="1808" branch="false"/>
-						<line number="161" hits="1800" branch="false"/>
-						<line number="163" hits="1800" branch="false"/>
-						<line number="177" hits="248" branch="false"/>
-						<line number="191" hits="120" branch="false"/>
-						<line number="205" hits="104" branch="false"/>
-						<line number="219" hits="32" branch="false"/>
-						<line number="223" hits="2296" branch="false"/>
-						<line number="232" hits="224" branch="false"/>
-						<line number="236" hits="1816" branch="false"/>
-						<line number="237" hits="1816" branch="false"/>
-						<line number="238" hits="1808" branch="false"/>
+						<line number="115" hits="331" branch="false"/>
+						<line number="116" hits="331" branch="false"/>
+						<line number="117" hits="308" branch="false"/>
+						<line number="131" hits="120" branch="false"/>
+						<line number="144" hits="229" branch="false"/>
+						<line number="157" hits="228" branch="false"/>
+						<line number="160" hits="228" branch="false"/>
+						<line number="161" hits="227" branch="false"/>
+						<line number="163" hits="227" branch="false"/>
+						<line number="177" hits="31" branch="false"/>
+						<line number="191" hits="15" branch="false"/>
+						<line number="205" hits="13" branch="false"/>
+						<line number="219" hits="4" branch="false"/>
+						<line number="223" hits="289" branch="false"/>
+						<line number="232" hits="28" branch="false"/>
+						<line number="236" hits="229" branch="false"/>
+						<line number="237" hits="229" branch="false"/>
+						<line number="238" hits="228" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.PropertySource" filename="com/pholser/util/properties/PropertySource.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -119,76 +119,84 @@
 					<lines>
 					</lines>
 				</class>
-				<class name="com.pholser.util.properties.SubstitutableProperties" filename="com/pholser/util/properties/SubstitutableProperties.java" line-rate="1.0" branch-rate="1.0" complexity="1.4">
+				<class name="com.pholser.util.properties.SubstitutableProperties" filename="com/pholser/util/properties/SubstitutableProperties.java" line-rate="1.0" branch-rate="1.0" complexity="1.6">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="48" hits="1856" branch="false"/>
-								<line number="50" hits="1856" branch="false"/>
+								<line number="48" hits="234" branch="false"/>
+								<line number="50" hits="234" branch="false"/>
 							</lines>
 						</method>
 						<method name="&lt;init&gt;" signature="(Ljava/util/Properties;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="58" hits="336" branch="false"/>
-								<line number="59" hits="336" branch="false"/>
+								<line number="58" hits="42" branch="false"/>
+								<line number="59" hits="42" branch="false"/>
 							</lines>
 						</method>
 						<method name="getProperty" signature="(Ljava/lang/String;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="63" hits="10184" branch="false"/>
+								<line number="62" hits="1305" branch="false"/>
 							</lines>
 						</method>
-						<method name="propertyFor" signature="(Ljava/lang/String;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
+						<method name="propertyFor" signature="(Lcom/pholser/util/properties/BoundProperty;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="68" hits="9280" branch="false"/>
+								<line number="66" hits="1195" branch="true" condition-coverage="100% (2/2)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
 							</lines>
 						</method>
 						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="73" hits="16" branch="false"/>
-								<line number="74" hits="16" branch="true" condition-coverage="100% (2/2)">
+								<line number="70" hits="2" branch="false"/>
+								<line number="71" hits="2" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="75" hits="840" branch="false"/>
-								<line number="76" hits="840" branch="false"/>
-								<line number="77" hits="840" branch="true" condition-coverage="100% (2/2)">
+								<line number="72" hits="109" branch="false"/>
+								<line number="73" hits="109" branch="false"/>
+								<line number="74" hits="109" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="78" hits="824" branch="false"/>
-								<line number="79" hits="840" branch="false"/>
-								<line number="80" hits="16" branch="false"/>
-								<line number="81" hits="16" branch="false"/>
+								<line number="75" hits="107" branch="false"/>
+								<line number="76" hits="109" branch="false"/>
+								<line number="77" hits="2" branch="false"/>
+								<line number="78" hits="2" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="48" hits="1856" branch="false"/>
-						<line number="50" hits="1856" branch="false"/>
-						<line number="58" hits="336" branch="false"/>
-						<line number="59" hits="336" branch="false"/>
-						<line number="63" hits="10184" branch="false"/>
-						<line number="68" hits="9280" branch="false"/>
-						<line number="73" hits="16" branch="false"/>
-						<line number="74" hits="16" branch="true" condition-coverage="100% (2/2)">
+						<line number="48" hits="234" branch="false"/>
+						<line number="50" hits="234" branch="false"/>
+						<line number="58" hits="42" branch="false"/>
+						<line number="59" hits="42" branch="false"/>
+						<line number="62" hits="1305" branch="false"/>
+						<line number="66" hits="1195" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="75" hits="840" branch="false"/>
-						<line number="76" hits="840" branch="false"/>
-						<line number="77" hits="840" branch="true" condition-coverage="100% (2/2)">
+						<line number="70" hits="2" branch="false"/>
+						<line number="71" hits="2" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="78" hits="824" branch="false"/>
-						<line number="79" hits="840" branch="false"/>
-						<line number="80" hits="16" branch="false"/>
-						<line number="81" hits="16" branch="false"/>
+						<line number="72" hits="109" branch="false"/>
+						<line number="73" hits="109" branch="false"/>
+						<line number="74" hits="109" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="75" hits="107" branch="false"/>
+						<line number="76" hits="109" branch="false"/>
+						<line number="77" hits="2" branch="false"/>
+						<line number="78" hits="2" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.SystemProperties" filename="com/pholser/util/properties/SystemProperties.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -207,107 +215,149 @@
 		</package>
 		<package name="com.pholser.util.properties.internal" line-rate="1.0" branch-rate="1.0" complexity="2.142857142857143">
 			<classes>
-				<class name="com.pholser.util.properties.internal.IO" filename="com/pholser/util/properties/internal/IO.java" line-rate="1.0" branch-rate="1.0" complexity="2.0">
+				<class name="com.pholser.util.properties.internal.IO" filename="com/pholser/util/properties/internal/IO.java" line-rate="1.0" branch-rate="1.0" complexity="2.5">
 					<methods>
-						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="33" hits="8" branch="false"/>
-								<line number="34" hits="8" branch="false"/>
-							</lines>
-						</method>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="8" branch="false"/>
-								<line number="38" hits="8" branch="false"/>
+								<line number="32" hits="1" branch="false"/>
+								<line number="33" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="closeQuietly" signature="(Ljava/io/InputStream;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="42" hits="1880" branch="true" condition-coverage="100% (2/2)">
+								<line number="38" hits="237" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="43" hits="1864" branch="false"/>
-								<line number="44" hits="8" branch="false"/>
-								<line number="46" hits="1872" branch="false"/>
-								<line number="47" hits="1880" branch="false"/>
+								<line number="39" hits="235" branch="false"/>
+								<line number="40" hits="1" branch="false"/>
+								<line number="42" hits="236" branch="false"/>
+								<line number="43" hits="237" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="33" hits="8" branch="false"/>
-						<line number="34" hits="8" branch="false"/>
-						<line number="36" hits="8" branch="false"/>
-						<line number="38" hits="8" branch="false"/>
-						<line number="42" hits="1880" branch="true" condition-coverage="100% (2/2)">
+						<line number="32" hits="1" branch="false"/>
+						<line number="33" hits="1" branch="false"/>
+						<line number="38" hits="237" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="43" hits="1864" branch="false"/>
-						<line number="44" hits="8" branch="false"/>
-						<line number="46" hits="1872" branch="false"/>
-						<line number="47" hits="1880" branch="false"/>
+						<line number="39" hits="235" branch="false"/>
+						<line number="40" hits="1" branch="false"/>
+						<line number="42" hits="236" branch="false"/>
+						<line number="43" hits="237" branch="false"/>
+					</lines>
+				</class>
+				<class name="com.pholser.util.properties.internal.InternalBoundProperty" filename="com/pholser/util/properties/internal/InternalBoundProperty.java" line-rate="1.0" branch-rate="1.0" complexity="1.1666666666666667">
+					<methods>
+						<method name="&lt;init&gt;" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="35" hits="378" branch="false"/>
+								<line number="36" hits="378" branch="false"/>
+								<line number="37" hits="378" branch="false"/>
+							</lines>
+						</method>
+						<method name="annotationType" signature="()Ljava/lang/Class;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="48" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="equals" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="52" hits="23" branch="true" condition-coverage="100% (4/4)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+										<condition number="1" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+							</lines>
+						</method>
+						<method name="hashCode" signature="()I" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="56" hits="556" branch="false"/>
+							</lines>
+						</method>
+						<method name="suppressSubstitution" signature="()Z" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="44" hits="202" branch="false"/>
+							</lines>
+						</method>
+						<method name="value" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="40" hits="803" branch="false"/>
+							</lines>
+						</method>
+					</methods>
+					<lines>
+						<line number="35" hits="378" branch="false"/>
+						<line number="36" hits="378" branch="false"/>
+						<line number="37" hits="378" branch="false"/>
+						<line number="40" hits="803" branch="false"/>
+						<line number="44" hits="202" branch="false"/>
+						<line number="48" hits="1" branch="false"/>
+						<line number="52" hits="23" branch="true" condition-coverage="100% (4/4)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+								<condition number="1" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="56" hits="556" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.MapPropertySource" filename="com/pholser/util/properties/internal/MapPropertySource.java" line-rate="1.0" branch-rate="1.0" complexity="1.6666666666666667">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/util/Map;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="35" hits="120" branch="false"/>
-								<line number="36" hits="120" branch="true" condition-coverage="100% (2/2)">
+								<line number="38" hits="15" branch="false"/>
+								<line number="39" hits="15" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="37" hits="8" branch="false"/>
-								<line number="39" hits="112" branch="false"/>
-								<line number="40" hits="112" branch="false"/>
+								<line number="40" hits="1" branch="false"/>
+								<line number="42" hits="14" branch="false"/>
+								<line number="43" hits="14" branch="false"/>
 							</lines>
 						</method>
-						<method name="propertyFor" signature="(Ljava/lang/String;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
+						<method name="propertyFor" signature="(Lcom/pholser/util/properties/BoundProperty;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="44" hits="1136" branch="false"/>
+								<line number="46" hits="146" branch="false"/>
 							</lines>
 						</method>
 						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="49" hits="8" branch="false"/>
+								<line number="50" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="35" hits="120" branch="false"/>
-						<line number="36" hits="120" branch="true" condition-coverage="100% (2/2)">
+						<line number="38" hits="15" branch="false"/>
+						<line number="39" hits="15" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="37" hits="8" branch="false"/>
-						<line number="39" hits="112" branch="false"/>
-						<line number="40" hits="112" branch="false"/>
-						<line number="44" hits="1136" branch="false"/>
-						<line number="49" hits="8" branch="false"/>
+						<line number="40" hits="1" branch="false"/>
+						<line number="42" hits="14" branch="false"/>
+						<line number="43" hits="14" branch="false"/>
+						<line number="46" hits="146" branch="false"/>
+						<line number="50" hits="1" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.pholser.util.properties.internal.Objects" filename="com/pholser/util/properties/internal/Objects.java" line-rate="1.0" branch-rate="1.0" complexity="1.5">
+				<class name="com.pholser.util.properties.internal.Objects" filename="com/pholser/util/properties/internal/Objects.java" line-rate="1.0" branch-rate="1.0" complexity="2.0">
 					<methods>
-						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="30" hits="8" branch="false"/>
-								<line number="31" hits="8" branch="false"/>
-							</lines>
-						</method>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="33" hits="8" branch="false"/>
-								<line number="35" hits="8" branch="false"/>
+								<line number="29" hits="1" branch="false"/>
+								<line number="30" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="areEqual" signature="(Ljava/lang/Object;Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="38" hits="20128" branch="true" condition-coverage="100% (4/4)">
+								<line number="34" hits="2878" branch="true" condition-coverage="100% (4/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 										<condition number="1" type="jump" coverage="100%"/>
@@ -317,11 +367,9 @@
 						</method>
 					</methods>
 					<lines>
-						<line number="30" hits="8" branch="false"/>
-						<line number="31" hits="8" branch="false"/>
-						<line number="33" hits="8" branch="false"/>
-						<line number="35" hits="8" branch="false"/>
-						<line number="38" hits="20128" branch="true" condition-coverage="100% (4/4)">
+						<line number="29" hits="1" branch="false"/>
+						<line number="30" hits="1" branch="false"/>
+						<line number="34" hits="2878" branch="true" condition-coverage="100% (4/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 								<condition number="1" type="jump" coverage="100%"/>
@@ -333,227 +381,213 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/pholser/util/properties/PropertySource;Lcom/pholser/util/properties/internal/ValidatedSchema;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="39" hits="2256" branch="false"/>
-								<line number="40" hits="2256" branch="false"/>
-								<line number="41" hits="2256" branch="false"/>
-								<line number="42" hits="2256" branch="false"/>
+								<line number="39" hits="284" branch="false"/>
+								<line number="40" hits="284" branch="false"/>
+								<line number="41" hits="284" branch="false"/>
+								<line number="42" hits="284" branch="false"/>
 							</lines>
 						</method>
 						<method name="handleObjectMethod" signature="(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="53" hits="80" branch="true" condition-coverage="100% (2/2)">
+								<line number="52" hits="10" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="54" hits="32" branch="true" condition-coverage="100% (2/2)">
+								<line number="53" hits="4" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="56" hits="48" branch="true" condition-coverage="100% (2/2)">
+								<line number="55" hits="6" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="57" hits="8" branch="false"/>
-								<line number="59" hits="40" branch="false"/>
+								<line number="56" hits="1" branch="false"/>
+								<line number="58" hits="5" branch="false"/>
 							</lines>
 						</method>
 						<method name="handleToString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="63" hits="40" branch="false"/>
+								<line number="62" hits="5" branch="false"/>
 							</lines>
 						</method>
 						<method name="invoke" signature="(Ljava/lang/Object;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="46" hits="10312" branch="true" condition-coverage="100% (2/2)">
+								<line number="45" hits="1307" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="47" hits="80" branch="false"/>
-								<line number="49" hits="10232" branch="false"/>
+								<line number="46" hits="10" branch="false"/>
+								<line number="48" hits="1297" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="39" hits="2256" branch="false"/>
-						<line number="40" hits="2256" branch="false"/>
-						<line number="41" hits="2256" branch="false"/>
-						<line number="42" hits="2256" branch="false"/>
-						<line number="46" hits="10312" branch="true" condition-coverage="100% (2/2)">
+						<line number="39" hits="284" branch="false"/>
+						<line number="40" hits="284" branch="false"/>
+						<line number="41" hits="284" branch="false"/>
+						<line number="42" hits="284" branch="false"/>
+						<line number="45" hits="1307" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="47" hits="80" branch="false"/>
-						<line number="49" hits="10232" branch="false"/>
-						<line number="53" hits="80" branch="true" condition-coverage="100% (2/2)">
+						<line number="46" hits="10" branch="false"/>
+						<line number="48" hits="1297" branch="false"/>
+						<line number="52" hits="10" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="54" hits="32" branch="true" condition-coverage="100% (2/2)">
+						<line number="53" hits="4" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="56" hits="48" branch="true" condition-coverage="100% (2/2)">
+						<line number="55" hits="6" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="57" hits="8" branch="false"/>
-						<line number="59" hits="40" branch="false"/>
-						<line number="63" hits="40" branch="false"/>
+						<line number="56" hits="1" branch="false"/>
+						<line number="58" hits="5" branch="false"/>
+						<line number="62" hits="5" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.pholser.util.properties.internal.Reflection" filename="com/pholser/util/properties/internal/Reflection.java" line-rate="1.0" branch-rate="1.0" complexity="4.333333333333333">
+				<class name="com.pholser.util.properties.internal.Reflection" filename="com/pholser/util/properties/internal/Reflection.java" line-rate="1.0" branch-rate="1.0" complexity="4.666666666666667">
 					<methods>
-						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="35" hits="8" branch="false"/>
-								<line number="36" hits="8" branch="false"/>
-							</lines>
-						</method>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="38" hits="8" branch="false"/>
-								<line number="40" hits="8" branch="false"/>
+								<line number="34" hits="1" branch="false"/>
+								<line number="35" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="invokeQuietly" signature="(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="44" hits="407600" branch="false"/>
-								<line number="45" hits="8" branch="false"/>
-								<line number="46" hits="8" branch="false"/>
+								<line number="40" hits="59212" branch="false"/>
+								<line number="41" hits="1" branch="false"/>
+								<line number="42" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="invokeQuietly" signature="(Ljava/lang/reflect/Method;Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="52" hits="594312" branch="false"/>
-								<line number="53" hits="8" branch="false"/>
-								<line number="54" hits="8" branch="false"/>
-								<line number="55" hits="24" branch="false"/>
-								<line number="56" hits="24" branch="false"/>
-								<line number="57" hits="8" branch="false"/>
-								<line number="58" hits="8" branch="false"/>
+								<line number="48" hits="86279" branch="false"/>
+								<line number="49" hits="1" branch="false"/>
+								<line number="50" hits="1" branch="false"/>
+								<line number="51" hits="3" branch="false"/>
+								<line number="52" hits="3" branch="false"/>
+								<line number="53" hits="1" branch="false"/>
+								<line number="54" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="35" hits="8" branch="false"/>
-						<line number="36" hits="8" branch="false"/>
-						<line number="38" hits="8" branch="false"/>
-						<line number="40" hits="8" branch="false"/>
-						<line number="44" hits="407600" branch="false"/>
-						<line number="45" hits="8" branch="false"/>
-						<line number="46" hits="8" branch="false"/>
-						<line number="52" hits="594312" branch="false"/>
-						<line number="53" hits="8" branch="false"/>
-						<line number="54" hits="8" branch="false"/>
-						<line number="55" hits="24" branch="false"/>
-						<line number="56" hits="24" branch="false"/>
-						<line number="57" hits="8" branch="false"/>
-						<line number="58" hits="8" branch="false"/>
+						<line number="34" hits="1" branch="false"/>
+						<line number="35" hits="1" branch="false"/>
+						<line number="40" hits="59212" branch="false"/>
+						<line number="41" hits="1" branch="false"/>
+						<line number="42" hits="1" branch="false"/>
+						<line number="48" hits="86279" branch="false"/>
+						<line number="49" hits="1" branch="false"/>
+						<line number="50" hits="1" branch="false"/>
+						<line number="51" hits="3" branch="false"/>
+						<line number="52" hits="3" branch="false"/>
+						<line number="53" hits="1" branch="false"/>
+						<line number="54" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.ResourceBundlePropertySource" filename="com/pholser/util/properties/internal/ResourceBundlePropertySource.java" line-rate="1.0" branch-rate="1.0" complexity="2.3333333333333335">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/util/ResourceBundle;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="104" branch="false"/>
-								<line number="37" hits="104" branch="true" condition-coverage="100% (2/2)">
+								<line number="39" hits="13" branch="false"/>
+								<line number="40" hits="13" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="38" hits="8" branch="false"/>
-								<line number="40" hits="96" branch="false"/>
-								<line number="41" hits="96" branch="false"/>
+								<line number="41" hits="1" branch="false"/>
+								<line number="43" hits="12" branch="false"/>
+								<line number="44" hits="12" branch="false"/>
 							</lines>
 						</method>
-						<method name="propertyFor" signature="(Ljava/lang/String;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
+						<method name="propertyFor" signature="(Lcom/pholser/util/properties/BoundProperty;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="46" hits="1104" branch="false"/>
-								<line number="47" hits="512" branch="false"/>
-								<line number="48" hits="512" branch="false"/>
+								<line number="48" hits="142" branch="false"/>
+								<line number="49" hits="64" branch="false"/>
+								<line number="50" hits="64" branch="false"/>
 							</lines>
 						</method>
 						<method name="toString" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="54" hits="8" branch="false"/>
+								<line number="56" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="36" hits="104" branch="false"/>
-						<line number="37" hits="104" branch="true" condition-coverage="100% (2/2)">
+						<line number="39" hits="13" branch="false"/>
+						<line number="40" hits="13" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="38" hits="8" branch="false"/>
-						<line number="40" hits="96" branch="false"/>
-						<line number="41" hits="96" branch="false"/>
-						<line number="46" hits="1104" branch="false"/>
-						<line number="47" hits="512" branch="false"/>
-						<line number="48" hits="512" branch="false"/>
-						<line number="54" hits="8" branch="false"/>
+						<line number="41" hits="1" branch="false"/>
+						<line number="43" hits="12" branch="false"/>
+						<line number="44" hits="12" branch="false"/>
+						<line number="48" hits="142" branch="false"/>
+						<line number="49" hits="64" branch="false"/>
+						<line number="50" hits="64" branch="false"/>
+						<line number="56" hits="1" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.pholser.util.properties.internal.Schemata" filename="com/pholser/util/properties/internal/Schemata.java" line-rate="1.0" branch-rate="1.0" complexity="1.5">
+				<class name="com.pholser.util.properties.internal.Schemata" filename="com/pholser/util/properties/internal/Schemata.java" line-rate="1.0" branch-rate="1.0" complexity="1.625">
 					<methods>
-						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
-							<lines>
-								<line number="39" hits="8" branch="false"/>
-								<line number="40" hits="8" branch="false"/>
-							</lines>
-						</method>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="42" hits="8" branch="false"/>
-								<line number="44" hits="8" branch="false"/>
+								<line number="38" hits="1" branch="false"/>
+								<line number="39" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="annotationDefault" signature="(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="53" hits="535520" branch="false"/>
-								<line number="54" hits="8" branch="false"/>
-								<line number="55" hits="8" branch="false"/>
+								<line number="51" hits="77362" branch="false"/>
+								<line number="52" hits="1" branch="false"/>
+								<line number="53" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="isDefault" signature="(Ljava/lang/Object;Ljava/lang/Class;Ljava/lang/String;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="60" hits="407592" branch="false"/>
-								<line number="61" hits="407592" branch="false"/>
+								<line number="58" hits="59211" branch="false"/>
+								<line number="59" hits="59211" branch="false"/>
 							</lines>
 						</method>
 						<method name="isDefaultDefaultValue" signature="(Lcom/pholser/util/properties/DefaultsTo;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="73" hits="144848" branch="false"/>
+								<line number="71" hits="21454" branch="false"/>
 							</lines>
 						</method>
 						<method name="isDefaultDefaultValueOf" signature="(Lcom/pholser/util/properties/DefaultsTo;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="77" hits="72432" branch="false"/>
+								<line number="75" hits="10728" branch="false"/>
 							</lines>
 						</method>
 						<method name="isDefaultPattern" signature="(Lcom/pholser/util/properties/ValuesSeparatedBy;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="69" hits="126872" branch="false"/>
+								<line number="67" hits="18019" branch="false"/>
 							</lines>
 						</method>
 						<method name="isDefaultSeparatorValueOf" signature="(Lcom/pholser/util/properties/ValuesSeparatedBy;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="65" hits="63440" branch="false"/>
+								<line number="63" hits="9010" branch="false"/>
 							</lines>
 						</method>
-						<method name="propertyNameFor" signature="(Ljava/lang/reflect/Method;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
+						<method name="propertyMarkerFor" signature="(Ljava/lang/reflect/Method;)Lcom/pholser/util/properties/BoundProperty;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="47" hits="165848" branch="false"/>
-								<line number="48" hits="165848" branch="true" condition-coverage="100% (2/2)">
+								<line number="43" hits="24348" branch="false"/>
+								<line number="44" hits="24348" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
@@ -562,235 +596,245 @@
 						</method>
 					</methods>
 					<lines>
-						<line number="39" hits="8" branch="false"/>
-						<line number="40" hits="8" branch="false"/>
-						<line number="42" hits="8" branch="false"/>
-						<line number="44" hits="8" branch="false"/>
-						<line number="47" hits="165848" branch="false"/>
-						<line number="48" hits="165848" branch="true" condition-coverage="100% (2/2)">
+						<line number="38" hits="1" branch="false"/>
+						<line number="39" hits="1" branch="false"/>
+						<line number="43" hits="24348" branch="false"/>
+						<line number="44" hits="24348" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="53" hits="535520" branch="false"/>
-						<line number="54" hits="8" branch="false"/>
-						<line number="55" hits="8" branch="false"/>
-						<line number="60" hits="407592" branch="false"/>
-						<line number="61" hits="407592" branch="false"/>
-						<line number="65" hits="63440" branch="false"/>
-						<line number="69" hits="126872" branch="false"/>
-						<line number="73" hits="144848" branch="false"/>
-						<line number="77" hits="72432" branch="false"/>
+						<line number="51" hits="77362" branch="false"/>
+						<line number="52" hits="1" branch="false"/>
+						<line number="53" hits="1" branch="false"/>
+						<line number="58" hits="59211" branch="false"/>
+						<line number="59" hits="59211" branch="false"/>
+						<line number="63" hits="9010" branch="false"/>
+						<line number="67" hits="18019" branch="false"/>
+						<line number="71" hits="21454" branch="false"/>
+						<line number="75" hits="10728" branch="false"/>
 					</lines>
 				</class>
-				<class name="com.pholser.util.properties.internal.Substitutions" filename="com/pholser/util/properties/internal/Substitutions.java" line-rate="1.0" branch-rate="1.0" complexity="2.0">
+				<class name="com.pholser.util.properties.internal.Substitutions" filename="com/pholser/util/properties/internal/Substitutions.java" line-rate="1.0" branch-rate="1.0" complexity="2.5">
 					<methods>
 						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="8" branch="false"/>
-								<line number="39" hits="8" branch="false"/>
-								<line number="40" hits="8" branch="false"/>
+								<line number="37" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="42" hits="8" branch="false"/>
-								<line number="44" hits="8" branch="false"/>
+								<line number="39" hits="1" branch="false"/>
+								<line number="40" hits="1" branch="false"/>
+							</lines>
+						</method>
+						<method name="maybeSubstitute" signature="(Lcom/pholser/util/properties/PropertySource;Lcom/pholser/util/properties/BoundProperty;Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
+							<lines>
+								<line number="56" hits="224" branch="true" condition-coverage="100% (4/4)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+										<condition number="1" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
 							</lines>
 						</method>
 						<method name="substitute" signature="(Lcom/pholser/util/properties/PropertySource;Ljava/lang/String;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="47" hits="11384" branch="false"/>
-								<line number="48" hits="11384" branch="false"/>
-								<line number="50" hits="20088" branch="true" condition-coverage="100% (2/2)">
+								<line number="44" hits="1593" branch="false"/>
+								<line number="45" hits="1593" branch="false"/>
+								<line number="47" hits="2873" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="51" hits="8736" branch="false"/>
-								<line number="52" hits="8736" branch="false"/>
-								<line number="55" hits="11352" branch="false"/>
+								<line number="48" hits="1284" branch="false"/>
+								<line number="49" hits="1284" branch="false"/>
+								<line number="52" hits="1589" branch="false"/>
 							</lines>
 						</method>
 						<method name="substituteReferences" signature="(Lcom/pholser/util/properties/PropertySource;Ljava/lang/CharSequence;)Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="59" hits="8736" branch="false"/>
-								<line number="60" hits="8736" branch="false"/>
-								<line number="61" hits="10008" branch="true" condition-coverage="100% (2/2)">
+								<line number="60" hits="1284" branch="false"/>
+								<line number="61" hits="1284" branch="false"/>
+								<line number="62" hits="1468" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="62" hits="1304" branch="false"/>
-								<line number="63" hits="1272" branch="true" condition-coverage="100% (2/2)">
+								<line number="63" hits="188" branch="false"/>
+								<line number="64" hits="184" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="64" hits="1272" branch="false"/>
-								<line number="65" hits="8704" branch="false"/>
-								<line number="66" hits="8704" branch="false"/>
+								<line number="65" hits="184" branch="false"/>
+								<line number="66" hits="1280" branch="false"/>
+								<line number="67" hits="1280" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="36" hits="8" branch="false"/>
-						<line number="39" hits="8" branch="false"/>
-						<line number="40" hits="8" branch="false"/>
-						<line number="42" hits="8" branch="false"/>
-						<line number="44" hits="8" branch="false"/>
-						<line number="47" hits="11384" branch="false"/>
-						<line number="48" hits="11384" branch="false"/>
-						<line number="50" hits="20088" branch="true" condition-coverage="100% (2/2)">
+						<line number="37" hits="1" branch="false"/>
+						<line number="39" hits="1" branch="false"/>
+						<line number="40" hits="1" branch="false"/>
+						<line number="44" hits="1593" branch="false"/>
+						<line number="45" hits="1593" branch="false"/>
+						<line number="47" hits="2873" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="51" hits="8736" branch="false"/>
-						<line number="52" hits="8736" branch="false"/>
-						<line number="55" hits="11352" branch="false"/>
-						<line number="59" hits="8736" branch="false"/>
-						<line number="60" hits="8736" branch="false"/>
-						<line number="61" hits="10008" branch="true" condition-coverage="100% (2/2)">
+						<line number="48" hits="1284" branch="false"/>
+						<line number="49" hits="1284" branch="false"/>
+						<line number="52" hits="1589" branch="false"/>
+						<line number="56" hits="224" branch="true" condition-coverage="100% (4/4)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+								<condition number="1" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="60" hits="1284" branch="false"/>
+						<line number="61" hits="1284" branch="false"/>
+						<line number="62" hits="1468" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="62" hits="1304" branch="false"/>
-						<line number="63" hits="1272" branch="true" condition-coverage="100% (2/2)">
+						<line number="63" hits="188" branch="false"/>
+						<line number="64" hits="184" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="64" hits="1272" branch="false"/>
-						<line number="65" hits="8704" branch="false"/>
-						<line number="66" hits="8704" branch="false"/>
+						<line number="65" hits="184" branch="false"/>
+						<line number="66" hits="1280" branch="false"/>
+						<line number="67" hits="1280" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.ValidatedSchema" filename="com/pholser/util/properties/internal/ValidatedSchema.java" line-rate="1.0" branch-rate="1.0" complexity="2.142857142857143">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/Class;Ljava/util/Map;Ljava/util/Map;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="45" hits="2248" branch="false"/>
-								<line number="47" hits="2248" branch="false"/>
-								<line number="48" hits="2248" branch="false"/>
-								<line number="49" hits="2248" branch="false"/>
-								<line number="50" hits="2248" branch="false"/>
+								<line number="46" hits="308" branch="false"/>
+								<line number="48" hits="308" branch="false"/>
+								<line number="49" hits="308" branch="false"/>
+								<line number="50" hits="308" branch="false"/>
+								<line number="51" hits="308" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Lcom/pholser/util/properties/PropertySource;Ljava/lang/reflect/Method;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="68" hits="10232" branch="false"/>
-								<line number="69" hits="10232" branch="false"/>
-								<line number="71" hits="10232" branch="false"/>
-								<line number="72" hits="10232" branch="true" condition-coverage="100% (2/2)">
+								<line number="69" hits="1297" branch="false"/>
+								<line number="70" hits="1297" branch="false"/>
+								<line number="72" hits="1297" branch="false"/>
+								<line number="73" hits="1297" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="73" hits="5320" branch="false"/>
-								<line number="74" hits="4912" branch="true" condition-coverage="100% (2/2)">
+								<line number="74" hits="683" branch="false"/>
+								<line number="75" hits="614" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="75" hits="4656" branch="false"/>
-								<line number="76" hits="256" branch="false"/>
+								<line number="76" hits="582" branch="false"/>
+								<line number="77" hits="32" branch="false"/>
 							</lines>
 						</method>
 						<method name="createTypedProxyFor" signature="(Lcom/pholser/util/properties/PropertySource;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="62" hits="2256" branch="false"/>
+								<line number="63" hits="284" branch="false"/>
 							</lines>
 						</method>
 						<method name="evaluate" signature="(Lcom/pholser/util/properties/PropertySource;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="53" hits="2296" branch="true" condition-coverage="100% (2/2)">
+								<line number="54" hits="289" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="54" hits="8" branch="false"/>
-								<line number="56" hits="2288" branch="false"/>
-								<line number="57" hits="2272" branch="false"/>
-								<line number="58" hits="2256" branch="false"/>
+								<line number="55" hits="1" branch="false"/>
+								<line number="57" hits="288" branch="false"/>
+								<line number="58" hits="286" branch="false"/>
+								<line number="59" hits="284" branch="false"/>
 							</lines>
 						</method>
 						<method name="getName" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="80" hits="40" branch="false"/>
+								<line number="81" hits="5" branch="false"/>
 							</lines>
 						</method>
 						<method name="resolveConverters" signature="(Lcom/pholser/util/properties/PropertySource;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="84" hits="2288" branch="true" condition-coverage="100% (2/2)">
+								<line number="85" hits="288" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="85" hits="159040" branch="false"/>
-								<line number="86" hits="2272" branch="false"/>
+								<line number="86" hits="20260" branch="false"/>
+								<line number="87" hits="286" branch="false"/>
 							</lines>
 						</method>
 						<method name="resolveDefaultValues" signature="(Lcom/pholser/util/properties/PropertySource;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="89" hits="2272" branch="true" condition-coverage="100% (2/2)">
+								<line number="90" hits="286" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="90" hits="74384" branch="false"/>
-								<line number="91" hits="2256" branch="false"/>
+								<line number="91" hits="9422" branch="false"/>
+								<line number="92" hits="284" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="45" hits="2248" branch="false"/>
-						<line number="47" hits="2248" branch="false"/>
-						<line number="48" hits="2248" branch="false"/>
-						<line number="49" hits="2248" branch="false"/>
-						<line number="50" hits="2248" branch="false"/>
-						<line number="53" hits="2296" branch="true" condition-coverage="100% (2/2)">
+						<line number="46" hits="308" branch="false"/>
+						<line number="48" hits="308" branch="false"/>
+						<line number="49" hits="308" branch="false"/>
+						<line number="50" hits="308" branch="false"/>
+						<line number="51" hits="308" branch="false"/>
+						<line number="54" hits="289" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="54" hits="8" branch="false"/>
-						<line number="56" hits="2288" branch="false"/>
-						<line number="57" hits="2272" branch="false"/>
-						<line number="58" hits="2256" branch="false"/>
-						<line number="62" hits="2256" branch="false"/>
-						<line number="68" hits="10232" branch="false"/>
-						<line number="69" hits="10232" branch="false"/>
-						<line number="71" hits="10232" branch="false"/>
-						<line number="72" hits="10232" branch="true" condition-coverage="100% (2/2)">
+						<line number="55" hits="1" branch="false"/>
+						<line number="57" hits="288" branch="false"/>
+						<line number="58" hits="286" branch="false"/>
+						<line number="59" hits="284" branch="false"/>
+						<line number="63" hits="284" branch="false"/>
+						<line number="69" hits="1297" branch="false"/>
+						<line number="70" hits="1297" branch="false"/>
+						<line number="72" hits="1297" branch="false"/>
+						<line number="73" hits="1297" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="73" hits="5320" branch="false"/>
-						<line number="74" hits="4912" branch="true" condition-coverage="100% (2/2)">
+						<line number="74" hits="683" branch="false"/>
+						<line number="75" hits="614" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="75" hits="4656" branch="false"/>
-						<line number="76" hits="256" branch="false"/>
-						<line number="80" hits="40" branch="false"/>
-						<line number="84" hits="2288" branch="true" condition-coverage="100% (2/2)">
+						<line number="76" hits="582" branch="false"/>
+						<line number="77" hits="32" branch="false"/>
+						<line number="81" hits="5" branch="false"/>
+						<line number="85" hits="288" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="85" hits="159040" branch="false"/>
-						<line number="86" hits="2272" branch="false"/>
-						<line number="89" hits="2272" branch="true" condition-coverage="100% (2/2)">
+						<line number="86" hits="20260" branch="false"/>
+						<line number="87" hits="286" branch="false"/>
+						<line number="90" hits="286" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="90" hits="74384" branch="false"/>
-						<line number="91" hits="2256" branch="false"/>
+						<line number="91" hits="9422" branch="false"/>
+						<line number="92" hits="284" branch="false"/>
 					</lines>
 				</class>
 			</classes>
@@ -801,12 +845,12 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="28" hits="282760" branch="false"/>
+								<line number="28" hits="41104" branch="false"/>
 							</lines>
 						</method>
 						<method name="convertRaw" signature="(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="31" hits="5240" branch="true" condition-coverage="100% (2/2)">
+								<line number="30" hits="673" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
@@ -815,8 +859,8 @@
 						</method>
 					</methods>
 					<lines>
-						<line number="28" hits="282760" branch="false"/>
-						<line number="31" hits="5240" branch="true" condition-coverage="100% (2/2)">
+						<line number="28" hits="41104" branch="false"/>
+						<line number="30" hits="673" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
@@ -827,370 +871,370 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/pholser/util/properties/internal/separators/ValueSeparator;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="34" hits="127192" branch="false"/>
-								<line number="35" hits="127192" branch="false"/>
-								<line number="36" hits="127192" branch="false"/>
+								<line number="34" hits="18059" branch="false"/>
+								<line number="35" hits="18059" branch="false"/>
+								<line number="36" hits="18059" branch="false"/>
 							</lines>
 						</method>
 						<method name="resolve" signature="(Lcom/pholser/util/properties/PropertySource;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="44" hits="129672" branch="false"/>
-								<line number="45" hits="129656" branch="false"/>
+								<line number="43" hits="16369" branch="false"/>
+								<line number="44" hits="16367" branch="false"/>
 							</lines>
 						</method>
 						<method name="separate" signature="(Ljava/lang/String;)[Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="39" hits="65296" branch="false"/>
+								<line number="39" hits="9242" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="34" hits="127192" branch="false"/>
-						<line number="35" hits="127192" branch="false"/>
-						<line number="36" hits="127192" branch="false"/>
-						<line number="39" hits="65296" branch="false"/>
-						<line number="44" hits="129672" branch="false"/>
-						<line number="45" hits="129656" branch="false"/>
+						<line number="34" hits="18059" branch="false"/>
+						<line number="35" hits="18059" branch="false"/>
+						<line number="36" hits="18059" branch="false"/>
+						<line number="39" hits="9242" branch="false"/>
+						<line number="43" hits="16369" branch="false"/>
+						<line number="44" hits="16367" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.conversions.ArrayValueConverter" filename="com/pholser/util/properties/internal/conversions/ArrayValueConverter.java" line-rate="1.0" branch-rate="1.0" complexity="1.3333333333333333">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/Class;Lcom/pholser/util/properties/internal/separators/ValueSeparator;Lcom/pholser/util/properties/ParsedAs;Lcom/pholser/util/properties/DefaultsTo;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="41" hits="96504" branch="false"/>
-								<line number="42" hits="96504" branch="false"/>
-								<line number="43" hits="96504" branch="false"/>
-								<line number="44" hits="96464" branch="false"/>
+								<line number="41" hits="14223" branch="false"/>
+								<line number="43" hits="14223" branch="false"/>
+								<line number="44" hits="14223" branch="false"/>
+								<line number="45" hits="14218" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="48" hits="50368" branch="false"/>
-								<line number="49" hits="50368" branch="false"/>
-								<line number="50" hits="240264" branch="true" condition-coverage="100% (2/2)">
+								<line number="48" hits="7376" branch="false"/>
+								<line number="49" hits="7376" branch="false"/>
+								<line number="50" hits="35298" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="51" hits="189896" branch="false"/>
-								<line number="53" hits="50368" branch="false"/>
+								<line number="51" hits="27922" branch="false"/>
+								<line number="53" hits="7376" branch="false"/>
 							</lines>
 						</method>
 						<method name="nilValue" signature="()Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="58" hits="16" branch="false"/>
+								<line number="57" hits="2" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="41" hits="96504" branch="false"/>
-						<line number="42" hits="96504" branch="false"/>
-						<line number="43" hits="96504" branch="false"/>
-						<line number="44" hits="96464" branch="false"/>
-						<line number="48" hits="50368" branch="false"/>
-						<line number="49" hits="50368" branch="false"/>
-						<line number="50" hits="240264" branch="true" condition-coverage="100% (2/2)">
+						<line number="41" hits="14223" branch="false"/>
+						<line number="43" hits="14223" branch="false"/>
+						<line number="44" hits="14223" branch="false"/>
+						<line number="45" hits="14218" branch="false"/>
+						<line number="48" hits="7376" branch="false"/>
+						<line number="49" hits="7376" branch="false"/>
+						<line number="50" hits="35298" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="51" hits="189896" branch="false"/>
-						<line number="53" hits="50368" branch="false"/>
-						<line number="58" hits="16" branch="false"/>
+						<line number="51" hits="27922" branch="false"/>
+						<line number="53" hits="7376" branch="false"/>
+						<line number="57" hits="2" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.conversions.CharacterValueOfConverter" filename="com/pholser/util/properties/internal/conversions/CharacterValueOfConverter.java" line-rate="1.0" branch-rate="1.0" complexity="3.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="30" hits="13648" branch="false"/>
+								<line number="30" hits="2030" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="33" hits="23912" branch="true" condition-coverage="100% (2/2)">
+								<line number="32" hits="3475" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="34" hits="8" branch="false"/>
-								<line number="36" hits="23904" branch="false"/>
+								<line number="33" hits="1" branch="false"/>
+								<line number="35" hits="3474" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="30" hits="13648" branch="false"/>
-						<line number="33" hits="23912" branch="true" condition-coverage="100% (2/2)">
+						<line number="30" hits="2030" branch="false"/>
+						<line number="32" hits="3475" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="34" hits="8" branch="false"/>
-						<line number="36" hits="23904" branch="false"/>
+						<line number="33" hits="1" branch="false"/>
+						<line number="35" hits="3474" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.conversions.ConstructorInvokingValueConverter" filename="com/pholser/util/properties/internal/conversions/ConstructorInvokingValueConverter.java" line-rate="1.0" branch-rate="1.0" complexity="5.5">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/reflect/Constructor;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="34912" branch="false"/>
-								<line number="37" hits="34912" branch="false"/>
-								<line number="38" hits="34912" branch="false"/>
+								<line number="36" hits="5074" branch="false"/>
+								<line number="37" hits="5074" branch="false"/>
+								<line number="38" hits="5074" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="43" hits="36963" branch="false"/>
-								<line number="44" hits="8" branch="false"/>
-								<line number="45" hits="8" branch="false"/>
-								<line number="46" hits="8" branch="false"/>
-								<line number="47" hits="8" branch="false"/>
-								<line number="48" hits="16" branch="false"/>
-								<line number="49" hits="16" branch="false"/>
-								<line number="50" hits="16" branch="false"/>
-								<line number="51" hits="16" branch="false"/>
+								<line number="42" hits="5155" branch="false"/>
+								<line number="43" hits="1" branch="false"/>
+								<line number="44" hits="1" branch="false"/>
+								<line number="45" hits="1" branch="false"/>
+								<line number="46" hits="1" branch="false"/>
+								<line number="47" hits="2" branch="false"/>
+								<line number="48" hits="2" branch="false"/>
+								<line number="49" hits="2" branch="false"/>
+								<line number="50" hits="2" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="36" hits="34912" branch="false"/>
-						<line number="37" hits="34912" branch="false"/>
-						<line number="38" hits="34912" branch="false"/>
-						<line number="43" hits="36963" branch="false"/>
-						<line number="44" hits="8" branch="false"/>
-						<line number="45" hits="8" branch="false"/>
-						<line number="46" hits="8" branch="false"/>
-						<line number="47" hits="8" branch="false"/>
-						<line number="48" hits="16" branch="false"/>
-						<line number="49" hits="16" branch="false"/>
-						<line number="50" hits="16" branch="false"/>
-						<line number="51" hits="16" branch="false"/>
+						<line number="36" hits="5074" branch="false"/>
+						<line number="37" hits="5074" branch="false"/>
+						<line number="38" hits="5074" branch="false"/>
+						<line number="42" hits="5155" branch="false"/>
+						<line number="43" hits="1" branch="false"/>
+						<line number="44" hits="1" branch="false"/>
+						<line number="45" hits="1" branch="false"/>
+						<line number="46" hits="1" branch="false"/>
+						<line number="47" hits="2" branch="false"/>
+						<line number="48" hits="2" branch="false"/>
+						<line number="49" hits="2" branch="false"/>
+						<line number="50" hits="2" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.conversions.ListValueConverter" filename="com/pholser/util/properties/internal/conversions/ListValueConverter.java" line-rate="1.0" branch-rate="1.0" complexity="3.5">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/reflect/Type;Lcom/pholser/util/properties/internal/separators/ValueSeparator;Lcom/pholser/util/properties/ParsedAs;Lcom/pholser/util/properties/DefaultsTo;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="45" hits="30688" branch="false"/>
-								<line number="46" hits="30688" branch="false"/>
-								<line number="47" hits="30664" branch="false"/>
+								<line number="45" hits="3836" branch="false"/>
+								<line number="47" hits="3836" branch="false"/>
+								<line number="48" hits="3833" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="41" hits="14928" branch="false"/>
+								<line number="41" hits="1866" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Ljava/lang/String;[Ljava/lang/Object;)Ljava/util/List;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="51" hits="14928" branch="false"/>
-								<line number="52" hits="14928" branch="false"/>
-								<line number="53" hits="65619" branch="true" condition-coverage="100% (2/2)">
+								<line number="51" hits="1866" branch="false"/>
+								<line number="52" hits="1866" branch="false"/>
+								<line number="53" hits="8206" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="54" hits="50691" branch="false"/>
-								<line number="56" hits="14928" branch="false"/>
+								<line number="54" hits="6340" branch="false"/>
+								<line number="56" hits="1866" branch="false"/>
 							</lines>
 						</method>
 						<method name="deduceElementType" signature="(Ljava/lang/reflect/Type;)Ljava/lang/Class;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="60" hits="30688" branch="true" condition-coverage="100% (2/2)">
+								<line number="60" hits="3836" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="61" hits="1952" branch="false"/>
-								<line number="63" hits="28736" branch="false"/>
-								<line number="64" hits="28736" branch="false"/>
-								<line number="65" hits="28736" branch="true" condition-coverage="100% (2/2)">
+								<line number="61" hits="244" branch="false"/>
+								<line number="63" hits="3592" branch="false"/>
+								<line number="64" hits="3592" branch="false"/>
+								<line number="65" hits="3592" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="66" hits="26760" branch="false"/>
-								<line number="68" hits="1976" branch="true" condition-coverage="100% (2/2)">
+								<line number="66" hits="3345" branch="false"/>
+								<line number="68" hits="247" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="69" hits="1968" branch="false"/>
-								<line number="70" hits="1968" branch="true" condition-coverage="100% (4/4)">
+								<line number="69" hits="246" branch="false"/>
+								<line number="70" hits="246" branch="true" condition-coverage="100% (4/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 										<condition number="1" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="71" hits="1952" branch="false"/>
-								<line number="74" hits="24" branch="false"/>
+								<line number="71" hits="244" branch="false"/>
+								<line number="74" hits="3" branch="false"/>
 							</lines>
 						</method>
 						<method name="nilValue" signature="()Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="79" hits="8" branch="false"/>
+								<line number="78" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="41" hits="14928" branch="false"/>
-						<line number="45" hits="30688" branch="false"/>
-						<line number="46" hits="30688" branch="false"/>
-						<line number="47" hits="30664" branch="false"/>
-						<line number="51" hits="14928" branch="false"/>
-						<line number="52" hits="14928" branch="false"/>
-						<line number="53" hits="65619" branch="true" condition-coverage="100% (2/2)">
+						<line number="41" hits="1866" branch="false"/>
+						<line number="45" hits="3836" branch="false"/>
+						<line number="47" hits="3836" branch="false"/>
+						<line number="48" hits="3833" branch="false"/>
+						<line number="51" hits="1866" branch="false"/>
+						<line number="52" hits="1866" branch="false"/>
+						<line number="53" hits="8206" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="54" hits="50691" branch="false"/>
-						<line number="56" hits="14928" branch="false"/>
-						<line number="60" hits="30688" branch="true" condition-coverage="100% (2/2)">
+						<line number="54" hits="6340" branch="false"/>
+						<line number="56" hits="1866" branch="false"/>
+						<line number="60" hits="3836" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="61" hits="1952" branch="false"/>
-						<line number="63" hits="28736" branch="false"/>
-						<line number="64" hits="28736" branch="false"/>
-						<line number="65" hits="28736" branch="true" condition-coverage="100% (2/2)">
+						<line number="61" hits="244" branch="false"/>
+						<line number="63" hits="3592" branch="false"/>
+						<line number="64" hits="3592" branch="false"/>
+						<line number="65" hits="3592" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="66" hits="26760" branch="false"/>
-						<line number="68" hits="1976" branch="true" condition-coverage="100% (2/2)">
+						<line number="66" hits="3345" branch="false"/>
+						<line number="68" hits="247" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="69" hits="1968" branch="false"/>
-						<line number="70" hits="1968" branch="true" condition-coverage="100% (4/4)">
+						<line number="69" hits="246" branch="false"/>
+						<line number="70" hits="246" branch="true" condition-coverage="100% (4/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 								<condition number="1" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="71" hits="1952" branch="false"/>
-						<line number="74" hits="24" branch="false"/>
-						<line number="79" hits="8" branch="false"/>
+						<line number="71" hits="244" branch="false"/>
+						<line number="74" hits="3" branch="false"/>
+						<line number="78" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.conversions.MethodInvokingValueConverter" filename="com/pholser/util/properties/internal/conversions/MethodInvokingValueConverter.java" line-rate="1.0" branch-rate="1.0" complexity="2.5">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/reflect/Method;Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="38" hits="100616" branch="false"/>
-								<line number="39" hits="100616" branch="false"/>
-								<line number="40" hits="100616" branch="false"/>
-								<line number="41" hits="100616" branch="false"/>
+								<line number="38" hits="15061" branch="false"/>
+								<line number="39" hits="15061" branch="false"/>
+								<line number="40" hits="15061" branch="false"/>
+								<line number="41" hits="15061" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="46" hits="186720" branch="false"/>
-								<line number="47" hits="8" branch="false"/>
-								<line number="48" hits="8" branch="false"/>
+								<line number="45" hits="27068" branch="false"/>
+								<line number="46" hits="1" branch="false"/>
+								<line number="47" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="38" hits="100616" branch="false"/>
-						<line number="39" hits="100616" branch="false"/>
-						<line number="40" hits="100616" branch="false"/>
-						<line number="41" hits="100616" branch="false"/>
-						<line number="46" hits="186720" branch="false"/>
-						<line number="47" hits="8" branch="false"/>
-						<line number="48" hits="8" branch="false"/>
+						<line number="38" hits="15061" branch="false"/>
+						<line number="39" hits="15061" branch="false"/>
+						<line number="40" hits="15061" branch="false"/>
+						<line number="41" hits="15061" branch="false"/>
+						<line number="45" hits="27068" branch="false"/>
+						<line number="46" hits="1" branch="false"/>
+						<line number="47" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.conversions.RawValueConverter" filename="com/pholser/util/properties/internal/conversions/RawValueConverter.java" line-rate="1.0" branch-rate="1.0" complexity="1.5">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="28" hits="112" branch="false"/>
+								<line number="28" hits="14" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="8" branch="false"/>
+								<line number="34" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="convertRaw" signature="(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="31" hits="80" branch="false"/>
+								<line number="30" hits="10" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="28" hits="112" branch="false"/>
-						<line number="31" hits="80" branch="false"/>
-						<line number="36" hits="8" branch="false"/>
+						<line number="28" hits="14" branch="false"/>
+						<line number="30" hits="10" branch="false"/>
+						<line number="34" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.conversions.ScalarValueConverter" filename="com/pholser/util/properties/internal/conversions/ScalarValueConverter.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="30" hits="155568" branch="false"/>
+								<line number="30" hits="23045" branch="false"/>
 							</lines>
 						</method>
 						<method name="nilValue" signature="()Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="33" hits="232" branch="false"/>
+								<line number="32" hits="29" branch="false"/>
 							</lines>
 						</method>
 						<method name="resolve" signature="(Lcom/pholser/util/properties/PropertySource;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="39" hits="29368" branch="false"/>
+								<line number="37" hits="3891" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="30" hits="155568" branch="false"/>
-						<line number="33" hits="232" branch="false"/>
-						<line number="39" hits="29368" branch="false"/>
+						<line number="30" hits="23045" branch="false"/>
+						<line number="32" hits="29" branch="false"/>
+						<line number="37" hits="3891" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.conversions.SimpleDateFormatParseValueConverter" filename="com/pholser/util/properties/internal/conversions/SimpleDateFormatParseValueConverter.java" line-rate="1.0" branch-rate="1.0" complexity="3.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/pholser/util/properties/ParsedAs;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="40" hits="6280" branch="false"/>
-								<line number="41" hits="6280" branch="false"/>
-								<line number="42" hits="6280" branch="false"/>
+								<line number="40" hits="866" branch="false"/>
+								<line number="41" hits="866" branch="false"/>
+								<line number="42" hits="866" branch="false"/>
 							</lines>
 						</method>
 						<method name="convert" signature="(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="46" hits="5392" branch="true" condition-coverage="100% (2/2)">
+								<line number="45" hits="701" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="48" hits="5384" branch="false"/>
-								<line number="49" hits="5384" branch="false"/>
-								<line number="50" hits="5384" branch="false"/>
-								<line number="51" hits="24" branch="false"/>
-								<line number="56" hits="8" branch="false"/>
+								<line number="47" hits="700" branch="false"/>
+								<line number="48" hits="700" branch="false"/>
+								<line number="49" hits="700" branch="false"/>
+								<line number="50" hits="3" branch="false"/>
+								<line number="55" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="40" hits="6280" branch="false"/>
-						<line number="41" hits="6280" branch="false"/>
-						<line number="42" hits="6280" branch="false"/>
-						<line number="46" hits="5392" branch="true" condition-coverage="100% (2/2)">
+						<line number="40" hits="866" branch="false"/>
+						<line number="41" hits="866" branch="false"/>
+						<line number="42" hits="866" branch="false"/>
+						<line number="45" hits="701" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="48" hits="5384" branch="false"/>
-						<line number="49" hits="5384" branch="false"/>
-						<line number="50" hits="5384" branch="false"/>
-						<line number="51" hits="24" branch="false"/>
-						<line number="56" hits="8" branch="false"/>
+						<line number="47" hits="700" branch="false"/>
+						<line number="48" hits="700" branch="false"/>
+						<line number="49" hits="700" branch="false"/>
+						<line number="50" hits="3" branch="false"/>
+						<line number="55" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.conversions.ValueConverter" filename="com/pholser/util/properties/internal/conversions/ValueConverter.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -1203,91 +1247,91 @@
 					<methods>
 						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="48" hits="8" branch="false"/>
-								<line number="49" hits="8" branch="false"/>
-								<line number="50" hits="8" branch="false"/>
-								<line number="51" hits="8" branch="false"/>
-								<line number="52" hits="8" branch="false"/>
-								<line number="53" hits="8" branch="false"/>
-								<line number="54" hits="8" branch="false"/>
-								<line number="55" hits="8" branch="false"/>
-								<line number="56" hits="8" branch="false"/>
-								<line number="57" hits="8" branch="false"/>
-								<line number="58" hits="8" branch="false"/>
-								<line number="59" hits="8" branch="false"/>
+								<line number="48" hits="1" branch="false"/>
+								<line number="49" hits="1" branch="false"/>
+								<line number="50" hits="1" branch="false"/>
+								<line number="51" hits="1" branch="false"/>
+								<line number="52" hits="1" branch="false"/>
+								<line number="53" hits="1" branch="false"/>
+								<line number="54" hits="1" branch="false"/>
+								<line number="55" hits="1" branch="false"/>
+								<line number="56" hits="1" branch="false"/>
+								<line number="57" hits="1" branch="false"/>
+								<line number="58" hits="1" branch="false"/>
+								<line number="59" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="43" hits="2432" branch="false"/>
+								<line number="43" hits="331" branch="false"/>
 							</lines>
 						</method>
 						<method name="constructorConverter" signature="(Ljava/lang/Class;)Lcom/pholser/util/properties/internal/conversions/ValueConverter;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="121" hits="35048" branch="false"/>
-								<line number="122" hits="168" branch="false"/>
-								<line number="123" hits="168" branch="false"/>
+								<line number="121" hits="5091" branch="false"/>
+								<line number="122" hits="21" branch="false"/>
+								<line number="123" hits="21" branch="false"/>
 							</lines>
 						</method>
 						<method name="createConverter" signature="(Ljava/lang/reflect/Method;Lcom/pholser/util/properties/internal/separators/ValueSeparator;)Lcom/pholser/util/properties/internal/conversions/ValueConverter;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="62" hits="155592" branch="false"/>
-								<line number="63" hits="155592" branch="false"/>
-								<line number="64" hits="155592" branch="false"/>
-								<line number="66" hits="155592" branch="true" condition-coverage="100% (2/2)">
+								<line number="62" hits="23048" branch="false"/>
+								<line number="63" hits="23048" branch="false"/>
+								<line number="64" hits="23048" branch="false"/>
+								<line number="66" hits="23048" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="67" hits="96504" branch="false"/>
-								<line number="69" hits="59088" branch="true" condition-coverage="100% (2/2)">
+								<line number="67" hits="14223" branch="false"/>
+								<line number="69" hits="8825" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="70" hits="30688" branch="false"/>
-								<line number="72" hits="28400" branch="false"/>
+								<line number="70" hits="3836" branch="false"/>
+								<line number="72" hits="4989" branch="false"/>
 							</lines>
 						</method>
 						<method name="createScalarConverter" signature="(Ljava/lang/Class;Lcom/pholser/util/properties/ParsedAs;Lcom/pholser/util/properties/DefaultsTo;Lcom/pholser/util/properties/internal/separators/ValueSeparator;)Lcom/pholser/util/properties/internal/conversions/ValueConverter;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="78" hits="155568" branch="false"/>
-								<line number="79" hits="155568" branch="false"/>
-								<line number="80" hits="155560" branch="true" condition-coverage="100% (2/2)">
+								<line number="78" hits="23045" branch="false"/>
+								<line number="79" hits="23045" branch="false"/>
+								<line number="80" hits="23044" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="81" hits="6280" branch="false"/>
-								<line number="83" hits="149280" branch="false"/>
-								<line number="84" hits="149280" branch="true" condition-coverage="100% (2/2)">
+								<line number="81" hits="866" branch="false"/>
+								<line number="83" hits="22178" branch="false"/>
+								<line number="84" hits="22178" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="85" hits="114232" branch="false"/>
-								<line number="87" hits="35048" branch="false"/>
-								<line number="88" hits="35048" branch="true" condition-coverage="100% (2/2)">
+								<line number="85" hits="17087" branch="false"/>
+								<line number="87" hits="5091" branch="false"/>
+								<line number="88" hits="5091" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="89" hits="34880" branch="false"/>
-								<line number="91" hits="168" branch="true" condition-coverage="100% (6/6)">
+								<line number="89" hits="5070" branch="false"/>
+								<line number="91" hits="21" branch="true" condition-coverage="100% (6/6)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 										<condition number="1" type="jump" coverage="100%"/>
 										<condition number="2" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="92" hits="64" branch="false"/>
-								<line number="94" hits="104" branch="false"/>
+								<line number="92" hits="8" branch="false"/>
+								<line number="94" hits="13" branch="false"/>
 							</lines>
 						</method>
 						<method name="isPotentialConverter" signature="(Ljava/lang/reflect/Method;Ljava/lang/Class;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="128" hits="100656" branch="false"/>
-								<line number="129" hits="100656" branch="true" condition-coverage="100% (6/6)">
+								<line number="128" hits="15066" branch="false"/>
+								<line number="129" hits="15066" branch="true" condition-coverage="100% (6/6)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 										<condition number="1" type="jump" coverage="100%"/>
@@ -1298,25 +1342,25 @@
 						</method>
 						<method name="parsePatternsConverter" signature="(Ljava/lang/Class;Lcom/pholser/util/properties/ParsedAs;)Lcom/pholser/util/properties/internal/conversions/ValueConverter;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="98" hits="155568" branch="true" condition-coverage="100% (2/2)">
+								<line number="98" hits="23045" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="99" hits="149280" branch="false"/>
-								<line number="100" hits="6288" branch="true" condition-coverage="100% (2/2)">
+								<line number="99" hits="22178" branch="false"/>
+								<line number="100" hits="867" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="101" hits="6280" branch="false"/>
-								<line number="102" hits="8" branch="false"/>
+								<line number="101" hits="866" branch="false"/>
+								<line number="102" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="targetTypeFor" signature="(Ljava/lang/reflect/Method;)Ljava/lang/Class;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="133" hits="155592" branch="false"/>
-								<line number="134" hits="155592" branch="true" condition-coverage="100% (2/2)">
+								<line number="133" hits="23048" branch="false"/>
+								<line number="134" hits="23048" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
@@ -1325,25 +1369,25 @@
 						</method>
 						<method name="valueOfConverter" signature="(Ljava/lang/Class;)Lcom/pholser/util/properties/internal/conversions/ValueConverter;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="106" hits="149280" branch="true" condition-coverage="100% (2/2)">
+								<line number="106" hits="22178" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="107" hits="13648" branch="false"/>
-								<line number="110" hits="135632" branch="false"/>
-								<line number="111" hits="100656" branch="true" condition-coverage="100% (2/2)">
+								<line number="107" hits="2030" branch="false"/>
+								<line number="110" hits="20148" branch="false"/>
+								<line number="111" hits="15066" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="114" hits="34976" branch="false"/>
-								<line number="115" hits="34976" branch="false"/>
+								<line number="114" hits="5082" branch="false"/>
+								<line number="115" hits="5082" branch="false"/>
 							</lines>
 						</method>
 						<method name="wrapperIfPrimitive" signature="(Ljava/lang/Class;)Ljava/lang/Class;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="138" hits="164056" branch="true" condition-coverage="100% (2/2)">
+								<line number="138" hits="24565" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
@@ -1352,111 +1396,111 @@
 						</method>
 					</methods>
 					<lines>
-						<line number="43" hits="2432" branch="false"/>
-						<line number="48" hits="8" branch="false"/>
-						<line number="49" hits="8" branch="false"/>
-						<line number="50" hits="8" branch="false"/>
-						<line number="51" hits="8" branch="false"/>
-						<line number="52" hits="8" branch="false"/>
-						<line number="53" hits="8" branch="false"/>
-						<line number="54" hits="8" branch="false"/>
-						<line number="55" hits="8" branch="false"/>
-						<line number="56" hits="8" branch="false"/>
-						<line number="57" hits="8" branch="false"/>
-						<line number="58" hits="8" branch="false"/>
-						<line number="59" hits="8" branch="false"/>
-						<line number="62" hits="155592" branch="false"/>
-						<line number="63" hits="155592" branch="false"/>
-						<line number="64" hits="155592" branch="false"/>
-						<line number="66" hits="155592" branch="true" condition-coverage="100% (2/2)">
+						<line number="43" hits="331" branch="false"/>
+						<line number="48" hits="1" branch="false"/>
+						<line number="49" hits="1" branch="false"/>
+						<line number="50" hits="1" branch="false"/>
+						<line number="51" hits="1" branch="false"/>
+						<line number="52" hits="1" branch="false"/>
+						<line number="53" hits="1" branch="false"/>
+						<line number="54" hits="1" branch="false"/>
+						<line number="55" hits="1" branch="false"/>
+						<line number="56" hits="1" branch="false"/>
+						<line number="57" hits="1" branch="false"/>
+						<line number="58" hits="1" branch="false"/>
+						<line number="59" hits="1" branch="false"/>
+						<line number="62" hits="23048" branch="false"/>
+						<line number="63" hits="23048" branch="false"/>
+						<line number="64" hits="23048" branch="false"/>
+						<line number="66" hits="23048" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="67" hits="96504" branch="false"/>
-						<line number="69" hits="59088" branch="true" condition-coverage="100% (2/2)">
+						<line number="67" hits="14223" branch="false"/>
+						<line number="69" hits="8825" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="70" hits="30688" branch="false"/>
-						<line number="72" hits="28400" branch="false"/>
-						<line number="78" hits="155568" branch="false"/>
-						<line number="79" hits="155568" branch="false"/>
-						<line number="80" hits="155560" branch="true" condition-coverage="100% (2/2)">
+						<line number="70" hits="3836" branch="false"/>
+						<line number="72" hits="4989" branch="false"/>
+						<line number="78" hits="23045" branch="false"/>
+						<line number="79" hits="23045" branch="false"/>
+						<line number="80" hits="23044" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="81" hits="6280" branch="false"/>
-						<line number="83" hits="149280" branch="false"/>
-						<line number="84" hits="149280" branch="true" condition-coverage="100% (2/2)">
+						<line number="81" hits="866" branch="false"/>
+						<line number="83" hits="22178" branch="false"/>
+						<line number="84" hits="22178" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="85" hits="114232" branch="false"/>
-						<line number="87" hits="35048" branch="false"/>
-						<line number="88" hits="35048" branch="true" condition-coverage="100% (2/2)">
+						<line number="85" hits="17087" branch="false"/>
+						<line number="87" hits="5091" branch="false"/>
+						<line number="88" hits="5091" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="89" hits="34880" branch="false"/>
-						<line number="91" hits="168" branch="true" condition-coverage="100% (6/6)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-								<condition number="1" type="jump" coverage="100%"/>
-								<condition number="2" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="92" hits="64" branch="false"/>
-						<line number="94" hits="104" branch="false"/>
-						<line number="98" hits="155568" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="99" hits="149280" branch="false"/>
-						<line number="100" hits="6288" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="101" hits="6280" branch="false"/>
-						<line number="102" hits="8" branch="false"/>
-						<line number="106" hits="149280" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="107" hits="13648" branch="false"/>
-						<line number="110" hits="135632" branch="false"/>
-						<line number="111" hits="100656" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="114" hits="34976" branch="false"/>
-						<line number="115" hits="34976" branch="false"/>
-						<line number="121" hits="35048" branch="false"/>
-						<line number="122" hits="168" branch="false"/>
-						<line number="123" hits="168" branch="false"/>
-						<line number="128" hits="100656" branch="false"/>
-						<line number="129" hits="100656" branch="true" condition-coverage="100% (6/6)">
+						<line number="89" hits="5070" branch="false"/>
+						<line number="91" hits="21" branch="true" condition-coverage="100% (6/6)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 								<condition number="1" type="jump" coverage="100%"/>
 								<condition number="2" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="133" hits="155592" branch="false"/>
-						<line number="134" hits="155592" branch="true" condition-coverage="100% (2/2)">
+						<line number="92" hits="8" branch="false"/>
+						<line number="94" hits="13" branch="false"/>
+						<line number="98" hits="23045" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="138" hits="164056" branch="true" condition-coverage="100% (2/2)">
+						<line number="99" hits="22178" branch="false"/>
+						<line number="100" hits="867" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="101" hits="866" branch="false"/>
+						<line number="102" hits="1" branch="false"/>
+						<line number="106" hits="22178" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="107" hits="2030" branch="false"/>
+						<line number="110" hits="20148" branch="false"/>
+						<line number="111" hits="15066" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="114" hits="5082" branch="false"/>
+						<line number="115" hits="5082" branch="false"/>
+						<line number="121" hits="5091" branch="false"/>
+						<line number="122" hits="21" branch="false"/>
+						<line number="123" hits="21" branch="false"/>
+						<line number="128" hits="15066" branch="false"/>
+						<line number="129" hits="15066" branch="true" condition-coverage="100% (6/6)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+								<condition number="1" type="jump" coverage="100%"/>
+								<condition number="2" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="133" hits="23048" branch="false"/>
+						<line number="134" hits="23048" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="138" hits="24565" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
@@ -1471,40 +1515,40 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/String;Lcom/pholser/util/properties/internal/conversions/ValueConverter;Ljava/lang/reflect/Method;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="38" hits="72432" branch="false"/>
-								<line number="40" hits="72432" branch="false"/>
-								<line number="41" hits="16" branch="false"/>
-								<line number="42" hits="16" branch="false"/>
-								<line number="43" hits="72416" branch="false"/>
-								<line number="44" hits="72416" branch="false"/>
+								<line number="38" hits="10703" branch="false"/>
+								<line number="40" hits="10703" branch="false"/>
+								<line number="41" hits="2" branch="false"/>
+								<line number="42" hits="2" branch="false"/>
+								<line number="43" hits="10701" branch="false"/>
+								<line number="44" hits="10701" branch="false"/>
 							</lines>
 						</method>
 						<method name="evaluate" signature="()Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="52" hits="4656" branch="false"/>
+								<line number="51" hits="582" branch="false"/>
 							</lines>
 						</method>
 						<method name="fromValue" signature="(Ljava/lang/String;Lcom/pholser/util/properties/internal/conversions/ValueConverter;Ljava/lang/reflect/Method;)Lcom/pholser/util/properties/internal/defaultvalues/ConvertedDefaultValue;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="47" hits="72432" branch="false"/>
+								<line number="47" hits="10703" branch="false"/>
 							</lines>
 						</method>
 						<method name="resolve" signature="(Lcom/pholser/util/properties/PropertySource;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="58" hits="73872" branch="false"/>
+								<line number="56" hits="9356" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="38" hits="72432" branch="false"/>
-						<line number="40" hits="72432" branch="false"/>
-						<line number="41" hits="16" branch="false"/>
-						<line number="42" hits="16" branch="false"/>
-						<line number="43" hits="72416" branch="false"/>
-						<line number="44" hits="72416" branch="false"/>
-						<line number="47" hits="72432" branch="false"/>
-						<line number="52" hits="4656" branch="false"/>
-						<line number="58" hits="73872" branch="false"/>
+						<line number="38" hits="10703" branch="false"/>
+						<line number="40" hits="10703" branch="false"/>
+						<line number="41" hits="2" branch="false"/>
+						<line number="42" hits="2" branch="false"/>
+						<line number="43" hits="10701" branch="false"/>
+						<line number="44" hits="10701" branch="false"/>
+						<line number="47" hits="10703" branch="false"/>
+						<line number="51" hits="582" branch="false"/>
+						<line number="56" hits="9356" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.defaultvalues.DefaultValue" filename="com/pholser/util/properties/internal/defaultvalues/DefaultValue.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -1517,66 +1561,66 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="35" hits="2432" branch="false"/>
+								<line number="35" hits="331" branch="false"/>
 							</lines>
 						</method>
 						<method name="createDefaultValue" signature="(Lcom/pholser/util/properties/DefaultsTo;Lcom/pholser/util/properties/internal/conversions/ValueConverter;Ljava/lang/reflect/Method;)Lcom/pholser/util/properties/internal/defaultvalues/DefaultValue;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="37" hits="72416" branch="true" condition-coverage="100% (2/2)">
+								<line number="37" hits="10726" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="38" hits="480" branch="false"/>
-								<line number="40" hits="71936" branch="false"/>
+								<line number="38" hits="87" branch="false"/>
+								<line number="40" hits="10639" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="35" hits="2432" branch="false"/>
-						<line number="37" hits="72416" branch="true" condition-coverage="100% (2/2)">
+						<line number="35" hits="331" branch="false"/>
+						<line number="37" hits="10726" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="38" hits="480" branch="false"/>
-						<line number="40" hits="71936" branch="false"/>
+						<line number="38" hits="87" branch="false"/>
+						<line number="40" hits="10639" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.defaultvalues.SubstitutableDefaultValue" filename="com/pholser/util/properties/internal/defaultvalues/SubstitutableDefaultValue.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/pholser/util/properties/DefaultsTo;Lcom/pholser/util/properties/internal/conversions/ValueConverter;Ljava/lang/reflect/Method;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="42" hits="480" branch="false"/>
-								<line number="43" hits="480" branch="false"/>
-								<line number="44" hits="480" branch="false"/>
-								<line number="45" hits="480" branch="false"/>
-								<line number="46" hits="480" branch="false"/>
+								<line number="42" hits="87" branch="false"/>
+								<line number="43" hits="87" branch="false"/>
+								<line number="44" hits="87" branch="false"/>
+								<line number="45" hits="87" branch="false"/>
+								<line number="46" hits="87" branch="false"/>
 							</lines>
 						</method>
 						<method name="evaluate" signature="()Ljava/lang/Object;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="50" hits="72" branch="false"/>
+								<line number="49" hits="9" branch="false"/>
 							</lines>
 						</method>
 						<method name="resolve" signature="(Lcom/pholser/util/properties/PropertySource;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="55" hits="512" branch="false"/>
-								<line number="56" hits="496" branch="false"/>
-								<line number="57" hits="496" branch="false"/>
+								<line number="53" hits="66" branch="false"/>
+								<line number="54" hits="64" branch="false"/>
+								<line number="55" hits="64" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="42" hits="480" branch="false"/>
-						<line number="43" hits="480" branch="false"/>
-						<line number="44" hits="480" branch="false"/>
-						<line number="45" hits="480" branch="false"/>
-						<line number="46" hits="480" branch="false"/>
-						<line number="50" hits="72" branch="false"/>
-						<line number="55" hits="512" branch="false"/>
-						<line number="56" hits="496" branch="false"/>
-						<line number="57" hits="496" branch="false"/>
+						<line number="42" hits="87" branch="false"/>
+						<line number="43" hits="87" branch="false"/>
+						<line number="44" hits="87" branch="false"/>
+						<line number="45" hits="87" branch="false"/>
+						<line number="46" hits="87" branch="false"/>
+						<line number="49" hits="9" branch="false"/>
+						<line number="53" hits="66" branch="false"/>
+						<line number="54" hits="64" branch="false"/>
+						<line number="55" hits="64" branch="false"/>
 					</lines>
 				</class>
 			</classes>
@@ -1587,162 +1631,162 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/reflect/Method;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="8" branch="false"/>
-								<line number="40" hits="8" branch="false"/>
+								<line number="36" hits="1" branch="false"/>
+								<line number="40" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="36" hits="8" branch="false"/>
-						<line number="40" hits="8" branch="false"/>
+						<line number="36" hits="1" branch="false"/>
+						<line number="40" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.exceptions.BoundTypeNotAnInterfaceException" filename="com/pholser/util/properties/internal/exceptions/BoundTypeNotAnInterfaceException.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="32" hits="8" branch="false"/>
-								<line number="33" hits="8" branch="false"/>
+								<line number="32" hits="1" branch="false"/>
+								<line number="33" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="32" hits="8" branch="false"/>
-						<line number="33" hits="8" branch="false"/>
+						<line number="32" hits="1" branch="false"/>
+						<line number="33" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.exceptions.InterfaceHasSuperinterfacesException" filename="com/pholser/util/properties/internal/exceptions/InterfaceHasSuperinterfacesException.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="32" hits="16" branch="false"/>
-								<line number="33" hits="16" branch="false"/>
+								<line number="32" hits="2" branch="false"/>
+								<line number="33" hits="2" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="32" hits="16" branch="false"/>
-						<line number="33" hits="16" branch="false"/>
+						<line number="32" hits="2" branch="false"/>
+						<line number="33" hits="2" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.exceptions.MalformedDefaultValueException" filename="com/pholser/util/properties/internal/exceptions/MalformedDefaultValueException.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/String;Ljava/lang/reflect/Method;Ljava/lang/Throwable;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="16" branch="false"/>
-								<line number="39" hits="16" branch="false"/>
+								<line number="36" hits="2" branch="false"/>
+								<line number="39" hits="2" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="36" hits="16" branch="false"/>
-						<line number="39" hits="16" branch="false"/>
+						<line number="36" hits="2" branch="false"/>
+						<line number="39" hits="2" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.exceptions.MalformedSeparatorException" filename="com/pholser/util/properties/internal/exceptions/MalformedSeparatorException.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/String;Ljava/lang/reflect/Method;Ljava/lang/Throwable;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="8" branch="false"/>
-								<line number="39" hits="8" branch="false"/>
+								<line number="36" hits="1" branch="false"/>
+								<line number="39" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="36" hits="8" branch="false"/>
-						<line number="39" hits="8" branch="false"/>
+						<line number="36" hits="1" branch="false"/>
+						<line number="39" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.exceptions.MultipleDefaultValueSpecificationException" filename="com/pholser/util/properties/internal/exceptions/MultipleDefaultValueSpecificationException.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/pholser/util/properties/DefaultsTo;Ljava/lang/reflect/Method;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="8" branch="false"/>
-								<line number="39" hits="8" branch="false"/>
+								<line number="36" hits="1" branch="false"/>
+								<line number="39" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="36" hits="8" branch="false"/>
-						<line number="39" hits="8" branch="false"/>
+						<line number="36" hits="1" branch="false"/>
+						<line number="39" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.exceptions.MultipleSeparatorSpecificationException" filename="com/pholser/util/properties/internal/exceptions/MultipleSeparatorSpecificationException.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lcom/pholser/util/properties/ValuesSeparatedBy;Ljava/lang/reflect/Method;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="8" branch="false"/>
-								<line number="39" hits="8" branch="false"/>
+								<line number="36" hits="1" branch="false"/>
+								<line number="39" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="36" hits="8" branch="false"/>
-						<line number="39" hits="8" branch="false"/>
+						<line number="36" hits="1" branch="false"/>
+						<line number="39" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.exceptions.NoDefaultValueSpecificationException" filename="com/pholser/util/properties/internal/exceptions/NoDefaultValueSpecificationException.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/reflect/Method;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="8" branch="false"/>
-								<line number="38" hits="8" branch="false"/>
+								<line number="36" hits="1" branch="false"/>
+								<line number="38" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="36" hits="8" branch="false"/>
-						<line number="38" hits="8" branch="false"/>
+						<line number="36" hits="1" branch="false"/>
+						<line number="38" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException" filename="com/pholser/util/properties/internal/exceptions/UnsupportedParsedAsTypeException.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="8" branch="false"/>
-								<line number="38" hits="8" branch="false"/>
+								<line number="36" hits="1" branch="false"/>
+								<line number="38" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="36" hits="8" branch="false"/>
-						<line number="38" hits="8" branch="false"/>
+						<line number="36" hits="1" branch="false"/>
+						<line number="38" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException" filename="com/pholser/util/properties/internal/exceptions/UnsupportedValueTypeException.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/reflect/Type;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="34" hits="88" branch="false"/>
-								<line number="35" hits="88" branch="false"/>
+								<line number="34" hits="11" branch="false"/>
+								<line number="35" hits="11" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="34" hits="88" branch="false"/>
-						<line number="35" hits="88" branch="false"/>
+						<line number="34" hits="11" branch="false"/>
+						<line number="35" hits="11" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.exceptions.ValueConversionException" filename="com/pholser/util/properties/internal/exceptions/ValueConversionException.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="32" hits="16" branch="false"/>
-								<line number="33" hits="16" branch="false"/>
+								<line number="32" hits="2" branch="false"/>
+								<line number="33" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/Throwable;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="96" branch="false"/>
-								<line number="37" hits="96" branch="false"/>
+								<line number="36" hits="12" branch="false"/>
+								<line number="37" hits="12" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="32" hits="16" branch="false"/>
-						<line number="33" hits="16" branch="false"/>
-						<line number="36" hits="96" branch="false"/>
-						<line number="37" hits="96" branch="false"/>
+						<line number="32" hits="2" branch="false"/>
+						<line number="33" hits="2" branch="false"/>
+						<line number="36" hits="12" branch="false"/>
+						<line number="37" hits="12" branch="false"/>
 					</lines>
 				</class>
 			</classes>
@@ -1753,82 +1797,82 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/String;Ljava/lang/reflect/Method;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="41" hits="127176" branch="false"/>
-								<line number="43" hits="127176" branch="false"/>
-								<line number="44" hits="8" branch="false"/>
-								<line number="45" hits="8" branch="false"/>
-								<line number="46" hits="127168" branch="false"/>
-								<line number="47" hits="127168" branch="false"/>
+								<line number="41" hits="18057" branch="false"/>
+								<line number="43" hits="18057" branch="false"/>
+								<line number="44" hits="1" branch="false"/>
+								<line number="45" hits="1" branch="false"/>
+								<line number="46" hits="18056" branch="false"/>
+								<line number="47" hits="18056" branch="false"/>
 							</lines>
 						</method>
 						<method name="isDefault" signature="()Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="61" hits="720" branch="false"/>
+								<line number="58" hits="90" branch="false"/>
 							</lines>
 						</method>
 						<method name="resolve" signature="(Lcom/pholser/util/properties/PropertySource;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="57" hits="128984" branch="false"/>
+								<line number="55" hits="16283" branch="false"/>
 							</lines>
 						</method>
 						<method name="separate" signature="(Ljava/lang/String;)[Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="51" hits="65296" branch="false"/>
+								<line number="50" hits="9242" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="41" hits="127176" branch="false"/>
-						<line number="43" hits="127176" branch="false"/>
-						<line number="44" hits="8" branch="false"/>
-						<line number="45" hits="8" branch="false"/>
-						<line number="46" hits="127168" branch="false"/>
-						<line number="47" hits="127168" branch="false"/>
-						<line number="51" hits="65296" branch="false"/>
-						<line number="57" hits="128984" branch="false"/>
-						<line number="61" hits="720" branch="false"/>
+						<line number="41" hits="18057" branch="false"/>
+						<line number="43" hits="18057" branch="false"/>
+						<line number="44" hits="1" branch="false"/>
+						<line number="45" hits="1" branch="false"/>
+						<line number="46" hits="18056" branch="false"/>
+						<line number="47" hits="18056" branch="false"/>
+						<line number="50" hits="9242" branch="false"/>
+						<line number="55" hits="16283" branch="false"/>
+						<line number="58" hits="90" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.separators.SubstitutableRegexValueSeparator" filename="com/pholser/util/properties/internal/separators/SubstitutableRegexValueSeparator.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/String;Ljava/lang/reflect/Method;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="40" hits="696" branch="false"/>
-								<line number="41" hits="696" branch="false"/>
-								<line number="42" hits="696" branch="false"/>
-								<line number="43" hits="696" branch="false"/>
+								<line number="40" hits="87" branch="false"/>
+								<line number="41" hits="87" branch="false"/>
+								<line number="42" hits="87" branch="false"/>
+								<line number="43" hits="87" branch="false"/>
 							</lines>
 						</method>
 						<method name="isDefault" signature="()Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="59" hits="8" branch="false"/>
+								<line number="56" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="resolve" signature="(Lcom/pholser/util/properties/PropertySource;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="52" hits="688" branch="false"/>
-								<line number="53" hits="672" branch="false"/>
-								<line number="54" hits="672" branch="false"/>
-								<line number="55" hits="672" branch="false"/>
+								<line number="50" hits="86" branch="false"/>
+								<line number="51" hits="84" branch="false"/>
+								<line number="52" hits="84" branch="false"/>
+								<line number="53" hits="84" branch="false"/>
 							</lines>
 						</method>
 						<method name="separate" signature="(Ljava/lang/String;)[Ljava/lang/String;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="47" hits="24" branch="false"/>
+								<line number="46" hits="3" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="40" hits="696" branch="false"/>
-						<line number="41" hits="696" branch="false"/>
-						<line number="42" hits="696" branch="false"/>
-						<line number="43" hits="696" branch="false"/>
-						<line number="47" hits="24" branch="false"/>
-						<line number="52" hits="688" branch="false"/>
-						<line number="53" hits="672" branch="false"/>
-						<line number="54" hits="672" branch="false"/>
-						<line number="55" hits="672" branch="false"/>
-						<line number="59" hits="8" branch="false"/>
+						<line number="40" hits="87" branch="false"/>
+						<line number="41" hits="87" branch="false"/>
+						<line number="42" hits="87" branch="false"/>
+						<line number="43" hits="87" branch="false"/>
+						<line number="46" hits="3" branch="false"/>
+						<line number="50" hits="86" branch="false"/>
+						<line number="51" hits="84" branch="false"/>
+						<line number="52" hits="84" branch="false"/>
+						<line number="53" hits="84" branch="false"/>
+						<line number="56" hits="1" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.pholser.util.properties.internal.separators.ValueSeparator" filename="com/pholser/util/properties/internal/separators/ValueSeparator.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
@@ -1841,13 +1885,13 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="34" hits="2432" branch="false"/>
+								<line number="34" hits="331" branch="false"/>
 							</lines>
 						</method>
 						<method name="createSeparator" signature="(Lcom/pholser/util/properties/ValuesSeparatedBy;Ljava/lang/reflect/Method;)Lcom/pholser/util/properties/internal/separators/ValueSeparator;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="36" hits="127200" branch="false"/>
-								<line number="37" hits="127200" branch="true" condition-coverage="100% (2/2)">
+								<line number="36" hits="18060" branch="false"/>
+								<line number="37" hits="18060" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
@@ -1856,33 +1900,33 @@
 						</method>
 						<method name="createSeparatorBasedOnSpec" signature="(Lcom/pholser/util/properties/ValuesSeparatedBy;Ljava/lang/reflect/Method;)Lcom/pholser/util/properties/internal/separators/ValueSeparator;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="43" hits="63432" branch="true" condition-coverage="100% (4/4)">
+								<line number="43" hits="9009" branch="true" condition-coverage="100% (4/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 										<condition number="1" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="44" hits="696" branch="false"/>
-								<line number="45" hits="62736" branch="false"/>
+								<line number="44" hits="87" branch="false"/>
+								<line number="45" hits="8922" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="34" hits="2432" branch="false"/>
-						<line number="36" hits="127200" branch="false"/>
-						<line number="37" hits="127200" branch="true" condition-coverage="100% (2/2)">
+						<line number="34" hits="331" branch="false"/>
+						<line number="36" hits="18060" branch="false"/>
+						<line number="37" hits="18060" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="43" hits="63432" branch="true" condition-coverage="100% (4/4)">
+						<line number="43" hits="9009" branch="true" condition-coverage="100% (4/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 								<condition number="1" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="44" hits="696" branch="false"/>
-						<line number="45" hits="62736" branch="false"/>
+						<line number="44" hits="87" branch="false"/>
+						<line number="45" hits="8922" branch="false"/>
 					</lines>
 				</class>
 			</classes>
@@ -1893,114 +1937,114 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="51" hits="2432" branch="false"/>
-								<line number="52" hits="2432" branch="false"/>
-								<line number="53" hits="2432" branch="false"/>
-								<line number="54" hits="2432" branch="false"/>
+								<line number="52" hits="331" branch="false"/>
+								<line number="53" hits="331" branch="false"/>
+								<line number="54" hits="331" branch="false"/>
+								<line number="55" hits="331" branch="false"/>
 							</lines>
 						</method>
-						<method name="collectConverter" signature="(Ljava/util/Map;Ljava/util/Map;Ljava/lang/reflect/Method;Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+						<method name="collectConverter" signature="(Ljava/util/Map;Ljava/util/Map;Ljava/lang/reflect/Method;Lcom/pholser/util/properties/BoundProperty;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="106" hits="155592" branch="false"/>
-								<line number="107" hits="155496" branch="false"/>
+								<line number="107" hits="23048" branch="false"/>
+								<line number="108" hits="23036" branch="false"/>
 							</lines>
 						</method>
-						<method name="collectDefaultValue" signature="(Ljava/util/Map;Lcom/pholser/util/properties/internal/conversions/ValueConverter;Ljava/lang/reflect/Method;Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+						<method name="collectDefaultValue" signature="(Ljava/util/Map;Lcom/pholser/util/properties/internal/conversions/ValueConverter;Ljava/lang/reflect/Method;Lcom/pholser/util/properties/BoundProperty;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="112" hits="155496" branch="false"/>
-								<line number="113" hits="155464" branch="true" condition-coverage="100% (2/2)">
+								<line number="113" hits="23036" branch="false"/>
+								<line number="114" hits="23032" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="114" hits="72400" branch="false"/>
-								<line number="115" hits="155464" branch="false"/>
+								<line number="115" hits="10724" branch="false"/>
+								<line number="116" hits="23032" branch="false"/>
 							</lines>
 						</method>
-						<method name="collectSeparatorIfAggregateType" signature="(Ljava/util/Map;Ljava/lang/reflect/Method;Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0">
+						<method name="collectSeparatorIfAggregateType" signature="(Ljava/util/Map;Ljava/lang/reflect/Method;Lcom/pholser/util/properties/BoundProperty;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="88" hits="155616" branch="false"/>
-								<line number="89" hits="155616" branch="false"/>
-								<line number="90" hits="155616" branch="true" condition-coverage="100% (2/2)">
+								<line number="89" hits="23051" branch="false"/>
+								<line number="90" hits="23051" branch="false"/>
+								<line number="91" hits="23051" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="91" hits="63448" branch="true" condition-coverage="100% (2/2)">
+								<line number="92" hits="9011" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="92" hits="8" branch="false"/>
-								<line number="94" hits="63440" branch="true" condition-coverage="100% (4/4)">
+								<line number="93" hits="1" branch="false"/>
+								<line number="95" hits="9010" branch="true" condition-coverage="100% (4/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 										<condition number="1" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="95" hits="8" branch="false"/>
-								<line number="99" hits="155600" branch="true" condition-coverage="100% (2/2)">
+								<line number="96" hits="1" branch="false"/>
+								<line number="100" hits="23049" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="100" hits="127200" branch="false"/>
-								<line number="101" hits="155592" branch="false"/>
+								<line number="101" hits="18060" branch="false"/>
+								<line number="102" hits="23048" branch="false"/>
 							</lines>
 						</method>
 						<method name="createDefaultValue" signature="(Ljava/lang/reflect/Method;Lcom/pholser/util/properties/internal/conversions/ValueConverter;)Lcom/pholser/util/properties/internal/defaultvalues/DefaultValue;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="118" hits="155496" branch="false"/>
-								<line number="119" hits="155496" branch="true" condition-coverage="100% (2/2)">
+								<line number="119" hits="23036" branch="false"/>
+								<line number="120" hits="23036" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="120" hits="83064" branch="false"/>
-								<line number="122" hits="72432" branch="false"/>
-								<line number="123" hits="72432" branch="false"/>
-								<line number="124" hits="72432" branch="true" condition-coverage="100% (4/4)">
-									<conditions>
-										<condition number="0" type="jump" coverage="100%"/>
-										<condition number="1" type="jump" coverage="100%"/>
-									</conditions>
-								</line>
-								<line number="125" hits="8" branch="false"/>
-								<line number="126" hits="72424" branch="true" condition-coverage="100% (4/4)">
+								<line number="121" hits="12308" branch="false"/>
+								<line number="123" hits="10728" branch="false"/>
+								<line number="124" hits="10728" branch="false"/>
+								<line number="125" hits="10728" branch="true" condition-coverage="100% (4/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 										<condition number="1" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="127" hits="8" branch="false"/>
-								<line number="129" hits="72416" branch="false"/>
+								<line number="126" hits="1" branch="false"/>
+								<line number="127" hits="10727" branch="true" condition-coverage="100% (4/4)">
+									<conditions>
+										<condition number="0" type="jump" coverage="100%"/>
+										<condition number="1" type="jump" coverage="100%"/>
+									</conditions>
+								</line>
+								<line number="128" hits="1" branch="false"/>
+								<line number="130" hits="10726" branch="false"/>
 							</lines>
 						</method>
 						<method name="ensureInterface" signature="(Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="76" hits="2432" branch="true" condition-coverage="100% (2/2)">
+								<line number="77" hits="331" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="77" hits="8" branch="false"/>
-								<line number="78" hits="2416" branch="false"/>
+								<line number="78" hits="1" branch="false"/>
+								<line number="79" hits="329" branch="false"/>
 							</lines>
 						</method>
 						<method name="ensureNoSuperinterfaces" signature="(Ljava/lang/Class;)V" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="81" hits="2416" branch="true" condition-coverage="100% (2/2)">
+								<line number="82" hits="329" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="82" hits="16" branch="false"/>
-								<line number="83" hits="2400" branch="false"/>
+								<line number="83" hits="2" branch="false"/>
+								<line number="84" hits="327" branch="false"/>
 							</lines>
 						</method>
 						<method name="isAggregateType" signature="(Ljava/lang/Class;)Z" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="133" hits="155616" branch="true" condition-coverage="100% (4/4)">
+								<line number="134" hits="23051" branch="true" condition-coverage="100% (4/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 										<condition number="1" type="jump" coverage="100%"/>
@@ -2010,122 +2054,122 @@
 						</method>
 						<method name="validate" signature="(Ljava/lang/Class;)Lcom/pholser/util/properties/internal/ValidatedSchema;" line-rate="1.0" branch-rate="1.0">
 							<lines>
-								<line number="57" hits="2432" branch="false"/>
-								<line number="58" hits="2416" branch="false"/>
-								<line number="60" hits="2400" branch="false"/>
-								<line number="61" hits="2400" branch="false"/>
-								<line number="62" hits="2400" branch="false"/>
-								<line number="63" hits="2400" branch="false"/>
-								<line number="65" hits="157864" branch="true" condition-coverage="100% (2/2)">
+								<line number="58" hits="331" branch="false"/>
+								<line number="59" hits="329" branch="false"/>
+								<line number="61" hits="327" branch="false"/>
+								<line number="62" hits="327" branch="false"/>
+								<line number="63" hits="327" branch="false"/>
+								<line number="64" hits="327" branch="false"/>
+								<line number="66" hits="23359" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="66" hits="155616" branch="false"/>
-								<line number="67" hits="155616" branch="false"/>
-								<line number="68" hits="155592" branch="false"/>
-								<line number="69" hits="155496" branch="false"/>
-								<line number="72" hits="2248" branch="false"/>
+								<line number="67" hits="23051" branch="false"/>
+								<line number="68" hits="23051" branch="false"/>
+								<line number="69" hits="23048" branch="false"/>
+								<line number="70" hits="23036" branch="false"/>
+								<line number="73" hits="308" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
-						<line number="51" hits="2432" branch="false"/>
-						<line number="52" hits="2432" branch="false"/>
-						<line number="53" hits="2432" branch="false"/>
-						<line number="54" hits="2432" branch="false"/>
-						<line number="57" hits="2432" branch="false"/>
-						<line number="58" hits="2416" branch="false"/>
-						<line number="60" hits="2400" branch="false"/>
-						<line number="61" hits="2400" branch="false"/>
-						<line number="62" hits="2400" branch="false"/>
-						<line number="63" hits="2400" branch="false"/>
-						<line number="65" hits="157864" branch="true" condition-coverage="100% (2/2)">
+						<line number="52" hits="331" branch="false"/>
+						<line number="53" hits="331" branch="false"/>
+						<line number="54" hits="331" branch="false"/>
+						<line number="55" hits="331" branch="false"/>
+						<line number="58" hits="331" branch="false"/>
+						<line number="59" hits="329" branch="false"/>
+						<line number="61" hits="327" branch="false"/>
+						<line number="62" hits="327" branch="false"/>
+						<line number="63" hits="327" branch="false"/>
+						<line number="64" hits="327" branch="false"/>
+						<line number="66" hits="23359" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="66" hits="155616" branch="false"/>
-						<line number="67" hits="155616" branch="false"/>
-						<line number="68" hits="155592" branch="false"/>
-						<line number="69" hits="155496" branch="false"/>
-						<line number="72" hits="2248" branch="false"/>
-						<line number="76" hits="2432" branch="true" condition-coverage="100% (2/2)">
+						<line number="67" hits="23051" branch="false"/>
+						<line number="68" hits="23051" branch="false"/>
+						<line number="69" hits="23048" branch="false"/>
+						<line number="70" hits="23036" branch="false"/>
+						<line number="73" hits="308" branch="false"/>
+						<line number="77" hits="331" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="77" hits="8" branch="false"/>
-						<line number="78" hits="2416" branch="false"/>
-						<line number="81" hits="2416" branch="true" condition-coverage="100% (2/2)">
+						<line number="78" hits="1" branch="false"/>
+						<line number="79" hits="329" branch="false"/>
+						<line number="82" hits="329" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="82" hits="16" branch="false"/>
-						<line number="83" hits="2400" branch="false"/>
-						<line number="88" hits="155616" branch="false"/>
-						<line number="89" hits="155616" branch="false"/>
-						<line number="90" hits="155616" branch="true" condition-coverage="100% (2/2)">
+						<line number="83" hits="2" branch="false"/>
+						<line number="84" hits="327" branch="false"/>
+						<line number="89" hits="23051" branch="false"/>
+						<line number="90" hits="23051" branch="false"/>
+						<line number="91" hits="23051" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="91" hits="63448" branch="true" condition-coverage="100% (2/2)">
+						<line number="92" hits="9011" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="92" hits="8" branch="false"/>
-						<line number="94" hits="63440" branch="true" condition-coverage="100% (4/4)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-								<condition number="1" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="95" hits="8" branch="false"/>
-						<line number="99" hits="155600" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="100" hits="127200" branch="false"/>
-						<line number="101" hits="155592" branch="false"/>
-						<line number="106" hits="155592" branch="false"/>
-						<line number="107" hits="155496" branch="false"/>
-						<line number="112" hits="155496" branch="false"/>
-						<line number="113" hits="155464" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="114" hits="72400" branch="false"/>
-						<line number="115" hits="155464" branch="false"/>
-						<line number="118" hits="155496" branch="false"/>
-						<line number="119" hits="155496" branch="true" condition-coverage="100% (2/2)">
-							<conditions>
-								<condition number="0" type="jump" coverage="100%"/>
-							</conditions>
-						</line>
-						<line number="120" hits="83064" branch="false"/>
-						<line number="122" hits="72432" branch="false"/>
-						<line number="123" hits="72432" branch="false"/>
-						<line number="124" hits="72432" branch="true" condition-coverage="100% (4/4)">
+						<line number="93" hits="1" branch="false"/>
+						<line number="95" hits="9010" branch="true" condition-coverage="100% (4/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 								<condition number="1" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="125" hits="8" branch="false"/>
-						<line number="126" hits="72424" branch="true" condition-coverage="100% (4/4)">
+						<line number="96" hits="1" branch="false"/>
+						<line number="100" hits="23049" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="101" hits="18060" branch="false"/>
+						<line number="102" hits="23048" branch="false"/>
+						<line number="107" hits="23048" branch="false"/>
+						<line number="108" hits="23036" branch="false"/>
+						<line number="113" hits="23036" branch="false"/>
+						<line number="114" hits="23032" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="115" hits="10724" branch="false"/>
+						<line number="116" hits="23032" branch="false"/>
+						<line number="119" hits="23036" branch="false"/>
+						<line number="120" hits="23036" branch="true" condition-coverage="100% (2/2)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="121" hits="12308" branch="false"/>
+						<line number="123" hits="10728" branch="false"/>
+						<line number="124" hits="10728" branch="false"/>
+						<line number="125" hits="10728" branch="true" condition-coverage="100% (4/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 								<condition number="1" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="127" hits="8" branch="false"/>
-						<line number="129" hits="72416" branch="false"/>
-						<line number="133" hits="155616" branch="true" condition-coverage="100% (4/4)">
+						<line number="126" hits="1" branch="false"/>
+						<line number="127" hits="10727" branch="true" condition-coverage="100% (4/4)">
+							<conditions>
+								<condition number="0" type="jump" coverage="100%"/>
+								<condition number="1" type="jump" coverage="100%"/>
+							</conditions>
+						</line>
+						<line number="128" hits="1" branch="false"/>
+						<line number="130" hits="10726" branch="false"/>
+						<line number="134" hits="23051" branch="true" condition-coverage="100% (4/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 								<condition number="1" type="jump" coverage="100%"/>
