@@ -25,6 +25,10 @@
         <developerConnection>scm:git:ssh://git@github.com/pholser/property-binder.git</developerConnection>
         <url>http://github.com/pholser/property-binder</url>
     </scm>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>http://github.com/pholser/property-binder/issues</url>
+    </issueManagement>
     <developers>
         <developer>
             <id>pholser</id>
