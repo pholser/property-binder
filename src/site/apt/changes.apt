@@ -1,6 +1,7 @@
                                        ----------
                                        Change Log
                                        ----------
+
 Changes in version 4.0
 
     * A <<<PropertySource>>> now accepts a <<<BoundProperty>>> as the argument to <<<propertyFor()>>>.
