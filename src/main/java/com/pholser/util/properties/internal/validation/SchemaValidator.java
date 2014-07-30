@@ -83,7 +83,9 @@ public class SchemaValidator {
             throw new InterfaceHasSuperinterfacesException(schema);
     }
 
-    private void collectSeparatorIfAggregateType(Map<BoundProperty, ValueSeparator> separators, Method method,
+    private void collectSeparatorIfAggregateType(
+        Map<BoundProperty, ValueSeparator> separators,
+        Method method,
         BoundProperty key) {
 
         boolean isAggregate = isAggregateType(method.getReturnType());
@@ -101,13 +103,19 @@ public class SchemaValidator {
             separators.put(key, separatorFactory.createSeparator(separator, method));
     }
 
-    private void collectConverter(Map<BoundProperty, ValueConverter> converters,
-        Map<BoundProperty, ValueSeparator> separators, Method method, BoundProperty key) {
+    private void collectConverter(
+        Map<BoundProperty, ValueConverter> converters,
+        Map<BoundProperty, ValueSeparator> separators,
+        Method method,
+        BoundProperty key) {
 
         converters.put(key, converterFactory.createConverter(method, separators.get(key)));
     }
 
-    private void collectDefaultValue(Map<BoundProperty, DefaultValue> defaults, ValueConverter converter, Method method,
+    private void collectDefaultValue(
+        Map<BoundProperty, DefaultValue> defaults,
+        ValueConverter converter,
+        Method method,
         BoundProperty key) {
 
         DefaultValue defaultValue = createDefaultValue(method, converter);

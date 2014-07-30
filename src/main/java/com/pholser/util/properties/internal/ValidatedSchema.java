@@ -42,7 +42,9 @@ public class ValidatedSchema<T> {
     private final Map<BoundProperty, DefaultValue> defaults;
     private final Map<BoundProperty, ValueConverter> converters;
 
-    public ValidatedSchema(Class<T> schema, Map<BoundProperty, DefaultValue> defaults,
+    public ValidatedSchema(
+        Class<T> schema,
+        Map<BoundProperty, DefaultValue> defaults,
         Map<BoundProperty, ValueConverter> converters) {
 
         this.schema = schema;

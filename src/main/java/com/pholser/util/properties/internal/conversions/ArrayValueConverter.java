@@ -37,7 +37,12 @@ class ArrayValueConverter extends AggregateValueConverter {
     private final Class<?> componentType;
     private final ValueConverter scalarConverter;
 
-    ArrayValueConverter(Class<?> arrayType, ValueSeparator separator, ParsedAs patterns, DefaultsTo defaults) {
+    ArrayValueConverter(
+        Class<?> arrayType,
+        ValueSeparator separator,
+        ParsedAs patterns,
+        DefaultsTo defaults) {
+
         super(separator);
 
         componentType = arrayType.getComponentType();

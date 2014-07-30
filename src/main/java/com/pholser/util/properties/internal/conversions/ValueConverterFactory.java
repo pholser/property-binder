@@ -72,7 +72,10 @@ public class ValueConverterFactory {
         return createScalarConverter(valueType, patterns, defaults, separator);
     }
 
-    public static ValueConverter createScalarConverter(Class<?> valueType, ParsedAs patterns, DefaultsTo defaults,
+    public static ValueConverter createScalarConverter(
+        Class<?> valueType,
+        ParsedAs patterns,
+        DefaultsTo defaults,
         ValueSeparator separator) {
 
         Class<?> returnType = wrapperIfPrimitive(valueType);

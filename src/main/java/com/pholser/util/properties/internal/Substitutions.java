@@ -53,7 +53,9 @@ public final class Substitutions {
     }
 
     public static Object maybeSubstitute(PropertySource properties, BoundProperty key, Object value) {
-        return value instanceof String && !key.suppressSubstitution() ? substitute(properties, (String) value) : value;
+        return value instanceof String && !key.suppressSubstitution()
+            ? substitute(properties, (String) value)
+            : value;
     }
 
     private static String substituteReferences(PropertySource properties, CharSequence value) {

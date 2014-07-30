@@ -41,7 +41,12 @@ import static com.pholser.util.properties.internal.conversions.ValueConverterFac
 class ListValueConverter extends AggregateValueConverter {
     private final ValueConverter scalarConverter;
 
-    ListValueConverter(Type valueType, ValueSeparator separator, ParsedAs patterns, DefaultsTo defaults) {
+    ListValueConverter(
+        Type valueType,
+        ValueSeparator separator,
+        ParsedAs patterns,
+        DefaultsTo defaults) {
+
         super(separator);
 
         scalarConverter = createScalarConverter(deduceElementType(valueType), patterns, defaults, separator);
