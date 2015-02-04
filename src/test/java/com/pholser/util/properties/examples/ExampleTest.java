@@ -3,7 +3,6 @@ package com.pholser.util.properties.examples;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 
 import static java.math.BigDecimal.*;
@@ -41,7 +40,7 @@ public class ExampleTest {
     }
 
     @Test public void convertingCommaSeparatedValuedPropertyToArray() {
-        assertTrue(Arrays.equals(new char[] { 'a', 'b', 'c' }, bound.charArrayProperty()));
+        assertArrayEquals(new char[] { 'a', 'b', 'c' }, bound.charArrayProperty());
     }
 
     @Test public void convertingCommaSeparatedValuedPropertyToList() {
