@@ -59,9 +59,9 @@ public class SchemaValidator {
         ensureNoSuperinterfaces(schema);
 
         Method[] methods = schema.getDeclaredMethods();
-        Map<BoundProperty, ValueConverter> converters = new HashMap<BoundProperty, ValueConverter>(methods.length);
-        Map<BoundProperty, DefaultValue> defaults = new HashMap<BoundProperty, DefaultValue>(methods.length);
-        Map<BoundProperty, ValueSeparator> separators = new HashMap<BoundProperty, ValueSeparator>(methods.length);
+        Map<BoundProperty, ValueConverter> converters = new HashMap<>(methods.length);
+        Map<BoundProperty, DefaultValue> defaults = new HashMap<>(methods.length);
+        Map<BoundProperty, ValueSeparator> separators = new HashMap<>(methods.length);
 
         for (Method each : methods) {
             BoundProperty key = propertyMarkerFor(each);
@@ -70,7 +70,7 @@ public class SchemaValidator {
             collectDefaultValue(defaults, converters.get(key), each, key);
         }
 
-        return new ValidatedSchema<T>(schema, defaults, converters);
+        return new ValidatedSchema<>(schema, defaults, converters);
     }
 
     private static void ensureInterface(Class<?> schema) {

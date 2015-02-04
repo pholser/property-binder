@@ -63,7 +63,8 @@ public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
     }
 
     @Test public void applyingArgumentsOfPropertyMethodsToEachOfListTypeWithCustomSeparator() throws Exception {
-        assertEquals(asList(mmddyyyy("03/23/2010"), mmddyyyy("03/23/2010")),
+        assertEquals(
+            asList(mmddyyyy("03/23/2010"), mmddyyyy("03/23/2010")),
             bound.dateListPropertyWithArgumentsAndSeparator(3, 23, 2010));
     }
 

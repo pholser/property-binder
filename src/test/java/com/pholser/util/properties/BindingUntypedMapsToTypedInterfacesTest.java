@@ -40,7 +40,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     @Test
     public void nonValueType() {
         Object value = new Object();
-        Map<String, Object> items = new HashMap<String, Object>();
+        Map<String, Object> items = new HashMap<>();
         items.put("any.old.type", value);
         PropertyBinder<NonValueTypeHaver> binder = PropertyBinder.forType(NonValueTypeHaver.class);
 
@@ -57,7 +57,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     @Test
     public void arrayOfUnconvertibleType() {
         Object[] array = new Object[0];
-        Map<String, Object> items = new HashMap<String, Object>();
+        Map<String, Object> items = new HashMap<>();
         items.put("array.of.unconvertible.type", array);
         PropertyBinder<ArrayOfUnconvertibleTypeHaver> binder =
             PropertyBinder.forType(ArrayOfUnconvertibleTypeHaver.class);
@@ -74,8 +74,8 @@ public class BindingUntypedMapsToTypedInterfacesTest {
 
     @Test
     public void listOfUnconvertibleType() {
-        List<Object> list = new ArrayList<Object>();
-        Map<String, Object> items = new HashMap<String, Object>();
+        List<Object> list = new ArrayList<>();
+        Map<String, Object> items = new HashMap<>();
         items.put("list.of.unconvertible.type", list);
         PropertyBinder<ListOfUnconvertibleTypeHaver> binder =
             PropertyBinder.forType(ListOfUnconvertibleTypeHaver.class);
@@ -93,7 +93,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     @Test
     public void nonPublicValueOf() {
         NonPublicValueOfHaver.Thing thing = new NonPublicValueOfHaver.Thing();
-        Map<String, Object> items = new HashMap<String, Object>();
+        Map<String, Object> items = new HashMap<>();
         items.put("non.public.value.of", thing);
         PropertyBinder<NonPublicValueOfHaver> binder = PropertyBinder.forType(NonPublicValueOfHaver.class);
 
@@ -117,7 +117,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     @Test
     public void nonStaticValueOf() {
         NonStaticValueOfHaver.Thing thing = new NonStaticValueOfHaver.Thing();
-        Map<String, Object> items = new HashMap<String, Object>();
+        Map<String, Object> items = new HashMap<>();
         items.put("non.static.value.of", thing);
         PropertyBinder<NonStaticValueOfHaver> binder = PropertyBinder.forType(NonStaticValueOfHaver.class);
 
@@ -141,7 +141,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     @Test
     public void badValueOfReturnType() {
         BadValueOfTypeHaver.Thing thing = new BadValueOfTypeHaver.Thing();
-        Map<String, Object> items = new HashMap<String, Object>();
+        Map<String, Object> items = new HashMap<>();
         items.put("bad.value.of.type", thing);
         PropertyBinder<BadValueOfTypeHaver> binder = PropertyBinder.forType(BadValueOfTypeHaver.class);
 
@@ -165,7 +165,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     @Test
     public void argMethodsIgnoreArgsIfPropertyValueNotAString() {
         Object value = new Object();
-        Map<String, Object> items = new HashMap<String, Object>();
+        Map<String, Object> items = new HashMap<>();
         items.put("key", value);
         PropertyBinder<ArgMethodHaver> binder = PropertyBinder.forType(ArgMethodHaver.class);
 

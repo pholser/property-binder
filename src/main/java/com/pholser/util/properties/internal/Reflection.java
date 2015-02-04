@@ -46,12 +46,10 @@ public final class Reflection {
     public static Object invokeQuietly(Method method, Object target, Object... args) {
         try {
             return method.invoke(target, args);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException | IllegalArgumentException ex) {
             throw new ValueConversionException(ex);
         } catch (InvocationTargetException ex) {
             throw new ValueConversionException(ex.getTargetException());
-        } catch (IllegalArgumentException ex) {
-            throw new ValueConversionException(ex);
         }
     }
 }

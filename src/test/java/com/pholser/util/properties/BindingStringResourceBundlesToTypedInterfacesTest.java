@@ -28,7 +28,6 @@ package com.pholser.util.properties;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
 
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
 import org.junit.After;
@@ -41,13 +40,11 @@ public class BindingStringResourceBundlesToTypedInterfacesTest
     extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
 
     private InputStream inputStream;
-    private ResourceBundle bundle;
     private ScalarPropertyHaver fromBundle;
 
     @Before public final void initializeProperties() throws Exception {
         inputStream = new FileInputStream(propertiesFile);
-        bundle = new PropertyResourceBundle(inputStream);
-        fromBundle = binder.bind(bundle);
+        fromBundle = binder.bind(new PropertyResourceBundle(inputStream));
     }
 
     @After public final void closeInputStream() {

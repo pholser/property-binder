@@ -54,7 +54,7 @@ class ListValueConverter extends AggregateValueConverter {
 
     @Override public List<Object> convert(String raw, Object... args) {
         String[] pieces = separate(raw);
-        List<Object> values = new ArrayList<Object>(pieces.length);
+        List<Object> values = new ArrayList<>(pieces.length);
         for (String each : pieces)
             values.add(scalarConverter.convert(each, args));
 
@@ -71,8 +71,8 @@ class ListValueConverter extends AggregateValueConverter {
             return (Class<?>) generic;
 
         if (generic instanceof WildcardType) {
-            WildcardType wildcarded = (WildcardType) generic;
-            if (wildcarded.getLowerBounds().length == 0 && Object.class.equals(wildcarded.getUpperBounds()[0]))
+            WildcardType wildcard = (WildcardType) generic;
+            if (wildcard.getLowerBounds().length == 0 && Object.class.equals(wildcard.getUpperBounds()[0]))
                 return String.class;
         }
 
@@ -80,6 +80,6 @@ class ListValueConverter extends AggregateValueConverter {
     }
 
     @Override public Object nilValue() {
-        return new ArrayList<Object>(0);
+        return new ArrayList<>(0);
     }
 }

@@ -39,7 +39,7 @@ public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
     @Rule public final ExpectedException thrown = none();
 
     @Test public void returnTypeAndUnderlyingPropertyTypeDisagree() {
-        Map<String, Object> items = new HashMap<String, Object>();
+        Map<String, Object> items = new HashMap<>();
         items.put("i", new Object());
         PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
         IntPropertyHaver bound = binder.bind(items);
@@ -50,7 +50,7 @@ public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
     }
 
     @Test public void primitiveWidening() {
-        Map<String, Object> items = new HashMap<String, Object>();
+        Map<String, Object> items = new HashMap<>();
         items.put("i", Short.valueOf("2"));
         PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
         IntPropertyHaver bound = binder.bind(items);
@@ -61,7 +61,7 @@ public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
     }
 
     @Test public void resolvingASeparatorWithNonStringPropertyValue() {
-        Map<String, Object> items = new HashMap<String, Object>();
+        Map<String, Object> items = new HashMap<>();
         items.put("bar", "A,B,C");
         items.put("separator", new Object());
         PropertyBinder<WithValueOfSeparator> binder = PropertyBinder.forType(WithValueOfSeparator.class);
@@ -78,7 +78,7 @@ public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
     }
 
     @Test public void resolvingADefaultValueWithNonStringPropertyValue() {
-        Map<String, Object> items = new HashMap<String, Object>();
+        Map<String, Object> items = new HashMap<>();
         items.put("bar", "ABC");
         items.put("other", new Object());
         PropertyBinder<WithValueOfDefault> binder = PropertyBinder.forType(WithValueOfDefault.class);

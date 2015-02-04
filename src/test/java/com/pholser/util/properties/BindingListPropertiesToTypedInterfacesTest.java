@@ -74,7 +74,8 @@ public class BindingListPropertiesToTypedInterfacesTest extends TypedStringBindi
     }
 
     @Test public void bindingSeparatedByteValuedPropertyToByteListMethod() {
-        assertEquals(asList(Byte.valueOf("6"), Byte.valueOf("7"), Byte.valueOf("8"), Byte.valueOf("9")),
+        assertEquals(
+            asList(Byte.valueOf("6"), Byte.valueOf("7"), Byte.valueOf("8"), Byte.valueOf("9")),
             bound.byteListProperty());
     }
 
@@ -83,12 +84,14 @@ public class BindingListPropertiesToTypedInterfacesTest extends TypedStringBindi
     }
 
     @Test public void supplyingDefaultForByteListProperty() {
-        assertEquals(asList(Byte.valueOf("33"), Byte.valueOf("34"), Byte.valueOf("35")),
+        assertEquals(
+            asList(Byte.valueOf("33"), Byte.valueOf("34"), Byte.valueOf("35")),
             bound.byteListPropertyWithDefault());
     }
 
     @Test public void supplyingDefaultForByteListPropertyWithSeparator() {
-        assertEquals(asList(Byte.valueOf("36"), Byte.valueOf("37"), Byte.valueOf("38"), Byte.valueOf("39")),
+        assertEquals(
+            asList(Byte.valueOf("36"), Byte.valueOf("37"), Byte.valueOf("38"), Byte.valueOf("39")),
             bound.byteListPropertyWithDefaultAndSeparator());
     }
 
@@ -173,7 +176,8 @@ public class BindingListPropertiesToTypedInterfacesTest extends TypedStringBindi
     }
 
     @Test public void bindingSeparatedShortValuedPropertyToShortListMethod() {
-        assertEquals(asList(Short.valueOf("66"), Short.valueOf("67"), Short.valueOf("68"), Short.valueOf("69")),
+        assertEquals(
+            asList(Short.valueOf("66"), Short.valueOf("67"), Short.valueOf("68"), Short.valueOf("69")),
             bound.shortListProperty());
     }
 
@@ -182,12 +186,14 @@ public class BindingListPropertiesToTypedInterfacesTest extends TypedStringBindi
     }
 
     @Test public void supplyingDefaultForShortListProperty() {
-        assertEquals(asList(Short.valueOf("-29"), Short.valueOf("-30"), Short.valueOf("-31")),
+        assertEquals(
+            asList(Short.valueOf("-29"), Short.valueOf("-30"), Short.valueOf("-31")),
             bound.shortListPropertyWithDefault());
     }
 
     @Test public void supplyingDefaultForShortListPropertyWithSeparator() {
-        assertEquals(asList(Short.valueOf("-32"), Short.valueOf("-33"), Short.valueOf("-34"), Short.valueOf("-35")),
+        assertEquals(
+            asList(Short.valueOf("-32"), Short.valueOf("-33"), Short.valueOf("-34"), Short.valueOf("-35")),
             bound.shortListPropertyWithDefaultAndSeparator());
     }
 
@@ -196,17 +202,20 @@ public class BindingListPropertiesToTypedInterfacesTest extends TypedStringBindi
     }
 
     @Test public void bindingBigIntegerValuedPropertyWithCustomSeparatorToBigIntegerListMethod() {
-        assertEquals(asList(BigInteger.valueOf(126), BigInteger.valueOf(127)),
+        assertEquals(
+            asList(BigInteger.valueOf(126), BigInteger.valueOf(127)),
             bound.bigIntegerListPropertyWithCustomSeparator());
     }
 
     @Test public void supplyingDefaultForBigIntegerListProperty() {
-        assertEquals(asList(BigInteger.valueOf(128), BigInteger.valueOf(129), BigInteger.valueOf(130)),
+        assertEquals(
+            asList(BigInteger.valueOf(128), BigInteger.valueOf(129), BigInteger.valueOf(130)),
             bound.bigIntegerListPropertyWithDefault());
     }
 
     @Test public void supplyingDefaultForBigIntegerListPropertyWithSeparator() {
-        assertEquals(asList(BigInteger.valueOf(131), BigInteger.valueOf(132), BigInteger.valueOf(133)),
+        assertEquals(
+            asList(BigInteger.valueOf(131), BigInteger.valueOf(132), BigInteger.valueOf(133)),
             bound.bigIntegerListPropertyWithDefaultAndSeparator());
     }
 
@@ -215,17 +224,20 @@ public class BindingListPropertiesToTypedInterfacesTest extends TypedStringBindi
     }
 
     @Test public void bindingBigDecimalValuedPropertyWithCustomSeparatorToBigDecimalListMethod() {
-        assertEquals(asList(new BigDecimal("34.567"), new BigDecimal("89.012")),
+        assertEquals(
+            asList(new BigDecimal("34.567"), new BigDecimal("89.012")),
             bound.bigDecimalListPropertyWithCustomSeparator());
     }
 
     @Test public void supplyingDefaultForBigDecimalListProperty() {
-        assertEquals(asList(new BigDecimal("345.67"), new BigDecimal("890.12")),
+        assertEquals(
+            asList(new BigDecimal("345.67"), new BigDecimal("890.12")),
             bound.bigDecimalListPropertyWithDefault());
     }
 
     @Test public void supplyingDefaultForBigDecimalListPropertyWithSeparator() {
-        assertEquals(asList(new BigDecimal("3456.78"), new BigDecimal("9012.34")),
+        assertEquals(
+            asList(new BigDecimal("3456.78"), new BigDecimal("9012.34")),
             bound.bigDecimalListPropertyWithDefaultAndSeparator());
     }
 

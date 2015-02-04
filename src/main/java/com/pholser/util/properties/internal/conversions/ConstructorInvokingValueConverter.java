@@ -40,11 +40,7 @@ class ConstructorInvokingValueConverter extends ScalarValueConverter {
     @Override public Object convert(String raw, Object... args) {
         try {
             return ctor.newInstance(String.format(raw, args));
-        } catch (InstantiationException ex) {
-            throw new ValueConversionException(ex);
-        } catch (IllegalAccessException ex) {
-            throw new ValueConversionException(ex);
-        } catch (IllegalArgumentException ex) {
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException ex) {
             throw new ValueConversionException(ex);
         } catch (InvocationTargetException ex) {
             throw new ValueConversionException(ex.getTargetException());

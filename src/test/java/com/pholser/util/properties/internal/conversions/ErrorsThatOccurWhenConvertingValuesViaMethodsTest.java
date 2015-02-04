@@ -43,6 +43,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
     @Test public void transformingInvocationTargetExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(causeOfType(UnsupportedOperationException.class));
+
         Method method = MethodRaisesException.class.getDeclaredMethod("raisesException", String.class);
 
         new MethodInvokingValueConverter(method, Void.class).convert("");
@@ -51,6 +52,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
     @Test public void transformingIllegalArgumentExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(causeOfType(IllegalArgumentException.class));
+
         Method method = Calendar.class.getDeclaredMethod("getInstance");
 
         new MethodInvokingValueConverter(method, Calendar.class).convert("");
@@ -59,6 +61,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
     @Test public void transformingIllegalAccessExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(causeOfType(IllegalAccessException.class));
+
         Method method = ForTriggeringIllegalAccess.class.getDeclaredMethod("valueOf", String.class);
 
         new MethodInvokingValueConverter(method, String.class).convert("");
@@ -67,6 +70,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
     @Test public void transformingClassCastExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(causeOfType(ClassCastException.class));
+
         Method method = Integer.class.getDeclaredMethod("valueOf", String.class);
 
         new MethodInvokingValueConverter(method, Boolean.class).convert("2");

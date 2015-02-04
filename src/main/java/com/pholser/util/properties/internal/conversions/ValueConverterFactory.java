@@ -102,6 +102,7 @@ public class ValueConverterFactory {
             return null;
         if (valueType.isAssignableFrom(Date.class))
             return new SimpleDateFormatParseValueConverter(patterns);
+
         throw new UnsupportedParsedAsTypeException(valueType);
     }
 

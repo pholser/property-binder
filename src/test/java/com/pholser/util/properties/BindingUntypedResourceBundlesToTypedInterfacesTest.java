@@ -67,7 +67,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
     }
 
     @Test public void listOfUnconvertibleType() {
-        List<Object> list = new ArrayList<Object>();
+        List<Object> list = new ArrayList<>();
         ResourceBundle bundle = bundleWith("list.of.unconvertible.type", list);
         PropertyBinder<ListOfUnconvertibleTypeHaver> binder =
             PropertyBinder.forType(ListOfUnconvertibleTypeHaver.class);

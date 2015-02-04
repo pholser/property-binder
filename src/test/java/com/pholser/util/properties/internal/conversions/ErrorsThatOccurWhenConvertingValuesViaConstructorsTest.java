@@ -42,6 +42,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
     @Test public void transformingInvocationTargetExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(ExceptionMatchers.causeOfType(UnsupportedOperationException.class));
+
         Constructor<ConstructorRaisesException> ctor =
             ConstructorRaisesException.class.getDeclaredConstructor(String.class);
 
@@ -51,6 +52,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
     @Test public void transformingIllegalArgumentExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(ExceptionMatchers.causeOfType(IllegalArgumentException.class));
+
         Constructor<HasPlainOldConstructor> ctor = HasPlainOldConstructor.class.getDeclaredConstructor();
 
         new ConstructorInvokingValueConverter(ctor).convert("");
@@ -59,6 +61,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
     @Test public void transformingIllegalAccessExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(ExceptionMatchers.causeOfType(IllegalAccessException.class));
+
         Constructor<ForTriggeringIllegalAccess> ctor =
             ForTriggeringIllegalAccess.class.getDeclaredConstructor(String.class);
 
@@ -68,6 +71,7 @@ public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
     @Test public void transformingInstantiationExceptions() throws Exception {
         thrown.expect(ValueConversionException.class);
         thrown.expect(ExceptionMatchers.causeOfType(InstantiationException.class));
+
         Constructor<CannotBeInstantiated> ctor = CannotBeInstantiated.class.getDeclaredConstructor(String.class);
 
         new ConstructorInvokingValueConverter(ctor).convert("");

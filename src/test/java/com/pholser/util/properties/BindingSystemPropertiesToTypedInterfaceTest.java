@@ -98,7 +98,8 @@ public class BindingSystemPropertiesToTypedInterfaceTest {
     }
 
     @Test public void shouldGiveJavaIoTmpdir() {
-        assertEquals(System.getProperty("java.io.tmpdir"),
+        assertEquals(
+            System.getProperty("java.io.tmpdir"),
             systemProperties.javaIoTmpdir().getPath() + systemProperties.fileSeparator());
     }
 
@@ -156,7 +157,7 @@ public class BindingSystemPropertiesToTypedInterfaceTest {
 
     private static List<File> toFiles(String path) {
         String[] pieces = path.split(System.getProperty("path.separator"));
-        List<File> files = new ArrayList<File>(pieces.length);
+        List<File> files = new ArrayList<>(pieces.length);
         for (String each : pieces)
             files.add(new File(each));
         return files;

@@ -128,7 +128,7 @@ public class PropertyBinder<T> {
      * @throws IllegalArgumentException if {@code schema}'s configuration is invalid in any way
      */
     public static <U> PropertyBinder<U> forType(Class<U> schema) {
-        return new PropertyBinder<U>(schema);
+        return new PropertyBinder<>(schema);
     }
 
     /**

@@ -62,7 +62,8 @@ public class ValidatedSchema<T> {
     }
 
     T createTypedProxyFor(PropertySource properties) {
-        return schema.cast(newProxyInstance(schema.getClassLoader(),
+        return schema.cast(newProxyInstance(
+            schema.getClassLoader(),
             new Class<?>[] { schema },
             new PropertyBinderInvocationHandler(properties, this)));
     }
