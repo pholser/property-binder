@@ -37,16 +37,18 @@ import org.junit.Test;
 
 import static com.pholser.util.properties.internal.IO.*;
 
-public class BindingPropertiesObjectsToTypedInterfacesTest extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
+public class BindingPropertiesObjectsToTypedInterfacesTest
+    extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
+
     private InputStream inputStream;
-    private Properties properties;
+    private Properties props;
     private ScalarPropertyHaver fromObject;
 
     @Before public final void initializeProperties() throws Exception {
         inputStream = new FileInputStream(propertiesFile);
-        properties = new Properties();
-        properties.load(inputStream);
-        fromObject = binder.bind(properties);
+        props = new Properties();
+        props.load(inputStream);
+        fromObject = binder.bind(props);
     }
 
     @After public final void closeInputStream() {
@@ -60,7 +62,7 @@ public class BindingPropertiesObjectsToTypedInterfacesTest extends TypedStringBi
     }
 
     @Test public void alteringPropertiesObjectAfterBindingDoesNotAffectPropertiesBoundToPICA() {
-        properties.setProperty("big.decimal.property", "!@#!@#!@#!@#!@#");
+        props.setProperty("big.decimal.property", "!@#!@#!@#!@#!@#");
 
         thrown.expect(ValueConversionException.class);
 

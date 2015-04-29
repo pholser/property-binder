@@ -36,7 +36,7 @@ import static org.junit.Assert.*;
 
 public class BindingUntypedResourceBundlesToTypedInterfacesTest {
     @Test public void nonValueType() {
-        final Object value = new Object();
+        Object value = new Object();
         ResourceBundle bundle = bundleWith("any.old.type", value);
         PropertyBinder<NonValueTypeHaver> binder = PropertyBinder.forType(NonValueTypeHaver.class);
 
@@ -46,8 +46,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
     }
 
     interface NonValueTypeHaver {
-        @BoundProperty("any.old.type")
-        Object anyOldType();
+        @BoundProperty("any.old.type") Object anyOldType();
     }
 
     @Test public void arrayOfUnconvertibleType() {
@@ -62,8 +61,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
     }
 
     interface ArrayOfUnconvertibleTypeHaver {
-        @BoundProperty("array.of.unconvertible.type")
-        Object[] array();
+        @BoundProperty("array.of.unconvertible.type") Object[] array();
     }
 
     @Test public void listOfUnconvertibleType() {
@@ -93,8 +91,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
     }
 
     interface NonPublicValueOfHaver {
-        @BoundProperty("non.public.value.of")
-        Thing thing();
+        @BoundProperty("non.public.value.of") Thing thing();
 
         class Thing {
             @SuppressWarnings("unused")
@@ -115,8 +112,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
     }
 
     interface NonStaticValueOfHaver {
-        @BoundProperty("non.static.value.of")
-        Thing thing();
+        @BoundProperty("non.static.value.of") Thing thing();
 
         class Thing {
             @SuppressWarnings("unused")
@@ -137,8 +133,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
     }
 
     interface BadValueOfTypeHaver {
-        @BoundProperty("bad.value.of.type")
-        Thing thing();
+        @BoundProperty("bad.value.of.type") Thing thing();
 
         class Thing {
             @SuppressWarnings("unused")

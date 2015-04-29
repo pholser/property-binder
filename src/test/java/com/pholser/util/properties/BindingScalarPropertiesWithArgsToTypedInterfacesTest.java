@@ -44,8 +44,12 @@ public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
         assertEquals("foo to the bar", bound.stringPropertyWithArguments("foo", "bar"));
     }
 
-    @Test public void passingArgumentsOfVariousTypesToPropertyMethodAndHaveFormattingOccurOnResult() throws Exception {
-        assertEquals("10 seconds to 12:00:00 AM", bound.stringPropertyWithTypedArguments(10, mmddyyyy("12/22/2003")));
+    @Test public void passingArgumentsOfVariousTypesToPropertyMethodAndHaveFormattingOccurOnResult()
+        throws Exception {
+
+        assertEquals(
+            "10 seconds to 12:00:00 AM",
+            bound.stringPropertyWithTypedArguments(10, mmddyyyy("12/22/2003")));
     }
 
     @Test public void illTypedArgumentsToPropertyMethodsWithArgs() throws Exception {
@@ -59,10 +63,14 @@ public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
     }
 
     @Test public void applyingArgumentsOfPropertyMethodsToEachOfAnArrayType() {
-        assertArrayEquals(new String[] { "foobar", "barfoo" }, bound.stringArrayPropertyWithArguments("foo", "bar"));
+        assertArrayEquals(
+            new String[] { "foobar", "barfoo" },
+            bound.stringArrayPropertyWithArguments("foo", "bar"));
     }
 
-    @Test public void applyingArgumentsOfPropertyMethodsToEachOfListTypeWithCustomSeparator() throws Exception {
+    @Test public void applyingArgumentsOfPropertyMethodsToEachOfListTypeWithCustomSeparator()
+        throws Exception {
+
         assertEquals(
             asList(mmddyyyy("03/23/2010"), mmddyyyy("03/23/2010")),
             bound.dateListPropertyWithArgumentsAndSeparator(3, 23, 2010));

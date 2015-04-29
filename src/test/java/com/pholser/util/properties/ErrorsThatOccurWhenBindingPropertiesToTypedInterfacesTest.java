@@ -26,6 +26,7 @@
 package com.pholser.util.properties;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -89,6 +90,12 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends S
         thrown.expect(NullPointerException.class);
 
         scalar.bind((File) null);
+    }
+
+    @Test public void missingFile() throws Exception {
+        thrown.expect(FileNotFoundException.class);
+
+        scalar.bind(new File("!(@#*&!@(*#&"));
     }
 
     @Test public void nullInputStream() throws Exception {

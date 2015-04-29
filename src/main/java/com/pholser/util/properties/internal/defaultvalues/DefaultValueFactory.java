@@ -33,7 +33,11 @@ import com.pholser.util.properties.internal.conversions.ValueConverter;
 import static com.pholser.util.properties.internal.Schemata.*;
 
 public class DefaultValueFactory {
-    public DefaultValue createDefaultValue(DefaultsTo spec, ValueConverter converter, Method method) {
+    public DefaultValue createDefaultValue(
+        DefaultsTo spec,
+        ValueConverter converter,
+        Method method) {
+
         if (isDefaultDefaultValue(spec))
             return new SubstitutableDefaultValue(spec, converter, method);
 

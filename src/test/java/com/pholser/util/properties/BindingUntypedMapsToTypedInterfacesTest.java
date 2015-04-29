@@ -37,8 +37,7 @@ import static org.junit.Assert.*;
 import static org.junit.Assume.*;
 
 public class BindingUntypedMapsToTypedInterfacesTest {
-    @Test
-    public void nonValueType() {
+    @Test public void nonValueType() {
         Object value = new Object();
         Map<String, Object> items = new HashMap<>();
         items.put("any.old.type", value);
@@ -50,12 +49,10 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     }
 
     interface NonValueTypeHaver {
-        @BoundProperty("any.old.type")
-        Object anyOldType();
+        @BoundProperty("any.old.type") Object anyOldType();
     }
 
-    @Test
-    public void arrayOfUnconvertibleType() {
+    @Test public void arrayOfUnconvertibleType() {
         Object[] array = new Object[0];
         Map<String, Object> items = new HashMap<>();
         items.put("array.of.unconvertible.type", array);
@@ -68,12 +65,10 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     }
 
     interface ArrayOfUnconvertibleTypeHaver {
-        @BoundProperty("array.of.unconvertible.type")
-        Object[] array();
+        @BoundProperty("array.of.unconvertible.type") Object[] array();
     }
 
-    @Test
-    public void listOfUnconvertibleType() {
+    @Test public void listOfUnconvertibleType() {
         List<Object> list = new ArrayList<>();
         Map<String, Object> items = new HashMap<>();
         items.put("list.of.unconvertible.type", list);
@@ -86,12 +81,10 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     }
 
     interface ListOfUnconvertibleTypeHaver {
-        @BoundProperty("list.of.unconvertible.type")
-        List<Object> list();
+        @BoundProperty("list.of.unconvertible.type") List<Object> list();
     }
 
-    @Test
-    public void nonPublicValueOf() {
+    @Test public void nonPublicValueOf() {
         NonPublicValueOfHaver.Thing thing = new NonPublicValueOfHaver.Thing();
         Map<String, Object> items = new HashMap<>();
         items.put("non.public.value.of", thing);
@@ -103,8 +96,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     }
 
     interface NonPublicValueOfHaver {
-        @BoundProperty("non.public.value.of")
-        Thing thing();
+        @BoundProperty("non.public.value.of") Thing thing();
 
         class Thing {
             @SuppressWarnings("unused")
@@ -114,8 +106,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
         }
     }
 
-    @Test
-    public void nonStaticValueOf() {
+    @Test public void nonStaticValueOf() {
         NonStaticValueOfHaver.Thing thing = new NonStaticValueOfHaver.Thing();
         Map<String, Object> items = new HashMap<>();
         items.put("non.static.value.of", thing);
@@ -127,8 +118,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     }
 
     interface NonStaticValueOfHaver {
-        @BoundProperty("non.static.value.of")
-        Thing thing();
+        @BoundProperty("non.static.value.of") Thing thing();
 
         class Thing {
             @SuppressWarnings("unused")
@@ -138,8 +128,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
         }
     }
 
-    @Test
-    public void badValueOfReturnType() {
+    @Test public void badValueOfReturnType() {
         BadValueOfTypeHaver.Thing thing = new BadValueOfTypeHaver.Thing();
         Map<String, Object> items = new HashMap<>();
         items.put("bad.value.of.type", thing);
@@ -151,8 +140,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     }
 
     interface BadValueOfTypeHaver {
-        @BoundProperty("bad.value.of.type")
-        Thing thing();
+        @BoundProperty("bad.value.of.type") Thing thing();
 
         class Thing {
             @SuppressWarnings("unused")
@@ -162,8 +150,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
         }
     }
 
-    @Test
-    public void argMethodsIgnoreArgsIfPropertyValueNotAString() {
+    @Test public void argMethodsIgnoreArgsIfPropertyValueNotAString() {
         Object value = new Object();
         Map<String, Object> items = new HashMap<>();
         items.put("key", value);
@@ -176,7 +163,6 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     }
 
     interface ArgMethodHaver {
-        @BoundProperty("key")
-        Object valueFor(int i, char ch);
+        @BoundProperty("key") Object valueFor(int i, char ch);
     }
 }

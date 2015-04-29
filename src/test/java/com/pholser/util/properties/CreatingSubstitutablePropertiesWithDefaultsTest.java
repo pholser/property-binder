@@ -39,69 +39,69 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 public class CreatingSubstitutablePropertiesWithDefaultsTest {
-    private SubstitutableProperties properties;
+    private SubstitutableProperties props;
 
     @Before public void setUp() {
         Properties defaults = new Properties();
         defaults.setProperty("first.key", "default.first.value");
         defaults.setProperty("second.key", "default.second.value + [first.key]");
 
-        properties = new SubstitutableProperties(defaults);
+        props = new SubstitutableProperties(defaults);
     }
 
-    @Test public void shouldLeverageDefaults() {
-        assertEquals("default.first.value", properties.getProperty("first.key"));
+    @Test public void leveragesDefaults() {
+        assertEquals("default.first.value", props.getProperty("first.key"));
     }
 
-    @Test public void shouldSubstituteWithDefaultValue() {
-        assertEquals("default.second.value + default.first.value", properties.getProperty("second.key"));
+    @Test public void substitutesWithDefaultValue() {
+        assertEquals("default.second.value + default.first.value", props.getProperty("second.key"));
     }
 
-    @Test public void doesNotContainKeysOfDefaults() {
-        assertFalse(properties.containsKey("first.key"));
-        assertFalse(properties.containsKey("second.key"));
+    @Test public void keysOfDefaults() {
+        assertFalse(props.containsKey("first.key"));
+        assertFalse(props.containsKey("second.key"));
     }
 
-    @Test public void doesNotContainValuesOfDefaults() {
-        assertFalse(properties.containsValue("default.first.value"));
-        assertFalse(properties.containsValue("default.second.value + [first.key]"));
+    @Test public void valuesOfDefaults() {
+        assertFalse(props.containsValue("default.first.value"));
+        assertFalse(props.containsValue("default.second.value + [first.key]"));
     }
 
     @Test public void isStillEmpty() {
-        assertTrue(properties.isEmpty());
+        assertTrue(props.isEmpty());
     }
 
-    @Test public void cannotGetDefaultValues() {
-        assertNull(properties.get("first.key"));
-        assertNull(properties.get("second.key"));
+    @Test public void defaultValues() {
+        assertNull(props.get("first.key"));
+        assertNull(props.get("second.key"));
     }
 
-    @Test public void enumerationOfPropertyNamesIsNotEmpty() {
+    @Test public void enumerationOfPropertyNames() {
         @SuppressWarnings("unchecked")
-        List<String> names = (List<String>) list(properties.propertyNames());
+        List<String> names = (List<String>) list(props.propertyNames());
 
         assertThat(names, hasItem("first.key"));
         assertThat(names, hasItem("second.key"));
     }
 
-    @Test public void stringSetOfPropertyNamesIsNotEmpty() {
-        Set<String> names = properties.stringPropertyNames();
+    @Test public void stringSetOfPropertyNames() {
+        Set<String> names = props.stringPropertyNames();
 
         assertThat(names, hasItem("first.key"));
         assertThat(names, hasItem("second.key"));
     }
 
-    @Test public void keysSetIsEmpty() {
-        assertEquals(emptyList(), list(properties.keys()));
+    @Test public void keysSet() {
+        assertEquals(emptyList(), list(props.keys()));
     }
 
-    @Test public void valuesSetIsEmpty() {
-        assertEquals(emptyList(), new ArrayList<Object>(properties.values()));
+    @Test public void valuesSet() {
+        assertEquals(emptyList(), new ArrayList<>(props.values()));
     }
 
-    @Test public void addedValueShouldTrumpDefault() {
-        properties.setProperty("first.key", "boo");
+    @Test public void addedValueTrumpsDefault() {
+        props.setProperty("first.key", "boo");
 
-        assertEquals("default.second.value + boo", properties.getProperty("second.key"));
+        assertEquals("default.second.value + boo", props.getProperty("second.key"));
     }
 }

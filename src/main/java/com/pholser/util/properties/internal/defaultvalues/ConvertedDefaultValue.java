@@ -35,7 +35,11 @@ import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 final class ConvertedDefaultValue implements DefaultValue {
     private final Object converted;
 
-    private ConvertedDefaultValue(String value, ValueConverter converter, Method method) {
+    private ConvertedDefaultValue(
+        String value,
+        ValueConverter converter,
+        Method method) {
+
         try {
             converted = converter.convert(value);
         } catch (ValueConversionException ex) {
@@ -43,7 +47,11 @@ final class ConvertedDefaultValue implements DefaultValue {
         }
     }
 
-    static ConvertedDefaultValue fromValue(String value, ValueConverter converter, Method method) {
+    static ConvertedDefaultValue fromValue(
+        String value,
+        ValueConverter converter,
+        Method method) {
+
         return new ConvertedDefaultValue(value, converter, method);
     }
 

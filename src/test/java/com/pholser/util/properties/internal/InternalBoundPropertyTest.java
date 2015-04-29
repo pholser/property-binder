@@ -40,7 +40,6 @@ public class InternalBoundPropertyTest {
         assertEquals(bakedIn, boundProperty);
     }
 
-    @BoundProperty("x")
-    private void x() {
+    @BoundProperty("x") private void x() {
     }
 }

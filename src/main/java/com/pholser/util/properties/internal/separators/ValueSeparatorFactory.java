@@ -32,14 +32,20 @@ import com.pholser.util.properties.ValuesSeparatedBy;
 import static com.pholser.util.properties.internal.Schemata.*;
 
 public class ValueSeparatorFactory {
-    public ValueSeparator createSeparator(ValuesSeparatedBy spec, Method method) {
+    public ValueSeparator createSeparator(
+        ValuesSeparatedBy spec,
+        Method method) {
+
         Object patternDefault = annotationDefault(ValuesSeparatedBy.class, "pattern");
         return spec == null
             ? new RegexValueSeparator(patternDefault.toString(), method)
             : createSeparatorBasedOnSpec(spec, method);
     }
 
-    private static ValueSeparator createSeparatorBasedOnSpec(ValuesSeparatedBy spec, Method method) {
+    private static ValueSeparator createSeparatorBasedOnSpec(
+        ValuesSeparatedBy spec,
+        Method method) {
+
         if (isDefaultPattern(spec) && !isDefaultSeparatorValueOf(spec))
             return new SubstitutableRegexValueSeparator(spec.valueOf(), method);
         return new RegexValueSeparator(spec.pattern(), method);

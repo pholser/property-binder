@@ -35,7 +35,7 @@ import static org.junit.Assert.*;
 public class InvokingObjectMethodsOnBoundInterfaceTest
     extends TypedStringBindingTestSupport<InvokingObjectMethodsOnBoundInterfaceTest.PropertyFacade> {
 
-    @Test public void answeringEqualsByTestingIdentity() throws Exception {
+    @Test public void answeringEquals() throws Exception {
         PropertyFacade second = binder.bind(propertiesFile);
         assertEquals(bound, bound);
         assertFalse(bound.equals(second));
@@ -43,11 +43,11 @@ public class InvokingObjectMethodsOnBoundInterfaceTest
         assertFalse(second.equals(bound));
     }
 
-    @Test public void answeringHashCodeByGivingIdentityHashCode() {
+    @Test public void answeringHashCode() {
         assertEquals(identityHashCode(bound), bound.hashCode());
     }
 
-    @Test public void answeringToStringByGivingProperties() {
+    @Test public void answeringToString() {
         assertThat(bound.toString(), containsString("wrapped.integer"));
     }
 
@@ -56,7 +56,6 @@ public class InvokingObjectMethodsOnBoundInterfaceTest
     }
 
     interface PropertyFacade {
-        @BoundProperty(value = "string.property")
-        String stringProperty();
+        @BoundProperty(value = "string.property") String stringProperty();
     }
 }

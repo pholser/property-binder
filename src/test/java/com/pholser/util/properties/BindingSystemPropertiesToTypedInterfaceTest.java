@@ -41,69 +41,69 @@ public class BindingSystemPropertiesToTypedInterfaceTest {
         systemProperties = PropertyBinder.getSystemProperties();
     }
 
-    @Test public void shouldGiveJavaVersion() {
+    @Test public void javaVersion() {
         assertEquals(System.getProperty("java.version"), systemProperties.javaVersion());
     }
 
-    @Test public void shouldGiveJavaVendor() {
+    @Test public void javaVendor() {
         assertEquals(System.getProperty("java.vendor"), systemProperties.javaVendor());
     }
 
-    @Test public void shouldGiveJavaVendorUrl() {
+    @Test public void javaVendorUrl() {
         assertEquals(System.getProperty("java.vendor.url"), systemProperties.javaVendorUrl().toExternalForm());
     }
 
-    @Test public void shouldGiveJavaHome() {
+    @Test public void javaHome() {
         assertEquals(System.getProperty("java.home"), systemProperties.javaHome().getPath());
     }
 
-    @Test public void shouldGiveJavaVmSpecificationVersion() {
+    @Test public void javaVmSpecificationVersion() {
         assertEquals(System.getProperty("java.vm.specification.version"), systemProperties.javaVmSpecificationVersion());
     }
 
-    @Test public void shouldGiveJavaVmSpecificationVendor() {
+    @Test public void javaVmSpecificationVendor() {
         assertEquals(System.getProperty("java.vm.specification.vendor"), systemProperties.javaVmSpecificationVendor());
     }
 
-    @Test public void shouldGiveJavaVmSpecificationName() {
+    @Test public void javaVmSpecificationName() {
         assertEquals(System.getProperty("java.vm.specification.name"), systemProperties.javaVmSpecificationName());
     }
 
-    @Test public void shouldGiveJavaVmVersion() {
+    @Test public void javaVmVersion() {
         assertEquals(System.getProperty("java.vm.version"), systemProperties.javaVmVersion());
     }
 
-    @Test public void shouldGiveJavaVmVendor() {
+    @Test public void javaVmVendor() {
         assertEquals(System.getProperty("java.vm.vendor"), systemProperties.javaVmVendor());
     }
 
-    @Test public void shouldGiveJavaVmName() {
+    @Test public void javaVmName() {
         assertEquals(System.getProperty("java.vm.name"), systemProperties.javaVmName());
     }
 
-    @Test public void shouldGiveJavaSpecificationVersion() {
+    @Test public void javaSpecificationVersion() {
         assertEquals(System.getProperty("java.specification.version"), systemProperties.javaSpecificationVersion());
     }
 
-    @Test public void shouldGiveJavaSpecificationVendor() {
+    @Test public void javaSpecificationVendor() {
         assertEquals(System.getProperty("java.specification.vendor"), systemProperties.javaSpecificationVendor());
     }
 
-    @Test public void shouldGiveJavaSpecificationName() {
+    @Test public void javaSpecificationName() {
         assertEquals(System.getProperty("java.specification.name"), systemProperties.javaSpecificationName());
     }
 
-    @Test public void shouldGiveJavaClassVersion() {
+    @Test public void javaClassVersion() {
         assertEquals(System.getProperty("java.class.version"), systemProperties.javaClassVersion().toString());
     }
 
-    @Test public void shouldGiveJavaIoTmpdir() {
+    @Test public void javaIoTmpdir() {
         assertEquals(
             System.getProperty("java.io.tmpdir"),
             systemProperties.javaIoTmpdir().getPath() + systemProperties.fileSeparator());
     }
 
-    @Test public void shouldGiveJavaCompiler() {
+    @Test public void javaCompiler() {
         assertEquals(System.getProperty("java.compiler"), systemProperties.javaCompiler());
     }
 
@@ -143,15 +143,15 @@ public class BindingSystemPropertiesToTypedInterfaceTest {
         assertEquals(System.getProperty("user.dir"), systemProperties.userDir().getPath());
     }
 
-    @Test public void shouldGiveJavaClassPath() {
+    @Test public void javaClassPath() {
         assertEquals(toFiles(System.getProperty("java.class.path")), systemProperties.javaClassPath());
     }
 
-    @Test public void shouldGiveJavaLibraryPath() {
+    @Test public void javaLibraryPath() {
         assertEquals(toFiles(System.getProperty("java.library.path")), systemProperties.javaLibraryPath());
     }
 
-    @Test public void shouldGiveJavaExtDirs() {
+    @Test public void javaExtDirs() {
         assertEquals(toFiles(System.getProperty("java.ext.dirs")), systemProperties.javaExtDirs());
     }
 

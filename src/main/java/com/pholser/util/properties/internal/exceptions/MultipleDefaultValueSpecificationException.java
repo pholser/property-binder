@@ -32,7 +32,10 @@ import com.pholser.util.properties.DefaultsTo;
 public class MultipleDefaultValueSpecificationException extends IllegalArgumentException {
     private static final long serialVersionUID = 1L;
 
-    public MultipleDefaultValueSpecificationException(DefaultsTo defaultValue, Method method) {
+    public MultipleDefaultValueSpecificationException(
+        DefaultsTo defaultValue,
+        Method method) {
+
         super("Marker @" + DefaultsTo.class.getSimpleName() + " on method " + method.getName()
             + " of " + method.getDeclaringClass() + " specifies both a value [" + defaultValue.value()
             + "] and valueOf [" + defaultValue.valueOf() + ']');

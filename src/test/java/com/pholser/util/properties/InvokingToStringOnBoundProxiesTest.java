@@ -45,14 +45,14 @@ public class InvokingToStringOnBoundProxiesTest {
     }
 
     @Test public void propertiesSource() {
-        Properties properties = new Properties();
-        properties.setProperty("foo", "bar");
-        Schema bound = binder.bind(properties);
+        Properties props = new Properties();
+        props.setProperty("foo", "bar");
+        Schema bound = binder.bind(props);
 
         String asString = bound.toString();
 
         assertThat(asString, containsString(Schema.class.getName()));
-        assertThat(asString, containsString(properties.toString()));
+        assertThat(asString, containsString(props.toString()));
     }
 
     @Test public void mapSource() {

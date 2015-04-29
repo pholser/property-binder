@@ -38,8 +38,6 @@ import com.pholser.util.properties.internal.ResourceBundlePropertySource;
 import com.pholser.util.properties.internal.ValidatedSchema;
 import com.pholser.util.properties.internal.validation.SchemaValidator;
 
-import static com.pholser.util.properties.internal.IO.*;
-
 /**
  * <p>Creates proxies that provide typed access to values in {@linkplain PropertySource sources of property
  * configuration} via the <acronym title="Proxied Interfaces Configured with Annotations">PICA</acronym>
@@ -154,13 +152,8 @@ public class PropertyBinder<T> {
      * @throws NullPointerException if {@code propertiesFile} is {@code null}
      */
     public T bind(File propertiesFile) throws IOException {
-        FileInputStream input = null;
-
-        try {
-            input = new FileInputStream(propertiesFile);
+        try (FileInputStream input = new FileInputStream(propertiesFile)) {
             return bind(input);
-        } finally {
-            closeQuietly(input);
         }
     }
 

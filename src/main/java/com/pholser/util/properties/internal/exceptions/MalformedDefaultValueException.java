@@ -32,7 +32,11 @@ import com.pholser.util.properties.DefaultsTo;
 public class MalformedDefaultValueException extends IllegalArgumentException {
     private static final long serialVersionUID = 1L;
 
-    public MalformedDefaultValueException(String defaultValue, Method method, Throwable cause) {
+    public MalformedDefaultValueException(
+        String defaultValue,
+        Method method,
+        Throwable cause) {
+
         super("Cannot convert value [" + defaultValue + " of @" + DefaultsTo.class.getSimpleName()
             + " for method " + method.getName() + " on " + method.getDeclaringClass()
             + " to " + method.getReturnType(), cause);

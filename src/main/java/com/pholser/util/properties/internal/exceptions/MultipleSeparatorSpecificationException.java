@@ -32,7 +32,10 @@ import com.pholser.util.properties.ValuesSeparatedBy;
 public class MultipleSeparatorSpecificationException extends IllegalArgumentException {
     private static final long serialVersionUID = 1L;
 
-    public MultipleSeparatorSpecificationException(ValuesSeparatedBy separator, Method method) {
+    public MultipleSeparatorSpecificationException(
+        ValuesSeparatedBy separator,
+        Method method) {
+
         super("Marker @" + ValuesSeparatedBy.class.getSimpleName() + " on method " + method.getName()
             + " of " + method.getDeclaringClass() + " specifies both a non-default pattern [" + separator.pattern()
             + "] and valueOf [" + separator.valueOf() + ']');

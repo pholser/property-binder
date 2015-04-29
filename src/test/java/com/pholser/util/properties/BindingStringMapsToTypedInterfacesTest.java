@@ -38,7 +38,9 @@ import org.junit.Test;
 
 import static com.pholser.util.properties.internal.IO.*;
 
-public class BindingStringMapsToTypedInterfacesTest extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
+public class BindingStringMapsToTypedInterfacesTest
+    extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
+
     private InputStream inputStream;
     private Map<String, String> asStringMap;
     private ScalarPropertyHaver fromMap;
@@ -46,9 +48,9 @@ public class BindingStringMapsToTypedInterfacesTest extends TypedStringBindingTe
     @SuppressWarnings("unchecked")
     @Before public final void initializeProperties() throws Exception {
         inputStream = new FileInputStream(propertiesFile);
-        Properties properties = new Properties();
-        properties.load(inputStream);
-        Map<?, ?> asMap = properties;
+        Properties props = new Properties();
+        props.load(inputStream);
+        Map<?, ?> asMap = props;
         asStringMap = (Map<String, String>) asMap;
         fromMap = binder.bind(asStringMap);
     }
