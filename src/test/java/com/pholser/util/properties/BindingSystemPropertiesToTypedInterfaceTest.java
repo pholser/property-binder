@@ -151,10 +151,6 @@ public class BindingSystemPropertiesToTypedInterfaceTest {
         assertEquals(toFiles(System.getProperty("java.library.path")), systemProperties.javaLibraryPath());
     }
 
-    @Test public void javaExtDirs() {
-        assertEquals(toFiles(System.getProperty("java.ext.dirs")), systemProperties.javaExtDirs());
-    }
-
     private static List<File> toFiles(String path) {
         String[] pieces = path.split(System.getProperty("path.separator"));
         List<File> files = new ArrayList<>(pieces.length);

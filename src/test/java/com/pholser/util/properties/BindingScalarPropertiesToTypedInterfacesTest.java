@@ -108,7 +108,7 @@ public class BindingScalarPropertiesToTypedInterfacesTest
     }
 
     @Test public void wrappedCharacterValuedPropertyToWrappedCharacterMethod() {
-        assertEquals(new Character('d'), bound.wrappedCharacterProperty());
+        assertEquals(Character.valueOf('d'), bound.wrappedCharacterProperty());
     }
 
     @Test public void defaultForWrappedCharacterValuedProperty() {
@@ -231,11 +231,11 @@ public class BindingScalarPropertiesToTypedInterfacesTest
         assertEquals(yyyy("2003"), bound.datePropertyWithDefaultWithParsePatterns());
     }
 
-    @Test public void substitution() throws Exception {
+    @Test public void substitution() {
         assertEquals("really plain", bound.substituted());
     }
 
-    @Test public void canSuppressPropertySubstitutionWhenAsked() throws Exception {
+    @Test public void canSuppressPropertySubstitutionWhenAsked() {
         assertEquals("^27[78]{1}[0-9]{8}$", bound.regex());
     }
 

@@ -92,10 +92,6 @@ public interface SystemProperties {
     @BoundProperty("java.compiler")
     String javaCompiler();
 
-    @BoundProperty("java.ext.dirs")
-    @ValuesSeparatedBy(valueOf = "[path.separator]")
-    List<File> javaExtDirs();
-
     @BoundProperty("os.name")
     String osName();
 
