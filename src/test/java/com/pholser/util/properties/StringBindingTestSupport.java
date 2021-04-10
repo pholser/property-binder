@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2013 Paul R. Holser, Jr.
+ Copyright (c) 2009-2021 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -25,17 +25,11 @@
 
 package com.pholser.util.properties;
 
+import org.junit.Before;
+
 import java.io.File;
 
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.rules.ExpectedException;
-
-import static org.junit.rules.ExpectedException.*;
-
 public abstract class StringBindingTestSupport {
-    @Rule public final ExpectedException thrown = none();
-
     protected File propertiesFile;
 
     @Before public final void initializePropertiesFile() {

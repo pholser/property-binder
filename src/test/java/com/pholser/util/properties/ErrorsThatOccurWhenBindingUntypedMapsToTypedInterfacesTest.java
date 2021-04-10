@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2013 Paul R. Holser, Jr.
+ Copyright (c) 2009-2021 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -25,28 +25,22 @@
 
 package com.pholser.util.properties;
 
+import com.pholser.util.properties.boundtypes.IntPropertyHaver;
+import org.junit.Test;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import com.pholser.util.properties.boundtypes.IntPropertyHaver;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
-import static org.junit.rules.ExpectedException.*;
+import static org.junit.Assert.assertThrows;
 
 public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
-    @Rule public final ExpectedException thrown = none();
-
     @Test public void returnTypeAndUnderlyingPropertyTypeDisagree() {
         Map<String, Object> items = new HashMap<>();
         items.put("i", new Object());
         PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
         IntPropertyHaver bound = binder.bind(items);
 
-        thrown.expect(ClassCastException.class);
-
-        bound.i();
+        assertThrows(ClassCastException.class, bound::i);
     }
 
     @Test public void primitiveWidening() {
@@ -55,9 +49,7 @@ public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
         PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
         IntPropertyHaver bound = binder.bind(items);
 
-        thrown.expect(ClassCastException.class);
-
-        bound.i();
+        assertThrows(ClassCastException.class, bound::i);
     }
 
     @Test public void resolvingASeparatorWithNonStringPropertyValue() {
@@ -66,9 +58,7 @@ public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
         items.put("separator", new Object());
         PropertyBinder<WithValueOfSeparator> binder = PropertyBinder.forType(WithValueOfSeparator.class);
 
-        thrown.expect(ClassCastException.class);
-
-        binder.bind(items);
+        assertThrows(ClassCastException.class, () -> binder.bind(items));
     }
 
     interface WithValueOfSeparator {
@@ -83,9 +73,7 @@ public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
         items.put("other", new Object());
         PropertyBinder<WithValueOfDefault> binder = PropertyBinder.forType(WithValueOfDefault.class);
 
-        thrown.expect(ClassCastException.class);
-
-        binder.bind(items);
+        assertThrows(ClassCastException.class, () -> binder.bind(items));
     }
 
     interface WithValueOfDefault {

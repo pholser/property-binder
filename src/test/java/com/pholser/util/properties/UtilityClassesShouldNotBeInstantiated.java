@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2013 Paul R. Holser, Jr.
+ Copyright (c) 2009-2021 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -25,19 +25,15 @@
 
 package com.pholser.util.properties;
 
+import org.junit.Test;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
-import static com.pholser.util.properties.ExceptionMatchers.*;
-import static org.junit.rules.ExpectedException.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public abstract class UtilityClassesShouldNotBeInstantiated {
-    @Rule public final ExpectedException thrown = none();
-
     private final Class<?> utility;
 
     protected UtilityClassesShouldNotBeInstantiated(Class<?> utility) {
@@ -48,9 +44,9 @@ public abstract class UtilityClassesShouldNotBeInstantiated {
         Constructor<?> constructor = utility.getDeclaredConstructor();
         constructor.setAccessible(true);
 
-        thrown.expect(InvocationTargetException.class);
-        thrown.expect(targetOfType(UnsupportedOperationException.class));
+        InvocationTargetException ex =
+            assertThrows(InvocationTargetException.class, constructor::newInstance);
 
-        constructor.newInstance();
+        assertEquals(UnsupportedOperationException.class, ex.getCause().getClass());
     }
 }

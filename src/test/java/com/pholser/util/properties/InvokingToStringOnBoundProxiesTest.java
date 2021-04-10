@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2013 Paul R. Holser, Jr.
+ Copyright (c) 2009-2021 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -25,17 +25,16 @@
 
 package com.pholser.util.properties;
 
+import org.junit.Before;
+import org.junit.Test;
+
 import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-import static org.junit.Assume.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
 
 public class InvokingToStringOnBoundProxiesTest {
     private PropertyBinder<Schema> binder;
@@ -51,8 +50,8 @@ public class InvokingToStringOnBoundProxiesTest {
 
         String asString = bound.toString();
 
-        assertThat(asString, containsString(Schema.class.getName()));
-        assertThat(asString, containsString(props.toString()));
+        assertThat(asString).contains(Schema.class.getName());
+        assertThat(asString).contains(props.toString());
     }
 
     @Test public void mapSource() {
@@ -61,8 +60,8 @@ public class InvokingToStringOnBoundProxiesTest {
 
         String asString = bound.toString();
 
-        assumeThat(asString, containsString(Schema.class.getName()));
-        assertThat(asString, containsString(properties.toString()));
+        assumeThat(asString).contains(Schema.class.getName());
+        assertThat(asString).contains(properties.toString());
     }
 
     @Test public void resourceBundleSource() {
@@ -71,8 +70,8 @@ public class InvokingToStringOnBoundProxiesTest {
 
         String asString = bound.toString();
 
-        assumeThat(asString, containsString(Schema.class.getName()));
-        assertThat(asString, containsString(bundle.toString()));
+        assumeThat(asString).contains(Schema.class.getName());
+        assertThat(asString).contains(bundle.toString());
     }
 
     @Test
@@ -90,8 +89,8 @@ public class InvokingToStringOnBoundProxiesTest {
 
         String asString = bound.toString();
 
-        assumeThat(asString, containsString(Schema.class.getName()));
-        assertThat(asString, containsString("qwerty"));
+        assumeThat(asString).contains(Schema.class.getName());
+        assertThat(asString).contains("qwerty");
     }
 
     interface Schema {

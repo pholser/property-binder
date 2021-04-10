@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2013 Paul R. Holser, Jr.
+ Copyright (c) 2009-2021 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -31,12 +31,14 @@ import java.util.Properties;
 import java.util.Set;
 
 import static java.util.Collections.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 
 public class CreatingSubstitutablePropertiesWithDefaultsTest {
     private SubstitutableProperties props;
@@ -80,15 +82,13 @@ public class CreatingSubstitutablePropertiesWithDefaultsTest {
         @SuppressWarnings("unchecked")
         List<String> names = (List<String>) list(props.propertyNames());
 
-        assertThat(names, hasItem("first.key"));
-        assertThat(names, hasItem("second.key"));
+        assertThat(names).contains("first.key", "second.key");
     }
 
     @Test public void stringSetOfPropertyNames() {
         Set<String> names = props.stringPropertyNames();
 
-        assertThat(names, hasItem("first.key"));
-        assertThat(names, hasItem("second.key"));
+        assertThat(names).contains("first.key", "second.key");
     }
 
     @Test public void keysSet() {

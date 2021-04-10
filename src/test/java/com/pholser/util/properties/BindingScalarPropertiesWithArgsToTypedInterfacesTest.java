@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2013 Paul R. Holser, Jr.
+ Copyright (c) 2009-2021 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -53,9 +53,9 @@ public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
     }
 
     @Test public void illTypedArgumentsToPropertyMethodsWithArgs() throws Exception {
-        thrown.expect(ValueConversionException.class);
-
-        bound.stringPropertyWithIllTypedArguments(10, mmddyyyy("12/22/2003"));
+        assertThrows(
+            ValueConversionException.class,
+            () -> bound.stringPropertyWithIllTypedArguments(10, mmddyyyy("12/22/2003")));
     }
 
     @Test public void convertingPropertyMethodsWithArgsToTypeOtherThanString() throws Exception {

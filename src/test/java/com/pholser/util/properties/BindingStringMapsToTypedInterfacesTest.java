@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2013 Paul R. Holser, Jr.
+ Copyright (c) 2009-2021 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -30,13 +30,16 @@ import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 
+import com.pholser.util.properties.boundtypes.DefaultValueWithNeitherValueNorValueOf;
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
+import com.pholser.util.properties.internal.exceptions.NoDefaultValueSpecificationException;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static com.pholser.util.properties.internal.IO.*;
+import static org.junit.Assert.assertThrows;
 
 public class BindingStringMapsToTypedInterfacesTest
     extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
@@ -68,9 +71,9 @@ public class BindingStringMapsToTypedInterfacesTest
     @Test public void alteringMapAfterBindingAffectsPropertiesBoundToPICA() {
         asStringMap.put("primitive.integer.property", "!@#!@#!@#!@#!@#");
 
-        thrown.expect(ValueConversionException.class);
-
-        fromMap.primitiveIntegerProperty();
+        assertThrows(
+            ValueConversionException.class,
+            () -> fromMap.primitiveIntegerProperty());
     }
 
     @Override protected Class<ScalarPropertyHaver> boundType() {

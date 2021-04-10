@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2013 Paul R. Holser, Jr.
+ Copyright (c) 2009-2021 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -25,55 +25,63 @@
 
 package com.pholser.util.properties.internal.conversions;
 
+import com.pholser.util.properties.internal.exceptions.ValueConversionException;
+import com.pholser.util.properties.testonly.ForTriggeringIllegalAccess;
+import org.junit.Test;
+
 import java.lang.reflect.Method;
 import java.util.Calendar;
 
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
-import com.pholser.util.properties.testonly.ForTriggeringIllegalAccess;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
-import static com.pholser.util.properties.ExceptionMatchers.*;
-import static org.junit.rules.ExpectedException.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
-    @Rule public final ExpectedException thrown = none();
-
     @Test public void transformingInvocationTargetExceptions() throws Exception {
-        thrown.expect(ValueConversionException.class);
-        thrown.expect(causeOfType(UnsupportedOperationException.class));
-
         Method method = MethodRaisesException.class.getDeclaredMethod("raisesException", String.class);
+        MethodInvokingValueConverter converter =
+            new MethodInvokingValueConverter(method, Void.class);
 
-        new MethodInvokingValueConverter(method, Void.class).convert("");
+        ValueConversionException ex =
+            assertThrows(
+                ValueConversionException.class,
+                () -> converter.convert(""));
+        assertEquals(UnsupportedOperationException.class, ex.getCause().getClass());
     }
 
     @Test public void transformingIllegalArgumentExceptions() throws Exception {
-        thrown.expect(ValueConversionException.class);
-        thrown.expect(causeOfType(IllegalArgumentException.class));
-
         Method method = Calendar.class.getDeclaredMethod("getInstance");
+        MethodInvokingValueConverter converter =
+            new MethodInvokingValueConverter(method, Calendar.class);
 
-        new MethodInvokingValueConverter(method, Calendar.class).convert("");
+        ValueConversionException ex =
+            assertThrows(
+                ValueConversionException.class,
+                () -> converter.convert(""));
+        assertEquals(IllegalArgumentException.class, ex.getCause().getClass());
     }
 
     @Test public void transformingIllegalAccessExceptions() throws Exception {
-        thrown.expect(ValueConversionException.class);
-        thrown.expect(causeOfType(IllegalAccessException.class));
-
         Method method = ForTriggeringIllegalAccess.class.getDeclaredMethod("valueOf", String.class);
+        MethodInvokingValueConverter converter =
+            new MethodInvokingValueConverter(method, String.class);
 
-        new MethodInvokingValueConverter(method, String.class).convert("");
+        ValueConversionException ex =
+            assertThrows(
+                ValueConversionException.class,
+                () -> converter.convert(""));
+        assertEquals(IllegalAccessException.class, ex.getCause().getClass());
     }
 
     @Test public void transformingClassCastExceptions() throws Exception {
-        thrown.expect(ValueConversionException.class);
-        thrown.expect(causeOfType(ClassCastException.class));
-
         Method method = Integer.class.getDeclaredMethod("valueOf", String.class);
+        MethodInvokingValueConverter converter =
+            new MethodInvokingValueConverter(method, Boolean.class);
 
-        new MethodInvokingValueConverter(method, Boolean.class).convert("2");
+        ValueConversionException ex =
+            assertThrows(
+                ValueConversionException.class,
+                () -> converter.convert("2"));
+        assertEquals(ClassCastException.class, ex.getCause().getClass());
     }
 
     public static class MethodRaisesException {

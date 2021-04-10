@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2013 Paul R. Holser, Jr.
+ Copyright (c) 2009-2021 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -25,27 +25,21 @@
 
 package com.pholser.util.properties;
 
+import com.pholser.util.properties.boundtypes.IntPropertyHaver;
+import org.junit.Test;
+
 import java.util.ResourceBundle;
 
-import com.pholser.util.properties.boundtypes.IntPropertyHaver;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
-import static com.pholser.util.properties.ResourceBundles.*;
-import static org.junit.rules.ExpectedException.*;
+import static com.pholser.util.properties.ResourceBundles.bundleWith;
+import static org.junit.Assert.assertThrows;
 
 public class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTest {
-    @Rule public final ExpectedException thrown = none();
-
     @Test public void returnTypeAndUnderlyingPropertyTypeDisagree() {
         ResourceBundle bundle = bundleWith("i", new Object());
         PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
         IntPropertyHaver bound = binder.bind(bundle);
 
-        thrown.expect(ClassCastException.class);
-
-        bound.i();
+        assertThrows(ClassCastException.class, bound::i);
     }
 
     @Test public void primitiveWidening() {
@@ -53,18 +47,14 @@ public class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTe
         PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
         IntPropertyHaver bound = binder.bind(bundle);
 
-        thrown.expect(ClassCastException.class);
-
-        bound.i();
+        assertThrows(ClassCastException.class, bound::i);
     }
 
     @Test public void resolvingASeparatorWithNonStringPropertyValue() {
         ResourceBundle bundle = bundleWith("bar", "A,B,C", "separator", new Object());
         PropertyBinder<WithValueOfSeparator> binder = PropertyBinder.forType(WithValueOfSeparator.class);
 
-        thrown.expect(ClassCastException.class);
-
-        binder.bind(bundle);
+        assertThrows(ClassCastException.class, () -> binder.bind(bundle));
     }
 
     interface WithValueOfSeparator {
@@ -77,9 +67,7 @@ public class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTe
         ResourceBundle bundle = bundleWith("other", new Object());
         PropertyBinder<WithValueOfDefault> binder = PropertyBinder.forType(WithValueOfDefault.class);
 
-        thrown.expect(ClassCastException.class);
-
-        binder.bind(bundle);
+        assertThrows(ClassCastException.class, () -> binder.bind(bundle));
     }
 
     interface WithValueOfDefault {

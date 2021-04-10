@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2013 Paul R. Holser, Jr.
+ Copyright (c) 2009-2021 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -36,6 +36,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.pholser.util.properties.internal.IO.*;
+import static org.junit.Assert.assertThrows;
 
 public class BindingPropertiesObjectsToTypedInterfacesTest
     extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
@@ -64,9 +65,9 @@ public class BindingPropertiesObjectsToTypedInterfacesTest
     @Test public void alteringPropertiesObjectAfterBindingDoesNotAffectPropertiesBoundToPICA() {
         props.setProperty("big.decimal.property", "!@#!@#!@#!@#!@#");
 
-        thrown.expect(ValueConversionException.class);
-
-        fromObject.bigDecimalProperty();
+        assertThrows(
+            ValueConversionException.class,
+            () -> fromObject.bigDecimalProperty());
     }
 
     @Override protected Class<ScalarPropertyHaver> boundType() {

@@ -1,7 +1,7 @@
 /*
  The MIT License
 
- Copyright (c) 2009-2013 Paul R. Holser, Jr.
+ Copyright (c) 2009-2021 Paul R. Holser, Jr.
 
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -25,12 +25,13 @@
 
 package com.pholser.util.properties;
 
-import static java.lang.System.*;
-
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static java.lang.System.identityHashCode;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 
 public class InvokingObjectMethodsOnBoundInterfaceTest
     extends TypedStringBindingTestSupport<InvokingObjectMethodsOnBoundInterfaceTest.PropertyFacade> {
@@ -38,9 +39,9 @@ public class InvokingObjectMethodsOnBoundInterfaceTest
     @Test public void answeringEquals() throws Exception {
         PropertyFacade second = binder.bind(propertiesFile);
         assertEquals(bound, bound);
-        assertFalse(bound.equals(second));
+        assertNotEquals(bound, second);
         assertEquals(second, second);
-        assertFalse(second.equals(bound));
+        assertNotEquals(second, bound);
     }
 
     @Test public void answeringHashCode() {
@@ -48,7 +49,7 @@ public class InvokingObjectMethodsOnBoundInterfaceTest
     }
 
     @Test public void answeringToString() {
-        assertThat(bound.toString(), containsString("wrapped.integer"));
+        assertThat(bound.toString()).contains("wrapped.integer");
     }
 
     @Override protected Class<PropertyFacade> boundType() {
