@@ -1,12 +1,5 @@
 package com.pholser.util.properties.examples;
 
-import java.io.File;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
-
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.PropertyBinder;
 import com.pholser.util.properties.PropertySource;
@@ -14,7 +7,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Document;
 
-import static org.junit.Assert.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+import java.io.File;
+
+import static org.junit.Assert.assertEquals;
 
 public class XmlConfigTest {
     private Config config;

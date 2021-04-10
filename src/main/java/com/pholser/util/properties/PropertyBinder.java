@@ -25,6 +25,11 @@
 
 package com.pholser.util.properties;
 
+import com.pholser.util.properties.internal.MapPropertySource;
+import com.pholser.util.properties.internal.ResourceBundlePropertySource;
+import com.pholser.util.properties.internal.ValidatedSchema;
+import com.pholser.util.properties.internal.validation.SchemaValidator;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -32,11 +37,6 @@ import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
-
-import com.pholser.util.properties.internal.MapPropertySource;
-import com.pholser.util.properties.internal.ResourceBundlePropertySource;
-import com.pholser.util.properties.internal.ValidatedSchema;
-import com.pholser.util.properties.internal.validation.SchemaValidator;
 
 /**
  * <p>Creates proxies that provide typed access to values in {@linkplain PropertySource sources of property

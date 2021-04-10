@@ -25,18 +25,20 @@
 
 package com.pholser.util.properties;
 
+import com.pholser.util.properties.boundtypes.ArrayPropertyHaver;
+import com.pholser.util.properties.boundtypes.Ternary;
+import org.junit.Test;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.pholser.util.properties.boundtypes.ArrayPropertyHaver;
-import com.pholser.util.properties.boundtypes.Ternary;
-import org.junit.Test;
-
-import static com.pholser.util.properties.boundtypes.Ternary.*;
-import static org.junit.Assert.*;
+import static com.pholser.util.properties.boundtypes.Ternary.MAYBE;
+import static com.pholser.util.properties.boundtypes.Ternary.NO;
+import static com.pholser.util.properties.boundtypes.Ternary.YES;
+import static org.junit.Assert.assertArrayEquals;
 
 public class BindingArrayPropertiesToTypedInterfacesTest
     extends TypedStringBindingTestSupport<ArrayPropertyHaver> {

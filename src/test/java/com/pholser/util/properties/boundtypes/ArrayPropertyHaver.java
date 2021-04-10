@@ -25,14 +25,14 @@
 
 package com.pholser.util.properties.boundtypes;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Date;
-
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.ValuesSeparatedBy;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Date;
 
 public interface ArrayPropertyHaver {
     @BoundProperty("string.array.property")

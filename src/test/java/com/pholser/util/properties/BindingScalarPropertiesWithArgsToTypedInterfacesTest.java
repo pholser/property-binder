@@ -25,17 +25,18 @@
 
 package com.pholser.util.properties;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import static java.util.Arrays.*;
-
 import com.pholser.util.properties.boundtypes.ScalarPropertyWithArgsHaver;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static java.util.Arrays.asList;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
     extends TypedStringBindingTestSupport<ScalarPropertyWithArgsHaver> {

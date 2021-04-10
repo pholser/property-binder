@@ -25,12 +25,6 @@
 
 package com.pholser.util.properties;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.Map;
-import java.util.ResourceBundle;
-
 import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypeWithDefaultPropertyHaver;
 import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypeWithSeparatorPropertyHaver;
 import com.pholser.util.properties.boundtypes.BadDefaultValuePropertyHaver;
@@ -67,6 +61,12 @@ import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeExcep
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 import static org.junit.Assert.assertThrows;
 

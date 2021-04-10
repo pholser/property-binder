@@ -1,8 +1,8 @@
 package com.pholser.util.properties.examples;
 
-import java.io.File;
-
 import com.pholser.util.properties.BoundProperty;
+
+import java.io.File;
 
 public interface Config {
     @BoundProperty("/config/timeout")

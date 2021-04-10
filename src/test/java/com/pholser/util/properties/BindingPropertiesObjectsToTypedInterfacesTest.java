@@ -25,17 +25,17 @@
 
 package com.pholser.util.properties;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.Properties;
-
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.pholser.util.properties.internal.IO.*;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
+
+import static com.pholser.util.properties.internal.IO.closeQuietly;
 import static org.junit.Assert.assertThrows;
 
 public class BindingPropertiesObjectsToTypedInterfacesTest

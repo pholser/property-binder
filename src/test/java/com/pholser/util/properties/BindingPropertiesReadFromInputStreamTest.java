@@ -25,15 +25,15 @@
 
 package com.pholser.util.properties;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.pholser.util.properties.internal.IO.*;
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+import static com.pholser.util.properties.internal.IO.closeQuietly;
 
 public class BindingPropertiesReadFromInputStreamTest
     extends TypedStringBindingTestSupport<ScalarPropertyHaver> {

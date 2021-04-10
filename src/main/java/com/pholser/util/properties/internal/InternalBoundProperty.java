@@ -25,9 +25,9 @@
 
 package com.pholser.util.properties.internal;
 
-import java.lang.annotation.Annotation;
-
 import com.pholser.util.properties.BoundProperty;
+
+import java.lang.annotation.Annotation;
 
 class InternalBoundProperty implements BoundProperty {
     private final String key;

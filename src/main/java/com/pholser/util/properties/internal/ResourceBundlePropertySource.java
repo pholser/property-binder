@@ -31,7 +31,7 @@ import com.pholser.util.properties.PropertySource;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import static com.pholser.util.properties.internal.Substitutions.*;
+import static com.pholser.util.properties.internal.Substitutions.maybeSubstitute;
 
 public class ResourceBundlePropertySource implements PropertySource {
     private final ResourceBundle backing;

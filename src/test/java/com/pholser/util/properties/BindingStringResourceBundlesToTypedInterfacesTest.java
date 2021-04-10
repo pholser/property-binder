@@ -25,16 +25,16 @@
 
 package com.pholser.util.properties;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.PropertyResourceBundle;
-
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.pholser.util.properties.internal.IO.*;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.PropertyResourceBundle;
+
+import static com.pholser.util.properties.internal.IO.closeQuietly;
 
 public class BindingStringResourceBundlesToTypedInterfacesTest
     extends TypedStringBindingTestSupport<ScalarPropertyHaver> {

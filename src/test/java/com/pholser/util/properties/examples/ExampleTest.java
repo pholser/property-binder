@@ -1,19 +1,21 @@
 package com.pholser.util.properties.examples;
 
+import com.pholser.util.properties.PropertyBinder;
+import org.junit.Before;
+import org.junit.Test;
+
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static java.math.BigDecimal.*;
-import static java.util.Arrays.*;
-
-import com.pholser.util.properties.PropertyBinder;
-import org.junit.Before;
-import org.junit.Test;
-
-import static com.pholser.util.properties.boundtypes.Ternary.*;
-import static org.junit.Assert.*;
+import static com.pholser.util.properties.boundtypes.Ternary.MAYBE;
+import static com.pholser.util.properties.boundtypes.Ternary.NO;
+import static com.pholser.util.properties.boundtypes.Ternary.YES;
+import static java.math.BigDecimal.TEN;
+import static java.util.Arrays.asList;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class ExampleTest {
     private ExampleSchema bound;

@@ -25,11 +25,6 @@
 
 package com.pholser.util.properties.internal.validation;
 
-import java.lang.reflect.Method;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ValuesSeparatedBy;
@@ -47,7 +42,16 @@ import com.pholser.util.properties.internal.exceptions.NoDefaultValueSpecificati
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 import com.pholser.util.properties.internal.separators.ValueSeparatorFactory;
 
-import static com.pholser.util.properties.internal.Schemata.*;
+import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.pholser.util.properties.internal.Schemata.isDefaultDefaultValue;
+import static com.pholser.util.properties.internal.Schemata.isDefaultDefaultValueOf;
+import static com.pholser.util.properties.internal.Schemata.isDefaultPattern;
+import static com.pholser.util.properties.internal.Schemata.isDefaultSeparatorValueOf;
+import static com.pholser.util.properties.internal.Schemata.propertyMarkerFor;
 
 public class SchemaValidator {
     private final ValueConverterFactory converterFactory = new ValueConverterFactory();

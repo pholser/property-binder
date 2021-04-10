@@ -25,14 +25,14 @@
 
 package com.pholser.util.properties;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import org.junit.Test;
-
-import static com.pholser.util.properties.ResourceBundles.*;
-import static org.junit.Assert.*;
+import static com.pholser.util.properties.ResourceBundles.bundleWith;
+import static org.junit.Assert.assertSame;
 
 public class BindingUntypedResourceBundlesToTypedInterfacesTest {
     @Test public void nonValueType() {

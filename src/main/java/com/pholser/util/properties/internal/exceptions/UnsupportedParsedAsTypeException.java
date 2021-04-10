@@ -25,9 +25,9 @@
 
 package com.pholser.util.properties.internal.exceptions;
 
-import java.util.Date;
-
 import com.pholser.util.properties.ParsedAs;
+
+import java.util.Date;
 
 public class UnsupportedParsedAsTypeException extends IllegalArgumentException {
     private static final long serialVersionUID = 1L;

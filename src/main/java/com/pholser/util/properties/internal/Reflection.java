@@ -25,10 +25,10 @@
 
 package com.pholser.util.properties.internal;
 
+import com.pholser.util.properties.internal.exceptions.ValueConversionException;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 public final class Reflection {
     private Reflection() {

@@ -25,17 +25,16 @@
 
 package com.pholser.util.properties.internal;
 
-import java.lang.reflect.Method;
-import java.util.Map;
-
-import static java.lang.reflect.Proxy.*;
-
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
 import com.pholser.util.properties.internal.defaultvalues.DefaultValue;
 
-import static com.pholser.util.properties.internal.Schemata.*;
+import java.lang.reflect.Method;
+import java.util.Map;
+
+import static com.pholser.util.properties.internal.Schemata.propertyMarkerFor;
+import static java.lang.reflect.Proxy.newProxyInstance;
 
 public class ValidatedSchema<T> {
     private final Class<T> schema;

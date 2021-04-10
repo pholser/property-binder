@@ -25,12 +25,12 @@
 
 package com.pholser.util.properties;
 
-import java.lang.reflect.Method;
-
 import org.junit.Before;
 import org.junit.internal.ExactComparisonCriteria;
 
-import static org.junit.Assert.*;
+import java.lang.reflect.Method;
+
+import static org.junit.Assert.assertEquals;
 
 public abstract class TypedStringBindingTestSupport<T> extends StringBindingTestSupport {
     protected PropertyBinder<T> binder;

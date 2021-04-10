@@ -25,20 +25,21 @@
 
 package com.pholser.util.properties;
 
+import com.pholser.util.properties.boundtypes.ListPropertyHaver;
+import org.junit.Test;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static java.util.Arrays.*;
-import static java.util.Collections.*;
-
-import com.pholser.util.properties.boundtypes.ListPropertyHaver;
-import org.junit.Test;
-
-import static com.pholser.util.properties.boundtypes.Ternary.*;
-import static org.junit.Assert.*;
+import static com.pholser.util.properties.boundtypes.Ternary.MAYBE;
+import static com.pholser.util.properties.boundtypes.Ternary.NO;
+import static com.pholser.util.properties.boundtypes.Ternary.YES;
+import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
+import static org.junit.Assert.assertEquals;
 
 public class BindingListPropertiesToTypedInterfacesTest
     extends TypedStringBindingTestSupport<ListPropertyHaver> {

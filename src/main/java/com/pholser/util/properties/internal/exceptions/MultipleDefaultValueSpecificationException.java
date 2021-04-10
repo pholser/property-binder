@@ -25,9 +25,9 @@
 
 package com.pholser.util.properties.internal.exceptions;
 
-import java.lang.reflect.Method;
-
 import com.pholser.util.properties.DefaultsTo;
+
+import java.lang.reflect.Method;
 
 public class MultipleDefaultValueSpecificationException extends IllegalArgumentException {
     private static final long serialVersionUID = 1L;

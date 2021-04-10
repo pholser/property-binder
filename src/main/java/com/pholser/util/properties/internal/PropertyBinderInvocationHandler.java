@@ -25,12 +25,12 @@
 
 package com.pholser.util.properties.internal;
 
+import com.pholser.util.properties.PropertySource;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
-import static java.lang.System.*;
-
-import com.pholser.util.properties.PropertySource;
+import static java.lang.System.identityHashCode;
 
 class PropertyBinderInvocationHandler implements InvocationHandler {
     private final PropertySource properties;

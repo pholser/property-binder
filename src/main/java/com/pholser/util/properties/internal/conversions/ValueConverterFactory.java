@@ -25,20 +25,21 @@
 
 package com.pholser.util.properties.internal.conversions;
 
+import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.ParsedAs;
+import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException;
+import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
+import com.pholser.util.properties.internal.separators.ValueSeparator;
+
 import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.lang.reflect.Modifier.*;
-import static java.util.Collections.*;
-
-import com.pholser.util.properties.DefaultsTo;
-import com.pholser.util.properties.ParsedAs;
-import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException;
-import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
-import com.pholser.util.properties.internal.separators.ValueSeparator;
+import static java.lang.reflect.Modifier.isPublic;
+import static java.lang.reflect.Modifier.isStatic;
+import static java.util.Collections.unmodifiableMap;
 
 public class ValueConverterFactory {
     static final Map<Class<?>, Class<?>> WRAPPERS;

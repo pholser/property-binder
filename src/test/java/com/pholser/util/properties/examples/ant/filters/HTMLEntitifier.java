@@ -1,12 +1,12 @@
 package com.pholser.util.properties.examples.ant.filters;
 
+import org.apache.tools.ant.filters.BaseFilterReader;
+import org.apache.tools.ant.filters.ChainableReader;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.tools.ant.filters.BaseFilterReader;
-import org.apache.tools.ant.filters.ChainableReader;
 
 /**
  * Ant filter class that transforms HTML special characters into their equivalent entities.

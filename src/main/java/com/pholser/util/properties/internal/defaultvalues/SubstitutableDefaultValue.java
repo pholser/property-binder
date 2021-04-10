@@ -25,13 +25,13 @@
 
 package com.pholser.util.properties.internal.defaultvalues;
 
-import java.lang.reflect.Method;
-
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
 
-import static com.pholser.util.properties.internal.Substitutions.*;
+import java.lang.reflect.Method;
+
+import static com.pholser.util.properties.internal.Substitutions.substitute;
 
 class SubstitutableDefaultValue implements DefaultValue {
     private final DefaultsTo spec;

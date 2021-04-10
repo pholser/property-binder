@@ -25,18 +25,18 @@
 
 package com.pholser.util.properties.internal.conversions;
 
+import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.ParsedAs;
+import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
+import com.pholser.util.properties.internal.separators.ValueSeparator;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pholser.util.properties.DefaultsTo;
-import com.pholser.util.properties.ParsedAs;
-import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
-import com.pholser.util.properties.internal.separators.ValueSeparator;
-
-import static com.pholser.util.properties.internal.conversions.ValueConverterFactory.*;
+import static com.pholser.util.properties.internal.conversions.ValueConverterFactory.createScalarConverter;
 
 class ListValueConverter extends AggregateValueConverter {
     private final ValueConverter scalarConverter;

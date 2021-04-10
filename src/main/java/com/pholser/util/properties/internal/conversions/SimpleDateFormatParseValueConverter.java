@@ -25,14 +25,14 @@
 
 package com.pholser.util.properties.internal.conversions;
 
+import com.pholser.util.properties.ParsedAs;
+import com.pholser.util.properties.internal.exceptions.ValueConversionException;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import static java.util.Arrays.*;
-
-import com.pholser.util.properties.ParsedAs;
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
+import static java.util.Arrays.asList;
 
 class SimpleDateFormatParseValueConverter extends ScalarValueConverter {
     private final ParsedAs patterns;

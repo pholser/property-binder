@@ -25,13 +25,13 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import java.lang.reflect.Array;
-
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 
-import static com.pholser.util.properties.internal.conversions.ValueConverterFactory.*;
+import java.lang.reflect.Array;
+
+import static com.pholser.util.properties.internal.conversions.ValueConverterFactory.createScalarConverter;
 
 class ArrayValueConverter extends AggregateValueConverter {
     private final Class<?> componentType;

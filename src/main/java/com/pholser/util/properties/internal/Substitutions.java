@@ -25,12 +25,12 @@
 
 package com.pholser.util.properties.internal;
 
+import com.pholser.util.properties.BoundProperty;
+import com.pholser.util.properties.PropertySource;
+
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.PropertySource;
 
 public final class Substitutions {
     private static final Pattern REFERENCE = Pattern.compile("\\[(.*?)\\]");

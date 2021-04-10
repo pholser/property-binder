@@ -25,10 +25,10 @@
 
 package com.pholser.util.properties.internal.conversions;
 
+import com.pholser.util.properties.internal.exceptions.ValueConversionException;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 class ConstructorInvokingValueConverter extends ScalarValueConverter {
     private final Constructor<?> ctor;

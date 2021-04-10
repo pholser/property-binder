@@ -25,10 +25,10 @@
 
 package com.pholser.util.properties.boundtypes;
 
-import java.util.List;
-
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
+
+import java.util.List;
 
 public interface ListOfArrayPropertyHaver {
     @BoundProperty("list.of.int.array")

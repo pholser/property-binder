@@ -30,7 +30,7 @@ import com.pholser.util.properties.PropertySource;
 
 import java.util.Map;
 
-import static com.pholser.util.properties.internal.Substitutions.*;
+import static com.pholser.util.properties.internal.Substitutions.maybeSubstitute;
 
 public class MapPropertySource implements PropertySource {
     private final Map<String, ?> backing;

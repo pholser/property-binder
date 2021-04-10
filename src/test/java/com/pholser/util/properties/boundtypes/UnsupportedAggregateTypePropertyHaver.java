@@ -25,10 +25,10 @@
 
 package com.pholser.util.properties.boundtypes;
 
-import java.util.Collection;
-
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
+
+import java.util.Collection;
 
 public interface UnsupportedAggregateTypePropertyHaver {
     @BoundProperty("unsupported.aggregate.type.property")

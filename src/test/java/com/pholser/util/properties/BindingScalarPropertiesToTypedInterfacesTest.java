@@ -25,17 +25,20 @@
 
 package com.pholser.util.properties;
 
+import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
+import org.junit.Test;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
-import org.junit.Test;
-
-import static com.pholser.util.properties.boundtypes.Ternary.*;
-import static org.junit.Assert.*;
+import static com.pholser.util.properties.boundtypes.Ternary.MAYBE;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 public class BindingScalarPropertiesToTypedInterfacesTest
     extends TypedStringBindingTestSupport<ScalarPropertyHaver> {

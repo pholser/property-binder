@@ -25,15 +25,15 @@
 
 package com.pholser.util.properties.internal.separators;
 
-import java.lang.reflect.Method;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-
 import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.ValuesSeparatedBy;
 import com.pholser.util.properties.internal.exceptions.MalformedSeparatorException;
 
-import static com.pholser.util.properties.internal.Schemata.*;
+import java.lang.reflect.Method;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
+import static com.pholser.util.properties.internal.Schemata.annotationDefault;
 
 class RegexValueSeparator implements ValueSeparator {
     private final Pattern regex;

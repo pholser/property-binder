@@ -25,10 +25,10 @@
 
 package com.pholser.util.properties.boundtypes;
 
-import java.io.Serializable;
-
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
+
+import java.io.Serializable;
 
 public interface InterfaceWithSuperinterfaces extends Serializable {
     @BoundProperty("some.property")

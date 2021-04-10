@@ -25,11 +25,11 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import java.lang.reflect.Method;
-
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
-import static com.pholser.util.properties.internal.Reflection.*;
+import java.lang.reflect.Method;
+
+import static com.pholser.util.properties.internal.Reflection.invokeQuietly;
 
 class MethodInvokingValueConverter extends ScalarValueConverter {
     private final Method method;

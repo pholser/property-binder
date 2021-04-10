@@ -25,14 +25,14 @@
 
 package com.pholser.util.properties.internal;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ValuesSeparatedBy;
 
-import static com.pholser.util.properties.internal.Reflection.*;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+
+import static com.pholser.util.properties.internal.Reflection.invokeQuietly;
 
 public final class Schemata {
     private Schemata() {

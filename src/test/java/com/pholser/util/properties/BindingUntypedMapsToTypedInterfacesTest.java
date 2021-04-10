@@ -25,16 +25,16 @@
 
 package com.pholser.util.properties;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-import static org.junit.Assume.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assume.assumeThat;
 
 public class BindingUntypedMapsToTypedInterfacesTest {
     @Test public void nonValueType() {

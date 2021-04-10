@@ -28,7 +28,7 @@ package com.pholser.util.properties;
 import java.util.Enumeration;
 import java.util.Properties;
 
-import static com.pholser.util.properties.internal.Substitutions.*;
+import static com.pholser.util.properties.internal.Substitutions.substitute;
 
 /**
  * Properties class with support for property values which can be comprised of the values of other properties.

@@ -25,11 +25,13 @@
 
 package com.pholser.util.properties.internal.separators;
 
-import java.lang.reflect.Method;
-
 import com.pholser.util.properties.ValuesSeparatedBy;
 
-import static com.pholser.util.properties.internal.Schemata.*;
+import java.lang.reflect.Method;
+
+import static com.pholser.util.properties.internal.Schemata.annotationDefault;
+import static com.pholser.util.properties.internal.Schemata.isDefaultPattern;
+import static com.pholser.util.properties.internal.Schemata.isDefaultSeparatorValueOf;
 
 public class ValueSeparatorFactory {
     public ValueSeparator createSeparator(

@@ -25,15 +25,15 @@
 
 package com.pholser.util.properties.boundtypes;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Date;
-import java.util.List;
-
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.ValuesSeparatedBy;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Date;
+import java.util.List;
 
 public interface ListPropertyHaver {
     @BoundProperty("string.list.property")
