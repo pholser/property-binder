@@ -70,16 +70,19 @@ import java.util.ResourceBundle;
 
 import static org.junit.Assert.assertThrows;
 
-public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends StringBindingTestSupport {
+public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
+  extends StringBindingTestSupport {
+
   private PropertyBinder<ScalarPropertyHaver> scalar;
 
   @Before public void setUp() {
     scalar = PropertyBinder.forType(ScalarPropertyHaver.class);
   }
 
-  @Test(expected = BoundTypeNotAnInterfaceException.class)
-  public void nonInterfaceClass() {
-    PropertyBinder.forType(Object.class);
+  @Test public void nonInterfaceClass() {
+    assertThrows(
+      BoundTypeNotAnInterfaceException.class,
+      () -> PropertyBinder.forType(Object.class));
   }
 
   @Test public void annotationClass() {
@@ -133,7 +136,9 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends S
   @Test public void nonSingleCharacterValueForCharacterProperty() {
     assertThrows(
       MalformedDefaultValueException.class,
-      () -> PropertyBinder.forType(CharacterPropertyHaverWithTooLongDefault.class));
+      () ->
+        PropertyBinder.forType(
+          CharacterPropertyHaverWithTooLongDefault.class));
   }
 
   @Test public void upperBoundedListType() {
@@ -157,49 +162,63 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends S
   @Test public void arrayOfUnconvertibleTypeWithDefault() {
     assertThrows(
       UnsupportedValueTypeException.class,
-      () -> PropertyBinder.forType(ArrayOfUnconvertibleTypeWithDefaultPropertyHaver.class));
+      () ->
+        PropertyBinder.forType(
+          ArrayOfUnconvertibleTypeWithDefaultPropertyHaver.class));
   }
 
   @Test public void arrayOfUnconvertibleTypeWithSeparator() {
     assertThrows(
       UnsupportedValueTypeException.class,
-      () -> PropertyBinder.forType(ArrayOfUnconvertibleTypeWithSeparatorPropertyHaver.class));
+      () ->
+        PropertyBinder.forType(
+          ArrayOfUnconvertibleTypeWithSeparatorPropertyHaver.class));
   }
 
   @Test public void listOfUnconvertibleTypeWithDefault() {
     assertThrows(
       UnsupportedValueTypeException.class,
-      () -> PropertyBinder.forType(ListOfUnconvertibleTypeWithDefaultPropertyHaver.class));
+      () ->
+        PropertyBinder.forType(
+          ListOfUnconvertibleTypeWithDefaultPropertyHaver.class));
   }
 
   @Test public void listOfUnconvertibleTypeWithSeparator() {
     assertThrows(
       UnsupportedValueTypeException.class,
-      () -> PropertyBinder.forType(ListOfUnconvertibleTypeWithSeparatorPropertyHaver.class));
+      () ->
+        PropertyBinder.forType(
+          ListOfUnconvertibleTypeWithSeparatorPropertyHaver.class));
   }
 
   @Test public void listOfUnconvertibleTypeWithValueOfSeparator() {
     assertThrows(
       UnsupportedValueTypeException.class,
-      () -> PropertyBinder.forType(ListOfUnconvertibleTypeWithValueOfSeparatorPropertyHaver.class));
+      () ->
+        PropertyBinder.forType(
+          ListOfUnconvertibleTypeWithValueOfSeparatorPropertyHaver.class));
   }
 
   @Test public void typeWithNonPublicValueOf() {
     assertThrows(
       UnsupportedValueTypeException.class,
-      () -> PropertyBinder.forType(TypeWithNonPublicValueOfPropertyHaver.class));
+      () ->
+        PropertyBinder.forType(TypeWithNonPublicValueOfPropertyHaver.class));
   }
 
   @Test public void typeWithNonStaticValueOf() {
     assertThrows(
       UnsupportedValueTypeException.class,
-      () -> PropertyBinder.forType(TypeWithNonStaticValueOfPropertyHaver.class));
+      () ->
+        PropertyBinder.forType(TypeWithNonStaticValueOfPropertyHaver.class));
   }
 
   @Test public void typeWithValueOfWithBadReturnType() {
     assertThrows(
       UnsupportedValueTypeException.class,
-      () -> PropertyBinder.forType(TypeWithValueOfWithBadReturnTypePropertyHaver.class));
+      () ->
+        PropertyBinder.forType(
+          TypeWithValueOfWithBadReturnTypePropertyHaver.class));
   }
 
   @Test public void missingPrimitiveProperty() throws Exception {
@@ -225,13 +244,17 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends S
   @Test public void applyingSeparatorToNonAggregateType() {
     assertThrows(
       AppliedSeparatorToNonAggregateTypeException.class,
-      () -> PropertyBinder.forType(SeparatorOnNonAggregateTypePropertyHaver.class));
+      () ->
+        PropertyBinder.forType(
+          SeparatorOnNonAggregateTypePropertyHaver.class));
   }
 
   @Test public void separatorWithBothPatternAndValueOf() {
     assertThrows(
       MultipleSeparatorSpecificationException.class,
-      () -> PropertyBinder.forType(SeparatedPropertyHaverWithBothPatternAndValueOf.class));
+      () ->
+        PropertyBinder.forType(
+          SeparatedPropertyHaverWithBothPatternAndValueOf.class));
   }
 
   @Test public void typeWithSuperinterfaces() {
@@ -249,12 +272,16 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest extends S
   @Test public void defaultValueSpecWithNeitherValueNorValueOf() {
     assertThrows(
       NoDefaultValueSpecificationException.class,
-      () -> PropertyBinder.forType(DefaultValueWithNeitherValueNorValueOf.class));
+      () ->
+        PropertyBinder.forType(DefaultValueWithNeitherValueNorValueOf.class));
   }
 
-  @Test public void datePropertiesThatWouldNotPassNonLenientDateFormats() throws Exception {
+  @Test public void datePropertiesThatWouldNotPassNonLenientDateFormats()
+    throws Exception {
+
     DatePropertyWithNonLenientValueHaver bound =
-      PropertyBinder.forType(DatePropertyWithNonLenientValueHaver.class).bind(propertiesFile);
+      PropertyBinder.forType(DatePropertyWithNonLenientValueHaver.class)
+        .bind(propertiesFile);
 
     assertThrows(
       ValueConversionException.class,

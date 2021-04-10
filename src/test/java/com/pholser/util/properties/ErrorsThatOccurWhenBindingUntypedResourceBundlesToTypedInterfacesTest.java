@@ -36,7 +36,8 @@ import static org.junit.Assert.assertThrows;
 public class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTest {
   @Test public void returnTypeAndUnderlyingPropertyTypeDisagree() {
     ResourceBundle bundle = bundleWith("i", new Object());
-    PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
+    PropertyBinder<IntPropertyHaver> binder =
+      PropertyBinder.forType(IntPropertyHaver.class);
     IntPropertyHaver bound = binder.bind(bundle);
 
     assertThrows(ClassCastException.class, bound::i);
@@ -44,15 +45,18 @@ public class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTe
 
   @Test public void primitiveWidening() {
     ResourceBundle bundle = bundleWith("i", Byte.valueOf("2"));
-    PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
+    PropertyBinder<IntPropertyHaver> binder =
+      PropertyBinder.forType(IntPropertyHaver.class);
     IntPropertyHaver bound = binder.bind(bundle);
 
     assertThrows(ClassCastException.class, bound::i);
   }
 
   @Test public void resolvingASeparatorWithNonStringPropertyValue() {
-    ResourceBundle bundle = bundleWith("bar", "A,B,C", "separator", new Object());
-    PropertyBinder<WithValueOfSeparator> binder = PropertyBinder.forType(WithValueOfSeparator.class);
+    ResourceBundle bundle =
+      bundleWith("bar", "A,B,C", "separator", new Object());
+    PropertyBinder<WithValueOfSeparator> binder =
+      PropertyBinder.forType(WithValueOfSeparator.class);
 
     assertThrows(ClassCastException.class, () -> binder.bind(bundle));
   }
@@ -65,7 +69,8 @@ public class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTe
 
   @Test public void resolvingADefaultValueWithNonStringPropertyValue() {
     ResourceBundle bundle = bundleWith("other", new Object());
-    PropertyBinder<WithValueOfDefault> binder = PropertyBinder.forType(WithValueOfDefault.class);
+    PropertyBinder<WithValueOfDefault> binder =
+      PropertyBinder.forType(WithValueOfDefault.class);
 
     assertThrows(ClassCastException.class, () -> binder.bind(bundle));
   }

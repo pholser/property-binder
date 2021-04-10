@@ -28,11 +28,11 @@ package com.pholser.util.properties;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+import static com.pholser.util.properties.ResourceBundles.bundleWith;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 
@@ -55,7 +55,7 @@ public class InvokingToStringOnBoundProxiesTest {
   }
 
   @Test public void mapSource() {
-    Map<String, String> properties = Collections.singletonMap("foo", "bar");
+    Map<String, String> properties = Map.of("foo", "bar");
     Schema bound = binder.bind(properties);
 
     String asString = bound.toString();
@@ -65,7 +65,7 @@ public class InvokingToStringOnBoundProxiesTest {
   }
 
   @Test public void resourceBundleSource() {
-    ResourceBundle bundle = ResourceBundles.bundleWith("foo", "bar");
+    ResourceBundle bundle = bundleWith("foo", "bar");
     Schema bound = binder.bind(bundle);
 
     String asString = bound.toString();

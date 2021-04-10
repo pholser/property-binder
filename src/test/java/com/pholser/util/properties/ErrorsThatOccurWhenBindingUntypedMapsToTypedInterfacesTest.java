@@ -28,35 +28,34 @@ package com.pholser.util.properties;
 import com.pholser.util.properties.boundtypes.IntPropertyHaver;
 import org.junit.Test;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertThrows;
 
 public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
   @Test public void returnTypeAndUnderlyingPropertyTypeDisagree() {
-    Map<String, Object> items = new HashMap<>();
-    items.put("i", new Object());
-    PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
+    Map<String, Object> items = Map.of("i", new Object());
+    PropertyBinder<IntPropertyHaver> binder =
+      PropertyBinder.forType(IntPropertyHaver.class);
     IntPropertyHaver bound = binder.bind(items);
 
     assertThrows(ClassCastException.class, bound::i);
   }
 
   @Test public void primitiveWidening() {
-    Map<String, Object> items = new HashMap<>();
-    items.put("i", Short.valueOf("2"));
-    PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
+    Map<String, Object> items = Map.of("i", Short.valueOf("2"));
+    PropertyBinder<IntPropertyHaver> binder =
+      PropertyBinder.forType(IntPropertyHaver.class);
     IntPropertyHaver bound = binder.bind(items);
 
     assertThrows(ClassCastException.class, bound::i);
   }
 
   @Test public void resolvingASeparatorWithNonStringPropertyValue() {
-    Map<String, Object> items = new HashMap<>();
-    items.put("bar", "A,B,C");
-    items.put("separator", new Object());
-    PropertyBinder<WithValueOfSeparator> binder = PropertyBinder.forType(WithValueOfSeparator.class);
+    Map<String, Object> items =
+      Map.of("bar", "A,B,C", "separator", new Object());
+    PropertyBinder<WithValueOfSeparator> binder =
+      PropertyBinder.forType(WithValueOfSeparator.class);
 
     assertThrows(ClassCastException.class, () -> binder.bind(items));
   }
@@ -68,10 +67,9 @@ public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
   }
 
   @Test public void resolvingADefaultValueWithNonStringPropertyValue() {
-    Map<String, Object> items = new HashMap<>();
-    items.put("bar", "ABC");
-    items.put("other", new Object());
-    PropertyBinder<WithValueOfDefault> binder = PropertyBinder.forType(WithValueOfDefault.class);
+    Map<String, Object> items = Map.of("bar", "ABC", "other", new Object());
+    PropertyBinder<WithValueOfDefault> binder =
+      PropertyBinder.forType(WithValueOfDefault.class);
 
     assertThrows(ClassCastException.class, () -> binder.bind(items));
   }

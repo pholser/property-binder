@@ -28,7 +28,6 @@ package com.pholser.util.properties;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,9 +38,9 @@ import static org.junit.Assume.assumeThat;
 public class BindingUntypedMapsToTypedInterfacesTest {
   @Test public void nonValueType() {
     Object value = new Object();
-    Map<String, Object> items = new HashMap<>();
-    items.put("any.old.type", value);
-    PropertyBinder<NonValueTypeHaver> binder = PropertyBinder.forType(NonValueTypeHaver.class);
+    Map<String, Object> items = Map.of("any.old.type", value);
+    PropertyBinder<NonValueTypeHaver> binder =
+      PropertyBinder.forType(NonValueTypeHaver.class);
 
     NonValueTypeHaver bound = binder.bind(items);
 
@@ -54,8 +53,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
 
   @Test public void arrayOfUnconvertibleType() {
     Object[] array = new Object[0];
-    Map<String, Object> items = new HashMap<>();
-    items.put("array.of.unconvertible.type", array);
+    Map<String, Object> items = Map.of("array.of.unconvertible.type", array);
     PropertyBinder<ArrayOfUnconvertibleTypeHaver> binder =
       PropertyBinder.forType(ArrayOfUnconvertibleTypeHaver.class);
 
@@ -70,8 +68,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
 
   @Test public void listOfUnconvertibleType() {
     List<Object> list = new ArrayList<>();
-    Map<String, Object> items = new HashMap<>();
-    items.put("list.of.unconvertible.type", list);
+    Map<String, Object> items = Map.of("list.of.unconvertible.type", list);
     PropertyBinder<ListOfUnconvertibleTypeHaver> binder =
       PropertyBinder.forType(ListOfUnconvertibleTypeHaver.class);
 
@@ -86,9 +83,9 @@ public class BindingUntypedMapsToTypedInterfacesTest {
 
   @Test public void nonPublicValueOf() {
     NonPublicValueOfHaver.Thing thing = new NonPublicValueOfHaver.Thing();
-    Map<String, Object> items = new HashMap<>();
-    items.put("non.public.value.of", thing);
-    PropertyBinder<NonPublicValueOfHaver> binder = PropertyBinder.forType(NonPublicValueOfHaver.class);
+    Map<String, Object> items = Map.of("non.public.value.of", thing);
+    PropertyBinder<NonPublicValueOfHaver> binder =
+      PropertyBinder.forType(NonPublicValueOfHaver.class);
 
     NonPublicValueOfHaver bound = binder.bind(items);
 
@@ -108,9 +105,9 @@ public class BindingUntypedMapsToTypedInterfacesTest {
 
   @Test public void nonStaticValueOf() {
     NonStaticValueOfHaver.Thing thing = new NonStaticValueOfHaver.Thing();
-    Map<String, Object> items = new HashMap<>();
-    items.put("non.static.value.of", thing);
-    PropertyBinder<NonStaticValueOfHaver> binder = PropertyBinder.forType(NonStaticValueOfHaver.class);
+    Map<String, Object> items = Map.of("non.static.value.of", thing);
+    PropertyBinder<NonStaticValueOfHaver> binder =
+      PropertyBinder.forType(NonStaticValueOfHaver.class);
 
     NonStaticValueOfHaver bound = binder.bind(items);
 
@@ -130,9 +127,9 @@ public class BindingUntypedMapsToTypedInterfacesTest {
 
   @Test public void badValueOfReturnType() {
     BadValueOfTypeHaver.Thing thing = new BadValueOfTypeHaver.Thing();
-    Map<String, Object> items = new HashMap<>();
-    items.put("bad.value.of.type", thing);
-    PropertyBinder<BadValueOfTypeHaver> binder = PropertyBinder.forType(BadValueOfTypeHaver.class);
+    Map<String, Object> items = Map.of("bad.value.of.type", thing);
+    PropertyBinder<BadValueOfTypeHaver> binder =
+      PropertyBinder.forType(BadValueOfTypeHaver.class);
 
     BadValueOfTypeHaver bound = binder.bind(items);
 
@@ -152,9 +149,9 @@ public class BindingUntypedMapsToTypedInterfacesTest {
 
   @Test public void argMethodsIgnoreArgsIfPropertyValueNotAString() {
     Object value = new Object();
-    Map<String, Object> items = new HashMap<>();
-    items.put("key", value);
-    PropertyBinder<ArgMethodHaver> binder = PropertyBinder.forType(ArgMethodHaver.class);
+    Map<String, Object> items = Map.of("key", value);
+    PropertyBinder<ArgMethodHaver> binder =
+      PropertyBinder.forType(ArgMethodHaver.class);
 
     ArgMethodHaver bound = binder.bind(items);
 

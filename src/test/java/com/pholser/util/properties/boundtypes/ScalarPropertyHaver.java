@@ -523,6 +523,8 @@ public interface ScalarPropertyHaver {
   @BoundProperty("with.substitution")
   String substituted();
 
-  @BoundProperty(value = "need.to.suppress.substitution", suppressSubstitution = true)
+  @BoundProperty(
+    value = "need.to.suppress.substitution",
+    suppressSubstitution = true)
   String regex();
 }

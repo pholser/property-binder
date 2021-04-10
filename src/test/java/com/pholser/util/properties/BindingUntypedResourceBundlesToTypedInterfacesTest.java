@@ -38,7 +38,8 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
   @Test public void nonValueType() {
     Object value = new Object();
     ResourceBundle bundle = bundleWith("any.old.type", value);
-    PropertyBinder<NonValueTypeHaver> binder = PropertyBinder.forType(NonValueTypeHaver.class);
+    PropertyBinder<NonValueTypeHaver> binder =
+      PropertyBinder.forType(NonValueTypeHaver.class);
 
     NonValueTypeHaver bound = binder.bind(bundle);
 
@@ -83,7 +84,8 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
   @Test public void nonPublicValueOf() {
     NonPublicValueOfHaver.Thing thing = new NonPublicValueOfHaver.Thing();
     ResourceBundle bundle = bundleWith("non.public.value.of", thing);
-    PropertyBinder<NonPublicValueOfHaver> binder = PropertyBinder.forType(NonPublicValueOfHaver.class);
+    PropertyBinder<NonPublicValueOfHaver> binder =
+      PropertyBinder.forType(NonPublicValueOfHaver.class);
 
     NonPublicValueOfHaver bound = binder.bind(bundle);
 
@@ -104,7 +106,8 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
   @Test public void nonStaticValueOf() {
     NonStaticValueOfHaver.Thing thing = new NonStaticValueOfHaver.Thing();
     ResourceBundle bundle = bundleWith("non.static.value.of", thing);
-    PropertyBinder<NonStaticValueOfHaver> binder = PropertyBinder.forType(NonStaticValueOfHaver.class);
+    PropertyBinder<NonStaticValueOfHaver> binder =
+      PropertyBinder.forType(NonStaticValueOfHaver.class);
 
     NonStaticValueOfHaver bound = binder.bind(bundle);
 
@@ -125,7 +128,8 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
   @Test public void badValueOfReturnType() {
     BadValueOfTypeHaver.Thing thing = new BadValueOfTypeHaver.Thing();
     ResourceBundle bundle = bundleWith("bad.value.of.type", thing);
-    PropertyBinder<BadValueOfTypeHaver> binder = PropertyBinder.forType(BadValueOfTypeHaver.class);
+    PropertyBinder<BadValueOfTypeHaver> binder =
+      PropertyBinder.forType(BadValueOfTypeHaver.class);
 
     BadValueOfTypeHaver bound = binder.bind(bundle);
 

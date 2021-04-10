@@ -57,7 +57,9 @@ public class CreatingSubstitutablePropertiesWithDefaultsTest {
   }
 
   @Test public void substitutesWithDefaultValue() {
-    assertEquals("default.second.value + default.first.value", props.getProperty("second.key"));
+    assertEquals(
+      "default.second.value + default.first.value",
+      props.getProperty("second.key"));
   }
 
   @Test public void keysOfDefaults() {
@@ -103,6 +105,8 @@ public class CreatingSubstitutablePropertiesWithDefaultsTest {
   @Test public void addedValueTrumpsDefault() {
     props.setProperty("first.key", "boo");
 
-    assertEquals("default.second.value + boo", props.getProperty("second.key"));
+    assertEquals(
+      "default.second.value + boo",
+      props.getProperty("second.key"));
   }
 }

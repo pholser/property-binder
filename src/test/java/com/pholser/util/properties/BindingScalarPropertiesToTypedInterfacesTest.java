@@ -112,7 +112,9 @@ public class BindingScalarPropertiesToTypedInterfacesTest
   }
 
   @Test public void defaultForWrappedCharacterValuedProperty() {
-    assertEquals(Character.valueOf('b'), bound.wrappedCharacterPropertyWithDefault());
+    assertEquals(
+      Character.valueOf('b'),
+      bound.wrappedCharacterPropertyWithDefault());
   }
 
   @Test public void primitiveDoubleValuedPropertyToPrimitiveDoubleMethod() {
@@ -120,7 +122,7 @@ public class BindingScalarPropertiesToTypedInterfacesTest
   }
 
   @Test public void defaultForPrimitiveDoubleValuedProperty() {
-    assertEquals(1.0, bound.primitiveDoublePropertyWithDefault(), 0D);
+    assertEquals(1.0, bound.primitiveDoublePropertyWithDefault(), 0);
   }
 
   @Test public void wrappedDoubleValuedPropertyToWrappedDoubleMethod() {
@@ -128,7 +130,7 @@ public class BindingScalarPropertiesToTypedInterfacesTest
   }
 
   @Test public void defaultForWrappedDoubleValuedProperty() {
-    assertEquals(Double.valueOf(2.0), bound.wrappedDoublePropertyWithDefault());
+    assertEquals(Double.valueOf(2), bound.wrappedDoublePropertyWithDefault());
   }
 
   @Test public void primitiveFloatValuedPropertyToPrimitiveFloatMethod() {
@@ -136,7 +138,7 @@ public class BindingScalarPropertiesToTypedInterfacesTest
   }
 
   @Test public void defaultForPrimitiveFloatValuedProperty() {
-    assertEquals(3.0F, bound.primitiveFloatPropertyWithDefault(), 0F);
+    assertEquals(3.0F, bound.primitiveFloatPropertyWithDefault(), 0);
   }
 
   @Test public void wrappedFloatValuedPropertyToWrappedFloatMethod() {
@@ -144,7 +146,9 @@ public class BindingScalarPropertiesToTypedInterfacesTest
   }
 
   @Test public void defaultForWrappedFloatValuedProperty() {
-    assertEquals(Float.valueOf(4.0F), bound.wrappedFloatPropertyWithDefault());
+    assertEquals(
+      Float.valueOf(4.0F),
+      bound.wrappedFloatPropertyWithDefault());
   }
 
   @Test public void primitiveIntegerValuedPropertyToPrimitiveIntegerMethod() {
@@ -160,7 +164,9 @@ public class BindingScalarPropertiesToTypedInterfacesTest
   }
 
   @Test public void defaultForWrappedIntegerValuedProperty() {
-    assertEquals(Integer.valueOf(-2), bound.wrappedIntegerPropertyWithDefault());
+    assertEquals(
+      Integer.valueOf(-2),
+      bound.wrappedIntegerPropertyWithDefault());
   }
 
   @Test public void defaultForPrimitiveIntegerValuedPropertyFromValueOfAnotherProperty() {
@@ -168,11 +174,11 @@ public class BindingScalarPropertiesToTypedInterfacesTest
   }
 
   @Test public void primitiveLongValuedPropertyToPrimitiveLongMethod() {
-    assertEquals(-2L, bound.primitiveLongProperty());
+    assertEquals(-2, bound.primitiveLongProperty());
   }
 
   @Test public void defaultForPrimitiveLongValuedProperty() {
-    assertEquals(7L, bound.primitiveLongPropertyWithDefault());
+    assertEquals(7, bound.primitiveLongPropertyWithDefault());
   }
 
   @Test public void wrappedLongValuedPropertyToWrappedLongMethod() {
@@ -180,7 +186,7 @@ public class BindingScalarPropertiesToTypedInterfacesTest
   }
 
   @Test public void defaultForWrappedLongValuedProperty() {
-    assertEquals(Long.valueOf(8L), bound.wrappedLongPropertyWithDefault());
+    assertEquals(Long.valueOf(8), bound.wrappedLongPropertyWithDefault());
   }
 
   @Test public void primitiveShortValuedPropertyToPrimitiveShortMethod() {
@@ -196,15 +202,21 @@ public class BindingScalarPropertiesToTypedInterfacesTest
   }
 
   @Test public void defaultForWrappedShortValuedProperty() {
-    assertEquals(Short.valueOf("10"), bound.wrappedShortPropertyWithDefault());
+    assertEquals(
+      Short.valueOf("10"),
+      bound.wrappedShortPropertyWithDefault());
   }
 
   @Test public void bigIntegerValuedPropertyToBigIntegerMethod() {
-    assertEquals(new BigInteger("12345678901234567890"), bound.bigIntegerProperty());
+    assertEquals(
+      new BigInteger("12345678901234567890"),
+      bound.bigIntegerProperty());
   }
 
   @Test public void defaultForBigIntegerValuedProperty() {
-    assertEquals(BigInteger.valueOf(12345), bound.bigIntegerPropertyWithDefault());
+    assertEquals(
+      BigInteger.valueOf(12345),
+      bound.bigIntegerPropertyWithDefault());
   }
 
   @Test public void bigDecimalValuedPropertyToBigDecimalMethod() {
@@ -212,7 +224,9 @@ public class BindingScalarPropertiesToTypedInterfacesTest
   }
 
   @Test public void defaultForBigDecimalValuedProperty() {
-    assertEquals(new BigDecimal("6789.012"), bound.bigDecimalPropertyWithDefault());
+    assertEquals(
+      new BigDecimal("6789.012"),
+      bound.bigDecimalPropertyWithDefault());
   }
 
   @Test public void enumValuedPropertyToEnumMethod() {
@@ -223,12 +237,18 @@ public class BindingScalarPropertiesToTypedInterfacesTest
     assertEquals(MAYBE, bound.enumPropertyWithDefault());
   }
 
-  @Test public void bindingDateValuedPropertyToDateMethodUsingParsePatterns() throws Exception {
+  @Test public void bindingDateValuedPropertyToDateMethodUsingParsePatterns()
+    throws Exception {
+
     assertEquals(yyyy("2010"), bound.datePropertyWithParsePatterns());
   }
 
-  @Test public void defaultForDateValuedPropertyUsingParsePatterns() throws Exception {
-    assertEquals(yyyy("2003"), bound.datePropertyWithDefaultWithParsePatterns());
+  @Test public void defaultForDateValuedPropertyUsingParsePatterns()
+    throws Exception {
+
+    assertEquals(
+      yyyy("2003"),
+      bound.datePropertyWithDefaultWithParsePatterns());
   }
 
   @Test public void substitution() {

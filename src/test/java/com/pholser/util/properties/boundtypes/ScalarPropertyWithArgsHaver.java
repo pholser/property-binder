@@ -52,5 +52,8 @@ public interface ScalarPropertyWithArgsHaver {
   @BoundProperty("date.list.property.with.arguments.and.separator")
   @ValuesSeparatedBy(pattern = "\\.\\.\\.")
   @ParsedAs({"MM/dd/yyyy", "yyyy-MM-dd"})
-  List<Date> dateListPropertyWithArgumentsAndSeparator(int month, int day, int year);
+  List<Date> dateListPropertyWithArgumentsAndSeparator(
+    int month,
+    int day,
+    int year);
 }

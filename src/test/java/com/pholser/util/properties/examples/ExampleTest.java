@@ -21,7 +21,8 @@ public class ExampleTest {
   private ExampleSchema bound;
 
   @Before public void initializeFixture() throws Exception {
-    PropertyBinder<ExampleSchema> binder = PropertyBinder.forType(ExampleSchema.class);
+    PropertyBinder<ExampleSchema> binder =
+      PropertyBinder.forType(ExampleSchema.class);
     bound = binder.bind(new File("src/test/resources/example.properties"));
   }
 
@@ -38,7 +39,7 @@ public class ExampleTest {
   }
 
   @Test public void convertingWrappedPrimitivePropertyValues() {
-    assertEquals(Long.valueOf(-1L), bound.wrappedLongProperty());
+    assertEquals(Long.valueOf(-1), bound.wrappedLongProperty());
   }
 
   @Test public void convertingCommaSeparatedValuedPropertyToArray() {
@@ -50,7 +51,9 @@ public class ExampleTest {
   }
 
   @Test public void honoringDifferentSeparatorsForAggregateProperties() {
-    assertEquals(asList(YES, NO, YES, MAYBE), bound.listOfEnumsWithSeparator());
+    assertEquals(
+      asList(YES, NO, YES, MAYBE),
+      bound.listOfEnumsWithSeparator());
   }
 
   @Test public void honoringDefaultValueIndicationWhenPropertyNotPresent() {

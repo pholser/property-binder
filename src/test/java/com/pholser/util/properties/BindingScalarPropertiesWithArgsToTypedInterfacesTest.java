@@ -42,7 +42,9 @@ public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
   extends TypedStringBindingTestSupport<ScalarPropertyWithArgsHaver> {
 
   @Test public void passingArgumentsToPropertyMethodAndHaveFormattingOccurOnResult() {
-    assertEquals("foo to the bar", bound.stringPropertyWithArguments("foo", "bar"));
+    assertEquals(
+      "foo to the bar",
+      bound.stringPropertyWithArguments("foo", "bar"));
   }
 
   @Test public void passingArgumentsOfVariousTypesToPropertyMethodAndHaveFormattingOccurOnResult()
@@ -53,14 +55,21 @@ public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
       bound.stringPropertyWithTypedArguments(10, mmddyyyy("12/22/2003")));
   }
 
-  @Test public void illTypedArgumentsToPropertyMethodsWithArgs() throws Exception {
+  @Test public void illTypedArgumentsToPropertyMethodsWithArgs() {
     assertThrows(
       ValueConversionException.class,
-      () -> bound.stringPropertyWithIllTypedArguments(10, mmddyyyy("12/22/2003")));
+      () ->
+        bound.stringPropertyWithIllTypedArguments(
+          10,
+          mmddyyyy("12/22/2003")));
   }
 
-  @Test public void convertingPropertyMethodsWithArgsToTypeOtherThanString() throws Exception {
-    assertEquals(mmddyyyy("02/24/2010"), bound.datePropertyByMonthDayYear(2, 24, 2010));
+  @Test public void convertingPropertyMethodsWithArgsToTypeOtherThanString()
+    throws Exception {
+
+    assertEquals(
+      mmddyyyy("02/24/2010"),
+      bound.datePropertyByMonthDayYear(2, 24, 2010));
   }
 
   @Test public void applyingArgumentsOfPropertyMethodsToEachOfAnArrayType() {

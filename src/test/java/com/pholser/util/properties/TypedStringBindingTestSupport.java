@@ -32,7 +32,9 @@ import java.lang.reflect.Method;
 
 import static org.junit.Assert.assertEquals;
 
-public abstract class TypedStringBindingTestSupport<T> extends StringBindingTestSupport {
+public abstract class TypedStringBindingTestSupport<T>
+  extends StringBindingTestSupport {
+
   protected PropertyBinder<T> binder;
   protected T bound;
 
@@ -43,15 +45,21 @@ public abstract class TypedStringBindingTestSupport<T> extends StringBindingTest
 
   protected abstract Class<T> boundType();
 
-  protected void assertPropertiesEqual(Object expected, Object actual) throws Exception {
+  void assertPropertiesEqual(Object expected, Object actual)
+    throws Exception {
+
     for (Method each : boundType().getDeclaredMethods()) {
       Object expectedBound = each.invoke(expected);
       Object boundActual = each.invoke(actual);
 
-      if (each.getReturnType().isArray())
-        new ExactComparisonCriteria().arrayEquals(each.getName(), expectedBound, boundActual);
-      else
+      if (each.getReturnType().isArray()) {
+        new ExactComparisonCriteria().arrayEquals(
+          each.getName(),
+          expectedBound,
+          boundActual);
+      } else {
         assertEquals(each.getName(), expectedBound, boundActual);
+      }
     }
   }
 }

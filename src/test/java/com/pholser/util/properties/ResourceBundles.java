@@ -37,11 +37,17 @@ class ResourceBundles {
     return bundleWith(new Object[][] {{key, value}});
   }
 
-  static ResourceBundle bundleWith(String firstKey, Object firstValue, String secondKey, Object secondValue) {
-    return bundleWith(new Object[][] {{firstKey, firstValue}, {secondKey, secondValue}});
+  static ResourceBundle bundleWith(
+    String firstKey,
+    Object firstValue,
+    String secondKey,
+    Object secondValue) {
+
+    return bundleWith
+      (new Object[][] {{firstKey, firstValue}, {secondKey, secondValue}});
   }
 
-  private static ResourceBundle bundleWith(final Object[][] items) {
+  private static ResourceBundle bundleWith(Object[][] items) {
     return new ListResourceBundle() {
       @Override
       protected Object[][] getContents() {

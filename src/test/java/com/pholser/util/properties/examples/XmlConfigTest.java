@@ -22,7 +22,8 @@ public class XmlConfigTest {
   @Before public final void initialize() throws Exception {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder = factory.newDocumentBuilder();
-    Document document = builder.parse(getClass().getResourceAsStream("/config.xml"));
+    Document document =
+      builder.parse(getClass().getResourceAsStream("/config.xml"));
 
     PropertyBinder<Config> binder = PropertyBinder.forType(Config.class);
     config = binder.bind(new XmlConfigSource(document));
