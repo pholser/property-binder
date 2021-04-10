@@ -25,14 +25,14 @@
 
 package com.pholser.util.properties;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.io.File;
 
-public abstract class StringBindingTestSupport {
+abstract class StringBindingTestSupport {
   protected File propertiesFile;
 
-  @Before public final void initializePropertiesFile() {
+  @BeforeEach final void initializePropertiesFile() {
     propertiesFile = new File("src/test/resources/test.properties");
   }
 }

@@ -28,7 +28,7 @@ package com.pholser.util.properties;
 import java.util.ListResourceBundle;
 import java.util.ResourceBundle;
 
-class ResourceBundles {
+final class ResourceBundles {
   private ResourceBundles() {
     throw new UnsupportedOperationException();
   }

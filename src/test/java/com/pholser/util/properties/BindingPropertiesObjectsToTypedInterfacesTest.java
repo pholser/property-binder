@@ -27,42 +27,43 @@ package com.pholser.util.properties;
 
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
-import static com.pholser.util.properties.internal.IO.closeQuietly;
-import static org.junit.Assert.assertThrows;
+import static com.pholser.util.properties.IO.closeQuietly;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class BindingPropertiesObjectsToTypedInterfacesTest
+class BindingPropertiesObjectsToTypedInterfacesTest
   extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
 
   private InputStream inputStream;
   private Properties props;
   private ScalarPropertyHaver fromObject;
 
-  @Before public final void initializeProperties() throws Exception {
+  @BeforeEach final void initializeProperties() throws Exception {
     inputStream = new FileInputStream(propertiesFile);
     props = new Properties();
     props.load(inputStream);
     fromObject = binder.bind(props);
   }
 
-  @After public final void closeInputStream() {
+  @AfterEach final void closeInputStream() {
     closeQuietly(inputStream);
   }
 
-  @Test public void loadingFromPropertiesObject() throws Exception {
+  @Test void loadingFromPropertiesObject() throws Exception {
     ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
 
     assertPropertiesEqual(fromFile, fromObject);
   }
 
-  @Test public void alteringPropertiesObjectAfterBindingDoesNotAffectPropertiesBoundToPICA() {
+  @Test
+  void alteringPropertiesAfterBindingDoesNotAffectPropertiesBoundToPICA() {
     props.setProperty("big.decimal.property", "!@#!@#!@#!@#!@#");
 
     assertThrows(

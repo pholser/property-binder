@@ -32,6 +32,6 @@ class RawValueConverter extends ScalarValueConverter {
 
   @Override public Object convert(String raw, Object... args) {
     throw new AssertionError(
-      "A raw value converter should never be asked to convert a value as a String");
+      "Raw value converter should not be asked to convert value as a String");
   }
 }

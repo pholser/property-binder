@@ -3,8 +3,8 @@ package com.pholser.util.properties.examples;
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.PropertyBinder;
 import com.pholser.util.properties.PropertySource;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -14,12 +14,12 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.File;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class XmlConfigTest {
+class XmlConfigTest {
   private Config config;
 
-  @Before public final void initialize() throws Exception {
+  @BeforeEach final void initialize() throws Exception {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder = factory.newDocumentBuilder();
     Document document =
@@ -29,11 +29,11 @@ public class XmlConfigTest {
     config = binder.bind(new XmlConfigSource(document));
   }
 
-  @Test public void retrievesTimeoutValue() {
+  @Test void retrievesTimeoutValue() {
     assertEquals(5000L, config.timeout());
   }
 
-  @Test public void retrievesOutputFileValue() {
+  @Test void retrievesOutputFileValue() {
     assertEquals(new File("/home/joeblow/out.txt"), config.outputFile());
   }
 }

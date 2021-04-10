@@ -25,17 +25,18 @@
 
 package com.pholser.util.properties;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 import static java.lang.System.identityHashCode;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class InvokingObjectMethodsOnBoundInterfaceTest
+class InvokingObjectMethodsOnBoundInterfaceTest
   extends TypedStringBindingTestSupport<InvokingObjectMethodsOnBoundInterfaceTest.PropertyFacade> {
 
-  @Test public void answeringEquals() throws Exception {
+  @Test void answeringEquals() throws Exception {
     PropertyFacade second = binder.bind(propertiesFile);
     assertEquals(bound, bound);
     assertNotEquals(bound, second);
@@ -43,11 +44,11 @@ public class InvokingObjectMethodsOnBoundInterfaceTest
     assertNotEquals(second, bound);
   }
 
-  @Test public void answeringHashCode() {
+  @Test void answeringHashCode() {
     assertEquals(identityHashCode(bound), bound.hashCode());
   }
 
-  @Test public void answeringToString() {
+  @Test void answeringToString() {
     assertThat(bound.toString()).contains("wrapped.integer");
   }
 

@@ -26,15 +26,15 @@
 package com.pholser.util.properties;
 
 import com.pholser.util.properties.boundtypes.IntPropertyHaver;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ResourceBundle;
 
 import static com.pholser.util.properties.ResourceBundles.bundleWith;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTest {
-  @Test public void returnTypeAndUnderlyingPropertyTypeDisagree() {
+class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTest {
+  @Test void returnTypeAndUnderlyingPropertyTypeDisagree() {
     ResourceBundle bundle = bundleWith("i", new Object());
     PropertyBinder<IntPropertyHaver> binder =
       PropertyBinder.forType(IntPropertyHaver.class);
@@ -43,7 +43,7 @@ public class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTe
     assertThrows(ClassCastException.class, bound::i);
   }
 
-  @Test public void primitiveWidening() {
+  @Test void primitiveWidening() {
     ResourceBundle bundle = bundleWith("i", Byte.valueOf("2"));
     PropertyBinder<IntPropertyHaver> binder =
       PropertyBinder.forType(IntPropertyHaver.class);
@@ -52,7 +52,7 @@ public class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTe
     assertThrows(ClassCastException.class, bound::i);
   }
 
-  @Test public void resolvingASeparatorWithNonStringPropertyValue() {
+  @Test void resolvingASeparatorWithNonStringPropertyValue() {
     ResourceBundle bundle =
       bundleWith("bar", "A,B,C", "separator", new Object());
     PropertyBinder<WithValueOfSeparator> binder =
@@ -67,7 +67,7 @@ public class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTe
     String[] bar();
   }
 
-  @Test public void resolvingADefaultValueWithNonStringPropertyValue() {
+  @Test void resolvingADefaultValueWithNonStringPropertyValue() {
     ResourceBundle bundle = bundleWith("other", new Object());
     PropertyBinder<WithValueOfDefault> binder =
       PropertyBinder.forType(WithValueOfDefault.class);

@@ -26,32 +26,32 @@
 package com.pholser.util.properties;
 
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.PropertyResourceBundle;
 
-import static com.pholser.util.properties.internal.IO.closeQuietly;
+import static com.pholser.util.properties.IO.closeQuietly;
 
-public class BindingStringResourceBundlesToTypedInterfacesTest
+class BindingStringResourceBundlesToTypedInterfacesTest
   extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
 
   private InputStream inputStream;
   private ScalarPropertyHaver fromBundle;
 
-  @Before public final void initializeProperties() throws Exception {
+  @BeforeEach final void initializeProperties() throws Exception {
     inputStream = new FileInputStream(propertiesFile);
     fromBundle = binder.bind(new PropertyResourceBundle(inputStream));
   }
 
-  @After public final void closeInputStream() {
+  @AfterEach final void closeInputStream() {
     closeQuietly(inputStream);
   }
 
-  @Test public void loadingFromPropertiesObject() throws Exception {
+  @Test void loadingFromPropertiesObject() throws Exception {
     ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
 
     assertPropertiesEqual(fromFile, fromBundle);

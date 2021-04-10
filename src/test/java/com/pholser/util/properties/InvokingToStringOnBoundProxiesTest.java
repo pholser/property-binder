@@ -25,8 +25,8 @@
 
 package com.pholser.util.properties;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 import java.util.Properties;
@@ -36,14 +36,14 @@ import static com.pholser.util.properties.ResourceBundles.bundleWith;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 
-public class InvokingToStringOnBoundProxiesTest {
+class InvokingToStringOnBoundProxiesTest {
   private PropertyBinder<Schema> binder;
 
-  @Before public void setUp() {
+  @BeforeEach void setUp() {
     binder = PropertyBinder.forType(Schema.class);
   }
 
-  @Test public void propertiesSource() {
+  @Test void propertiesSource() {
     Properties props = new Properties();
     props.setProperty("foo", "bar");
     Schema bound = binder.bind(props);
@@ -54,7 +54,7 @@ public class InvokingToStringOnBoundProxiesTest {
     assertThat(asString).contains(props.toString());
   }
 
-  @Test public void mapSource() {
+  @Test void mapSource() {
     Map<String, String> properties = Map.of("foo", "bar");
     Schema bound = binder.bind(properties);
 
@@ -64,7 +64,7 @@ public class InvokingToStringOnBoundProxiesTest {
     assertThat(asString).contains(properties.toString());
   }
 
-  @Test public void resourceBundleSource() {
+  @Test void resourceBundleSource() {
     ResourceBundle bundle = bundleWith("foo", "bar");
     Schema bound = binder.bind(bundle);
 
@@ -74,8 +74,7 @@ public class InvokingToStringOnBoundProxiesTest {
     assertThat(asString).contains(bundle.toString());
   }
 
-  @Test
-  public void arbitraryPropertySource() {
+  @Test void arbitraryPropertySource() {
     PropertySource source = new PropertySource() {
       @Override public Object propertyFor(BoundProperty key) {
         return null;
@@ -85,6 +84,7 @@ public class InvokingToStringOnBoundProxiesTest {
         return "qwerty";
       }
     };
+
     Schema bound = binder.bind(source);
 
     String asString = bound.toString();

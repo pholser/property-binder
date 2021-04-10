@@ -25,21 +25,21 @@
 
 package com.pholser.util.properties;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ReadingPropertiesWithSubstitutableReferencesTest {
+class ReadingPropertiesWithSubstitutableReferencesTest {
   private Properties substitutable;
 
-  @Before public void setUp() {
+  @BeforeEach void setUp() {
     substitutable = new SubstitutableProperties();
   }
 
-  @Test public void referencesToPropertiesInTheCollection() {
+  @Test void referencesToPropertiesInTheCollection() {
     substitutable.setProperty("one", "1");
     substitutable.setProperty("two", "2");
     substitutable.setProperty("first", "look out for number [one]");
@@ -49,7 +49,7 @@ public class ReadingPropertiesWithSubstitutableReferencesTest {
     assertEquals("We're #2", substitutable.getProperty("second"));
   }
 
-  @Test public void depthOfReferences() {
+  @Test void depthOfReferences() {
     substitutable.setProperty("one", "1");
     substitutable.setProperty("two", "2[one]");
     substitutable.setProperty("three", "3[one]3[two]");
@@ -58,14 +58,14 @@ public class ReadingPropertiesWithSubstitutableReferencesTest {
     assertEquals("43132142141", substitutable.getProperty("four"));
   }
 
-  @Test public void regexMetacharactersInPropertyReferences() {
+  @Test void regexMetacharactersInPropertyReferences() {
     substitutable.setProperty("se.pa.ra.ted", "1");
     substitutable.setProperty("reference", "3 + [se.pa.ra.ted]");
 
     assertEquals("3 + 1", substitutable.getProperty("reference"));
   }
 
-  @Test public void replacingUnresolvedPropertyReferences() {
+  @Test void replacingUnresolvedPropertyReferences() {
     substitutable.setProperty("other.reference", "4 + [se_pa_ra_ted]");
 
     assertEquals("4 + ", substitutable.getProperty("other.reference"));

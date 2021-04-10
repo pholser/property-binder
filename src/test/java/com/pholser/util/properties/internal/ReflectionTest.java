@@ -25,13 +25,15 @@
 
 package com.pholser.util.properties.internal;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.pholser.util.properties.internal.Reflection.invokeQuietly;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ReflectionTest {
-  @Test(expected = AssertionError.class)
-  public void badMethodNameWhenInvokingMethod() {
-    invokeQuietly(String.class, "IUYPQIWE", "");
+class ReflectionTest {
+  @Test void badMethodNameWhenInvokingMethod() {
+    assertThrows(
+      AssertionError.class,
+      () -> invokeQuietly(String.class, "IUYPQIWE", ""));
   }
 }

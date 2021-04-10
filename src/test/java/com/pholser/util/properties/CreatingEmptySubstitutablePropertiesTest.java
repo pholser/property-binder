@@ -25,19 +25,12 @@
 
 package com.pholser.util.properties;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CreatingEmptySubstitutablePropertiesTest {
-  private SubstitutableProperties props;
-
-  @Before public void setUp() {
-    props = new SubstitutableProperties();
-  }
-
-  @Test public void empty() {
-    assertTrue(props.isEmpty());
+class CreatingEmptySubstitutablePropertiesTest {
+  @Test void empty() {
+    assertTrue(new SubstitutableProperties().isEmpty());
   }
 }

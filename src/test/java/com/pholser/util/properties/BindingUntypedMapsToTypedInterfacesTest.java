@@ -25,18 +25,17 @@
 
 package com.pholser.util.properties;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assume.assumeThat;
+import static org.assertj.core.api.Assumptions.assumeThat;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
-public class BindingUntypedMapsToTypedInterfacesTest {
-  @Test public void nonValueType() {
+class BindingUntypedMapsToTypedInterfacesTest {
+  @Test void nonValueType() {
     Object value = new Object();
     Map<String, Object> items = Map.of("any.old.type", value);
     PropertyBinder<NonValueTypeHaver> binder =
@@ -51,7 +50,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     @BoundProperty("any.old.type") Object anyOldType();
   }
 
-  @Test public void arrayOfUnconvertibleType() {
+  @Test void arrayOfUnconvertibleType() {
     Object[] array = new Object[0];
     Map<String, Object> items = Map.of("array.of.unconvertible.type", array);
     PropertyBinder<ArrayOfUnconvertibleTypeHaver> binder =
@@ -66,7 +65,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     @BoundProperty("array.of.unconvertible.type") Object[] array();
   }
 
-  @Test public void listOfUnconvertibleType() {
+  @Test void listOfUnconvertibleType() {
     List<Object> list = new ArrayList<>();
     Map<String, Object> items = Map.of("list.of.unconvertible.type", list);
     PropertyBinder<ListOfUnconvertibleTypeHaver> binder =
@@ -81,7 +80,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     @BoundProperty("list.of.unconvertible.type") List<Object> list();
   }
 
-  @Test public void nonPublicValueOf() {
+  @Test void nonPublicValueOf() {
     NonPublicValueOfHaver.Thing thing = new NonPublicValueOfHaver.Thing();
     Map<String, Object> items = Map.of("non.public.value.of", thing);
     PropertyBinder<NonPublicValueOfHaver> binder =
@@ -103,7 +102,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     }
   }
 
-  @Test public void nonStaticValueOf() {
+  @Test void nonStaticValueOf() {
     NonStaticValueOfHaver.Thing thing = new NonStaticValueOfHaver.Thing();
     Map<String, Object> items = Map.of("non.static.value.of", thing);
     PropertyBinder<NonStaticValueOfHaver> binder =
@@ -125,7 +124,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     }
   }
 
-  @Test public void badValueOfReturnType() {
+  @Test void badValueOfReturnType() {
     BadValueOfTypeHaver.Thing thing = new BadValueOfTypeHaver.Thing();
     Map<String, Object> items = Map.of("bad.value.of.type", thing);
     PropertyBinder<BadValueOfTypeHaver> binder =
@@ -147,7 +146,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
     }
   }
 
-  @Test public void argMethodsIgnoreArgsIfPropertyValueNotAString() {
+  @Test void argMethodsIgnoreArgsIfPropertyValueNotAString() {
     Object value = new Object();
     Map<String, Object> items = Map.of("key", value);
     PropertyBinder<ArgMethodHaver> binder =
@@ -155,7 +154,7 @@ public class BindingUntypedMapsToTypedInterfacesTest {
 
     ArgMethodHaver bound = binder.bind(items);
 
-    assumeThat(bound.valueFor(1, 'a'), is(value));
+    assumeThat(bound.valueFor(1, 'a')).isEqualTo(value);
     assertSame(value, bound.valueFor(2, 'b'));
   }
 

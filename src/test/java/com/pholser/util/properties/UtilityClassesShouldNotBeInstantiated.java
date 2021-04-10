@@ -25,28 +25,29 @@
 
 package com.pholser.util.properties;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public abstract class UtilityClassesShouldNotBeInstantiated {
-  private final Class<?> utility;
+public abstract class UtilityClassesShouldNotBeInstantiated<T> {
+  private final Class<T> utility;
 
-  protected UtilityClassesShouldNotBeInstantiated(Class<?> utility) {
+  protected UtilityClassesShouldNotBeInstantiated(Class<T> utility) {
     this.utility = utility;
   }
 
-  @Test public final void attemptInstantiation() throws Exception {
-    Constructor<?> constructor = utility.getDeclaredConstructor();
+  @Test final void attemptInstantiation() throws Exception {
+    Constructor<T> constructor = utility.getDeclaredConstructor();
     constructor.setAccessible(true);
 
     InvocationTargetException ex =
       assertThrows(InvocationTargetException.class, constructor::newInstance);
 
-    assertEquals(UnsupportedOperationException.class, ex.getCause().getClass());
+    assertThat(ex)
+      .hasCauseInstanceOf(UnsupportedOperationException.class);
   }
 }

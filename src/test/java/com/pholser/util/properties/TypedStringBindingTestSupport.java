@@ -25,20 +25,20 @@
 
 package com.pholser.util.properties;
 
-import org.junit.Before;
-import org.junit.internal.ExactComparisonCriteria;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.lang.reflect.Method;
 
-import static org.junit.Assert.assertEquals;
+import static com.pholser.util.properties.ArbitraryArrays.assertReflectArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public abstract class TypedStringBindingTestSupport<T>
+abstract class TypedStringBindingTestSupport<T>
   extends StringBindingTestSupport {
 
   protected PropertyBinder<T> binder;
   protected T bound;
 
-  @Before public final void initializeBinderAndBoundType() throws Exception {
+  @BeforeEach final void initializeBinderAndBoundType() throws Exception {
     binder = new PropertyBinder<>(boundType());
     bound = binder.bind(propertiesFile);
   }
@@ -49,16 +49,13 @@ public abstract class TypedStringBindingTestSupport<T>
     throws Exception {
 
     for (Method each : boundType().getDeclaredMethods()) {
-      Object expectedBound = each.invoke(expected);
+      Object boundExpected = each.invoke(expected);
       Object boundActual = each.invoke(actual);
 
       if (each.getReturnType().isArray()) {
-        new ExactComparisonCriteria().arrayEquals(
-          each.getName(),
-          expectedBound,
-          boundActual);
+        assertReflectArrayEquals(boundExpected, boundActual, each.getName());
       } else {
-        assertEquals(each.getName(), expectedBound, boundActual);
+        assertEquals(boundExpected, boundActual, each.getName());
       }
     }
   }

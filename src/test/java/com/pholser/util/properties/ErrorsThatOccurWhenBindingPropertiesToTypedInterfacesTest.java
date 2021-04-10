@@ -59,8 +59,8 @@ import com.pholser.util.properties.internal.exceptions.NoDefaultValueSpecificati
 import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -68,72 +68,72 @@ import java.io.InputStream;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
+class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
   extends StringBindingTestSupport {
 
   private PropertyBinder<ScalarPropertyHaver> scalar;
 
-  @Before public void setUp() {
+  @BeforeEach void setUp() {
     scalar = PropertyBinder.forType(ScalarPropertyHaver.class);
   }
 
-  @Test public void nonInterfaceClass() {
+  @Test void nonInterfaceClass() {
     assertThrows(
       BoundTypeNotAnInterfaceException.class,
       () -> PropertyBinder.forType(Object.class));
   }
 
-  @Test public void annotationClass() {
+  @Test void annotationClass() {
     assertThrows(
       InterfaceHasSuperinterfacesException.class,
       () -> PropertyBinder.forType(SuppressWarnings.class));
   }
 
-  @Test public void nullFile() {
+  @Test void nullFile() {
     assertThrows(
       NullPointerException.class,
       () -> scalar.bind((File) null));
   }
 
-  @Test public void missingFile() {
+  @Test void missingFile() {
     assertThrows(
       FileNotFoundException.class,
       () -> scalar.bind(new File("!(@#*&!@(*#&")));
   }
 
-  @Test public void nullInputStream() {
+  @Test void nullInputStream() {
     assertThrows(
       NullPointerException.class,
       () -> scalar.bind((InputStream) null));
   }
 
-  @Test public void nullMap() {
+  @Test void nullMap() {
     assertThrows(
       NullPointerException.class,
       () -> scalar.bind((Map<String, ?>) null));
   }
 
-  @Test public void nullResourceBundle() {
+  @Test void nullResourceBundle() {
     assertThrows(
       NullPointerException.class,
       () -> scalar.bind((ResourceBundle) null));
   }
 
-  @Test public void nullPropertySource() {
+  @Test void nullPropertySource() {
     assertThrows(
       NullPointerException.class,
       () -> scalar.bind((PropertySource) null));
   }
 
-  @Test public void nullClass() {
+  @Test void nullClass() {
     assertThrows(
       NullPointerException.class,
       () -> PropertyBinder.forType(null));
   }
 
-  @Test public void nonSingleCharacterValueForCharacterProperty() {
+  @Test void nonSingleCharacterValueForCharacterProperty() {
     assertThrows(
       MalformedDefaultValueException.class,
       () ->
@@ -141,25 +141,25 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
           CharacterPropertyHaverWithTooLongDefault.class));
   }
 
-  @Test public void upperBoundedListType() {
+  @Test void upperBoundedListType() {
     assertThrows(
       UnsupportedValueTypeException.class,
       () -> PropertyBinder.forType(UpperBoundedListPropertyHaver.class));
   }
 
-  @Test public void lowerBoundedListType() {
+  @Test void lowerBoundedListType() {
     assertThrows(
       UnsupportedValueTypeException.class,
       () -> PropertyBinder.forType(LowerBoundedListPropertyHaver.class));
   }
 
-  @Test public void listOfArrayType() {
+  @Test void listOfArrayType() {
     assertThrows(
       UnsupportedValueTypeException.class,
       () -> PropertyBinder.forType(ListOfArrayPropertyHaver.class));
   }
 
-  @Test public void arrayOfUnconvertibleTypeWithDefault() {
+  @Test void arrayOfUnconvertibleTypeWithDefault() {
     assertThrows(
       UnsupportedValueTypeException.class,
       () ->
@@ -167,7 +167,7 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
           ArrayOfUnconvertibleTypeWithDefaultPropertyHaver.class));
   }
 
-  @Test public void arrayOfUnconvertibleTypeWithSeparator() {
+  @Test void arrayOfUnconvertibleTypeWithSeparator() {
     assertThrows(
       UnsupportedValueTypeException.class,
       () ->
@@ -175,7 +175,7 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
           ArrayOfUnconvertibleTypeWithSeparatorPropertyHaver.class));
   }
 
-  @Test public void listOfUnconvertibleTypeWithDefault() {
+  @Test void listOfUnconvertibleTypeWithDefault() {
     assertThrows(
       UnsupportedValueTypeException.class,
       () ->
@@ -183,7 +183,7 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
           ListOfUnconvertibleTypeWithDefaultPropertyHaver.class));
   }
 
-  @Test public void listOfUnconvertibleTypeWithSeparator() {
+  @Test void listOfUnconvertibleTypeWithSeparator() {
     assertThrows(
       UnsupportedValueTypeException.class,
       () ->
@@ -191,7 +191,7 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
           ListOfUnconvertibleTypeWithSeparatorPropertyHaver.class));
   }
 
-  @Test public void listOfUnconvertibleTypeWithValueOfSeparator() {
+  @Test void listOfUnconvertibleTypeWithValueOfSeparator() {
     assertThrows(
       UnsupportedValueTypeException.class,
       () ->
@@ -199,21 +199,21 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
           ListOfUnconvertibleTypeWithValueOfSeparatorPropertyHaver.class));
   }
 
-  @Test public void typeWithNonPublicValueOf() {
+  @Test void typeWithNonPublicValueOf() {
     assertThrows(
       UnsupportedValueTypeException.class,
       () ->
         PropertyBinder.forType(TypeWithNonPublicValueOfPropertyHaver.class));
   }
 
-  @Test public void typeWithNonStaticValueOf() {
+  @Test void typeWithNonStaticValueOf() {
     assertThrows(
       UnsupportedValueTypeException.class,
       () ->
         PropertyBinder.forType(TypeWithNonStaticValueOfPropertyHaver.class));
   }
 
-  @Test public void typeWithValueOfWithBadReturnType() {
+  @Test void typeWithValueOfWithBadReturnType() {
     assertThrows(
       UnsupportedValueTypeException.class,
       () ->
@@ -221,7 +221,7 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
           TypeWithValueOfWithBadReturnTypePropertyHaver.class));
   }
 
-  @Test public void missingPrimitiveProperty() throws Exception {
+  @Test void missingPrimitiveProperty() throws Exception {
     PropertyBinder<MissingPrimitivePropertyHaver> binder =
       PropertyBinder.forType(MissingPrimitivePropertyHaver.class);
     MissingPrimitivePropertyHaver bound = binder.bind(propertiesFile);
@@ -229,19 +229,19 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
     assertThrows(NullPointerException.class, bound::missingCharacterProperty);
   }
 
-  @Test public void badDefaultValue() {
+  @Test void badDefaultValue() {
     assertThrows(
       MalformedDefaultValueException.class,
       () -> PropertyBinder.forType(BadDefaultValuePropertyHaver.class));
   }
 
-  @Test public void badValueSeparator() {
+  @Test void badValueSeparator() {
     assertThrows(
       MalformedSeparatorException.class,
       () -> PropertyBinder.forType(BadValueSeparatorPropertyHaver.class));
   }
 
-  @Test public void applyingSeparatorToNonAggregateType() {
+  @Test void applyingSeparatorToNonAggregateType() {
     assertThrows(
       AppliedSeparatorToNonAggregateTypeException.class,
       () ->
@@ -249,7 +249,7 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
           SeparatorOnNonAggregateTypePropertyHaver.class));
   }
 
-  @Test public void separatorWithBothPatternAndValueOf() {
+  @Test void separatorWithBothPatternAndValueOf() {
     assertThrows(
       MultipleSeparatorSpecificationException.class,
       () ->
@@ -257,26 +257,26 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
           SeparatedPropertyHaverWithBothPatternAndValueOf.class));
   }
 
-  @Test public void typeWithSuperinterfaces() {
+  @Test void typeWithSuperinterfaces() {
     assertThrows(
       InterfaceHasSuperinterfacesException.class,
       () -> PropertyBinder.forType(InterfaceWithSuperinterfaces.class));
   }
 
-  @Test public void defaultValueSpecWithBothValueAndValueOf() {
+  @Test void defaultValueSpecWithBothValueAndValueOf() {
     assertThrows(
       MultipleDefaultValueSpecificationException.class,
       () -> PropertyBinder.forType(DefaultValueWithBothValueAndValueOf.class));
   }
 
-  @Test public void defaultValueSpecWithNeitherValueNorValueOf() {
+  @Test void defaultValueSpecWithNeitherValueNorValueOf() {
     assertThrows(
       NoDefaultValueSpecificationException.class,
       () ->
         PropertyBinder.forType(DefaultValueWithNeitherValueNorValueOf.class));
   }
 
-  @Test public void datePropertiesThatWouldNotPassNonLenientDateFormats()
+  @Test void datePropertiesThatWouldNotPassNonLenientDateFormats()
     throws Exception {
 
     DatePropertyWithNonLenientValueHaver bound =
@@ -288,7 +288,7 @@ public class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
       bound::datePropertyWithNonLenientValue);
   }
 
-  @Test public void parsedAsIfAppliedToTypeOtherThanDate() {
+  @Test void parsedAsIfAppliedToTypeOtherThanDate() {
     assertThrows(
       UnsupportedParsedAsTypeException.class,
       () -> PropertyBinder.forType(ParsedAsOnMethodOfImproperType.class));

@@ -27,19 +27,19 @@ package com.pholser.util.properties;
 
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 
-import static com.pholser.util.properties.internal.IO.closeQuietly;
-import static org.junit.Assert.assertThrows;
+import static com.pholser.util.properties.IO.closeQuietly;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class BindingStringMapsToTypedInterfacesTest
+class BindingStringMapsToTypedInterfacesTest
   extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
 
   private InputStream inputStream;
@@ -47,7 +47,7 @@ public class BindingStringMapsToTypedInterfacesTest
   private ScalarPropertyHaver fromMap;
 
   @SuppressWarnings("unchecked")
-  @Before public final void initializeProperties() throws Exception {
+  @BeforeEach final void initializeProperties() throws Exception {
     inputStream = new FileInputStream(propertiesFile);
     Properties props = new Properties();
     props.load(inputStream);
@@ -56,17 +56,17 @@ public class BindingStringMapsToTypedInterfacesTest
     fromMap = binder.bind(asStringMap);
   }
 
-  @After public final void closeInputStream() {
+  @AfterEach final void closeInputStream() {
     closeQuietly(inputStream);
   }
 
-  @Test public void loadingFromPropertiesObject() throws Exception {
+  @Test void loadingFromPropertiesObject() throws Exception {
     ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
 
     assertPropertiesEqual(fromFile, fromMap);
   }
 
-  @Test public void alteringMapAfterBindingAffectsPropertiesBoundToPICA() {
+  @Test void alteringMapAfterBindingAffectsPropertiesBoundToPICA() {
     asStringMap.put("primitive.integer.property", "!@#!@#!@#!@#!@#");
 
     assertThrows(

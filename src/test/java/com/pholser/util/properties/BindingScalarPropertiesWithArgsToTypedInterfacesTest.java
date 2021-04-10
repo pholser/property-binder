@@ -27,27 +27,28 @@ package com.pholser.util.properties;
 
 import com.pholser.util.properties.boundtypes.ScalarPropertyWithArgsHaver;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static java.util.Arrays.asList;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
+class BindingScalarPropertiesWithArgsToTypedInterfacesTest
   extends TypedStringBindingTestSupport<ScalarPropertyWithArgsHaver> {
 
-  @Test public void passingArgumentsToPropertyMethodAndHaveFormattingOccurOnResult() {
+  @Test void passingArgumentsToPropertyMethodAndFormattingOnResult() {
     assertEquals(
       "foo to the bar",
       bound.stringPropertyWithArguments("foo", "bar"));
   }
 
-  @Test public void passingArgumentsOfVariousTypesToPropertyMethodAndHaveFormattingOccurOnResult()
+  @Test
+  void passingArgumentsOfVariousTypesToPropertyMethodAndFormattingOnResult()
     throws Exception {
 
     assertEquals(
@@ -55,7 +56,7 @@ public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
       bound.stringPropertyWithTypedArguments(10, mmddyyyy("12/22/2003")));
   }
 
-  @Test public void illTypedArgumentsToPropertyMethodsWithArgs() {
+  @Test void illTypedArgumentsToPropertyMethodsWithArgs() {
     assertThrows(
       ValueConversionException.class,
       () ->
@@ -64,7 +65,7 @@ public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
           mmddyyyy("12/22/2003")));
   }
 
-  @Test public void convertingPropertyMethodsWithArgsToTypeOtherThanString()
+  @Test void convertingPropertyMethodsWithArgsToTypeOtherThanString()
     throws Exception {
 
     assertEquals(
@@ -72,13 +73,14 @@ public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
       bound.datePropertyByMonthDayYear(2, 24, 2010));
   }
 
-  @Test public void applyingArgumentsOfPropertyMethodsToEachOfAnArrayType() {
+  @Test void applyingArgumentsOfPropertyMethodsToEachOfAnArrayType() {
     assertArrayEquals(
       new String[] {"foobar", "barfoo"},
       bound.stringArrayPropertyWithArguments("foo", "bar"));
   }
 
-  @Test public void applyingArgumentsOfPropertyMethodsToEachOfListTypeWithCustomSeparator()
+  @Test
+  void applyingArgumentsOfPropertyMethodsToEachOfListTypeWithCustomSeparator()
     throws Exception {
 
     assertEquals(

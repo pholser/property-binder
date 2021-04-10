@@ -41,8 +41,7 @@ import java.util.ResourceBundle;
 /**
  * <p>Creates proxies that provide typed access to values in
  * {@linkplain PropertySource sources of property configuration} via the
- * <acronym title="Proxied Interfaces Configured with Annotations">PICA</acronym>
- * technique.</p>
+ * "Proxied Interfaces Configured with Annotations" (PICA) technique.</p>
  *
  * <p>Inspired by
  * <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/">this blog entry</a>.</p>

@@ -26,14 +26,14 @@
 package com.pholser.util.properties;
 
 import com.pholser.util.properties.boundtypes.IntPropertyHaver;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
-  @Test public void returnTypeAndUnderlyingPropertyTypeDisagree() {
+class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
+  @Test void returnTypeAndUnderlyingPropertyTypeDisagree() {
     Map<String, Object> items = Map.of("i", new Object());
     PropertyBinder<IntPropertyHaver> binder =
       PropertyBinder.forType(IntPropertyHaver.class);
@@ -42,7 +42,7 @@ public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
     assertThrows(ClassCastException.class, bound::i);
   }
 
-  @Test public void primitiveWidening() {
+  @Test void primitiveWidening() {
     Map<String, Object> items = Map.of("i", Short.valueOf("2"));
     PropertyBinder<IntPropertyHaver> binder =
       PropertyBinder.forType(IntPropertyHaver.class);
@@ -51,7 +51,7 @@ public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
     assertThrows(ClassCastException.class, bound::i);
   }
 
-  @Test public void resolvingASeparatorWithNonStringPropertyValue() {
+  @Test void resolvingASeparatorWithNonStringPropertyValue() {
     Map<String, Object> items =
       Map.of("bar", "A,B,C", "separator", new Object());
     PropertyBinder<WithValueOfSeparator> binder =
@@ -66,7 +66,7 @@ public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
     String[] bar();
   }
 
-  @Test public void resolvingADefaultValueWithNonStringPropertyValue() {
+  @Test void resolvingADefaultValueWithNonStringPropertyValue() {
     Map<String, Object> items = Map.of("bar", "ABC", "other", new Object());
     PropertyBinder<WithValueOfDefault> binder =
       PropertyBinder.forType(WithValueOfDefault.class);

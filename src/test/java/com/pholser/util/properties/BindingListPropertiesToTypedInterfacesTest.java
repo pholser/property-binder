@@ -26,7 +26,7 @@
 package com.pholser.util.properties;
 
 import com.pholser.util.properties.boundtypes.ListPropertyHaver;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -39,58 +39,58 @@ import static com.pholser.util.properties.boundtypes.Ternary.NO;
 import static com.pholser.util.properties.boundtypes.Ternary.YES;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BindingListPropertiesToTypedInterfacesTest
+class BindingListPropertiesToTypedInterfacesTest
   extends TypedStringBindingTestSupport<ListPropertyHaver> {
 
-  @Test public void separatedStringPropertyToStringListMethod() {
+  @Test void separatedStringPropertyToStringListMethod() {
     assertEquals(asList("aaa", "bbb", "ccc"), bound.stringListProperty());
   }
 
-  @Test public void separatedStringPropertyWithCustomSeparatorToStringListMethod() {
+  @Test void separatedStringPropertyWithCustomSeparatorToStringListMethod() {
     assertEquals(
       asList("dd", "eeee", "fffff"),
       bound.stringListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForStringListProperty() {
+  @Test void defaultForStringListProperty() {
     assertEquals(
       asList("g", "hh", "iii"),
       bound.stringListPropertyWithDefault());
   }
 
-  @Test public void defaultForStringListPropertyWithCustomSeparator() {
+  @Test void defaultForStringListPropertyWithCustomSeparator() {
     assertEquals(
       asList("jjj", "kk", "L"),
       bound.stringListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void separatedBooleanPropertyToBooleanListMethod() {
+  @Test void separatedBooleanPropertyToBooleanListMethod() {
     assertEquals(
       asList(true, false, false, true),
       bound.booleanListProperty());
   }
 
-  @Test public void booleanPropertyWithCustomSeparatorToBooleanListMethod() {
+  @Test void booleanPropertyWithCustomSeparatorToBooleanListMethod() {
     assertEquals(
       asList(false, true),
       bound.booleanListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForBooleanListProperty() {
+  @Test void defaultForBooleanListProperty() {
     assertEquals(
       asList(false, false, true, false, true),
       bound.booleanListPropertyWithDefault());
   }
 
-  @Test public void defaultForBooleanListPropertyWithSeparator() {
+  @Test void defaultForBooleanListPropertyWithSeparator() {
     assertEquals(
       asList(true, true, true, false),
       bound.booleanListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void separatedBytePropertyToByteListMethod() {
+  @Test void separatedBytePropertyToByteListMethod() {
     assertEquals(
       asList(
         Byte.valueOf("6"),
@@ -100,19 +100,19 @@ public class BindingListPropertiesToTypedInterfacesTest
       bound.byteListProperty());
   }
 
-  @Test public void bytePropertyWithCustomSeparatorToByteListMethod() {
+  @Test void bytePropertyWithCustomSeparatorToByteListMethod() {
     assertEquals(
       asList(Byte.valueOf("45"), Byte.valueOf("57")),
       bound.byteListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForByteListProperty() {
+  @Test void defaultForByteListProperty() {
     assertEquals(
       asList(Byte.valueOf("33"), Byte.valueOf("34"), Byte.valueOf("35")),
       bound.byteListPropertyWithDefault());
   }
 
-  @Test public void defaultForByteListPropertyWithSeparator() {
+  @Test void defaultForByteListPropertyWithSeparator() {
     assertEquals(
       asList(
         Byte.valueOf("36"),
@@ -122,125 +122,125 @@ public class BindingListPropertiesToTypedInterfacesTest
       bound.byteListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void separatedCharacterPropertyToCharacterListMethod() {
+  @Test void separatedCharacterPropertyToCharacterListMethod() {
     assertEquals(asList('q', 'r', 's', 't'), bound.characterListProperty());
   }
 
-  @Test public void characterPropertyWithCustomSeparatorToCharacterListMethod() {
+  @Test void characterPropertyWithCustomSeparatorToCharacterListMethod() {
     assertEquals(
       asList('u', 'v'),
       bound.characterListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForCharacterListProperty() {
+  @Test void defaultForCharacterListProperty() {
     assertEquals(
       asList('w', 'x', 'y'),
       bound.characterListPropertyWithDefault());
   }
 
-  @Test public void defaultForCharacterListPropertyWithSeparator() {
+  @Test void defaultForCharacterListPropertyWithSeparator() {
     assertEquals(
       asList('z', '0', '1', '2'),
       bound.characterListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void separatedDoublePropertyToDoubleListMethod() {
+  @Test void separatedDoublePropertyToDoubleListMethod() {
     assertEquals(
       asList(-1.0, -2.0, -3.0, -4.0),
       bound.doubleListProperty());
   }
 
-  @Test public void doublePropertyWithCustomSeparatorToDoubleListMethod() {
+  @Test void doublePropertyWithCustomSeparatorToDoubleListMethod() {
     assertEquals(
       asList(-5.0, -6.0),
       bound.doubleListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForDoubleListProperty() {
+  @Test void defaultForDoubleListProperty() {
     assertEquals(
       asList(-10.0, -11.0, -12.0),
       bound.doubleListPropertyWithDefault());
   }
 
-  @Test public void defaultForDoubleListPropertyWithSeparator() {
+  @Test void defaultForDoubleListPropertyWithSeparator() {
     assertEquals(
       asList(-13.0, -14.0, -15.0, -16.0),
       bound.doubleListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void separatedFloatPropertyToFloatListMethod() {
+  @Test void separatedFloatPropertyToFloatListMethod() {
     assertEquals(
       asList(4.8F, 4.9F, 5.0F, 5.1F),
       bound.floatListProperty());
   }
 
-  @Test public void floatPropertyWithCustomSeparatorToFloatListMethod() {
+  @Test void floatPropertyWithCustomSeparatorToFloatListMethod() {
     assertEquals(
       asList(5.2F, 5.3F),
       bound.floatListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForFloatListProperty() {
+  @Test void defaultForFloatListProperty() {
     assertEquals(
       asList(2.0F, 2.1F, 2.2F),
       bound.floatListPropertyWithDefault());
   }
 
-  @Test public void defaultForFloatListPropertyWithSeparator() {
+  @Test void defaultForFloatListPropertyWithSeparator() {
     assertEquals(
       asList(2.3F, 2.4F, 2.5F, 2.6F),
       bound.floatListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void separatedIntegerPropertyToIntegerListMethod() {
+  @Test void separatedIntegerPropertyToIntegerListMethod() {
     assertEquals(
       asList(-18, -19, -20, -21),
       bound.integerListProperty());
   }
 
-  @Test public void integerPropertyWithCustomSeparatorToIntegerListMethod() {
+  @Test void integerPropertyWithCustomSeparatorToIntegerListMethod() {
     assertEquals(
       asList(-22, -23),
       bound.integerListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForIntegerListProperty() {
+  @Test void defaultForIntegerListProperty() {
     assertEquals(
       asList(-10, -11, -12),
       bound.integerListPropertyWithDefault());
   }
 
-  @Test public void defaultForIntegerListPropertyWithSeparator() {
+  @Test void defaultForIntegerListPropertyWithSeparator() {
     assertEquals(
       asList(-13, -14, -15, -16),
       bound.integerListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void separatedLongPropertyToLongListMethod() {
+  @Test void separatedLongPropertyToLongListMethod() {
     assertEquals(
       asList(18L, 19L, 20L, 21L),
       bound.longListProperty());
   }
 
-  @Test public void longPropertyWithCustomSeparatorToLongListMethod() {
+  @Test void longPropertyWithCustomSeparatorToLongListMethod() {
     assertEquals(
       asList(22L, 23L),
       bound.longListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForLongListProperty() {
+  @Test void defaultForLongListProperty() {
     assertEquals(
       asList(53L, 54L, 55L),
       bound.longListPropertyWithDefault());
   }
 
-  @Test public void defaultForLongListPropertyWithSeparator() {
+  @Test void defaultForLongListPropertyWithSeparator() {
     assertEquals(
       asList(56L, 57L, 58L, 59L),
       bound.longListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void separatedShortPropertyToShortListMethod() {
+  @Test void separatedShortPropertyToShortListMethod() {
     assertEquals(
       asList(
         Short.valueOf("66"),
@@ -250,13 +250,13 @@ public class BindingListPropertiesToTypedInterfacesTest
       bound.shortListProperty());
   }
 
-  @Test public void shortPropertyWithCustomSeparatorToShortListMethod() {
+  @Test void shortPropertyWithCustomSeparatorToShortListMethod() {
     assertEquals(
       asList(Short.valueOf("70"), Short.valueOf("71")),
       bound.shortListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForShortListProperty() {
+  @Test void defaultForShortListProperty() {
     assertEquals(
       asList(
         Short.valueOf("-29"),
@@ -265,7 +265,7 @@ public class BindingListPropertiesToTypedInterfacesTest
       bound.shortListPropertyWithDefault());
   }
 
-  @Test public void defaultForShortListPropertyWithSeparator() {
+  @Test void defaultForShortListPropertyWithSeparator() {
     assertEquals(
       asList(
         Short.valueOf("-32"),
@@ -275,19 +275,19 @@ public class BindingListPropertiesToTypedInterfacesTest
       bound.shortListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void separatedBigIntegerPropertyToBigIntegerListMethod() {
+  @Test void separatedBigIntegerPropertyToBigIntegerListMethod() {
     assertEquals(
       asList(BigInteger.valueOf(124), BigInteger.valueOf(125)),
       bound.bigIntegerListProperty());
   }
 
-  @Test public void bigIntegerPropertyWithCustomSeparatorToBigIntegerListMethod() {
+  @Test void bigIntegerPropertyWithCustomSeparatorToBigIntegerListMethod() {
     assertEquals(
       asList(BigInteger.valueOf(126), BigInteger.valueOf(127)),
       bound.bigIntegerListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForBigIntegerListProperty() {
+  @Test void defaultForBigIntegerListProperty() {
     assertEquals(
       asList(
         BigInteger.valueOf(128),
@@ -296,7 +296,7 @@ public class BindingListPropertiesToTypedInterfacesTest
       bound.bigIntegerListPropertyWithDefault());
   }
 
-  @Test public void defaultForBigIntegerListPropertyWithSeparator() {
+  @Test void defaultForBigIntegerListPropertyWithSeparator() {
     assertEquals(
       asList(
         BigInteger.valueOf(131),
@@ -305,57 +305,57 @@ public class BindingListPropertiesToTypedInterfacesTest
       bound.bigIntegerListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void separatedBigDecimalPropertyToBigDecimalListMethod() {
+  @Test void separatedBigDecimalPropertyToBigDecimalListMethod() {
     assertEquals(
       asList(new BigDecimal("56.78"), new BigDecimal("90.12")),
       bound.bigDecimalListProperty());
   }
 
-  @Test public void bigDecimalPropertyWithCustomSeparatorToBigDecimalListMethod() {
+  @Test void bigDecimalPropertyWithCustomSeparatorToBigDecimalListMethod() {
     assertEquals(
       asList(new BigDecimal("34.567"), new BigDecimal("89.012")),
       bound.bigDecimalListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForBigDecimalListProperty() {
+  @Test void defaultForBigDecimalListProperty() {
     assertEquals(
       asList(new BigDecimal("345.67"), new BigDecimal("890.12")),
       bound.bigDecimalListPropertyWithDefault());
   }
 
-  @Test public void defaultForBigDecimalListPropertyWithSeparator() {
+  @Test void defaultForBigDecimalListPropertyWithSeparator() {
     assertEquals(
       asList(new BigDecimal("3456.78"), new BigDecimal("9012.34")),
       bound.bigDecimalListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void separatedEnumPropertyToEnumListMethod() {
+  @Test void separatedEnumPropertyToEnumListMethod() {
     assertEquals(asList(YES, YES, NO, MAYBE, YES), bound.enumListProperty());
   }
 
-  @Test public void enumPropertyWithCustomSeparatorToEnumListMethod() {
+  @Test void enumPropertyWithCustomSeparatorToEnumListMethod() {
     assertEquals(
       asList(NO, NO, MAYBE, MAYBE),
       bound.enumListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForEnumListProperty() {
+  @Test void defaultForEnumListProperty() {
     assertEquals(
       asList(YES, NO, NO, MAYBE, YES),
       bound.enumListPropertyWithDefault());
   }
 
-  @Test public void defaultForEnumListPropertyWithSeparator() {
+  @Test void defaultForEnumListPropertyWithSeparator() {
     assertEquals(
       asList(NO, MAYBE, YES, MAYBE),
       bound.enumListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void separatedDatePropertyToDateListMethod() throws Exception {
+  @Test void separatedDatePropertyToDateListMethod() throws Exception {
     assertEquals(asList(M("2"), M("3")), bound.dateListProperty());
   }
 
-  @Test public void datePropertyWithCustomSeparatorToDateListMethod()
+  @Test void datePropertyWithCustomSeparatorToDateListMethod()
     throws Exception {
 
     assertEquals(
@@ -363,63 +363,63 @@ public class BindingListPropertiesToTypedInterfacesTest
       bound.dateListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForDateListProperty() throws Exception {
+  @Test void defaultForDateListProperty() throws Exception {
     assertEquals(
       asList(M("7"), M("8")),
       bound.dateListPropertyWithDefault());
   }
 
-  @Test public void defaultForDateListPropertyWithSeparator() throws Exception {
+  @Test void defaultForDateListPropertyWithSeparator() throws Exception {
     assertEquals(
       asList(M("10"), M("11")),
       bound.dateListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void separatedStringPropertyToRawListMethod() {
+  @Test void separatedStringPropertyToRawListMethod() {
     assertEquals(asList("aaa", "bbb", "ccc"), bound.rawListProperty());
   }
 
-  @Test public void separatedStringPropertyWithCustomSeparatorToRawListMethod() {
+  @Test void separatedStringPropertyWithCustomSeparatorToRawListMethod() {
     assertEquals(
       asList("dd", "eeee", "fffff"),
       bound.rawListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForRawListProperty() {
+  @Test void defaultForRawListProperty() {
     assertEquals(
       asList("YES", "NO", "NO", "MAYBE", "YES"),
       bound.rawListPropertyWithDefault());
   }
 
-  @Test public void defaultForRawListPropertyWithCustomSeparator() {
+  @Test void defaultForRawListPropertyWithCustomSeparator() {
     assertEquals(
       asList("NO", "MAYBE", "YES", "MAYBE"),
       bound.rawListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void separatedStringPropertyToHuhListMethod() {
+  @Test void separatedStringPropertyToHuhListMethod() {
     assertEquals(asList("xx", "yyy", "zzzz"), bound.huhListProperty());
   }
 
-  @Test public void separatedStringPropertyWithCustomSeparatorToHuhListMethod() {
+  @Test void separatedStringPropertyWithCustomSeparatorToHuhListMethod() {
     assertEquals(
       asList("u", "vv", "www"),
       bound.huhListPropertyWithCustomSeparator());
   }
 
-  @Test public void defaultForHuhListProperty() {
+  @Test void defaultForHuhListProperty() {
     assertEquals(
       asList("YES", "NO", "MAYBE"),
       bound.huhListPropertyWithDefault());
   }
 
-  @Test public void defaultForHuhListPropertyWithCustomSeparator() {
+  @Test void defaultForHuhListPropertyWithCustomSeparator() {
     assertEquals(
       asList("NO", "MAYBE", "YES"),
       bound.huhListPropertyWithDefaultAndSeparator());
   }
 
-  @Test public void givingEmptyListForMissingListProperty() {
+  @Test void givingEmptyListForMissingListProperty() {
     assertEquals(emptyList(), bound.missingListProperty());
   }
 

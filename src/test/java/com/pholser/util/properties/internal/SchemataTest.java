@@ -26,13 +26,15 @@
 package com.pholser.util.properties.internal;
 
 import com.pholser.util.properties.DefaultsTo;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.pholser.util.properties.internal.Schemata.annotationDefault;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class SchemataTest {
-  @Test(expected = AssertionError.class)
-  public void badMethodNameOnAnnotation() {
-    annotationDefault(DefaultsTo.class, "!@#!@#");
+class SchemataTest {
+  @Test void badMethodNameOnAnnotation() {
+    assertThrows(
+      AssertionError.class,
+      () -> annotationDefault(DefaultsTo.class, "!@#!@#"));
   }
 }

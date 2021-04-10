@@ -25,17 +25,17 @@
 
 package com.pholser.util.properties;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import static com.pholser.util.properties.ResourceBundles.bundleWith;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
-public class BindingUntypedResourceBundlesToTypedInterfacesTest {
-  @Test public void nonValueType() {
+class BindingUntypedResourceBundlesToTypedInterfacesTest {
+  @Test void nonValueType() {
     Object value = new Object();
     ResourceBundle bundle = bundleWith("any.old.type", value);
     PropertyBinder<NonValueTypeHaver> binder =
@@ -50,7 +50,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
     @BoundProperty("any.old.type") Object anyOldType();
   }
 
-  @Test public void arrayOfUnconvertibleType() {
+  @Test void arrayOfUnconvertibleType() {
     Object[] array = new Object[0];
     ResourceBundle bundle = bundleWith("array.of.unconvertible.type", array);
     PropertyBinder<ArrayOfUnconvertibleTypeHaver> binder =
@@ -65,7 +65,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
     @BoundProperty("array.of.unconvertible.type") Object[] array();
   }
 
-  @Test public void listOfUnconvertibleType() {
+  @Test void listOfUnconvertibleType() {
     List<Object> list = new ArrayList<>();
     ResourceBundle bundle = bundleWith("list.of.unconvertible.type", list);
     PropertyBinder<ListOfUnconvertibleTypeHaver> binder =
@@ -81,7 +81,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
     List<Object> list();
   }
 
-  @Test public void nonPublicValueOf() {
+  @Test void nonPublicValueOf() {
     NonPublicValueOfHaver.Thing thing = new NonPublicValueOfHaver.Thing();
     ResourceBundle bundle = bundleWith("non.public.value.of", thing);
     PropertyBinder<NonPublicValueOfHaver> binder =
@@ -103,7 +103,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
     }
   }
 
-  @Test public void nonStaticValueOf() {
+  @Test void nonStaticValueOf() {
     NonStaticValueOfHaver.Thing thing = new NonStaticValueOfHaver.Thing();
     ResourceBundle bundle = bundleWith("non.static.value.of", thing);
     PropertyBinder<NonStaticValueOfHaver> binder =
@@ -125,7 +125,7 @@ public class BindingUntypedResourceBundlesToTypedInterfacesTest {
     }
   }
 
-  @Test public void badValueOfReturnType() {
+  @Test void badValueOfReturnType() {
     BadValueOfTypeHaver.Thing thing = new BadValueOfTypeHaver.Thing();
     ResourceBundle bundle = bundleWith("bad.value.of.type", thing);
     PropertyBinder<BadValueOfTypeHaver> binder =

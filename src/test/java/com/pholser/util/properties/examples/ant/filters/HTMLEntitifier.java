@@ -5,23 +5,21 @@ import org.apache.tools.ant.filters.ChainableReader;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Ant filter class that transforms HTML special characters into their equivalent entities.
+ * Ant filter class that transforms HTML special characters into their
+ * equivalent entities.
  *
  * @author <a href="mailto:pholser@alumni.rice.edu">Paul Holser</a>
  */
 public class HTMLEntitifier extends BaseFilterReader implements ChainableReader {
-  private static final Map<Integer, String> ENTITIES = new HashMap<Integer, String>();
-
-  static {
-    ENTITIES.put((int) '<', "&lt;");
-    ENTITIES.put((int) '>', "&gt;");
-    ENTITIES.put((int) '"', "&quot;");
-    ENTITIES.put((int) '&', "&amp;");
-  }
+  private static final Map<Integer, String> ENTITIES =
+    Map.of(
+      (int) '<', "&lt;",
+      (int) '>', "&gt;",
+      (int) '"', "&quot;",
+      (int) '&', "&amp;");
 
   private String replacementData;
   private int replacementIndex = -1;
@@ -44,14 +42,16 @@ public class HTMLEntitifier extends BaseFilterReader implements ChainableReader 
   }
 
   @Override public int read() throws IOException {
-    if (!getInitialized())
+    if (!getInitialized()) {
       setInitialized(true);
+    }
 
     if (replacementIndex > -1) {
       char ch = replacementData.charAt(replacementIndex++);
 
-      if (replacementIndex >= replacementData.length())
+      if (replacementIndex >= replacementData.length()) {
         replacementIndex = -1;
+      }
 
       return ch;
     }

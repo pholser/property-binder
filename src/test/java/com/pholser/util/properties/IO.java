@@ -23,20 +23,21 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal;
+package com.pholser.util.properties;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-public final class IO {
+final class IO {
   private IO() {
     throw new UnsupportedOperationException();
   }
 
-  public static void closeQuietly(InputStream input) {
+  static void closeQuietly(InputStream input) {
     try {
-      if (input != null)
+      if (input != null) {
         input.close();
+      }
     } catch (IOException ignored) {
       // empty on purpose
     }

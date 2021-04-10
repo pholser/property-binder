@@ -27,8 +27,10 @@ package com.pholser.util.properties.internal;
 
 import com.pholser.util.properties.UtilityClassesShouldNotBeInstantiated;
 
-public class ReflectionInstantiationTest extends UtilityClassesShouldNotBeInstantiated {
-  public ReflectionInstantiationTest() {
+class ReflectionInstantiationTest
+  extends UtilityClassesShouldNotBeInstantiated<Reflection> {
+
+  ReflectionInstantiationTest() {
     super(Reflection.class);
   }
 }

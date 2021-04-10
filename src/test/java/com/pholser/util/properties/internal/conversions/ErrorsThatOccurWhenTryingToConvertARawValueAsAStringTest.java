@@ -25,11 +25,14 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class ErrorsThatOccurWhenTryingToConvertARawValueAsAStringTest {
-  @Test(expected = AssertionError.class)
-  public void rejectingAttemptsToConvertAString() {
-    new RawValueConverter().convert("");
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+class ErrorsThatOccurWhenTryingToConvertARawValueAsAStringTest {
+  @Test void rejectingAttemptsToConvertAString() {
+    RawValueConverter converter = new RawValueConverter();
+
+    assertThrows(AssertionError.class, () -> converter.convert(""));
   }
 }

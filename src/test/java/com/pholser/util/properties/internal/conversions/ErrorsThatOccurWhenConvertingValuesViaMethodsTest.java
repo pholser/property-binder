@@ -27,17 +27,20 @@ package com.pholser.util.properties.internal.conversions;
 
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import com.pholser.util.properties.testonly.ForTriggeringIllegalAccess;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
 import java.util.Calendar;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
-  @Test public void transformingInvocationTargetExceptions() throws Exception {
-    Method method = MethodRaisesException.class.getDeclaredMethod("raisesException", String.class);
+class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
+  @Test void transformingInvocationTargetExceptions() throws Exception {
+    Method method =
+      MethodRaisesException.class.getDeclaredMethod(
+        "raisesException",
+        String.class);
     MethodInvokingValueConverter converter =
       new MethodInvokingValueConverter(method, Void.class);
 
@@ -45,10 +48,11 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
       assertThrows(
         ValueConversionException.class,
         () -> converter.convert(""));
-    assertEquals(UnsupportedOperationException.class, ex.getCause().getClass());
+
+    assertThat(ex).hasCauseInstanceOf(UnsupportedOperationException.class);
   }
 
-  @Test public void transformingIllegalArgumentExceptions() throws Exception {
+  @Test void transformingIllegalArgumentExceptions() throws Exception {
     Method method = Calendar.class.getDeclaredMethod("getInstance");
     MethodInvokingValueConverter converter =
       new MethodInvokingValueConverter(method, Calendar.class);
@@ -57,10 +61,11 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
       assertThrows(
         ValueConversionException.class,
         () -> converter.convert(""));
-    assertEquals(IllegalArgumentException.class, ex.getCause().getClass());
+
+    assertThat(ex).hasCauseInstanceOf(IllegalArgumentException.class);
   }
 
-  @Test public void transformingIllegalAccessExceptions() throws Exception {
+  @Test void transformingIllegalAccessExceptions() throws Exception {
     Method method = ForTriggeringIllegalAccess.class.getDeclaredMethod("valueOf", String.class);
     MethodInvokingValueConverter converter =
       new MethodInvokingValueConverter(method, String.class);
@@ -69,10 +74,11 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
       assertThrows(
         ValueConversionException.class,
         () -> converter.convert(""));
-    assertEquals(IllegalAccessException.class, ex.getCause().getClass());
+
+    assertThat(ex).hasCauseInstanceOf(IllegalAccessException.class);
   }
 
-  @Test public void transformingClassCastExceptions() throws Exception {
+  @Test void transformingClassCastExceptions() throws Exception {
     Method method = Integer.class.getDeclaredMethod("valueOf", String.class);
     MethodInvokingValueConverter converter =
       new MethodInvokingValueConverter(method, Boolean.class);
@@ -81,11 +87,14 @@ public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
       assertThrows(
         ValueConversionException.class,
         () -> converter.convert("2"));
-    assertEquals(ClassCastException.class, ex.getCause().getClass());
+
+    assertThat(ex).hasCauseInstanceOf(ClassCastException.class);
   }
 
   public static class MethodRaisesException {
-    public static void raisesException(@SuppressWarnings("unused") String argument) {
+    public static void raisesException(
+      @SuppressWarnings("unused") String argument) {
+
       throw new UnsupportedOperationException();
     }
   }
