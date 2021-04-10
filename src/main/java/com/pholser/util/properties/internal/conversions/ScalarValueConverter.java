@@ -28,11 +28,11 @@ package com.pholser.util.properties.internal.conversions;
 import com.pholser.util.properties.PropertySource;
 
 abstract class ScalarValueConverter extends AbstractValueConverter {
-    @Override public final Object nilValue() {
-        return null;
-    }
+  @Override public final Object nilValue() {
+    return null;
+  }
 
-    @Override public final void resolve(PropertySource properties) {
-        // scalars do not resolve
-    }
+  @Override public final void resolve(PropertySource properties) {
+    // scalars do not resolve
+  }
 }

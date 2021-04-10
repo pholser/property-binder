@@ -30,8 +30,8 @@ import org.junit.Test;
 import static com.pholser.util.properties.internal.Reflection.invokeQuietly;
 
 public class ReflectionTest {
-    @Test(expected = AssertionError.class)
-    public void badMethodNameWhenInvokingMethod() {
-        invokeQuietly(String.class, "IUYPQIWE", "");
-    }
+  @Test(expected = AssertionError.class)
+  public void badMethodNameWhenInvokingMethod() {
+    invokeQuietly(String.class, "IUYPQIWE", "");
+  }
 }

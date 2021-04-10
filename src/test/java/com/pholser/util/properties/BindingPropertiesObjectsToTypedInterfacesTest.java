@@ -39,38 +39,38 @@ import static com.pholser.util.properties.internal.IO.closeQuietly;
 import static org.junit.Assert.assertThrows;
 
 public class BindingPropertiesObjectsToTypedInterfacesTest
-    extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
+  extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
 
-    private InputStream inputStream;
-    private Properties props;
-    private ScalarPropertyHaver fromObject;
+  private InputStream inputStream;
+  private Properties props;
+  private ScalarPropertyHaver fromObject;
 
-    @Before public final void initializeProperties() throws Exception {
-        inputStream = new FileInputStream(propertiesFile);
-        props = new Properties();
-        props.load(inputStream);
-        fromObject = binder.bind(props);
-    }
+  @Before public final void initializeProperties() throws Exception {
+    inputStream = new FileInputStream(propertiesFile);
+    props = new Properties();
+    props.load(inputStream);
+    fromObject = binder.bind(props);
+  }
 
-    @After public final void closeInputStream() {
-        closeQuietly(inputStream);
-    }
+  @After public final void closeInputStream() {
+    closeQuietly(inputStream);
+  }
 
-    @Test public void loadingFromPropertiesObject() throws Exception {
-        ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
+  @Test public void loadingFromPropertiesObject() throws Exception {
+    ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
 
-        assertPropertiesEqual(fromFile, fromObject);
-    }
+    assertPropertiesEqual(fromFile, fromObject);
+  }
 
-    @Test public void alteringPropertiesObjectAfterBindingDoesNotAffectPropertiesBoundToPICA() {
-        props.setProperty("big.decimal.property", "!@#!@#!@#!@#!@#");
+  @Test public void alteringPropertiesObjectAfterBindingDoesNotAffectPropertiesBoundToPICA() {
+    props.setProperty("big.decimal.property", "!@#!@#!@#!@#!@#");
 
-        assertThrows(
-            ValueConversionException.class,
-            () -> fromObject.bigDecimalProperty());
-    }
+    assertThrows(
+      ValueConversionException.class,
+      () -> fromObject.bigDecimalProperty());
+  }
 
-    @Override protected Class<ScalarPropertyHaver> boundType() {
-        return ScalarPropertyHaver.class;
-    }
+  @Override protected Class<ScalarPropertyHaver> boundType() {
+    return ScalarPropertyHaver.class;
+  }
 }

@@ -11,28 +11,28 @@ import java.util.Date;
 import java.util.List;
 
 public interface ExampleSchema {
-    String unadorned();
+  String unadorned();
 
-    @BoundProperty("unconverted.property")
-    String annotated();
+  @BoundProperty("unconverted.property")
+  String annotated();
 
-    int intProperty();
+  int intProperty();
 
-    Long wrappedLongProperty();
+  Long wrappedLongProperty();
 
-    char[] charArrayProperty();
+  char[] charArrayProperty();
 
-    List<Character> charListProperty();
+  List<Character> charListProperty();
 
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    List<Ternary> listOfEnumsWithSeparator();
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  List<Ternary> listOfEnumsWithSeparator();
 
-    @DefaultsTo(value = "10")
-    BigDecimal bigDecimalPropertyWithDefault();
+  @DefaultsTo(value = "10")
+  BigDecimal bigDecimalPropertyWithDefault();
 
-    @BoundProperty("date.property")
-    @ParsedAs({"MM/dd/yyyy", "yyyy-MM-dd"})
-    Date dateProperty();
+  @BoundProperty("date.property")
+  @ParsedAs({"MM/dd/yyyy", "yyyy-MM-dd"})
+  Date dateProperty();
 
-    String argsProperty(int quantity, Date time);
+  String argsProperty(int quantity, Date time);
 }

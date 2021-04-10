@@ -34,25 +34,26 @@ import java.util.ResourceBundle;
 import static com.pholser.util.properties.internal.Substitutions.maybeSubstitute;
 
 public class ResourceBundlePropertySource implements PropertySource {
-    private final ResourceBundle backing;
+  private final ResourceBundle backing;
 
-    public ResourceBundlePropertySource(ResourceBundle backing) {
-        if (backing == null)
-            throw new NullPointerException("null backing");
-
-        this.backing = backing;
+  public ResourceBundlePropertySource(ResourceBundle backing) {
+    if (backing == null) {
+      throw new NullPointerException("null backing");
     }
 
-    @Override public Object propertyFor(BoundProperty key) {
-        try {
-            return maybeSubstitute(this, key, backing.getObject(key.value()));
-        } catch (MissingResourceException ex) {
-            return null;
-        }
-    }
+    this.backing = backing;
+  }
 
-    @Override
-    public String toString() {
-        return backing.toString();
+  @Override public Object propertyFor(BoundProperty key) {
+    try {
+      return maybeSubstitute(this, key, backing.getObject(key.value()));
+    } catch (MissingResourceException ex) {
+      return null;
     }
+  }
+
+  @Override
+  public String toString() {
+    return backing.toString();
+  }
 }

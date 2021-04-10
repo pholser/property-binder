@@ -32,19 +32,20 @@ import java.lang.reflect.Method;
 import static com.pholser.util.properties.internal.Reflection.invokeQuietly;
 
 class MethodInvokingValueConverter extends ScalarValueConverter {
-    private final Method method;
-    private final Class<?> clazz;
+  private final Method method;
+  private final Class<?> clazz;
 
-    MethodInvokingValueConverter(Method method, Class<?> clazz) {
-        this.method = method;
-        this.clazz = clazz;
-    }
+  MethodInvokingValueConverter(Method method, Class<?> clazz) {
+    this.method = method;
+    this.clazz = clazz;
+  }
 
-    @Override public Object convert(String raw, Object... args) {
-        try {
-            return clazz.cast(invokeQuietly(method, null, String.format(raw, args)));
-        } catch (ClassCastException ex) {
-            throw new ValueConversionException(ex);
-        }
+  @Override public Object convert(String raw, Object... args) {
+    try {
+      return clazz.cast(
+        invokeQuietly(method, null, String.format(raw, args)));
+    } catch (ClassCastException ex) {
+      throw new ValueConversionException(ex);
     }
+  }
 }

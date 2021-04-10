@@ -26,11 +26,12 @@
 package com.pholser.util.properties.internal.conversions;
 
 class RawValueConverter extends ScalarValueConverter {
-    @Override public Object convertRaw(Object raw, Object... args) {
-        return raw;
-    }
+  @Override public Object convertRaw(Object raw, Object... args) {
+    return raw;
+  }
 
-    @Override public Object convert(String raw, Object... args) {
-        throw new AssertionError("A raw value converter should never be asked to convert a value as a String");
-    }
+  @Override public Object convert(String raw, Object... args) {
+    throw new AssertionError(
+      "A raw value converter should never be asked to convert a value as a String");
+  }
 }

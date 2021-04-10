@@ -31,7 +31,7 @@ import com.pholser.util.properties.DefaultsTo;
 import java.io.Serializable;
 
 public interface InterfaceWithSuperinterfaces extends Serializable {
-    @BoundProperty("some.property")
-    @DefaultsTo("boo")
-    String someProperty();
+  @BoundProperty("some.property")
+  @DefaultsTo("boo")
+  String someProperty();
 }

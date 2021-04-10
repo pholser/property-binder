@@ -34,31 +34,32 @@ import java.lang.reflect.Array;
 import static com.pholser.util.properties.internal.conversions.ValueConverterFactory.createScalarConverter;
 
 class ArrayValueConverter extends AggregateValueConverter {
-    private final Class<?> componentType;
-    private final ValueConverter scalarConverter;
+  private final Class<?> componentType;
+  private final ValueConverter scalarConverter;
 
-    ArrayValueConverter(
-        Class<?> arrayType,
-        ValueSeparator separator,
-        ParsedAs patterns,
-        DefaultsTo defaults) {
+  ArrayValueConverter(
+    Class<?> arrayType,
+    ValueSeparator separator,
+    ParsedAs patterns,
+    DefaultsTo defaults) {
 
-        super(separator);
+    super(separator);
 
-        componentType = arrayType.getComponentType();
-        scalarConverter = createScalarConverter(componentType, patterns, defaults, separator);
-    }
+    componentType = arrayType.getComponentType();
+    scalarConverter =
+      createScalarConverter(componentType, patterns, defaults, separator);
+  }
 
-    @Override public Object convert(String raw, Object... args) {
-        String[] pieces = separate(raw);
-        Object array = Array.newInstance(componentType, pieces.length);
-        for (int i = 0; i < pieces.length; ++i)
-            Array.set(array, i, scalarConverter.convert(pieces[i], args));
+  @Override public Object convert(String raw, Object... args) {
+    String[] pieces = separate(raw);
+    Object array = Array.newInstance(componentType, pieces.length);
+    for (int i = 0; i < pieces.length; ++i)
+      Array.set(array, i, scalarConverter.convert(pieces[i], args));
 
-        return array;
-    }
+    return array;
+  }
 
-    @Override public Object nilValue() {
-        return Array.newInstance(componentType, 0);
-    }
+  @Override public Object nilValue() {
+    return Array.newInstance(componentType, 0);
+  }
 }

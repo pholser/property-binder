@@ -31,91 +31,92 @@ import java.net.URL;
 import java.util.List;
 
 /**
- * Schema interface for the standard {@link System#getProperties() system properties}.
+ * Schema interface for the standard {@link System#getProperties()
+ * system properties}.
  *
- * @author <a href="http://www.pholser.com">Paul Holser</a>
+ * @author <a href="mailto:pholser@alumni.rice.edu">Paul Holser</a>
  */
 public interface SystemProperties {
-    @BoundProperty("java.version")
-    String javaVersion();
+  @BoundProperty("java.version")
+  String javaVersion();
 
-    @BoundProperty("java.vendor")
-    String javaVendor();
+  @BoundProperty("java.vendor")
+  String javaVendor();
 
-    @BoundProperty("java.vendor.url")
-    URL javaVendorUrl();
+  @BoundProperty("java.vendor.url")
+  URL javaVendorUrl();
 
-    @BoundProperty("java.home")
-    File javaHome();
+  @BoundProperty("java.home")
+  File javaHome();
 
-    @BoundProperty("java.vm.specification.version")
-    String javaVmSpecificationVersion();
+  @BoundProperty("java.vm.specification.version")
+  String javaVmSpecificationVersion();
 
-    @BoundProperty("java.vm.specification.vendor")
-    String javaVmSpecificationVendor();
+  @BoundProperty("java.vm.specification.vendor")
+  String javaVmSpecificationVendor();
 
-    @BoundProperty("java.vm.specification.name")
-    String javaVmSpecificationName();
+  @BoundProperty("java.vm.specification.name")
+  String javaVmSpecificationName();
 
-    @BoundProperty("java.vm.version")
-    String javaVmVersion();
+  @BoundProperty("java.vm.version")
+  String javaVmVersion();
 
-    @BoundProperty("java.vm.vendor")
-    String javaVmVendor();
+  @BoundProperty("java.vm.vendor")
+  String javaVmVendor();
 
-    @BoundProperty("java.vm.name")
-    String javaVmName();
+  @BoundProperty("java.vm.name")
+  String javaVmName();
 
-    @BoundProperty("java.specification.version")
-    String javaSpecificationVersion();
+  @BoundProperty("java.specification.version")
+  String javaSpecificationVersion();
 
-    @BoundProperty("java.specification.vendor")
-    String javaSpecificationVendor();
+  @BoundProperty("java.specification.vendor")
+  String javaSpecificationVendor();
 
-    @BoundProperty("java.specification.name")
-    String javaSpecificationName();
+  @BoundProperty("java.specification.name")
+  String javaSpecificationName();
 
-    @BoundProperty("java.class.version")
-    BigDecimal javaClassVersion();
+  @BoundProperty("java.class.version")
+  BigDecimal javaClassVersion();
 
-    @BoundProperty("java.class.path")
-    @ValuesSeparatedBy(valueOf = "[path.separator]")
-    List<File> javaClassPath();
+  @BoundProperty("java.class.path")
+  @ValuesSeparatedBy(valueOf = "[path.separator]")
+  List<File> javaClassPath();
 
-    @BoundProperty("java.library.path")
-    @ValuesSeparatedBy(valueOf = "[path.separator]")
-    List<File> javaLibraryPath();
+  @BoundProperty("java.library.path")
+  @ValuesSeparatedBy(valueOf = "[path.separator]")
+  List<File> javaLibraryPath();
 
-    @BoundProperty("java.io.tmpdir")
-    File javaIoTmpdir();
+  @BoundProperty("java.io.tmpdir")
+  File javaIoTmpdir();
 
-    @BoundProperty("java.compiler")
-    String javaCompiler();
+  @BoundProperty("java.compiler")
+  String javaCompiler();
 
-    @BoundProperty("os.name")
-    String osName();
+  @BoundProperty("os.name")
+  String osName();
 
-    @BoundProperty("os.arch")
-    String osArch();
+  @BoundProperty("os.arch")
+  String osArch();
 
-    @BoundProperty("os.version")
-    String osVersion();
+  @BoundProperty("os.version")
+  String osVersion();
 
-    @BoundProperty("file.separator")
-    char fileSeparator();
+  @BoundProperty("file.separator")
+  char fileSeparator();
 
-    @BoundProperty("path.separator")
-    char pathSeparator();
+  @BoundProperty("path.separator")
+  char pathSeparator();
 
-    @BoundProperty("line.separator")
-    String lineSeparator();
+  @BoundProperty("line.separator")
+  String lineSeparator();
 
-    @BoundProperty("user.name")
-    String userName();
+  @BoundProperty("user.name")
+  String userName();
 
-    @BoundProperty("user.home")
-    File userHome();
+  @BoundProperty("user.home")
+  File userHome();
 
-    @BoundProperty("user.dir")
-    File userDir();
+  @BoundProperty("user.dir")
+  File userDir();
 }

@@ -30,8 +30,8 @@ import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ValuesSeparatedBy;
 
 public interface SeparatorOnNonAggregateTypePropertyHaver {
-    @BoundProperty("separator.on.non.aggregate.type.property")
-    @DefaultsTo("boo")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    String aProperty();
+  @BoundProperty("separator.on.non.aggregate.type.property")
+  @DefaultsTo("boo")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  String aProperty();
 }

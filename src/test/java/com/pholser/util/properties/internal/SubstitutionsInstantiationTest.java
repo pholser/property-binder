@@ -28,7 +28,7 @@ package com.pholser.util.properties.internal;
 import com.pholser.util.properties.UtilityClassesShouldNotBeInstantiated;
 
 public class SubstitutionsInstantiationTest extends UtilityClassesShouldNotBeInstantiated {
-    public SubstitutionsInstantiationTest() {
-        super(Substitutions.class);
-    }
+  public SubstitutionsInstantiationTest() {
+    super(Substitutions.class);
+  }
 }

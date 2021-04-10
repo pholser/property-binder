@@ -31,8 +31,8 @@ import org.junit.Test;
 import static com.pholser.util.properties.internal.Schemata.annotationDefault;
 
 public class SchemataTest {
-    @Test(expected = AssertionError.class)
-    public void badMethodNameOnAnnotation() {
-        annotationDefault(DefaultsTo.class, "!@#!@#");
-    }
+  @Test(expected = AssertionError.class)
+  public void badMethodNameOnAnnotation() {
+    annotationDefault(DefaultsTo.class, "!@#!@#");
+  }
 }

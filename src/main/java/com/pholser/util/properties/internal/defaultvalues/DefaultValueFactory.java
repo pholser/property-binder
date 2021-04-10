@@ -33,14 +33,14 @@ import java.lang.reflect.Method;
 import static com.pholser.util.properties.internal.Schemata.isDefaultDefaultValue;
 
 public class DefaultValueFactory {
-    public DefaultValue createDefaultValue(
-        DefaultsTo spec,
-        ValueConverter converter,
-        Method method) {
+  public DefaultValue createDefaultValue(
+    DefaultsTo spec,
+    ValueConverter converter,
+    Method method) {
 
-        if (isDefaultDefaultValue(spec))
-            return new SubstitutableDefaultValue(spec, converter, method);
+    if (isDefaultDefaultValue(spec))
+      return new SubstitutableDefaultValue(spec, converter, method);
 
-        return ConvertedDefaultValue.fromValue(spec.value(), converter, method);
-    }
+    return ConvertedDefaultValue.fromValue(spec.value(), converter, method);
+  }
 }

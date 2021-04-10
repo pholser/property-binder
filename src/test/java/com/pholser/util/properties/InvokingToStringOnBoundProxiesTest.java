@@ -37,63 +37,63 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
 
 public class InvokingToStringOnBoundProxiesTest {
-    private PropertyBinder<Schema> binder;
+  private PropertyBinder<Schema> binder;
 
-    @Before public void setUp() {
-        binder = PropertyBinder.forType(Schema.class);
-    }
+  @Before public void setUp() {
+    binder = PropertyBinder.forType(Schema.class);
+  }
 
-    @Test public void propertiesSource() {
-        Properties props = new Properties();
-        props.setProperty("foo", "bar");
-        Schema bound = binder.bind(props);
+  @Test public void propertiesSource() {
+    Properties props = new Properties();
+    props.setProperty("foo", "bar");
+    Schema bound = binder.bind(props);
 
-        String asString = bound.toString();
+    String asString = bound.toString();
 
-        assertThat(asString).contains(Schema.class.getName());
-        assertThat(asString).contains(props.toString());
-    }
+    assertThat(asString).contains(Schema.class.getName());
+    assertThat(asString).contains(props.toString());
+  }
 
-    @Test public void mapSource() {
-        Map<String, String> properties = Collections.singletonMap("foo", "bar");
-        Schema bound = binder.bind(properties);
+  @Test public void mapSource() {
+    Map<String, String> properties = Collections.singletonMap("foo", "bar");
+    Schema bound = binder.bind(properties);
 
-        String asString = bound.toString();
+    String asString = bound.toString();
 
-        assumeThat(asString).contains(Schema.class.getName());
-        assertThat(asString).contains(properties.toString());
-    }
+    assumeThat(asString).contains(Schema.class.getName());
+    assertThat(asString).contains(properties.toString());
+  }
 
-    @Test public void resourceBundleSource() {
-        ResourceBundle bundle = ResourceBundles.bundleWith("foo", "bar");
-        Schema bound = binder.bind(bundle);
+  @Test public void resourceBundleSource() {
+    ResourceBundle bundle = ResourceBundles.bundleWith("foo", "bar");
+    Schema bound = binder.bind(bundle);
 
-        String asString = bound.toString();
+    String asString = bound.toString();
 
-        assumeThat(asString).contains(Schema.class.getName());
-        assertThat(asString).contains(bundle.toString());
-    }
+    assumeThat(asString).contains(Schema.class.getName());
+    assertThat(asString).contains(bundle.toString());
+  }
 
-    @Test
-    public void arbitraryPropertySource() {
-        PropertySource source = new PropertySource() {
-            @Override public Object propertyFor(BoundProperty key) {
-                return null;
-            }
+  @Test
+  public void arbitraryPropertySource() {
+    PropertySource source = new PropertySource() {
+      @Override public Object propertyFor(BoundProperty key) {
+        return null;
+      }
 
-            @Override public String toString() {
-                return "qwerty";
-            }
-        };
-        Schema bound = binder.bind(source);
+      @Override public String toString() {
+        return "qwerty";
+      }
+    };
+    Schema bound = binder.bind(source);
 
-        String asString = bound.toString();
+    String asString = bound.toString();
 
-        assumeThat(asString).contains(Schema.class.getName());
-        assertThat(asString).contains("qwerty");
-    }
+    assumeThat(asString).contains(Schema.class.getName());
+    assertThat(asString).contains("qwerty");
+  }
 
-    interface Schema {
-        // no methods needed
-    }
+  interface Schema {
+    // no methods needed
+  }
 }

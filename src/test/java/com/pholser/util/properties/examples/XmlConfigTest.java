@@ -17,40 +17,40 @@ import java.io.File;
 import static org.junit.Assert.assertEquals;
 
 public class XmlConfigTest {
-    private Config config;
+  private Config config;
 
-    @Before public final void initialize() throws Exception {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.parse(getClass().getResourceAsStream("/config.xml"));
+  @Before public final void initialize() throws Exception {
+    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder builder = factory.newDocumentBuilder();
+    Document document = builder.parse(getClass().getResourceAsStream("/config.xml"));
 
-        PropertyBinder<Config> binder = PropertyBinder.forType(Config.class);
-        config = binder.bind(new XmlConfigSource(document));
-    }
+    PropertyBinder<Config> binder = PropertyBinder.forType(Config.class);
+    config = binder.bind(new XmlConfigSource(document));
+  }
 
-    @Test public void retrievesTimeoutValue() {
-        assertEquals(5000L, config.timeout());
-    }
+  @Test public void retrievesTimeoutValue() {
+    assertEquals(5000L, config.timeout());
+  }
 
-    @Test public void retrievesOutputFileValue() {
-        assertEquals(new File("/home/joeblow/out.txt"), config.outputFile());
-    }
+  @Test public void retrievesOutputFileValue() {
+    assertEquals(new File("/home/joeblow/out.txt"), config.outputFile());
+  }
 }
 
 class XmlConfigSource implements PropertySource {
-    private final Document document;
-    private final XPath xpath;
+  private final Document document;
+  private final XPath xpath;
 
-    XmlConfigSource(Document document) {
-        this.document = document;
-        xpath = XPathFactory.newInstance().newXPath();
-    }
+  XmlConfigSource(Document document) {
+    this.document = document;
+    xpath = XPathFactory.newInstance().newXPath();
+  }
 
-    @Override public Object propertyFor(BoundProperty key) {
-        try {
-            return xpath.compile(key.value()).evaluate(document);
-        } catch (XPathExpressionException e) {
-            throw new IllegalStateException(e);
-        }
+  @Override public Object propertyFor(BoundProperty key) {
+    try {
+      return xpath.compile(key.value()).evaluate(document);
+    } catch (XPathExpressionException e) {
+      throw new IllegalStateException(e);
     }
+  }
 }

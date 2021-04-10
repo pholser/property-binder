@@ -29,7 +29,7 @@ import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
 public interface ArrayOfUnconvertibleTypeWithSeparatorPropertyHaver {
-    @BoundProperty("array.of.unconvertible.type.property")
-    @DefaultsTo("boo")
-    Object[] arrayOfUnconvertibleTypeProperty();
+  @BoundProperty("array.of.unconvertible.type.property")
+  @DefaultsTo("boo")
+  Object[] arrayOfUnconvertibleTypeProperty();
 }

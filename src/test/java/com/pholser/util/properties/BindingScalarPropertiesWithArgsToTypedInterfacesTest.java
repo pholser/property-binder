@@ -39,49 +39,49 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 public class BindingScalarPropertiesWithArgsToTypedInterfacesTest
-    extends TypedStringBindingTestSupport<ScalarPropertyWithArgsHaver> {
+  extends TypedStringBindingTestSupport<ScalarPropertyWithArgsHaver> {
 
-    @Test public void passingArgumentsToPropertyMethodAndHaveFormattingOccurOnResult() {
-        assertEquals("foo to the bar", bound.stringPropertyWithArguments("foo", "bar"));
-    }
+  @Test public void passingArgumentsToPropertyMethodAndHaveFormattingOccurOnResult() {
+    assertEquals("foo to the bar", bound.stringPropertyWithArguments("foo", "bar"));
+  }
 
-    @Test public void passingArgumentsOfVariousTypesToPropertyMethodAndHaveFormattingOccurOnResult()
-        throws Exception {
+  @Test public void passingArgumentsOfVariousTypesToPropertyMethodAndHaveFormattingOccurOnResult()
+    throws Exception {
 
-        assertEquals(
-            "10 seconds to 12:00:00 AM",
-            bound.stringPropertyWithTypedArguments(10, mmddyyyy("12/22/2003")));
-    }
+    assertEquals(
+      "10 seconds to 12:00:00 AM",
+      bound.stringPropertyWithTypedArguments(10, mmddyyyy("12/22/2003")));
+  }
 
-    @Test public void illTypedArgumentsToPropertyMethodsWithArgs() throws Exception {
-        assertThrows(
-            ValueConversionException.class,
-            () -> bound.stringPropertyWithIllTypedArguments(10, mmddyyyy("12/22/2003")));
-    }
+  @Test public void illTypedArgumentsToPropertyMethodsWithArgs() throws Exception {
+    assertThrows(
+      ValueConversionException.class,
+      () -> bound.stringPropertyWithIllTypedArguments(10, mmddyyyy("12/22/2003")));
+  }
 
-    @Test public void convertingPropertyMethodsWithArgsToTypeOtherThanString() throws Exception {
-        assertEquals(mmddyyyy("02/24/2010"), bound.datePropertyByMonthDayYear(2, 24, 2010));
-    }
+  @Test public void convertingPropertyMethodsWithArgsToTypeOtherThanString() throws Exception {
+    assertEquals(mmddyyyy("02/24/2010"), bound.datePropertyByMonthDayYear(2, 24, 2010));
+  }
 
-    @Test public void applyingArgumentsOfPropertyMethodsToEachOfAnArrayType() {
-        assertArrayEquals(
-            new String[] { "foobar", "barfoo" },
-            bound.stringArrayPropertyWithArguments("foo", "bar"));
-    }
+  @Test public void applyingArgumentsOfPropertyMethodsToEachOfAnArrayType() {
+    assertArrayEquals(
+      new String[] {"foobar", "barfoo"},
+      bound.stringArrayPropertyWithArguments("foo", "bar"));
+  }
 
-    @Test public void applyingArgumentsOfPropertyMethodsToEachOfListTypeWithCustomSeparator()
-        throws Exception {
+  @Test public void applyingArgumentsOfPropertyMethodsToEachOfListTypeWithCustomSeparator()
+    throws Exception {
 
-        assertEquals(
-            asList(mmddyyyy("03/23/2010"), mmddyyyy("03/23/2010")),
-            bound.dateListPropertyWithArgumentsAndSeparator(3, 23, 2010));
-    }
+    assertEquals(
+      asList(mmddyyyy("03/23/2010"), mmddyyyy("03/23/2010")),
+      bound.dateListPropertyWithArgumentsAndSeparator(3, 23, 2010));
+  }
 
-    @Override protected Class<ScalarPropertyWithArgsHaver> boundType() {
-        return ScalarPropertyWithArgsHaver.class;
-    }
+  @Override protected Class<ScalarPropertyWithArgsHaver> boundType() {
+    return ScalarPropertyWithArgsHaver.class;
+  }
 
-    private static Date mmddyyyy(String raw) throws ParseException {
-        return new SimpleDateFormat("MM/dd/yyyy").parse(raw);
-    }
+  private static Date mmddyyyy(String raw) throws ParseException {
+    return new SimpleDateFormat("MM/dd/yyyy").parse(raw);
+  }
 }

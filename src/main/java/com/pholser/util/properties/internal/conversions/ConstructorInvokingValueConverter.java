@@ -31,19 +31,22 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 class ConstructorInvokingValueConverter extends ScalarValueConverter {
-    private final Constructor<?> ctor;
+  private final Constructor<?> ctor;
 
-    ConstructorInvokingValueConverter(Constructor<?> ctor) {
-        this.ctor = ctor;
-    }
+  ConstructorInvokingValueConverter(Constructor<?> ctor) {
+    this.ctor = ctor;
+  }
 
-    @Override public Object convert(String raw, Object... args) {
-        try {
-            return ctor.newInstance(String.format(raw, args));
-        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException ex) {
-            throw new ValueConversionException(ex);
-        } catch (InvocationTargetException ex) {
-            throw new ValueConversionException(ex.getTargetException());
-        }
+  @Override public Object convert(String raw, Object... args) {
+    try {
+      return ctor.newInstance(String.format(raw, args));
+    } catch (InstantiationException
+      | IllegalAccessException
+      | IllegalArgumentException ex) {
+
+      throw new ValueConversionException(ex);
+    } catch (InvocationTargetException ex) {
+      throw new ValueConversionException(ex.getTargetException());
     }
+  }
 }

@@ -29,24 +29,24 @@ import java.util.ListResourceBundle;
 import java.util.ResourceBundle;
 
 class ResourceBundles {
-    private ResourceBundles() {
-        throw new UnsupportedOperationException();
-    }
+  private ResourceBundles() {
+    throw new UnsupportedOperationException();
+  }
 
-    static ResourceBundle bundleWith(String key, Object value) {
-        return bundleWith(new Object[][] { { key, value } });
-    }
+  static ResourceBundle bundleWith(String key, Object value) {
+    return bundleWith(new Object[][] {{key, value}});
+  }
 
-    static ResourceBundle bundleWith(String firstKey, Object firstValue, String secondKey, Object secondValue) {
-        return bundleWith(new Object[][] { { firstKey, firstValue }, { secondKey, secondValue } });
-    }
+  static ResourceBundle bundleWith(String firstKey, Object firstValue, String secondKey, Object secondValue) {
+    return bundleWith(new Object[][] {{firstKey, firstValue}, {secondKey, secondValue}});
+  }
 
-    private static ResourceBundle bundleWith(final Object[][] items) {
-        return new ListResourceBundle() {
-            @Override
-            protected Object[][] getContents() {
-                return items;
-            }
-        };
-    }
+  private static ResourceBundle bundleWith(final Object[][] items) {
+    return new ListResourceBundle() {
+      @Override
+      protected Object[][] getContents() {
+        return items;
+      }
+    };
+  }
 }

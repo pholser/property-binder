@@ -30,29 +30,30 @@ import com.pholser.util.properties.BoundProperty;
 import java.lang.annotation.Annotation;
 
 class InternalBoundProperty implements BoundProperty {
-    private final String key;
+  private final String key;
 
-    InternalBoundProperty(String key) {
-        this.key = key;
-    }
+  InternalBoundProperty(String key) {
+    this.key = key;
+  }
 
-    @Override public String value() {
-        return key;
-    }
+  @Override public String value() {
+    return key;
+  }
 
-    @Override public boolean suppressSubstitution() {
-        return false;
-    }
+  @Override public boolean suppressSubstitution() {
+    return false;
+  }
 
-    @Override public Class<? extends Annotation> annotationType() {
-        return BoundProperty.class;
-    }
+  @Override public Class<? extends Annotation> annotationType() {
+    return BoundProperty.class;
+  }
 
-    @Override public boolean equals(Object o) {
-        return o instanceof BoundProperty && value().equals(((BoundProperty) o).value());
-    }
+  @Override public boolean equals(Object o) {
+    return o instanceof BoundProperty
+      && value().equals(((BoundProperty) o).value());
+  }
 
-    @Override public int hashCode() {
-        return value().hashCode();
-    }
+  @Override public int hashCode() {
+    return value().hashCode();
+  }
 }

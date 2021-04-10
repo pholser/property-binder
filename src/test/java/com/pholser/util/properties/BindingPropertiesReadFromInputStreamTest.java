@@ -36,25 +36,25 @@ import java.io.InputStream;
 import static com.pholser.util.properties.internal.IO.closeQuietly;
 
 public class BindingPropertiesReadFromInputStreamTest
-    extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
+  extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
 
-    private InputStream inputStream;
+  private InputStream inputStream;
 
-    @Before public final void initializeInputStream() throws Exception {
-        inputStream = new FileInputStream(propertiesFile);
-    }
+  @Before public final void initializeInputStream() throws Exception {
+    inputStream = new FileInputStream(propertiesFile);
+  }
 
-    @After public final void closeInputStream() {
-        closeQuietly(inputStream);
-    }
+  @After public final void closeInputStream() {
+    closeQuietly(inputStream);
+  }
 
-    @Test public void loadingFromInputStream() throws Exception {
-        ScalarPropertyHaver fromInputStream = binder.bind(inputStream);
+  @Test public void loadingFromInputStream() throws Exception {
+    ScalarPropertyHaver fromInputStream = binder.bind(inputStream);
 
-        assertPropertiesEqual(bound, fromInputStream);
-    }
+    assertPropertiesEqual(bound, fromInputStream);
+  }
 
-    @Override protected Class<ScalarPropertyHaver> boundType() {
-        return ScalarPropertyHaver.class;
-    }
+  @Override protected Class<ScalarPropertyHaver> boundType() {
+    return ScalarPropertyHaver.class;
+  }
 }

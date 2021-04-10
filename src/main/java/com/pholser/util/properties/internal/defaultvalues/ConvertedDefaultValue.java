@@ -33,33 +33,33 @@ import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import java.lang.reflect.Method;
 
 final class ConvertedDefaultValue implements DefaultValue {
-    private final Object converted;
+  private final Object converted;
 
-    private ConvertedDefaultValue(
-        String value,
-        ValueConverter converter,
-        Method method) {
+  private ConvertedDefaultValue(
+    String value,
+    ValueConverter converter,
+    Method method) {
 
-        try {
-            converted = converter.convert(value);
-        } catch (ValueConversionException ex) {
-            throw new MalformedDefaultValueException(value, method, ex);
-        }
+    try {
+      converted = converter.convert(value);
+    } catch (ValueConversionException ex) {
+      throw new MalformedDefaultValueException(value, method, ex);
     }
+  }
 
-    static ConvertedDefaultValue fromValue(
-        String value,
-        ValueConverter converter,
-        Method method) {
+  static ConvertedDefaultValue fromValue(
+    String value,
+    ValueConverter converter,
+    Method method) {
 
-        return new ConvertedDefaultValue(value, converter, method);
-    }
+    return new ConvertedDefaultValue(value, converter, method);
+  }
 
-    @Override public Object evaluate() {
-        return converted;
-    }
+  @Override public Object evaluate() {
+    return converted;
+  }
 
-    @Override public void resolve(PropertySource properties) {
-        // nothing to do here
-    }
+  @Override public void resolve(PropertySource properties) {
+    // nothing to do here
+  }
 }

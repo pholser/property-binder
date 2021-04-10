@@ -33,32 +33,39 @@ import java.lang.reflect.Method;
 import static java.lang.System.identityHashCode;
 
 class PropertyBinderInvocationHandler implements InvocationHandler {
-    private final PropertySource properties;
-    private final ValidatedSchema<?> validated;
+  private final PropertySource properties;
+  private final ValidatedSchema<?> validated;
 
-    PropertyBinderInvocationHandler(PropertySource properties, ValidatedSchema<?> validated) {
-        this.properties = properties;
-        this.validated = validated;
+  PropertyBinderInvocationHandler(
+    PropertySource properties,
+    ValidatedSchema<?> validated) {
+
+    this.properties = properties;
+    this.validated = validated;
+  }
+
+  @Override public Object invoke(Object proxy, Method method, Object[] args) {
+    return Object.class.equals(method.getDeclaringClass())
+      ? handleObjectMethod(proxy, method, args)
+      : validated.convert(properties, method, args);
+  }
+
+  private Object handleObjectMethod(
+    Object proxy,
+    Method method,
+    Object[] args) {
+
+    if ("equals".equals(method.getName())) {
+      return proxy == args[0];
+    }
+    if ("hashCode".equals(method.getName())) {
+      return identityHashCode(proxy);
     }
 
-    @Override public Object invoke(Object proxy, Method method, Object[] args) {
-        if (Object.class.equals(method.getDeclaringClass()))
-            return handleObjectMethod(proxy, method, args);
+    return handleToString();
+  }
 
-        return validated.convert(properties, method, args);
-    }
-
-    private Object handleObjectMethod(Object proxy, Method method, Object[] args) {
-        if ("equals".equals(method.getName()))
-            return proxy == args[0];
-
-        if ("hashCode".equals(method.getName()))
-            return identityHashCode(proxy);
-
-        return handleToString();
-    }
-
-    private String handleToString() {
-        return validated.getName() + '[' + properties + ']';
-    }
+  private String handleToString() {
+    return validated.getName() + '[' + properties + ']';
+  }
 }

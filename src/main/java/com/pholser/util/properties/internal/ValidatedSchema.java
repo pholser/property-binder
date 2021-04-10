@@ -37,59 +37,60 @@ import static com.pholser.util.properties.internal.Schemata.propertyMarkerFor;
 import static java.lang.reflect.Proxy.newProxyInstance;
 
 public class ValidatedSchema<T> {
-    private final Class<T> schema;
-    private final Map<BoundProperty, DefaultValue> defaults;
-    private final Map<BoundProperty, ValueConverter> converters;
+  private final Class<T> schema;
+  private final Map<BoundProperty, DefaultValue> defaults;
+  private final Map<BoundProperty, ValueConverter> converters;
 
-    public ValidatedSchema(
-        Class<T> schema,
-        Map<BoundProperty, DefaultValue> defaults,
-        Map<BoundProperty, ValueConverter> converters) {
+  public ValidatedSchema(
+    Class<T> schema,
+    Map<BoundProperty, DefaultValue> defaults,
+    Map<BoundProperty, ValueConverter> converters) {
 
-        this.schema = schema;
-        this.defaults = defaults;
-        this.converters = converters;
+    this.schema = schema;
+    this.defaults = defaults;
+    this.converters = converters;
+  }
+
+  public T evaluate(PropertySource properties) {
+    if (properties == null) {
+      throw new NullPointerException("null properties source");
     }
 
-    public T evaluate(PropertySource properties) {
-        if (properties == null)
-            throw new NullPointerException("null properties source");
+    resolveConverters(properties);
+    resolveDefaultValues(properties);
+    return createTypedProxyFor(properties);
+  }
 
-        resolveConverters(properties);
-        resolveDefaultValues(properties);
-        return createTypedProxyFor(properties);
-    }
+  Object convert(PropertySource properties, Method method, Object... args) {
+    BoundProperty key = propertyMarkerFor(method);
+    ValueConverter converter = converters.get(key);
 
-    T createTypedProxyFor(PropertySource properties) {
-        return schema.cast(newProxyInstance(
-            schema.getClassLoader(),
-            new Class<?>[] { schema },
-            new PropertyBinderInvocationHandler(properties, this)));
-    }
+    Object value = properties.propertyFor(key);
+    if (value != null)
+      return converter.convertRaw(value, args);
+    if (defaults.containsKey(key))
+      return defaults.get(key).evaluate();
+    return converter.nilValue();
+  }
 
-    Object convert(PropertySource properties, Method method, Object... args) {
-        BoundProperty key = propertyMarkerFor(method);
-        ValueConverter converter = converters.get(key);
+  String getName() {
+    return schema.getName();
+  }
 
-        Object value = properties.propertyFor(key);
-        if (value != null)
-            return converter.convertRaw(value, args);
-        if (defaults.containsKey(key))
-            return defaults.get(key).evaluate();
-        return converter.nilValue();
-    }
+  private void resolveConverters(PropertySource properties) {
+    for (ValueConverter each : converters.values())
+      each.resolve(properties);
+  }
 
-    String getName() {
-        return schema.getName();
-    }
+  private void resolveDefaultValues(PropertySource properties) {
+    for (DefaultValue each : defaults.values())
+      each.resolve(properties);
+  }
 
-    private void resolveConverters(PropertySource properties) {
-        for (ValueConverter each : converters.values())
-            each.resolve(properties);
-    }
-
-    private void resolveDefaultValues(PropertySource properties) {
-        for (DefaultValue each : defaults.values())
-            each.resolve(properties);
-    }
+  private T createTypedProxyFor(PropertySource properties) {
+    return schema.cast(newProxyInstance(
+      schema.getClassLoader(),
+      new Class<?>[] {schema},
+      new PropertyBinderInvocationHandler(properties, this)));
+  }
 }

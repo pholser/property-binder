@@ -34,19 +34,19 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 public abstract class UtilityClassesShouldNotBeInstantiated {
-    private final Class<?> utility;
+  private final Class<?> utility;
 
-    protected UtilityClassesShouldNotBeInstantiated(Class<?> utility) {
-        this.utility = utility;
-    }
+  protected UtilityClassesShouldNotBeInstantiated(Class<?> utility) {
+    this.utility = utility;
+  }
 
-    @Test public final void attemptInstantiation() throws Exception {
-        Constructor<?> constructor = utility.getDeclaredConstructor();
-        constructor.setAccessible(true);
+  @Test public final void attemptInstantiation() throws Exception {
+    Constructor<?> constructor = utility.getDeclaredConstructor();
+    constructor.setAccessible(true);
 
-        InvocationTargetException ex =
-            assertThrows(InvocationTargetException.class, constructor::newInstance);
+    InvocationTargetException ex =
+      assertThrows(InvocationTargetException.class, constructor::newInstance);
 
-        assertEquals(UnsupportedOperationException.class, ex.getCause().getClass());
-    }
+    assertEquals(UnsupportedOperationException.class, ex.getCause().getClass());
+  }
 }

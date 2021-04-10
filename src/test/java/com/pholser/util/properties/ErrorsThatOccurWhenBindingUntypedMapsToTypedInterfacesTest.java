@@ -34,51 +34,51 @@ import java.util.Map;
 import static org.junit.Assert.assertThrows;
 
 public class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
-    @Test public void returnTypeAndUnderlyingPropertyTypeDisagree() {
-        Map<String, Object> items = new HashMap<>();
-        items.put("i", new Object());
-        PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
-        IntPropertyHaver bound = binder.bind(items);
+  @Test public void returnTypeAndUnderlyingPropertyTypeDisagree() {
+    Map<String, Object> items = new HashMap<>();
+    items.put("i", new Object());
+    PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
+    IntPropertyHaver bound = binder.bind(items);
 
-        assertThrows(ClassCastException.class, bound::i);
-    }
+    assertThrows(ClassCastException.class, bound::i);
+  }
 
-    @Test public void primitiveWidening() {
-        Map<String, Object> items = new HashMap<>();
-        items.put("i", Short.valueOf("2"));
-        PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
-        IntPropertyHaver bound = binder.bind(items);
+  @Test public void primitiveWidening() {
+    Map<String, Object> items = new HashMap<>();
+    items.put("i", Short.valueOf("2"));
+    PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
+    IntPropertyHaver bound = binder.bind(items);
 
-        assertThrows(ClassCastException.class, bound::i);
-    }
+    assertThrows(ClassCastException.class, bound::i);
+  }
 
-    @Test public void resolvingASeparatorWithNonStringPropertyValue() {
-        Map<String, Object> items = new HashMap<>();
-        items.put("bar", "A,B,C");
-        items.put("separator", new Object());
-        PropertyBinder<WithValueOfSeparator> binder = PropertyBinder.forType(WithValueOfSeparator.class);
+  @Test public void resolvingASeparatorWithNonStringPropertyValue() {
+    Map<String, Object> items = new HashMap<>();
+    items.put("bar", "A,B,C");
+    items.put("separator", new Object());
+    PropertyBinder<WithValueOfSeparator> binder = PropertyBinder.forType(WithValueOfSeparator.class);
 
-        assertThrows(ClassCastException.class, () -> binder.bind(items));
-    }
+    assertThrows(ClassCastException.class, () -> binder.bind(items));
+  }
 
-    interface WithValueOfSeparator {
-        @BoundProperty("bar")
-        @ValuesSeparatedBy(valueOf = "[separator]")
-        String[] bar();
-    }
+  interface WithValueOfSeparator {
+    @BoundProperty("bar")
+    @ValuesSeparatedBy(valueOf = "[separator]")
+    String[] bar();
+  }
 
-    @Test public void resolvingADefaultValueWithNonStringPropertyValue() {
-        Map<String, Object> items = new HashMap<>();
-        items.put("bar", "ABC");
-        items.put("other", new Object());
-        PropertyBinder<WithValueOfDefault> binder = PropertyBinder.forType(WithValueOfDefault.class);
+  @Test public void resolvingADefaultValueWithNonStringPropertyValue() {
+    Map<String, Object> items = new HashMap<>();
+    items.put("bar", "ABC");
+    items.put("other", new Object());
+    PropertyBinder<WithValueOfDefault> binder = PropertyBinder.forType(WithValueOfDefault.class);
 
-        assertThrows(ClassCastException.class, () -> binder.bind(items));
-    }
+    assertThrows(ClassCastException.class, () -> binder.bind(items));
+  }
 
-    interface WithValueOfDefault {
-        @BoundProperty("foo")
-        @DefaultsTo(valueOf = "[other]")
-        String foo();
-    }
+  interface WithValueOfDefault {
+    @BoundProperty("foo")
+    @DefaultsTo(valueOf = "[other]")
+    String foo();
+  }
 }

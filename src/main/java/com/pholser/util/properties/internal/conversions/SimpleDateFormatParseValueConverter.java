@@ -35,24 +35,25 @@ import java.text.SimpleDateFormat;
 import static java.util.Arrays.asList;
 
 class SimpleDateFormatParseValueConverter extends ScalarValueConverter {
-    private final ParsedAs patterns;
+  private final ParsedAs patterns;
 
-    SimpleDateFormatParseValueConverter(ParsedAs patterns) {
-        this.patterns = patterns;
+  SimpleDateFormatParseValueConverter(ParsedAs patterns) {
+    this.patterns = patterns;
+  }
+
+  @Override public Object convert(String raw, Object... args) {
+    for (String each : patterns.value()) {
+      try {
+        DateFormat formatter = new SimpleDateFormat(each);
+        formatter.setLenient(false);
+        return formatter.parse(String.format(raw, args));
+      } catch (ParseException ex) {
+        // try the next pattern
+      }
     }
 
-    @Override public Object convert(String raw, Object... args) {
-        for (String each : patterns.value()) {
-            try {
-                DateFormat formatter = new SimpleDateFormat(each);
-                formatter.setLenient(false);
-                return formatter.parse(String.format(raw, args));
-            } catch (ParseException ex) {
-                // try the next pattern
-            }
-        }
-
-        throw new ValueConversionException(
-            "Could not parse value [" + raw + "] using any of the patterns: " + asList(patterns.value()));
-    }
+    throw new ValueConversionException(
+      "Could not parse value [" + raw
+        + "] using any of the patterns: " + asList(patterns.value()));
+  }
 }

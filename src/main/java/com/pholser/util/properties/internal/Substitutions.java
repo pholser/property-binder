@@ -33,38 +33,47 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class Substitutions {
-    private static final Pattern REFERENCE = Pattern.compile("\\[(.*?)\\]");
+  private static final Pattern REFERENCE = Pattern.compile("\\[(.*?)\\]");
 
-    private Substitutions() {
-        throw new UnsupportedOperationException();
+  private Substitutions() {
+    throw new UnsupportedOperationException();
+  }
+
+  public static String substitute(PropertySource properties, String value) {
+    String previous = null;
+    String substituted = value;
+
+    while (!Objects.equals(previous, substituted)) {
+      previous = substituted;
+      substituted = substituteReferences(properties, previous);
     }
 
-    public static String substitute(PropertySource properties, String value) {
-        String previous = null;
-        String substituted = value;
+    return substituted;
+  }
 
-        while (!Objects.equals(previous, substituted)) {
-            previous = substituted;
-            substituted = substituteReferences(properties, previous);
-        }
+  public static Object maybeSubstitute(
+    PropertySource properties,
+    BoundProperty key,
+    Object value) {
 
-        return substituted;
+    return value instanceof String && !key.suppressSubstitution()
+      ? substitute(properties, (String) value)
+      : value;
+  }
+
+  private static String substituteReferences(
+    PropertySource properties,
+    CharSequence value) {
+
+    Matcher matcher = REFERENCE.matcher(value);
+    StringBuffer buffer = new StringBuffer(value.length() * 2);
+    while (matcher.find()) {
+      String reference =
+        (String) properties.propertyFor(
+          new InternalBoundProperty(matcher.group(1)));
+      matcher.appendReplacement(buffer, reference == null ? "" : reference);
     }
-
-    public static Object maybeSubstitute(PropertySource properties, BoundProperty key, Object value) {
-        return value instanceof String && !key.suppressSubstitution()
-            ? substitute(properties, (String) value)
-            : value;
-    }
-
-    private static String substituteReferences(PropertySource properties, CharSequence value) {
-        Matcher matcher = REFERENCE.matcher(value);
-        StringBuffer buffer = new StringBuffer(value.length() * 2);
-        while (matcher.find()) {
-            String reference = (String) properties.propertyFor(new InternalBoundProperty(matcher.group(1)));
-            matcher.appendReplacement(buffer, reference == null ? "" : reference);
-        }
-        matcher.appendTail(buffer);
-        return buffer.toString();
-    }
+    matcher.appendTail(buffer);
+    return buffer.toString();
+  }
 }

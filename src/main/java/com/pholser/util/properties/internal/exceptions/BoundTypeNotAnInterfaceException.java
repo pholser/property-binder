@@ -26,9 +26,9 @@
 package com.pholser.util.properties.internal.exceptions;
 
 public class BoundTypeNotAnInterfaceException extends IllegalArgumentException {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    public BoundTypeNotAnInterfaceException(Class<?> schema) {
-        super("Need a non-annotation interface as bound type, got " + schema);
-    }
+  public BoundTypeNotAnInterfaceException(Class<?> schema) {
+    super("Need a non-annotation interface as bound type, got " + schema);
+  }
 }

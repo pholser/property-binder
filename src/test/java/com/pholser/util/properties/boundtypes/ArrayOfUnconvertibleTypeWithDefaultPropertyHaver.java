@@ -29,7 +29,7 @@ import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.ValuesSeparatedBy;
 
 public interface ArrayOfUnconvertibleTypeWithDefaultPropertyHaver {
-    @BoundProperty("array.of.unconvertible.type.property")
-    @ValuesSeparatedBy(pattern = "--")
-    Object[] arrayOfUnconvertibleTypeProperty();
+  @BoundProperty("array.of.unconvertible.type.property")
+  @ValuesSeparatedBy(pattern = "--")
+  Object[] arrayOfUnconvertibleTypeProperty();
 }

@@ -34,45 +34,45 @@ import static com.pholser.util.properties.ResourceBundles.bundleWith;
 import static org.junit.Assert.assertThrows;
 
 public class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTest {
-    @Test public void returnTypeAndUnderlyingPropertyTypeDisagree() {
-        ResourceBundle bundle = bundleWith("i", new Object());
-        PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
-        IntPropertyHaver bound = binder.bind(bundle);
+  @Test public void returnTypeAndUnderlyingPropertyTypeDisagree() {
+    ResourceBundle bundle = bundleWith("i", new Object());
+    PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
+    IntPropertyHaver bound = binder.bind(bundle);
 
-        assertThrows(ClassCastException.class, bound::i);
-    }
+    assertThrows(ClassCastException.class, bound::i);
+  }
 
-    @Test public void primitiveWidening() {
-        ResourceBundle bundle = bundleWith("i", Byte.valueOf("2"));
-        PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
-        IntPropertyHaver bound = binder.bind(bundle);
+  @Test public void primitiveWidening() {
+    ResourceBundle bundle = bundleWith("i", Byte.valueOf("2"));
+    PropertyBinder<IntPropertyHaver> binder = PropertyBinder.forType(IntPropertyHaver.class);
+    IntPropertyHaver bound = binder.bind(bundle);
 
-        assertThrows(ClassCastException.class, bound::i);
-    }
+    assertThrows(ClassCastException.class, bound::i);
+  }
 
-    @Test public void resolvingASeparatorWithNonStringPropertyValue() {
-        ResourceBundle bundle = bundleWith("bar", "A,B,C", "separator", new Object());
-        PropertyBinder<WithValueOfSeparator> binder = PropertyBinder.forType(WithValueOfSeparator.class);
+  @Test public void resolvingASeparatorWithNonStringPropertyValue() {
+    ResourceBundle bundle = bundleWith("bar", "A,B,C", "separator", new Object());
+    PropertyBinder<WithValueOfSeparator> binder = PropertyBinder.forType(WithValueOfSeparator.class);
 
-        assertThrows(ClassCastException.class, () -> binder.bind(bundle));
-    }
+    assertThrows(ClassCastException.class, () -> binder.bind(bundle));
+  }
 
-    interface WithValueOfSeparator {
-        @BoundProperty("bar")
-        @ValuesSeparatedBy(valueOf = "[separator]")
-        String[] bar();
-    }
+  interface WithValueOfSeparator {
+    @BoundProperty("bar")
+    @ValuesSeparatedBy(valueOf = "[separator]")
+    String[] bar();
+  }
 
-    @Test public void resolvingADefaultValueWithNonStringPropertyValue() {
-        ResourceBundle bundle = bundleWith("other", new Object());
-        PropertyBinder<WithValueOfDefault> binder = PropertyBinder.forType(WithValueOfDefault.class);
+  @Test public void resolvingADefaultValueWithNonStringPropertyValue() {
+    ResourceBundle bundle = bundleWith("other", new Object());
+    PropertyBinder<WithValueOfDefault> binder = PropertyBinder.forType(WithValueOfDefault.class);
 
-        assertThrows(ClassCastException.class, () -> binder.bind(bundle));
-    }
+    assertThrows(ClassCastException.class, () -> binder.bind(bundle));
+  }
 
-    interface WithValueOfDefault {
-        @BoundProperty("foo")
-        @DefaultsTo(valueOf = "[other]")
-        String foo();
-    }
+  interface WithValueOfDefault {
+    @BoundProperty("foo")
+    @DefaultsTo(valueOf = "[other]")
+    String foo();
+  }
 }

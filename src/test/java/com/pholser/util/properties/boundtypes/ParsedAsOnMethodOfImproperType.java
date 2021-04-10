@@ -28,6 +28,6 @@ package com.pholser.util.properties.boundtypes;
 import com.pholser.util.properties.ParsedAs;
 
 public interface ParsedAsOnMethodOfImproperType {
-    @ParsedAs("MM/dd/yyyy")
-    String aProperty();
+  @ParsedAs("MM/dd/yyyy")
+  String aProperty();
 }

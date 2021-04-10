@@ -31,25 +31,34 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public final class Reflection {
-    private Reflection() {
-        throw new UnsupportedOperationException();
-    }
+  private Reflection() {
+    throw new UnsupportedOperationException();
+  }
 
-    public static Object invokeQuietly(Class<?> clazz, String methodName, Object target, Object... args) {
-        try {
-            return invokeQuietly(clazz.getMethod(methodName), target, args);
-        } catch (NoSuchMethodException ex) {
-            throw new AssertionError(ex);
-        }
-    }
+  public static Object invokeQuietly(
+    Class<?> clazz,
+    String methodName,
+    Object target,
+    Object... args) {
 
-    public static Object invokeQuietly(Method method, Object target, Object... args) {
-        try {
-            return method.invoke(target, args);
-        } catch (IllegalAccessException | IllegalArgumentException ex) {
-            throw new ValueConversionException(ex);
-        } catch (InvocationTargetException ex) {
-            throw new ValueConversionException(ex.getTargetException());
-        }
+    try {
+      return invokeQuietly(clazz.getMethod(methodName), target, args);
+    } catch (NoSuchMethodException ex) {
+      throw new AssertionError(ex);
     }
+  }
+
+  public static Object invokeQuietly(
+    Method method,
+    Object target,
+    Object... args) {
+
+    try {
+      return method.invoke(target, args);
+    } catch (IllegalAccessException | IllegalArgumentException ex) {
+      throw new ValueConversionException(ex);
+    } catch (InvocationTargetException ex) {
+      throw new ValueConversionException(ex.getTargetException());
+    }
+  }
 }

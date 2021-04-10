@@ -33,21 +33,24 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * Mark an interface method with this annotation to indicate that values for the property represented by the
- * method are parsed according to the given patterns. For {@link java.util.Date}-returning methods, the patterns are
- * to be specified as described in {@link java.text.SimpleDateFormat}. This annotation is rejected for any other type.
+ * Mark an interface method with this annotation to indicate that values
+ * for the property represented by the method are parsed according to
+ * the given patterns. For {@link java.util.Date}-returning methods,
+ * the patterns are to be specified as described in
+ * {@link java.text.SimpleDateFormat}. This annotation is rejected for
+ * any other type.
  *
- * @author <a href="http://www.pholser.com">Paul Holser</a>
+ * @author <a href="mailto:pholser@alumni.rice.edu">Paul Holser</a>
  * @see BoundProperty
  */
 @Documented
 @Target(METHOD)
 @Retention(RUNTIME)
 public @interface ParsedAs {
-    /**
-     * Date patterns with which to parse a property value.
-     *
-     * @return date patterns
-     */
-    String[] value();
+  /**
+   * Date patterns with which to parse a property value.
+   *
+   * @return date patterns
+   */
+  String[] value();
 }

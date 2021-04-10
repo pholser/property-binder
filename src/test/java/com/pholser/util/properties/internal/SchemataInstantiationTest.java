@@ -28,7 +28,7 @@ package com.pholser.util.properties.internal;
 import com.pholser.util.properties.UtilityClassesShouldNotBeInstantiated;
 
 public class SchemataInstantiationTest extends UtilityClassesShouldNotBeInstantiated {
-    public SchemataInstantiationTest() {
-        super(Schemata.class);
-    }
+  public SchemataInstantiationTest() {
+    super(Schemata.class);
+  }
 }

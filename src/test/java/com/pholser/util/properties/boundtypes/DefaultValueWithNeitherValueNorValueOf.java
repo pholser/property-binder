@@ -29,7 +29,7 @@ import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
 public interface DefaultValueWithNeitherValueNorValueOf {
-    @BoundProperty("property.with.both.default.value.and.valueOf")
-    @DefaultsTo()
-    Ternary[] propertyWithNeitherDefaultValueNorValueOf();
+  @BoundProperty("property.with.both.default.value.and.valueOf")
+  @DefaultsTo()
+  Ternary[] propertyWithNeitherDefaultValueNorValueOf();
 }

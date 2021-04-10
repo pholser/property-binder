@@ -31,7 +31,7 @@ import com.pholser.util.properties.DefaultsTo;
 import java.util.List;
 
 public interface ListOfArrayPropertyHaver {
-    @BoundProperty("list.of.int.array")
-    @DefaultsTo("1,2")
-    List<int[]> listOfArray();
+  @BoundProperty("list.of.int.array")
+  @DefaultsTo("1,2")
+  List<int[]> listOfArray();
 }

@@ -32,33 +32,33 @@ import org.hamcrest.TypeSafeMatcher;
 import java.lang.reflect.InvocationTargetException;
 
 public class ExceptionMatchers {
-    private ExceptionMatchers() {
-        throw new UnsupportedOperationException();
-    }
+  private ExceptionMatchers() {
+    throw new UnsupportedOperationException();
+  }
 
-    public static Matcher<Throwable> causeOfType(final Class<? extends Throwable> type) {
-        return new TypeSafeMatcher<Throwable>() {
-            @Override public boolean matchesSafely(Throwable item) {
-                return type.isInstance(item.getCause());
-            }
+  public static Matcher<Throwable> causeOfType(final Class<? extends Throwable> type) {
+    return new TypeSafeMatcher<Throwable>() {
+      @Override public boolean matchesSafely(Throwable item) {
+        return type.isInstance(item.getCause());
+      }
 
-            @Override public void describeTo(Description description) {
-                description.appendText("exception with cause whose type is ");
-                description.appendValue(type);
-            }
-        };
-    }
+      @Override public void describeTo(Description description) {
+        description.appendText("exception with cause whose type is ");
+        description.appendValue(type);
+      }
+    };
+  }
 
-    public static Matcher<InvocationTargetException> targetOfType(final Class<? extends Throwable> type) {
-        return new org.hamcrest.TypeSafeMatcher<InvocationTargetException>() {
-            @Override public boolean matchesSafely(InvocationTargetException item) {
-                return type.isInstance(item.getTargetException());
-            }
+  public static Matcher<InvocationTargetException> targetOfType(final Class<? extends Throwable> type) {
+    return new org.hamcrest.TypeSafeMatcher<InvocationTargetException>() {
+      @Override public boolean matchesSafely(InvocationTargetException item) {
+        return type.isInstance(item.getTargetException());
+      }
 
-            @Override public void describeTo(Description description) {
-                description.appendText("InvocationTargetException with target whose type is ");
-                description.appendValue(type);
-            }
-        };
-    }
+      @Override public void describeTo(Description description) {
+        description.appendText("InvocationTargetException with target whose type is ");
+        description.appendValue(type);
+      }
+    };
+  }
 }

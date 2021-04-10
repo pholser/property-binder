@@ -34,52 +34,61 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.pholser.util.properties.internal.conversions.ValueConverterFactory.createScalarConverter;
 
 class ListValueConverter extends AggregateValueConverter {
-    private final ValueConverter scalarConverter;
+  private final ValueConverter scalarConverter;
 
-    ListValueConverter(
-        Type valueType,
-        ValueSeparator separator,
-        ParsedAs patterns,
-        DefaultsTo defaults) {
+  ListValueConverter(
+    Type valueType,
+    ValueSeparator separator,
+    ParsedAs patterns,
+    DefaultsTo defaults) {
 
-        super(separator);
+    super(separator);
 
-        scalarConverter = createScalarConverter(deduceElementType(valueType), patterns, defaults, separator);
+    scalarConverter =
+      createScalarConverter(
+        deduceElementType(valueType),
+        patterns,
+        defaults,
+        separator);
+  }
+
+  @Override public List<Object> convert(String raw, Object... args) {
+    return Arrays.stream(separate(raw))
+      .map(piece -> scalarConverter.convert(piece, args))
+      .collect(Collectors.toList());
+  }
+
+  private static Class<?> deduceElementType(Type type) {
+    if (!(type instanceof ParameterizedType)) {
+      return String.class;
     }
 
-    @Override public List<Object> convert(String raw, Object... args) {
-        String[] pieces = separate(raw);
-        List<Object> values = new ArrayList<>(pieces.length);
-        for (String each : pieces)
-            values.add(scalarConverter.convert(each, args));
-
-        return values;
+    ParameterizedType parameterized = (ParameterizedType) type;
+    Type generic = parameterized.getActualTypeArguments()[0];
+    if (generic instanceof Class<?>) {
+      return (Class<?>) generic;
     }
 
-    private static Class<?> deduceElementType(Type type) {
-        if (!(type instanceof ParameterizedType))
-            return String.class;
+    if (generic instanceof WildcardType) {
+      WildcardType wildcard = (WildcardType) generic;
+      if (wildcard.getLowerBounds().length == 0
+        && Object.class.equals(wildcard.getUpperBounds()[0])) {
 
-        ParameterizedType parameterized = (ParameterizedType) type;
-        Type generic = parameterized.getActualTypeArguments()[0];
-        if (generic instanceof Class<?>)
-            return (Class<?>) generic;
-
-        if (generic instanceof WildcardType) {
-            WildcardType wildcard = (WildcardType) generic;
-            if (wildcard.getLowerBounds().length == 0 && Object.class.equals(wildcard.getUpperBounds()[0]))
-                return String.class;
-        }
-
-        throw new UnsupportedValueTypeException(type);
+        return String.class;
+      }
     }
 
-    @Override public Object nilValue() {
-        return new ArrayList<>(0);
-    }
+    throw new UnsupportedValueTypeException(type);
+  }
+
+  @Override public Object nilValue() {
+    return new ArrayList<>(0);
+  }
 }

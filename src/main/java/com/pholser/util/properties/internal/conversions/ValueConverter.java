@@ -28,11 +28,11 @@ package com.pholser.util.properties.internal.conversions;
 import com.pholser.util.properties.PropertySource;
 
 public interface ValueConverter {
-    Object convertRaw(Object raw, Object... args);
+  Object convertRaw(Object raw, Object... args);
 
-    Object convert(String raw, Object... args);
+  Object convert(String raw, Object... args);
 
-    Object nilValue();
+  Object nilValue();
 
-    void resolve(PropertySource properties);
+  void resolve(PropertySource properties);
 }

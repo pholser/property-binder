@@ -27,10 +27,10 @@ package com.pholser.util.properties.testonly;
 
 @SuppressWarnings("all")
 public class ForTriggeringIllegalAccess {
-    private ForTriggeringIllegalAccess(String argument) {
-    }
+  private ForTriggeringIllegalAccess(String argument) {
+  }
 
-    private static String valueOf(String argument) {
-        return argument;
-    }
+  private static String valueOf(String argument) {
+    return argument;
+  }
 }

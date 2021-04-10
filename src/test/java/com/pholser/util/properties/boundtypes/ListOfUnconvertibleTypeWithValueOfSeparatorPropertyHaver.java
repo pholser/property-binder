@@ -29,7 +29,7 @@ import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.ValuesSeparatedBy;
 
 public interface ListOfUnconvertibleTypeWithValueOfSeparatorPropertyHaver {
-    @BoundProperty("list.of.unconvertible.type.property")
-    @ValuesSeparatedBy(valueOf = "[some.other.property]")
-    Object[] listOfUnconvertibleTypeProperty();
+  @BoundProperty("list.of.unconvertible.type.property")
+  @ValuesSeparatedBy(valueOf = "[some.other.property]")
+  Object[] listOfUnconvertibleTypeProperty();
 }

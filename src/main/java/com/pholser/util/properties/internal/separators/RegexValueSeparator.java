@@ -36,25 +36,25 @@ import java.util.regex.PatternSyntaxException;
 import static com.pholser.util.properties.internal.Schemata.annotationDefault;
 
 class RegexValueSeparator implements ValueSeparator {
-    private final Pattern regex;
+  private final Pattern regex;
 
-    RegexValueSeparator(String pattern, Method method) {
-        try {
-            regex = Pattern.compile(pattern);
-        } catch (PatternSyntaxException ex) {
-            throw new MalformedSeparatorException(pattern, method, ex);
-        }
+  RegexValueSeparator(String pattern, Method method) {
+    try {
+      regex = Pattern.compile(pattern);
+    } catch (PatternSyntaxException ex) {
+      throw new MalformedSeparatorException(pattern, method, ex);
     }
+  }
 
-    @Override public String[] separate(String raw) {
-        return regex.split(raw);
-    }
+  @Override public String[] separate(String raw) {
+    return regex.split(raw);
+  }
 
-    @Override public void resolve(PropertySource properties) {
-        // nothing to do here
-    }
+  @Override public void resolve(PropertySource properties) {
+    // nothing to do here
+  }
 
-    @Override public boolean isDefault() {
-        return regex.pattern().equals(annotationDefault(ValuesSeparatedBy.class, "pattern"));
-    }
+  @Override public boolean isDefault() {
+    return regex.pattern().equals(annotationDefault(ValuesSeparatedBy.class, "pattern"));
+  }
 }

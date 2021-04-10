@@ -29,17 +29,17 @@ import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 
 abstract class AggregateValueConverter extends AbstractValueConverter {
-    private final ValueSeparator separator;
+  private final ValueSeparator separator;
 
-    protected AggregateValueConverter(ValueSeparator separator) {
-        this.separator = separator;
-    }
+  AggregateValueConverter(ValueSeparator separator) {
+    this.separator = separator;
+  }
 
-    protected final String[] separate(String raw) {
-        return separator.separate(raw);
-    }
+  final String[] separate(String raw) {
+    return separator.separate(raw);
+  }
 
-    @Override public final void resolve(PropertySource properties) {
-        separator.resolve(properties);
-    }
+  @Override public final void resolve(PropertySource properties) {
+    separator.resolve(properties);
+  }
 }

@@ -31,7 +31,7 @@ import com.pholser.util.properties.DefaultsTo;
 import java.util.Collection;
 
 public interface UnsupportedAggregateTypePropertyHaver {
-    @BoundProperty("unsupported.aggregate.type.property")
-    @DefaultsTo("1,2")
-    Collection<Integer> collection();
+  @BoundProperty("unsupported.aggregate.type.property")
+  @DefaultsTo("1,2")
+  Collection<Integer> collection();
 }

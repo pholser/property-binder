@@ -33,113 +33,136 @@ import com.pholser.util.properties.internal.separators.ValueSeparator;
 
 import java.lang.reflect.Method;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static java.lang.reflect.Modifier.isPublic;
 import static java.lang.reflect.Modifier.isStatic;
-import static java.util.Collections.unmodifiableMap;
 
 public class ValueConverterFactory {
-    static final Map<Class<?>, Class<?>> WRAPPERS;
-    static final int SMALL_PRIME = 13;
+  private static final Map<Class<?>, Class<?>> WRAPPERS =
+    Map.of(
+      Boolean.TYPE, Boolean.class,
+      Byte.TYPE, Byte.class,
+      Character.TYPE, Character.class,
+      Double.TYPE, Double.class,
+      Float.TYPE, Float.class,
+      Integer.TYPE, Integer.class,
+      Long.TYPE, Long.class,
+      Short.TYPE, Short.class,
+      Void.TYPE, Void.class);
 
-    static {
-        Map<Class<?>, Class<?>> wrappers = new HashMap<Class<?>, Class<?>>(SMALL_PRIME);
-        wrappers.put(Boolean.TYPE, Boolean.class);
-        wrappers.put(Byte.TYPE, Byte.class);
-        wrappers.put(Character.TYPE, Character.class);
-        wrappers.put(Double.TYPE, Double.class);
-        wrappers.put(Float.TYPE, Float.class);
-        wrappers.put(Integer.TYPE, Integer.class);
-        wrappers.put(Long.TYPE, Long.class);
-        wrappers.put(Short.TYPE, Short.class);
-        wrappers.put(Void.TYPE, Void.class);
-        WRAPPERS = unmodifiableMap(wrappers);
+  public ValueConverter createConverter(
+    Method propertyMethod,
+    ValueSeparator separator) {
+
+    Class<?> valueType = targetTypeFor(propertyMethod);
+    ParsedAs patterns = propertyMethod.getAnnotation(ParsedAs.class);
+    DefaultsTo defaults = propertyMethod.getAnnotation(DefaultsTo.class);
+
+    if (valueType.isArray()) {
+      return new ArrayValueConverter(
+        valueType,
+        separator,
+        patterns,
+        defaults);
+    }
+    if (List.class.equals(valueType)) {
+      return new ListValueConverter(
+        propertyMethod.getGenericReturnType(),
+        separator,
+        patterns,
+        defaults);
     }
 
-    public ValueConverter createConverter(Method propertyMethod, ValueSeparator separator) {
-        Class<?> valueType = targetTypeFor(propertyMethod);
-        ParsedAs patterns = propertyMethod.getAnnotation(ParsedAs.class);
-        DefaultsTo defaults = propertyMethod.getAnnotation(DefaultsTo.class);
+    return createScalarConverter(valueType, patterns, defaults, separator);
+  }
 
-        if (valueType.isArray())
-            return new ArrayValueConverter(valueType, separator, patterns, defaults);
+  static ValueConverter createScalarConverter(
+    Class<?> valueType,
+    ParsedAs patterns,
+    DefaultsTo defaults,
+    ValueSeparator separator) {
 
-        if (List.class.equals(valueType))
-            return new ListValueConverter(propertyMethod.getGenericReturnType(), separator, patterns, defaults);
+    Class<?> returnType = wrapperIfPrimitive(valueType);
 
-        return createScalarConverter(valueType, patterns, defaults, separator);
+    ValueConverter pattern = parsePatternsConverter(returnType, patterns);
+    if (pattern != null) {
+      return pattern;
     }
 
-    public static ValueConverter createScalarConverter(
-        Class<?> valueType,
-        ParsedAs patterns,
-        DefaultsTo defaults,
-        ValueSeparator separator) {
-
-        Class<?> returnType = wrapperIfPrimitive(valueType);
-        ValueConverter pattern = parsePatternsConverter(returnType, patterns);
-        if (pattern != null)
-            return pattern;
-
-        ValueConverter valueOf = valueOfConverter(returnType);
-        if (valueOf != null)
-            return valueOf;
-
-        ValueConverter constructor = constructorConverter(returnType);
-        if (constructor != null)
-            return constructor;
-
-        if (defaults != null || (separator != null && !separator.isDefault()))
-            throw new UnsupportedValueTypeException(valueType);
-
-        return new RawValueConverter();
+    ValueConverter valueOf = valueOfConverter(returnType);
+    if (valueOf != null) {
+      return valueOf;
     }
 
-    private static ValueConverter parsePatternsConverter(Class<?> valueType, ParsedAs patterns) {
-        if (patterns == null)
-            return null;
-        if (valueType.isAssignableFrom(Date.class))
-            return new SimpleDateFormatParseValueConverter(patterns);
+    ValueConverter constructor = constructorConverter(returnType);
+    if (constructor != null)
+      return constructor;
 
-        throw new UnsupportedParsedAsTypeException(valueType);
+    if (defaults != null || (separator != null && !separator.isDefault())) {
+      throw new UnsupportedValueTypeException(valueType);
     }
 
-    private static ValueConverter valueOfConverter(Class<?> valueType) {
-        if (Character.class.equals(valueType))
-            return new CharacterValueOfConverter();
+    return new RawValueConverter();
+  }
 
-        try {
-            Method valueOf = valueType.getDeclaredMethod("valueOf", String.class);
-            return isPotentialConverter(valueOf, valueType)
-                ? new MethodInvokingValueConverter(valueOf, valueType)
-                : null;
-        } catch (NoSuchMethodException ignored) {
-            return null;
-        }
+  private static ValueConverter parsePatternsConverter(
+    Class<?> valueType,
+    ParsedAs patterns) {
+
+    if (patterns == null) {
+      return null;
+    }
+    if (valueType.isAssignableFrom(Date.class)) {
+      return new SimpleDateFormatParseValueConverter(patterns);
     }
 
-    private static ValueConverter constructorConverter(Class<?> valueType) {
-        try {
-            return new ConstructorInvokingValueConverter(valueType.getConstructor(String.class));
-        } catch (NoSuchMethodException ignored) {
-            return null;
-        }
+    throw new UnsupportedParsedAsTypeException(valueType);
+  }
+
+  private static ValueConverter valueOfConverter(Class<?> valueType) {
+    if (Character.class.equals(valueType)) {
+      return new CharacterValueOfConverter();
     }
 
-    private static boolean isPotentialConverter(Method method, Class<?> expectedReturnType) {
-        int modifiers = method.getModifiers();
-        return isPublic(modifiers) && isStatic(modifiers) && expectedReturnType.equals(method.getReturnType());
+    try {
+      Method valueOf = valueType.getDeclaredMethod("valueOf", String.class);
+      return isPotentialConverter(valueOf, valueType)
+        ? new MethodInvokingValueConverter(valueOf, valueType)
+        : null;
+    } catch (NoSuchMethodException ignored) {
+      return null;
     }
+  }
 
-    private static Class<?> targetTypeFor(Method method) {
-        Class<?> returnType = method.getReturnType();
-        return returnType.isPrimitive() ? wrapperIfPrimitive(returnType) : returnType;
+  private static ValueConverter constructorConverter(Class<?> valueType) {
+    try {
+      return new ConstructorInvokingValueConverter(
+        valueType.getConstructor(String.class));
+    } catch (NoSuchMethodException ignored) {
+      return null;
     }
+  }
 
-    static Class<?> wrapperIfPrimitive(Class<?> clazz) {
-        return WRAPPERS.containsKey(clazz) ? WRAPPERS.get(clazz) : clazz;
-    }
+  private static boolean isPotentialConverter(
+    Method method,
+    Class<?> expectedReturnType) {
+
+    int modifiers = method.getModifiers();
+    return isPublic(modifiers)
+      && isStatic(modifiers)
+      && expectedReturnType.equals(method.getReturnType());
+  }
+
+  private static Class<?> targetTypeFor(Method method) {
+    Class<?> returnType = method.getReturnType();
+    return returnType.isPrimitive()
+      ? wrapperIfPrimitive(returnType)
+      : returnType;
+  }
+
+  private static Class<?> wrapperIfPrimitive(Class<?> clazz) {
+    return WRAPPERS.getOrDefault(clazz, clazz);
+  }
 }

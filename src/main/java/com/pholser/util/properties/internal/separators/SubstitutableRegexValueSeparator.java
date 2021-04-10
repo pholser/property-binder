@@ -32,27 +32,27 @@ import java.lang.reflect.Method;
 import static com.pholser.util.properties.internal.Substitutions.substitute;
 
 class SubstitutableRegexValueSeparator implements ValueSeparator {
-    private final String pattern;
-    private final Method method;
-    private boolean isDefault;
-    private RegexValueSeparator separator;
+  private final String pattern;
+  private final Method method;
+  private boolean isDefault;
+  private RegexValueSeparator separator;
 
-    SubstitutableRegexValueSeparator(String pattern, Method method) {
-        this.pattern = pattern;
-        this.method = method;
-    }
+  SubstitutableRegexValueSeparator(String pattern, Method method) {
+    this.pattern = pattern;
+    this.method = method;
+  }
 
-    @Override public String[] separate(String raw) {
-        return separator.separate(raw);
-    }
+  @Override public String[] separate(String raw) {
+    return separator.separate(raw);
+  }
 
-    @Override public void resolve(PropertySource properties) {
-        String substituted = substitute(properties, pattern);
-        separator = new RegexValueSeparator(substituted, method);
-        isDefault = separator.isDefault();
-    }
+  @Override public void resolve(PropertySource properties) {
+    String substituted = substitute(properties, pattern);
+    separator = new RegexValueSeparator(substituted, method);
+    isDefault = separator.isDefault();
+  }
 
-    @Override public boolean isDefault() {
-        return isDefault;
-    }
+  @Override public boolean isDefault() {
+    return isDefault;
+  }
 }

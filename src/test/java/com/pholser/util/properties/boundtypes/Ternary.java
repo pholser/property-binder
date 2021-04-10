@@ -26,5 +26,5 @@
 package com.pholser.util.properties.boundtypes;
 
 public enum Ternary {
-    YES, NO, MAYBE
+  YES, NO, MAYBE
 }

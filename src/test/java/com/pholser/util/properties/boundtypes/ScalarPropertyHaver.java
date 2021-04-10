@@ -35,494 +35,494 @@ import java.math.BigInteger;
 import java.util.Date;
 
 public interface ScalarPropertyHaver {
-    @BoundProperty("string.property")
-    String stringProperty();
+  @BoundProperty("string.property")
+  String stringProperty();
 
-    String unannotatedProperty();
+  String unannotatedProperty();
 
-    @BoundProperty("string.property.with.default")
-    @DefaultsTo("default")
-    String stringPropertyWithDefault();
+  @BoundProperty("string.property.with.default")
+  @DefaultsTo("default")
+  String stringPropertyWithDefault();
 
-    @BoundProperty("string.array.property")
-    String[] stringArrayProperty();
+  @BoundProperty("string.array.property")
+  String[] stringArrayProperty();
 
-    @BoundProperty("string.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    String[] stringArrayPropertyWithCustomSeparator();
+  @BoundProperty("string.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  String[] stringArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("string.array.property.with.default")
-    @DefaultsTo("g,hh,iii")
-    String[] stringArrayPropertyWithDefault();
+  @BoundProperty("string.array.property.with.default")
+  @DefaultsTo("g,hh,iii")
+  String[] stringArrayPropertyWithDefault();
 
-    @BoundProperty("string.array.property.with.default.and.custom.separator")
-    @DefaultsTo("jjj|kk|L")
-    @ValuesSeparatedBy(pattern = "\\|")
-    String[] stringArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("string.array.property.with.default.and.custom.separator")
+  @DefaultsTo("jjj|kk|L")
+  @ValuesSeparatedBy(pattern = "\\|")
+  String[] stringArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("primitive.boolean.property")
-    boolean primitiveBooleanProperty();
+  @BoundProperty("primitive.boolean.property")
+  boolean primitiveBooleanProperty();
 
-    @BoundProperty("wrapped.boolean.property")
-    Boolean wrappedBooleanProperty();
+  @BoundProperty("wrapped.boolean.property")
+  Boolean wrappedBooleanProperty();
 
-    @BoundProperty("primitive.boolean.property.with.default")
-    @DefaultsTo("true")
-    boolean primitiveBooleanPropertyWithDefault();
+  @BoundProperty("primitive.boolean.property.with.default")
+  @DefaultsTo("true")
+  boolean primitiveBooleanPropertyWithDefault();
 
-    @BoundProperty("wrapped.boolean.property.with.default")
-    @DefaultsTo("false")
-    Boolean wrappedBooleanPropertyWithDefault();
+  @BoundProperty("wrapped.boolean.property.with.default")
+  @DefaultsTo("false")
+  Boolean wrappedBooleanPropertyWithDefault();
 
-    @BoundProperty("primitive.byte.property")
-    byte primitiveByteProperty();
+  @BoundProperty("primitive.byte.property")
+  byte primitiveByteProperty();
 
-    @BoundProperty("wrapped.byte.property")
-    Byte wrappedByteProperty();
+  @BoundProperty("wrapped.byte.property")
+  Byte wrappedByteProperty();
 
-    @BoundProperty("primitive.byte.property.with.default")
-    @DefaultsTo("23")
-    byte primitiveBytePropertyWithDefault();
+  @BoundProperty("primitive.byte.property.with.default")
+  @DefaultsTo("23")
+  byte primitiveBytePropertyWithDefault();
 
-    @BoundProperty("wrapped.byte.property.with.default")
-    @DefaultsTo("24")
-    Byte wrappedBytePropertyWithDefault();
+  @BoundProperty("wrapped.byte.property.with.default")
+  @DefaultsTo("24")
+  Byte wrappedBytePropertyWithDefault();
 
-    @BoundProperty("primitive.character.property")
-    char primitiveCharacterProperty();
+  @BoundProperty("primitive.character.property")
+  char primitiveCharacterProperty();
 
-    @BoundProperty("wrapped.character.property")
-    Character wrappedCharacterProperty();
+  @BoundProperty("wrapped.character.property")
+  Character wrappedCharacterProperty();
 
-    @BoundProperty("primitive.character.property.with.default")
-    @DefaultsTo("a")
-    char primitiveCharacterPropertyWithDefault();
+  @BoundProperty("primitive.character.property.with.default")
+  @DefaultsTo("a")
+  char primitiveCharacterPropertyWithDefault();
 
-    @BoundProperty("wrapped.character.property.with.default")
-    @DefaultsTo("b")
-    Character wrappedCharacterPropertyWithDefault();
+  @BoundProperty("wrapped.character.property.with.default")
+  @DefaultsTo("b")
+  Character wrappedCharacterPropertyWithDefault();
 
-    @BoundProperty("primitive.double.property")
-    double primitiveDoubleProperty();
+  @BoundProperty("primitive.double.property")
+  double primitiveDoubleProperty();
 
-    @BoundProperty("wrapped.double.property")
-    Double wrappedDoubleProperty();
+  @BoundProperty("wrapped.double.property")
+  Double wrappedDoubleProperty();
 
-    @BoundProperty("primitive.double.property.with.default")
-    @DefaultsTo("1.0")
-    double primitiveDoublePropertyWithDefault();
+  @BoundProperty("primitive.double.property.with.default")
+  @DefaultsTo("1.0")
+  double primitiveDoublePropertyWithDefault();
 
-    @BoundProperty("wrapped.double.property.with.default")
-    @DefaultsTo("2.0")
-    Double wrappedDoublePropertyWithDefault();
+  @BoundProperty("wrapped.double.property.with.default")
+  @DefaultsTo("2.0")
+  Double wrappedDoublePropertyWithDefault();
 
-    @BoundProperty("primitive.float.property")
-    float primitiveFloatProperty();
+  @BoundProperty("primitive.float.property")
+  float primitiveFloatProperty();
 
-    @BoundProperty("wrapped.float.property")
-    Float wrappedFloatProperty();
+  @BoundProperty("wrapped.float.property")
+  Float wrappedFloatProperty();
 
-    @BoundProperty("primitive.float.property.with.default")
-    @DefaultsTo("3.0")
-    float primitiveFloatPropertyWithDefault();
+  @BoundProperty("primitive.float.property.with.default")
+  @DefaultsTo("3.0")
+  float primitiveFloatPropertyWithDefault();
 
-    @BoundProperty("wrapped.float.property.with.default")
-    @DefaultsTo("4.0")
-    Float wrappedFloatPropertyWithDefault();
+  @BoundProperty("wrapped.float.property.with.default")
+  @DefaultsTo("4.0")
+  Float wrappedFloatPropertyWithDefault();
 
-    @BoundProperty("primitive.integer.property")
-    int primitiveIntegerProperty();
+  @BoundProperty("primitive.integer.property")
+  int primitiveIntegerProperty();
 
-    @BoundProperty("wrapped.integer.property")
-    Integer wrappedIntegerProperty();
+  @BoundProperty("wrapped.integer.property")
+  Integer wrappedIntegerProperty();
 
-    @BoundProperty("primitive.integer.property.with.default")
-    @DefaultsTo("-1")
-    int primitiveIntegerPropertyWithDefault();
+  @BoundProperty("primitive.integer.property.with.default")
+  @DefaultsTo("-1")
+  int primitiveIntegerPropertyWithDefault();
 
-    @BoundProperty("wrapped.integer.property.with.default")
-    @DefaultsTo("-2")
-    Integer wrappedIntegerPropertyWithDefault();
+  @BoundProperty("wrapped.integer.property.with.default")
+  @DefaultsTo("-2")
+  Integer wrappedIntegerPropertyWithDefault();
 
-    @BoundProperty("primitive.integer.property.with.referential.default")
-    @DefaultsTo(valueOf = "[integer.property]")
-    int primitiveIntegerPropertyWithReferentialDefault();
+  @BoundProperty("primitive.integer.property.with.referential.default")
+  @DefaultsTo(valueOf = "[integer.property]")
+  int primitiveIntegerPropertyWithReferentialDefault();
 
-    @BoundProperty("primitive.long.property")
-    long primitiveLongProperty();
+  @BoundProperty("primitive.long.property")
+  long primitiveLongProperty();
 
-    @BoundProperty("wrapped.long.property")
-    Long wrappedLongProperty();
+  @BoundProperty("wrapped.long.property")
+  Long wrappedLongProperty();
 
-    @BoundProperty("primitive.long.property.with.default")
-    @DefaultsTo("7")
-    long primitiveLongPropertyWithDefault();
+  @BoundProperty("primitive.long.property.with.default")
+  @DefaultsTo("7")
+  long primitiveLongPropertyWithDefault();
 
-    @BoundProperty("wrapped.long.property.with.default")
-    @DefaultsTo("8")
-    Long wrappedLongPropertyWithDefault();
+  @BoundProperty("wrapped.long.property.with.default")
+  @DefaultsTo("8")
+  Long wrappedLongPropertyWithDefault();
 
-    @BoundProperty("primitive.short.property")
-    short primitiveShortProperty();
+  @BoundProperty("primitive.short.property")
+  short primitiveShortProperty();
 
-    @BoundProperty("wrapped.short.property")
-    Short wrappedShortProperty();
+  @BoundProperty("wrapped.short.property")
+  Short wrappedShortProperty();
 
-    @BoundProperty("primitive.short.property.with.default")
-    @DefaultsTo("9")
-    short primitiveShortPropertyWithDefault();
+  @BoundProperty("primitive.short.property.with.default")
+  @DefaultsTo("9")
+  short primitiveShortPropertyWithDefault();
 
-    @BoundProperty("wrapped.short.property.with.default")
-    @DefaultsTo("10")
-    Short wrappedShortPropertyWithDefault();
+  @BoundProperty("wrapped.short.property.with.default")
+  @DefaultsTo("10")
+  Short wrappedShortPropertyWithDefault();
 
-    @BoundProperty("big.integer.property")
-    BigInteger bigIntegerProperty();
+  @BoundProperty("big.integer.property")
+  BigInteger bigIntegerProperty();
 
-    @BoundProperty("big.integer.property.with.default")
-    @DefaultsTo("12345")
-    BigInteger bigIntegerPropertyWithDefault();
+  @BoundProperty("big.integer.property.with.default")
+  @DefaultsTo("12345")
+  BigInteger bigIntegerPropertyWithDefault();
 
-    @BoundProperty("big.decimal.property")
-    BigDecimal bigDecimalProperty();
+  @BoundProperty("big.decimal.property")
+  BigDecimal bigDecimalProperty();
 
-    @BoundProperty("big.decimal.property.with.default")
-    @DefaultsTo("6789.012")
-    BigDecimal bigDecimalPropertyWithDefault();
+  @BoundProperty("big.decimal.property.with.default")
+  @DefaultsTo("6789.012")
+  BigDecimal bigDecimalPropertyWithDefault();
 
-    @BoundProperty("enum.property")
-    Ternary enumProperty();
+  @BoundProperty("enum.property")
+  Ternary enumProperty();
 
-    @BoundProperty("enum.property")
-    @DefaultsTo("YES")
-    Ternary enumPropertyWithDefault();
+  @BoundProperty("enum.property")
+  @DefaultsTo("YES")
+  Ternary enumPropertyWithDefault();
 
-    @BoundProperty("missing.property")
-    String missingProperty();
+  @BoundProperty("missing.property")
+  String missingProperty();
 
-    @BoundProperty("missing.date.property")
-    @ParsedAs("yyyy-MM-dd")
-    Date missingDateProperty();
+  @BoundProperty("missing.date.property")
+  @ParsedAs("yyyy-MM-dd")
+  Date missingDateProperty();
 
-    @BoundProperty("missing.primitive.wrapper.property")
-    Integer missingPrimitiveWrapperProperty();
+  @BoundProperty("missing.primitive.wrapper.property")
+  Integer missingPrimitiveWrapperProperty();
 
-    @BoundProperty("primitive.boolean.array.property")
-    boolean[] primitiveBooleanArrayProperty();
+  @BoundProperty("primitive.boolean.array.property")
+  boolean[] primitiveBooleanArrayProperty();
 
-    @BoundProperty("primitive.boolean.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    boolean[] primitiveBooleanArrayPropertyWithCustomSeparator();
+  @BoundProperty("primitive.boolean.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  boolean[] primitiveBooleanArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("primitive.boolean.array.property.with.default")
-    @DefaultsTo("false,false,true,false,true")
-    boolean[] primitiveBooleanArrayPropertyWithDefault();
+  @BoundProperty("primitive.boolean.array.property.with.default")
+  @DefaultsTo("false,false,true,false,true")
+  boolean[] primitiveBooleanArrayPropertyWithDefault();
 
-    @BoundProperty("primitive.boolean.array.property.with.default.and.separator")
-    @DefaultsTo("true|true|true|false")
-    @ValuesSeparatedBy(pattern = "\\|")
-    boolean[] primitiveBooleanArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("primitive.boolean.array.property.with.default.and.separator")
+  @DefaultsTo("true|true|true|false")
+  @ValuesSeparatedBy(pattern = "\\|")
+  boolean[] primitiveBooleanArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("wrapped.boolean.array.property")
-    Boolean[] wrappedBooleanArrayProperty();
+  @BoundProperty("wrapped.boolean.array.property")
+  Boolean[] wrappedBooleanArrayProperty();
 
-    @BoundProperty("wrapped.boolean.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    Boolean[] wrappedBooleanArrayPropertyWithCustomSeparator();
+  @BoundProperty("wrapped.boolean.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  Boolean[] wrappedBooleanArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("wrapped.boolean.array.property.with.default")
-    @DefaultsTo("false,false,true,false,true")
-    Boolean[] wrappedBooleanArrayPropertyWithDefault();
+  @BoundProperty("wrapped.boolean.array.property.with.default")
+  @DefaultsTo("false,false,true,false,true")
+  Boolean[] wrappedBooleanArrayPropertyWithDefault();
 
-    @BoundProperty("wrapped.boolean.array.property.with.default.and.separator")
-    @DefaultsTo("true|true|true|false")
-    @ValuesSeparatedBy(pattern = "\\|")
-    Boolean[] wrappedBooleanArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("wrapped.boolean.array.property.with.default.and.separator")
+  @DefaultsTo("true|true|true|false")
+  @ValuesSeparatedBy(pattern = "\\|")
+  Boolean[] wrappedBooleanArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("primitive.byte.array.property")
-    byte[] primitiveByteArrayProperty();
+  @BoundProperty("primitive.byte.array.property")
+  byte[] primitiveByteArrayProperty();
 
-    @BoundProperty("primitive.byte.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    byte[] primitiveByteArrayPropertyWithCustomSeparator();
+  @BoundProperty("primitive.byte.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  byte[] primitiveByteArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("primitive.byte.array.property.with.default")
-    @DefaultsTo("24,25,26,27,28")
-    byte[] primitiveByteArrayPropertyWithDefault();
+  @BoundProperty("primitive.byte.array.property.with.default")
+  @DefaultsTo("24,25,26,27,28")
+  byte[] primitiveByteArrayPropertyWithDefault();
 
-    @BoundProperty("primitive.byte.array.property.with.default.and.separator")
-    @DefaultsTo("29|30|31|32")
-    @ValuesSeparatedBy(pattern = "\\|")
-    byte[] primitiveByteArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("primitive.byte.array.property.with.default.and.separator")
+  @DefaultsTo("29|30|31|32")
+  @ValuesSeparatedBy(pattern = "\\|")
+  byte[] primitiveByteArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("wrapped.byte.array.property")
-    Byte[] wrappedByteArrayProperty();
+  @BoundProperty("wrapped.byte.array.property")
+  Byte[] wrappedByteArrayProperty();
 
-    @BoundProperty("wrapped.byte.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    Byte[] wrappedByteArrayPropertyWithCustomSeparator();
+  @BoundProperty("wrapped.byte.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  Byte[] wrappedByteArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("wrapped.byte.array.property.with.default")
-    @DefaultsTo("33,34,35")
-    Byte[] wrappedByteArrayPropertyWithDefault();
+  @BoundProperty("wrapped.byte.array.property.with.default")
+  @DefaultsTo("33,34,35")
+  Byte[] wrappedByteArrayPropertyWithDefault();
 
-    @BoundProperty("wrapped.byte.array.property.with.default.and.separator")
-    @DefaultsTo("36|37|38|39")
-    @ValuesSeparatedBy(pattern = "\\|")
-    Byte[] wrappedByteArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("wrapped.byte.array.property.with.default.and.separator")
+  @DefaultsTo("36|37|38|39")
+  @ValuesSeparatedBy(pattern = "\\|")
+  Byte[] wrappedByteArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("primitive.character.array.property")
-    char[] primitiveCharacterArrayProperty();
+  @BoundProperty("primitive.character.array.property")
+  char[] primitiveCharacterArrayProperty();
 
-    @BoundProperty("primitive.character.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    char[] primitiveCharacterArrayPropertyWithCustomSeparator();
+  @BoundProperty("primitive.character.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  char[] primitiveCharacterArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("primitive.character.array.property.with.default")
-    @DefaultsTo("h,i,j,k,l")
-    char[] primitiveCharacterArrayPropertyWithDefault();
+  @BoundProperty("primitive.character.array.property.with.default")
+  @DefaultsTo("h,i,j,k,l")
+  char[] primitiveCharacterArrayPropertyWithDefault();
 
-    @BoundProperty("primitive.character.array.property.with.default.and.separator")
-    @DefaultsTo("m|n|o|p")
-    @ValuesSeparatedBy(pattern = "\\|")
-    char[] primitiveCharacterArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("primitive.character.array.property.with.default.and.separator")
+  @DefaultsTo("m|n|o|p")
+  @ValuesSeparatedBy(pattern = "\\|")
+  char[] primitiveCharacterArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("wrapped.character.array.property")
-    Character[] wrappedCharacterArrayProperty();
+  @BoundProperty("wrapped.character.array.property")
+  Character[] wrappedCharacterArrayProperty();
 
-    @BoundProperty("wrapped.character.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    Character[] wrappedCharacterArrayPropertyWithCustomSeparator();
+  @BoundProperty("wrapped.character.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  Character[] wrappedCharacterArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("wrapped.character.array.property.with.default")
-    @DefaultsTo("w,x,y")
-    Character[] wrappedCharacterArrayPropertyWithDefault();
+  @BoundProperty("wrapped.character.array.property.with.default")
+  @DefaultsTo("w,x,y")
+  Character[] wrappedCharacterArrayPropertyWithDefault();
 
-    @BoundProperty("wrapped.character.array.property.with.default.and.separator")
-    @DefaultsTo("z|0|1|2")
-    @ValuesSeparatedBy(pattern = "\\|")
-    Character[] wrappedCharacterArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("wrapped.character.array.property.with.default.and.separator")
+  @DefaultsTo("z|0|1|2")
+  @ValuesSeparatedBy(pattern = "\\|")
+  Character[] wrappedCharacterArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("primitive.double.array.property")
-    double[] primitiveDoubleArrayProperty();
+  @BoundProperty("primitive.double.array.property")
+  double[] primitiveDoubleArrayProperty();
 
-    @BoundProperty("primitive.double.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    double[] primitiveDoubleArrayPropertyWithCustomSeparator();
+  @BoundProperty("primitive.double.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  double[] primitiveDoubleArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("primitive.double.array.property.with.default")
-    @DefaultsTo("-1.0,-2.0,-3.0,-4.0,-5.0")
-    double[] primitiveDoubleArrayPropertyWithDefault();
+  @BoundProperty("primitive.double.array.property.with.default")
+  @DefaultsTo("-1.0,-2.0,-3.0,-4.0,-5.0")
+  double[] primitiveDoubleArrayPropertyWithDefault();
 
-    @BoundProperty("primitive.double.array.property.with.default.and.separator")
-    @DefaultsTo("-6.0|-7.0|-8.0|-9.0")
-    @ValuesSeparatedBy(pattern = "\\|")
-    double[] primitiveDoubleArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("primitive.double.array.property.with.default.and.separator")
+  @DefaultsTo("-6.0|-7.0|-8.0|-9.0")
+  @ValuesSeparatedBy(pattern = "\\|")
+  double[] primitiveDoubleArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("wrapped.double.array.property")
-    Double[] wrappedDoubleArrayProperty();
+  @BoundProperty("wrapped.double.array.property")
+  Double[] wrappedDoubleArrayProperty();
 
-    @BoundProperty("wrapped.double.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    Double[] wrappedDoubleArrayPropertyWithCustomSeparator();
+  @BoundProperty("wrapped.double.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  Double[] wrappedDoubleArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("wrapped.double.array.property.with.default")
-    @DefaultsTo("-10.0,-11.0,-12.0")
-    Double[] wrappedDoubleArrayPropertyWithDefault();
+  @BoundProperty("wrapped.double.array.property.with.default")
+  @DefaultsTo("-10.0,-11.0,-12.0")
+  Double[] wrappedDoubleArrayPropertyWithDefault();
 
-    @BoundProperty("wrapped.double.array.property.with.default.and.separator")
-    @DefaultsTo("-13.0|-14.0|-15.0|-16.0")
-    @ValuesSeparatedBy(pattern = "\\|")
-    Double[] wrappedDoubleArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("wrapped.double.array.property.with.default.and.separator")
+  @DefaultsTo("-13.0|-14.0|-15.0|-16.0")
+  @ValuesSeparatedBy(pattern = "\\|")
+  Double[] wrappedDoubleArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("primitive.float.array.property")
-    float[] primitiveFloatArrayProperty();
+  @BoundProperty("primitive.float.array.property")
+  float[] primitiveFloatArrayProperty();
 
-    @BoundProperty("primitive.float.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    float[] primitiveFloatArrayPropertyWithCustomSeparator();
+  @BoundProperty("primitive.float.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  float[] primitiveFloatArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("primitive.float.array.property.with.default")
-    @DefaultsTo("1.1,1.2,1.3,1.4,1.5")
-    float[] primitiveFloatArrayPropertyWithDefault();
+  @BoundProperty("primitive.float.array.property.with.default")
+  @DefaultsTo("1.1,1.2,1.3,1.4,1.5")
+  float[] primitiveFloatArrayPropertyWithDefault();
 
-    @BoundProperty("primitive.float.array.property.with.default.and.separator")
-    @DefaultsTo("1.6|1.7|1.8|1.9")
-    @ValuesSeparatedBy(pattern = "\\|")
-    float[] primitiveFloatArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("primitive.float.array.property.with.default.and.separator")
+  @DefaultsTo("1.6|1.7|1.8|1.9")
+  @ValuesSeparatedBy(pattern = "\\|")
+  float[] primitiveFloatArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("wrapped.float.array.property")
-    Float[] wrappedFloatArrayProperty();
+  @BoundProperty("wrapped.float.array.property")
+  Float[] wrappedFloatArrayProperty();
 
-    @BoundProperty("wrapped.float.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    Float[] wrappedFloatArrayPropertyWithCustomSeparator();
+  @BoundProperty("wrapped.float.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  Float[] wrappedFloatArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("wrapped.float.array.property.with.default")
-    @DefaultsTo("2.0,2.1,2.2")
-    Float[] wrappedFloatArrayPropertyWithDefault();
+  @BoundProperty("wrapped.float.array.property.with.default")
+  @DefaultsTo("2.0,2.1,2.2")
+  Float[] wrappedFloatArrayPropertyWithDefault();
 
-    @BoundProperty("wrapped.float.array.property.with.default.and.separator")
-    @DefaultsTo("2.3|2.4|2.5|2.6")
-    @ValuesSeparatedBy(pattern = "\\|")
-    Float[] wrappedFloatArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("wrapped.float.array.property.with.default.and.separator")
+  @DefaultsTo("2.3|2.4|2.5|2.6")
+  @ValuesSeparatedBy(pattern = "\\|")
+  Float[] wrappedFloatArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("primitive.integer.array.property")
-    int[] primitiveIntegerArrayProperty();
+  @BoundProperty("primitive.integer.array.property")
+  int[] primitiveIntegerArrayProperty();
 
-    @BoundProperty("primitive.integer.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    int[] primitiveIntegerArrayPropertyWithCustomSeparator();
+  @BoundProperty("primitive.integer.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  int[] primitiveIntegerArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("primitive.integer.array.property.with.default")
-    @DefaultsTo("-1,-2,-3,-4,-5")
-    int[] primitiveIntegerArrayPropertyWithDefault();
+  @BoundProperty("primitive.integer.array.property.with.default")
+  @DefaultsTo("-1,-2,-3,-4,-5")
+  int[] primitiveIntegerArrayPropertyWithDefault();
 
-    @BoundProperty("primitive.integer.array.property.with.default.and.separator")
-    @DefaultsTo("-6|-7|-8|-9")
-    @ValuesSeparatedBy(pattern = "\\|")
-    int[] primitiveIntegerArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("primitive.integer.array.property.with.default.and.separator")
+  @DefaultsTo("-6|-7|-8|-9")
+  @ValuesSeparatedBy(pattern = "\\|")
+  int[] primitiveIntegerArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("wrapped.integer.array.property")
-    Integer[] wrappedIntegerArrayProperty();
+  @BoundProperty("wrapped.integer.array.property")
+  Integer[] wrappedIntegerArrayProperty();
 
-    @BoundProperty("wrapped.integer.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    Integer[] wrappedIntegerArrayPropertyWithCustomSeparator();
+  @BoundProperty("wrapped.integer.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  Integer[] wrappedIntegerArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("wrapped.integer.array.property.with.default")
-    @DefaultsTo("-10,-11,-12")
-    Integer[] wrappedIntegerArrayPropertyWithDefault();
+  @BoundProperty("wrapped.integer.array.property.with.default")
+  @DefaultsTo("-10,-11,-12")
+  Integer[] wrappedIntegerArrayPropertyWithDefault();
 
-    @BoundProperty("wrapped.integer.array.property.with.default.and.separator")
-    @DefaultsTo("-13|-14|-15|-16")
-    @ValuesSeparatedBy(pattern = "\\|")
-    Integer[] wrappedIntegerArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("wrapped.integer.array.property.with.default.and.separator")
+  @DefaultsTo("-13|-14|-15|-16")
+  @ValuesSeparatedBy(pattern = "\\|")
+  Integer[] wrappedIntegerArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("primitive.long.array.property")
-    long[] primitiveLongArrayProperty();
+  @BoundProperty("primitive.long.array.property")
+  long[] primitiveLongArrayProperty();
 
-    @BoundProperty("primitive.long.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    long[] primitiveLongArrayPropertyWithCustomSeparator();
+  @BoundProperty("primitive.long.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  long[] primitiveLongArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("primitive.long.array.property.with.default")
-    @DefaultsTo("44,45,46,47,48")
-    long[] primitiveLongArrayPropertyWithDefault();
+  @BoundProperty("primitive.long.array.property.with.default")
+  @DefaultsTo("44,45,46,47,48")
+  long[] primitiveLongArrayPropertyWithDefault();
 
-    @BoundProperty("primitive.long.array.property.with.default.and.separator")
-    @DefaultsTo("49|50|51|52")
-    @ValuesSeparatedBy(pattern = "\\|")
-    long[] primitiveLongArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("primitive.long.array.property.with.default.and.separator")
+  @DefaultsTo("49|50|51|52")
+  @ValuesSeparatedBy(pattern = "\\|")
+  long[] primitiveLongArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("wrapped.long.array.property")
-    Long[] wrappedLongArrayProperty();
+  @BoundProperty("wrapped.long.array.property")
+  Long[] wrappedLongArrayProperty();
 
-    @BoundProperty("wrapped.long.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    Long[] wrappedLongArrayPropertyWithCustomSeparator();
+  @BoundProperty("wrapped.long.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  Long[] wrappedLongArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("wrapped.long.array.property.with.default")
-    @DefaultsTo("53,54,55")
-    Long[] wrappedLongArrayPropertyWithDefault();
+  @BoundProperty("wrapped.long.array.property.with.default")
+  @DefaultsTo("53,54,55")
+  Long[] wrappedLongArrayPropertyWithDefault();
 
-    @BoundProperty("wrapped.long.array.property.with.default.and.separator")
-    @DefaultsTo("56|57|58|59")
-    @ValuesSeparatedBy(pattern = "\\|")
-    Long[] wrappedLongArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("wrapped.long.array.property.with.default.and.separator")
+  @DefaultsTo("56|57|58|59")
+  @ValuesSeparatedBy(pattern = "\\|")
+  Long[] wrappedLongArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("primitive.short.array.property")
-    short[] primitiveShortArrayProperty();
+  @BoundProperty("primitive.short.array.property")
+  short[] primitiveShortArrayProperty();
 
-    @BoundProperty("primitive.short.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    short[] primitiveShortArrayPropertyWithCustomSeparator();
+  @BoundProperty("primitive.short.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  short[] primitiveShortArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("primitive.short.array.property.with.default")
-    @DefaultsTo("-20,-21,-22,-23,-24")
-    short[] primitiveShortArrayPropertyWithDefault();
+  @BoundProperty("primitive.short.array.property.with.default")
+  @DefaultsTo("-20,-21,-22,-23,-24")
+  short[] primitiveShortArrayPropertyWithDefault();
 
-    @BoundProperty("primitive.short.array.property.with.default.and.separator")
-    @DefaultsTo("-25|-26|-27|-28")
-    @ValuesSeparatedBy(pattern = "\\|")
-    short[] primitiveShortArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("primitive.short.array.property.with.default.and.separator")
+  @DefaultsTo("-25|-26|-27|-28")
+  @ValuesSeparatedBy(pattern = "\\|")
+  short[] primitiveShortArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("wrapped.short.array.property")
-    Short[] wrappedShortArrayProperty();
+  @BoundProperty("wrapped.short.array.property")
+  Short[] wrappedShortArrayProperty();
 
-    @BoundProperty("wrapped.short.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    Short[] wrappedShortArrayPropertyWithCustomSeparator();
+  @BoundProperty("wrapped.short.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  Short[] wrappedShortArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("wrapped.short.array.property.with.default")
-    @DefaultsTo("-29,-30,-31")
-    Short[] wrappedShortArrayPropertyWithDefault();
+  @BoundProperty("wrapped.short.array.property.with.default")
+  @DefaultsTo("-29,-30,-31")
+  Short[] wrappedShortArrayPropertyWithDefault();
 
-    @BoundProperty("wrapped.short.array.property.with.default.and.separator")
-    @DefaultsTo("-32|-33|-34|-35")
-    @ValuesSeparatedBy(pattern = "\\|")
-    Short[] wrappedShortArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("wrapped.short.array.property.with.default.and.separator")
+  @DefaultsTo("-32|-33|-34|-35")
+  @ValuesSeparatedBy(pattern = "\\|")
+  Short[] wrappedShortArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("big.integer.array.property")
-    BigInteger[] bigIntegerArrayProperty();
+  @BoundProperty("big.integer.array.property")
+  BigInteger[] bigIntegerArrayProperty();
 
-    @BoundProperty("big.integer.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    BigInteger[] bigIntegerArrayPropertyWithCustomSeparator();
+  @BoundProperty("big.integer.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  BigInteger[] bigIntegerArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("big.integer.array.property.with.default")
-    @DefaultsTo("128,129,130")
-    BigInteger[] bigIntegerArrayPropertyWithDefault();
+  @BoundProperty("big.integer.array.property.with.default")
+  @DefaultsTo("128,129,130")
+  BigInteger[] bigIntegerArrayPropertyWithDefault();
 
-    @BoundProperty("big.integer.array.property.with.default.and.separator")
-    @DefaultsTo("131|132|133")
-    @ValuesSeparatedBy(pattern = "\\|")
-    BigInteger[] bigIntegerArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("big.integer.array.property.with.default.and.separator")
+  @DefaultsTo("131|132|133")
+  @ValuesSeparatedBy(pattern = "\\|")
+  BigInteger[] bigIntegerArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("big.decimal.array.property")
-    BigDecimal[] bigDecimalArrayProperty();
+  @BoundProperty("big.decimal.array.property")
+  BigDecimal[] bigDecimalArrayProperty();
 
-    @BoundProperty("big.decimal.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    BigDecimal[] bigDecimalArrayPropertyWithCustomSeparator();
+  @BoundProperty("big.decimal.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  BigDecimal[] bigDecimalArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("big.decimal.array.property.with.default")
-    @DefaultsTo("345.67,890.12")
-    BigDecimal[] bigDecimalArrayPropertyWithDefault();
+  @BoundProperty("big.decimal.array.property.with.default")
+  @DefaultsTo("345.67,890.12")
+  BigDecimal[] bigDecimalArrayPropertyWithDefault();
 
-    @BoundProperty("big.decimal.array.property.with.default.and.separator")
-    @DefaultsTo("3456.78|9012.34")
-    @ValuesSeparatedBy(pattern = "\\|")
-    BigDecimal[] bigDecimalArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("big.decimal.array.property.with.default.and.separator")
+  @DefaultsTo("3456.78|9012.34")
+  @ValuesSeparatedBy(pattern = "\\|")
+  BigDecimal[] bigDecimalArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("enum.array.property")
-    Ternary[] enumArrayProperty();
+  @BoundProperty("enum.array.property")
+  Ternary[] enumArrayProperty();
 
-    @BoundProperty("enum.array.property.with.custom.separator")
-    @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-    Ternary[] enumArrayPropertyWithCustomSeparator();
+  @BoundProperty("enum.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  Ternary[] enumArrayPropertyWithCustomSeparator();
 
-    @BoundProperty("enum.array.property.with.default")
-    @DefaultsTo("YES,NO,NO,MAYBE,YES")
-    Ternary[] enumArrayPropertyWithDefault();
+  @BoundProperty("enum.array.property.with.default")
+  @DefaultsTo("YES,NO,NO,MAYBE,YES")
+  Ternary[] enumArrayPropertyWithDefault();
 
-    @BoundProperty("enum.array.property.with.default.and.separator")
-    @DefaultsTo("NO|MAYBE|YES|MAYBE")
-    @ValuesSeparatedBy(pattern = "\\|")
-    Ternary[] enumArrayPropertyWithDefaultAndSeparator();
+  @BoundProperty("enum.array.property.with.default.and.separator")
+  @DefaultsTo("NO|MAYBE|YES|MAYBE")
+  @ValuesSeparatedBy(pattern = "\\|")
+  Ternary[] enumArrayPropertyWithDefaultAndSeparator();
 
-    @BoundProperty("date.property.with.parse.patterns")
-    @ParsedAs({"yyyy"})
-    Date datePropertyWithParsePatterns();
+  @BoundProperty("date.property.with.parse.patterns")
+  @ParsedAs({"yyyy"})
+  Date datePropertyWithParsePatterns();
 
-    @BoundProperty("date.property.with.default.with.parse.patterns")
-    @ParsedAs({"yyyy"})
-    @DefaultsTo("2003")
-    Date datePropertyWithDefaultWithParsePatterns();
+  @BoundProperty("date.property.with.default.with.parse.patterns")
+  @ParsedAs({"yyyy"})
+  @DefaultsTo("2003")
+  Date datePropertyWithDefaultWithParsePatterns();
 
-    @BoundProperty("with.substitution")
-    String substituted();
+  @BoundProperty("with.substitution")
+  String substituted();
 
-    @BoundProperty(value = "need.to.suppress.substitution", suppressSubstitution = true)
-    String regex();
+  @BoundProperty(value = "need.to.suppress.substitution", suppressSubstitution = true)
+  String regex();
 }

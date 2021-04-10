@@ -8,39 +8,39 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class InternalBoundPropertyTest {
-    private InternalBoundProperty boundProperty;
+  private InternalBoundProperty boundProperty;
 
-    @Before public void setUp() {
-        boundProperty = new InternalBoundProperty("x");
-    }
+  @Before public void setUp() {
+    boundProperty = new InternalBoundProperty("x");
+  }
 
-    @Test public void hasCorrectAnnotationType() {
-        assertEquals(BoundProperty.class, boundProperty.annotationType());
-    }
+  @Test public void hasCorrectAnnotationType() {
+    assertEquals(BoundProperty.class, boundProperty.annotationType());
+  }
 
-    @Test public void notEqualToNull() {
-        assertNotEquals(boundProperty, null);
-    }
+  @Test public void notEqualToNull() {
+    assertNotEquals(boundProperty, null);
+  }
 
-    @Test public void notEqualToObjectInDifferentHierarchy() {
-        assertNotEquals(boundProperty, "x");
-    }
+  @Test public void notEqualToObjectInDifferentHierarchy() {
+    assertNotEquals(boundProperty, "x");
+  }
 
-    @Test public void notEqualIfValuesDiffer() {
-        assertNotEquals(boundProperty, new InternalBoundProperty("y"));
-    }
+  @Test public void notEqualIfValuesDiffer() {
+    assertNotEquals(boundProperty, new InternalBoundProperty("y"));
+  }
 
-    @Test public void hashCodeIsThatOfValue() {
-        assertEquals("x".hashCode(), boundProperty.hashCode());
-    }
+  @Test public void hashCodeIsThatOfValue() {
+    assertEquals("x".hashCode(), boundProperty.hashCode());
+  }
 
-    @Test public void equalityVersusBakedInAnnotations() throws Exception {
-        BoundProperty bakedIn = getClass().getDeclaredMethod("x").getAnnotation(BoundProperty.class);
+  @Test public void equalityVersusBakedInAnnotations() throws Exception {
+    BoundProperty bakedIn = getClass().getDeclaredMethod("x").getAnnotation(BoundProperty.class);
 
-        assertEquals(boundProperty, bakedIn);
-        assertEquals(bakedIn, boundProperty);
-    }
+    assertEquals(boundProperty, bakedIn);
+    assertEquals(bakedIn, boundProperty);
+  }
 
-    @BoundProperty("x") private void x() {
-    }
+  @BoundProperty("x") private void x() {
+  }
 }

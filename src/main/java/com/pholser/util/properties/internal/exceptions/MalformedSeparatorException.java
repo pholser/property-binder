@@ -30,15 +30,15 @@ import com.pholser.util.properties.ValuesSeparatedBy;
 import java.lang.reflect.Method;
 
 public class MalformedSeparatorException extends IllegalArgumentException {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    public MalformedSeparatorException(
-        String separator,
-        Method method,
-        Throwable cause) {
+  public MalformedSeparatorException(
+    String separator,
+    Method method,
+    Throwable cause) {
 
-        super("Cannot convert pattern [" + separator + "] of @" + ValuesSeparatedBy.class.getSimpleName()
-            + " for method " + method.getName() + " on " + method.getDeclaringClass()
-            + " to " + method.getReturnType(), cause);
-    }
+    super("Cannot convert pattern [" + separator + "] of @" + ValuesSeparatedBy.class.getSimpleName()
+      + " for method " + method.getName() + " on " + method.getDeclaringClass()
+      + " to " + method.getReturnType(), cause);
+  }
 }

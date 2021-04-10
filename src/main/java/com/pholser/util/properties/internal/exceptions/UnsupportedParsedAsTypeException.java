@@ -30,10 +30,10 @@ import com.pholser.util.properties.ParsedAs;
 import java.util.Date;
 
 public class UnsupportedParsedAsTypeException extends IllegalArgumentException {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    public UnsupportedParsedAsTypeException(Class<?> valueType) {
-        super("Marker @" + ParsedAs.class.getSimpleName() + " is not applicable to methods which return ["
-            + valueType.getName() + "], only " + Date.class.getName());
-    }
+  public UnsupportedParsedAsTypeException(Class<?> valueType) {
+    super("Marker @" + ParsedAs.class.getSimpleName() + " is not applicable to methods which return ["
+      + valueType.getName() + "], only " + Date.class.getName());
+  }
 }

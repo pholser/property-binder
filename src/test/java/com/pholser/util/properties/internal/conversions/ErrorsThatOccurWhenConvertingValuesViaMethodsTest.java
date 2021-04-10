@@ -36,57 +36,57 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 public class ErrorsThatOccurWhenConvertingValuesViaMethodsTest {
-    @Test public void transformingInvocationTargetExceptions() throws Exception {
-        Method method = MethodRaisesException.class.getDeclaredMethod("raisesException", String.class);
-        MethodInvokingValueConverter converter =
-            new MethodInvokingValueConverter(method, Void.class);
+  @Test public void transformingInvocationTargetExceptions() throws Exception {
+    Method method = MethodRaisesException.class.getDeclaredMethod("raisesException", String.class);
+    MethodInvokingValueConverter converter =
+      new MethodInvokingValueConverter(method, Void.class);
 
-        ValueConversionException ex =
-            assertThrows(
-                ValueConversionException.class,
-                () -> converter.convert(""));
-        assertEquals(UnsupportedOperationException.class, ex.getCause().getClass());
+    ValueConversionException ex =
+      assertThrows(
+        ValueConversionException.class,
+        () -> converter.convert(""));
+    assertEquals(UnsupportedOperationException.class, ex.getCause().getClass());
+  }
+
+  @Test public void transformingIllegalArgumentExceptions() throws Exception {
+    Method method = Calendar.class.getDeclaredMethod("getInstance");
+    MethodInvokingValueConverter converter =
+      new MethodInvokingValueConverter(method, Calendar.class);
+
+    ValueConversionException ex =
+      assertThrows(
+        ValueConversionException.class,
+        () -> converter.convert(""));
+    assertEquals(IllegalArgumentException.class, ex.getCause().getClass());
+  }
+
+  @Test public void transformingIllegalAccessExceptions() throws Exception {
+    Method method = ForTriggeringIllegalAccess.class.getDeclaredMethod("valueOf", String.class);
+    MethodInvokingValueConverter converter =
+      new MethodInvokingValueConverter(method, String.class);
+
+    ValueConversionException ex =
+      assertThrows(
+        ValueConversionException.class,
+        () -> converter.convert(""));
+    assertEquals(IllegalAccessException.class, ex.getCause().getClass());
+  }
+
+  @Test public void transformingClassCastExceptions() throws Exception {
+    Method method = Integer.class.getDeclaredMethod("valueOf", String.class);
+    MethodInvokingValueConverter converter =
+      new MethodInvokingValueConverter(method, Boolean.class);
+
+    ValueConversionException ex =
+      assertThrows(
+        ValueConversionException.class,
+        () -> converter.convert("2"));
+    assertEquals(ClassCastException.class, ex.getCause().getClass());
+  }
+
+  public static class MethodRaisesException {
+    public static void raisesException(@SuppressWarnings("unused") String argument) {
+      throw new UnsupportedOperationException();
     }
-
-    @Test public void transformingIllegalArgumentExceptions() throws Exception {
-        Method method = Calendar.class.getDeclaredMethod("getInstance");
-        MethodInvokingValueConverter converter =
-            new MethodInvokingValueConverter(method, Calendar.class);
-
-        ValueConversionException ex =
-            assertThrows(
-                ValueConversionException.class,
-                () -> converter.convert(""));
-        assertEquals(IllegalArgumentException.class, ex.getCause().getClass());
-    }
-
-    @Test public void transformingIllegalAccessExceptions() throws Exception {
-        Method method = ForTriggeringIllegalAccess.class.getDeclaredMethod("valueOf", String.class);
-        MethodInvokingValueConverter converter =
-            new MethodInvokingValueConverter(method, String.class);
-
-        ValueConversionException ex =
-            assertThrows(
-                ValueConversionException.class,
-                () -> converter.convert(""));
-        assertEquals(IllegalAccessException.class, ex.getCause().getClass());
-    }
-
-    @Test public void transformingClassCastExceptions() throws Exception {
-        Method method = Integer.class.getDeclaredMethod("valueOf", String.class);
-        MethodInvokingValueConverter converter =
-            new MethodInvokingValueConverter(method, Boolean.class);
-
-        ValueConversionException ex =
-            assertThrows(
-                ValueConversionException.class,
-                () -> converter.convert("2"));
-        assertEquals(ClassCastException.class, ex.getCause().getClass());
-    }
-
-    public static class MethodRaisesException {
-        public static void raisesException(@SuppressWarnings("unused") String argument) {
-            throw new UnsupportedOperationException();
-        }
-    }
+  }
 }

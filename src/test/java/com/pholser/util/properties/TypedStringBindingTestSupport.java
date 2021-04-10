@@ -33,25 +33,25 @@ import java.lang.reflect.Method;
 import static org.junit.Assert.assertEquals;
 
 public abstract class TypedStringBindingTestSupport<T> extends StringBindingTestSupport {
-    protected PropertyBinder<T> binder;
-    protected T bound;
+  protected PropertyBinder<T> binder;
+  protected T bound;
 
-    @Before public final void initializeBinderAndBoundType() throws Exception {
-        binder = new PropertyBinder<>(boundType());
-        bound = binder.bind(propertiesFile);
+  @Before public final void initializeBinderAndBoundType() throws Exception {
+    binder = new PropertyBinder<>(boundType());
+    bound = binder.bind(propertiesFile);
+  }
+
+  protected abstract Class<T> boundType();
+
+  protected void assertPropertiesEqual(Object expected, Object actual) throws Exception {
+    for (Method each : boundType().getDeclaredMethods()) {
+      Object expectedBound = each.invoke(expected);
+      Object boundActual = each.invoke(actual);
+
+      if (each.getReturnType().isArray())
+        new ExactComparisonCriteria().arrayEquals(each.getName(), expectedBound, boundActual);
+      else
+        assertEquals(each.getName(), expectedBound, boundActual);
     }
-
-    protected abstract Class<T> boundType();
-
-    protected void assertPropertiesEqual(Object expected, Object actual) throws Exception {
-        for (Method each : boundType().getDeclaredMethods()) {
-            Object expectedBound = each.invoke(expected);
-            Object boundActual = each.invoke(actual);
-
-            if (each.getReturnType().isArray())
-                new ExactComparisonCriteria().arrayEquals(each.getName(), expectedBound, boundActual);
-            else
-                assertEquals(each.getName(), expectedBound, boundActual);
-        }
-    }
+  }
 }

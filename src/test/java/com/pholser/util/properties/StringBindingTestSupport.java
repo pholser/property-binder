@@ -30,9 +30,9 @@ import org.junit.Before;
 import java.io.File;
 
 public abstract class StringBindingTestSupport {
-    protected File propertiesFile;
+  protected File propertiesFile;
 
-    @Before public final void initializePropertiesFile() {
-        propertiesFile = new File("src/test/resources/test.properties");
-    }
+  @Before public final void initializePropertiesFile() {
+    propertiesFile = new File("src/test/resources/test.properties");
+  }
 }

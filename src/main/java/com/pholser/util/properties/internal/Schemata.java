@@ -31,47 +31,56 @@ import com.pholser.util.properties.ValuesSeparatedBy;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.util.Optional;
 
 import static com.pholser.util.properties.internal.Reflection.invokeQuietly;
 
 public final class Schemata {
-    private Schemata() {
-        throw new UnsupportedOperationException();
-    }
+  private Schemata() {
+    throw new UnsupportedOperationException();
+  }
 
-    public static BoundProperty propertyMarkerFor(Method method) {
-        BoundProperty marker = method.getAnnotation(BoundProperty.class);
-        return marker != null
-            ? marker
-            : new InternalBoundProperty(method.getDeclaringClass().getName() + '.' + method.getName());
-    }
+  public static BoundProperty propertyMarkerFor(Method method) {
+    return Optional.ofNullable(method.getAnnotation(BoundProperty.class))
+      .orElse(
+        new InternalBoundProperty(
+          method.getDeclaringClass().getName() + '.' + method.getName()));
+  }
 
-    public static Object annotationDefault(Class<? extends Annotation> clazz, String methodName) {
-        try {
-            return clazz.getMethod(methodName).getDefaultValue();
-        } catch (NoSuchMethodException ex) {
-            throw new AssertionError(ex);
-        }
-    }
+  public static Object annotationDefault(
+    Class<? extends Annotation> clazz,
+    String methodName) {
 
-    private static boolean isDefault(Object annotation, Class<? extends Annotation> clazz, String methodName) {
-        Object annotationDefault = annotationDefault(clazz, methodName);
-        return annotationDefault.equals(invokeQuietly(clazz, methodName, annotation));
+    try {
+      return clazz.getMethod(methodName).getDefaultValue();
+    } catch (NoSuchMethodException ex) {
+      throw new AssertionError(ex);
     }
+  }
 
-    public static boolean isDefaultSeparatorValueOf(ValuesSeparatedBy spec) {
-        return isDefault(spec, ValuesSeparatedBy.class, "valueOf");
-    }
+  private static boolean isDefault(
+    Object annotation,
+    Class<? extends Annotation> clazz,
+    String methodName) {
 
-    public static boolean isDefaultPattern(ValuesSeparatedBy spec) {
-        return isDefault(spec, ValuesSeparatedBy.class, "pattern");
-    }
+    Object annotationDefault = annotationDefault(clazz, methodName);
+    return annotationDefault.equals(
+      invokeQuietly(clazz, methodName, annotation));
+  }
 
-    public static boolean isDefaultDefaultValue(DefaultsTo spec) {
-        return isDefault(spec, DefaultsTo.class, "value");
-    }
+  public static boolean isDefaultSeparatorValueOf(ValuesSeparatedBy spec) {
+    return isDefault(spec, ValuesSeparatedBy.class, "valueOf");
+  }
 
-    public static boolean isDefaultDefaultValueOf(DefaultsTo spec) {
-        return isDefault(spec, DefaultsTo.class, "valueOf");
-    }
+  public static boolean isDefaultPattern(ValuesSeparatedBy spec) {
+    return isDefault(spec, ValuesSeparatedBy.class, "pattern");
+  }
+
+  public static boolean isDefaultDefaultValue(DefaultsTo spec) {
+    return isDefault(spec, DefaultsTo.class, "value");
+  }
+
+  public static boolean isDefaultDefaultValueOf(DefaultsTo spec) {
+    return isDefault(spec, DefaultsTo.class, "valueOf");
+  }
 }

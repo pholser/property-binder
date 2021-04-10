@@ -35,61 +35,61 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 public class ErrorsThatOccurWhenConvertingValuesViaConstructorsTest {
-    @Test public void transformingInvocationTargetExceptions() throws Exception {
-        Constructor<ConstructorRaisesException> ctor =
-            ConstructorRaisesException.class.getDeclaredConstructor(String.class);
+  @Test public void transformingInvocationTargetExceptions() throws Exception {
+    Constructor<ConstructorRaisesException> ctor =
+      ConstructorRaisesException.class.getDeclaredConstructor(String.class);
 
-        ValueConversionException ex =
-            assertThrows(
-                ValueConversionException.class,
-                () -> new ConstructorInvokingValueConverter(ctor).convert(""));
-        assertEquals(UnsupportedOperationException.class, ex.getCause().getClass());
+    ValueConversionException ex =
+      assertThrows(
+        ValueConversionException.class,
+        () -> new ConstructorInvokingValueConverter(ctor).convert(""));
+    assertEquals(UnsupportedOperationException.class, ex.getCause().getClass());
+  }
+
+  @Test public void transformingIllegalArgumentExceptions() throws Exception {
+    Constructor<HasPlainOldConstructor> ctor = HasPlainOldConstructor.class.getDeclaredConstructor();
+
+    ValueConversionException ex =
+      assertThrows(
+        ValueConversionException.class,
+        () -> new ConstructorInvokingValueConverter(ctor).convert(""));
+    assertEquals(IllegalArgumentException.class, ex.getCause().getClass());
+  }
+
+  @Test public void transformingIllegalAccessExceptions() throws Exception {
+    Constructor<ForTriggeringIllegalAccess> ctor =
+      ForTriggeringIllegalAccess.class.getDeclaredConstructor(String.class);
+
+    ValueConversionException ex =
+      assertThrows(
+        ValueConversionException.class,
+        () -> new ConstructorInvokingValueConverter(ctor).convert(""));
+    assertEquals(IllegalAccessException.class, ex.getCause().getClass());
+  }
+
+  @Test public void transformingInstantiationExceptions() throws Exception {
+    Constructor<CannotBeInstantiated> ctor = CannotBeInstantiated.class.getDeclaredConstructor(String.class);
+
+    ValueConversionException ex =
+      assertThrows(
+        ValueConversionException.class,
+        () -> new ConstructorInvokingValueConverter(ctor).convert(""));
+    assertEquals(InstantiationException.class, ex.getCause().getClass());
+  }
+
+  static class ConstructorRaisesException {
+    ConstructorRaisesException(@SuppressWarnings("unused") String argument) {
+      throw new UnsupportedOperationException();
     }
+  }
 
-    @Test public void transformingIllegalArgumentExceptions() throws Exception {
-        Constructor<HasPlainOldConstructor> ctor = HasPlainOldConstructor.class.getDeclaredConstructor();
+  static class HasPlainOldConstructor {
+    // nothing to do here
+  }
 
-        ValueConversionException ex =
-            assertThrows(
-                ValueConversionException.class,
-                () -> new ConstructorInvokingValueConverter(ctor).convert(""));
-        assertEquals(IllegalArgumentException.class, ex.getCause().getClass());
+  abstract static class CannotBeInstantiated {
+    CannotBeInstantiated(@SuppressWarnings("unused") String argument) {
+      // nothing to do here
     }
-
-    @Test public void transformingIllegalAccessExceptions() throws Exception {
-        Constructor<ForTriggeringIllegalAccess> ctor =
-            ForTriggeringIllegalAccess.class.getDeclaredConstructor(String.class);
-
-        ValueConversionException ex =
-            assertThrows(
-                ValueConversionException.class,
-                () -> new ConstructorInvokingValueConverter(ctor).convert(""));
-        assertEquals(IllegalAccessException.class, ex.getCause().getClass());
-    }
-
-    @Test public void transformingInstantiationExceptions() throws Exception {
-        Constructor<CannotBeInstantiated> ctor = CannotBeInstantiated.class.getDeclaredConstructor(String.class);
-
-        ValueConversionException ex =
-            assertThrows(
-                ValueConversionException.class,
-                () -> new ConstructorInvokingValueConverter(ctor).convert(""));
-        assertEquals(InstantiationException.class, ex.getCause().getClass());
-    }
-
-    static class ConstructorRaisesException {
-        ConstructorRaisesException(@SuppressWarnings("unused") String argument) {
-            throw new UnsupportedOperationException();
-        }
-    }
-
-    static class HasPlainOldConstructor {
-        // nothing to do here
-    }
-
-    abstract static class CannotBeInstantiated {
-        CannotBeInstantiated(@SuppressWarnings("unused") String argument) {
-            // nothing to do here
-        }
-    }
+  }
 }

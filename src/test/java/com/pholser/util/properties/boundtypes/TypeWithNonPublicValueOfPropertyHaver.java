@@ -29,14 +29,14 @@ import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
 public interface TypeWithNonPublicValueOfPropertyHaver {
-    @BoundProperty("type.with.non.public.value.of.property")
-    @DefaultsTo("boo")
-    TypeWithNonPublicValueOf typeWithNonPublicValueOfProperty();
+  @BoundProperty("type.with.non.public.value.of.property")
+  @DefaultsTo("boo")
+  TypeWithNonPublicValueOf typeWithNonPublicValueOfProperty();
 
-    @SuppressWarnings("all")
-    class TypeWithNonPublicValueOf {
-        static TypeWithNonPublicValueOf valueOf(String value) {
-            return null;
-        }
+  @SuppressWarnings("all")
+  class TypeWithNonPublicValueOf {
+    static TypeWithNonPublicValueOf valueOf(String value) {
+      return null;
     }
+  }
 }

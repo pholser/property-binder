@@ -29,16 +29,16 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public final class IO {
-    private IO() {
-        throw new UnsupportedOperationException();
-    }
+  private IO() {
+    throw new UnsupportedOperationException();
+  }
 
-    public static void closeQuietly(InputStream input) {
-        try {
-            if (input != null)
-                input.close();
-        } catch (IOException ignored) {
-            // empty on purpose
-        }
+  public static void closeQuietly(InputStream input) {
+    try {
+      if (input != null)
+        input.close();
+    } catch (IOException ignored) {
+      // empty on purpose
     }
+  }
 }

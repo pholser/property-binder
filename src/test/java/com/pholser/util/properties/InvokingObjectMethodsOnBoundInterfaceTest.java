@@ -33,29 +33,29 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class InvokingObjectMethodsOnBoundInterfaceTest
-    extends TypedStringBindingTestSupport<InvokingObjectMethodsOnBoundInterfaceTest.PropertyFacade> {
+  extends TypedStringBindingTestSupport<InvokingObjectMethodsOnBoundInterfaceTest.PropertyFacade> {
 
-    @Test public void answeringEquals() throws Exception {
-        PropertyFacade second = binder.bind(propertiesFile);
-        assertEquals(bound, bound);
-        assertNotEquals(bound, second);
-        assertEquals(second, second);
-        assertNotEquals(second, bound);
-    }
+  @Test public void answeringEquals() throws Exception {
+    PropertyFacade second = binder.bind(propertiesFile);
+    assertEquals(bound, bound);
+    assertNotEquals(bound, second);
+    assertEquals(second, second);
+    assertNotEquals(second, bound);
+  }
 
-    @Test public void answeringHashCode() {
-        assertEquals(identityHashCode(bound), bound.hashCode());
-    }
+  @Test public void answeringHashCode() {
+    assertEquals(identityHashCode(bound), bound.hashCode());
+  }
 
-    @Test public void answeringToString() {
-        assertThat(bound.toString()).contains("wrapped.integer");
-    }
+  @Test public void answeringToString() {
+    assertThat(bound.toString()).contains("wrapped.integer");
+  }
 
-    @Override protected Class<PropertyFacade> boundType() {
-        return PropertyFacade.class;
-    }
+  @Override protected Class<PropertyFacade> boundType() {
+    return PropertyFacade.class;
+  }
 
-    interface PropertyFacade {
-        @BoundProperty(value = "string.property") String stringProperty();
-    }
+  interface PropertyFacade {
+    @BoundProperty(value = "string.property") String stringProperty();
+  }
 }

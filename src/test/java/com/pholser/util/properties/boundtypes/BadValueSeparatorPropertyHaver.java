@@ -30,8 +30,8 @@ import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ValuesSeparatedBy;
 
 public interface BadValueSeparatorPropertyHaver {
-    @BoundProperty("bad.value.separator.property")
-    @DefaultsTo("1")
-    @ValuesSeparatedBy(pattern = "*!&@^#(*!@&")
-    int[] badDefaultValueProperty();
+  @BoundProperty("bad.value.separator.property")
+  @DefaultsTo("1")
+  @ValuesSeparatedBy(pattern = "*!&@^#(*!@&")
+  int[] badDefaultValueProperty();
 }

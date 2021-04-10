@@ -34,27 +34,27 @@ import java.lang.reflect.Method;
 import static com.pholser.util.properties.internal.Substitutions.substitute;
 
 class SubstitutableDefaultValue implements DefaultValue {
-    private final DefaultsTo spec;
-    private final ValueConverter converter;
-    private final Method method;
-    private ConvertedDefaultValue converted;
+  private final DefaultsTo spec;
+  private final ValueConverter converter;
+  private final Method method;
+  private ConvertedDefaultValue converted;
 
-    SubstitutableDefaultValue(
-        DefaultsTo spec,
-        ValueConverter converter,
-        Method method) {
+  SubstitutableDefaultValue(
+    DefaultsTo spec,
+    ValueConverter converter,
+    Method method) {
 
-        this.spec = spec;
-        this.converter = converter;
-        this.method = method;
-    }
+    this.spec = spec;
+    this.converter = converter;
+    this.method = method;
+  }
 
-    @Override public Object evaluate() {
-        return converted.evaluate();
-    }
+  @Override public Object evaluate() {
+    return converted.evaluate();
+  }
 
-    @Override public void resolve(PropertySource properties) {
-        String substituted = substitute(properties, spec.valueOf());
-        converted = ConvertedDefaultValue.fromValue(substituted, converter, method);
-    }
+  @Override public void resolve(PropertySource properties) {
+    String substituted = substitute(properties, spec.valueOf());
+    converted = ConvertedDefaultValue.fromValue(substituted, converter, method);
+  }
 }

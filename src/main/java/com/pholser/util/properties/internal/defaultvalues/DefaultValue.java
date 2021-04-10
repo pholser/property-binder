@@ -28,7 +28,7 @@ package com.pholser.util.properties.internal.defaultvalues;
 import com.pholser.util.properties.PropertySource;
 
 public interface DefaultValue {
-    Object evaluate();
+  Object evaluate();
 
-    void resolve(PropertySource properties);
+  void resolve(PropertySource properties);
 }

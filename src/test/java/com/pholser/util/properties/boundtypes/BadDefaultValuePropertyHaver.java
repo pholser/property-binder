@@ -29,7 +29,7 @@ import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
 public interface BadDefaultValuePropertyHaver {
-    @BoundProperty("bad.default.value.property")
-    @DefaultsTo("!@#")
-    int badDefaultValueProperty();
+  @BoundProperty("bad.default.value.property")
+  @DefaultsTo("!@#")
+  int badDefaultValueProperty();
 }

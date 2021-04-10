@@ -26,9 +26,9 @@
 package com.pholser.util.properties.internal.exceptions;
 
 public class InterfaceHasSuperinterfacesException extends IllegalArgumentException {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    public InterfaceHasSuperinterfacesException(Class<?> schema) {
-        super("Bound type " + schema.getSimpleName() + " should have no superinterfaces");
-    }
+  public InterfaceHasSuperinterfacesException(Class<?> schema) {
+    super("Bound type " + schema.getSimpleName() + " should have no superinterfaces");
+  }
 }

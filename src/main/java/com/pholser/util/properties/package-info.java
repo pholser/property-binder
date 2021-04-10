@@ -25,7 +25,7 @@
 
 /**
  * A scheme for typed access to Java properties files.
- *
+ * <p>
  * Inspired by <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/">this blog entry</a>.
  */
 

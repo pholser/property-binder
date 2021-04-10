@@ -31,7 +31,7 @@ import com.pholser.util.properties.DefaultsTo;
 import java.util.List;
 
 public interface UpperBoundedListPropertyHaver {
-    @BoundProperty("upper.bounded.list")
-    @DefaultsTo("1,2")
-    List<? extends Number> upperBoundedList();
+  @BoundProperty("upper.bounded.list")
+  @DefaultsTo("1,2")
+  List<? extends Number> upperBoundedList();
 }

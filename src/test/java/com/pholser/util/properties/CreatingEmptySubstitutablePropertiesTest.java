@@ -31,13 +31,13 @@ import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
 public class CreatingEmptySubstitutablePropertiesTest {
-    private SubstitutableProperties props;
+  private SubstitutableProperties props;
 
-    @Before public void setUp() {
-        props = new SubstitutableProperties();
-    }
+  @Before public void setUp() {
+    props = new SubstitutableProperties();
+  }
 
-    @Test public void empty() {
-        assertTrue(props.isEmpty());
-    }
+  @Test public void empty() {
+    assertTrue(props.isEmpty());
+  }
 }

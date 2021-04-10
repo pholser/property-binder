@@ -40,41 +40,41 @@ import static com.pholser.util.properties.internal.IO.closeQuietly;
 import static org.junit.Assert.assertThrows;
 
 public class BindingStringMapsToTypedInterfacesTest
-    extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
+  extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
 
-    private InputStream inputStream;
-    private Map<String, String> asStringMap;
-    private ScalarPropertyHaver fromMap;
+  private InputStream inputStream;
+  private Map<String, String> asStringMap;
+  private ScalarPropertyHaver fromMap;
 
-    @SuppressWarnings("unchecked")
-    @Before public final void initializeProperties() throws Exception {
-        inputStream = new FileInputStream(propertiesFile);
-        Properties props = new Properties();
-        props.load(inputStream);
-        Map<?, ?> asMap = props;
-        asStringMap = (Map<String, String>) asMap;
-        fromMap = binder.bind(asStringMap);
-    }
+  @SuppressWarnings("unchecked")
+  @Before public final void initializeProperties() throws Exception {
+    inputStream = new FileInputStream(propertiesFile);
+    Properties props = new Properties();
+    props.load(inputStream);
+    Map<?, ?> asMap = props;
+    asStringMap = (Map<String, String>) asMap;
+    fromMap = binder.bind(asStringMap);
+  }
 
-    @After public final void closeInputStream() {
-        closeQuietly(inputStream);
-    }
+  @After public final void closeInputStream() {
+    closeQuietly(inputStream);
+  }
 
-    @Test public void loadingFromPropertiesObject() throws Exception {
-        ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
+  @Test public void loadingFromPropertiesObject() throws Exception {
+    ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
 
-        assertPropertiesEqual(fromFile, fromMap);
-    }
+    assertPropertiesEqual(fromFile, fromMap);
+  }
 
-    @Test public void alteringMapAfterBindingAffectsPropertiesBoundToPICA() {
-        asStringMap.put("primitive.integer.property", "!@#!@#!@#!@#!@#");
+  @Test public void alteringMapAfterBindingAffectsPropertiesBoundToPICA() {
+    asStringMap.put("primitive.integer.property", "!@#!@#!@#!@#!@#");
 
-        assertThrows(
-            ValueConversionException.class,
-            () -> fromMap.primitiveIntegerProperty());
-    }
+    assertThrows(
+      ValueConversionException.class,
+      () -> fromMap.primitiveIntegerProperty());
+  }
 
-    @Override protected Class<ScalarPropertyHaver> boundType() {
-        return ScalarPropertyHaver.class;
-    }
+  @Override protected Class<ScalarPropertyHaver> boundType() {
+    return ScalarPropertyHaver.class;
+  }
 }

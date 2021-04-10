@@ -32,8 +32,8 @@ import com.pholser.util.properties.ValuesSeparatedBy;
 import java.util.List;
 
 public interface SeparatedPropertyHaverWithBothPatternAndValueOf {
-    @BoundProperty("separated.property.with.both.pattern.and.valueOf")
-    @DefaultsTo("2")
-    @ValuesSeparatedBy(pattern = ";", valueOf = ":")
-    List<Integer> badSeparatorProperty();
+  @BoundProperty("separated.property.with.both.pattern.and.valueOf")
+  @DefaultsTo("2")
+  @ValuesSeparatedBy(pattern = ";", valueOf = ":")
+  List<Integer> badSeparatorProperty();
 }

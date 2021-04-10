@@ -37,27 +37,27 @@ import java.util.PropertyResourceBundle;
 import static com.pholser.util.properties.internal.IO.closeQuietly;
 
 public class BindingStringResourceBundlesToTypedInterfacesTest
-    extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
+  extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
 
-    private InputStream inputStream;
-    private ScalarPropertyHaver fromBundle;
+  private InputStream inputStream;
+  private ScalarPropertyHaver fromBundle;
 
-    @Before public final void initializeProperties() throws Exception {
-        inputStream = new FileInputStream(propertiesFile);
-        fromBundle = binder.bind(new PropertyResourceBundle(inputStream));
-    }
+  @Before public final void initializeProperties() throws Exception {
+    inputStream = new FileInputStream(propertiesFile);
+    fromBundle = binder.bind(new PropertyResourceBundle(inputStream));
+  }
 
-    @After public final void closeInputStream() {
-        closeQuietly(inputStream);
-    }
+  @After public final void closeInputStream() {
+    closeQuietly(inputStream);
+  }
 
-    @Test public void loadingFromPropertiesObject() throws Exception {
-        ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
+  @Test public void loadingFromPropertiesObject() throws Exception {
+    ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
 
-        assertPropertiesEqual(fromFile, fromBundle);
-    }
+    assertPropertiesEqual(fromFile, fromBundle);
+  }
 
-    @Override protected Class<ScalarPropertyHaver> boundType() {
-        return ScalarPropertyHaver.class;
-    }
+  @Override protected Class<ScalarPropertyHaver> boundType() {
+    return ScalarPropertyHaver.class;
+  }
 }

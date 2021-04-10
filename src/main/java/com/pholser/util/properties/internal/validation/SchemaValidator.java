@@ -54,95 +54,95 @@ import static com.pholser.util.properties.internal.Schemata.isDefaultSeparatorVa
 import static com.pholser.util.properties.internal.Schemata.propertyMarkerFor;
 
 public class SchemaValidator {
-    private final ValueConverterFactory converterFactory = new ValueConverterFactory();
-    private final ValueSeparatorFactory separatorFactory = new ValueSeparatorFactory();
-    private final DefaultValueFactory defaultValueFactory = new DefaultValueFactory();
+  private final ValueConverterFactory converterFactory = new ValueConverterFactory();
+  private final ValueSeparatorFactory separatorFactory = new ValueSeparatorFactory();
+  private final DefaultValueFactory defaultValueFactory = new DefaultValueFactory();
 
-    public <T> ValidatedSchema<T> validate(Class<T> schema) {
-        ensureInterface(schema);
-        ensureNoSuperinterfaces(schema);
+  public <T> ValidatedSchema<T> validate(Class<T> schema) {
+    ensureInterface(schema);
+    ensureNoSuperinterfaces(schema);
 
-        Method[] methods = schema.getDeclaredMethods();
-        Map<BoundProperty, ValueConverter> converters = new HashMap<>(methods.length);
-        Map<BoundProperty, DefaultValue> defaults = new HashMap<>(methods.length);
-        Map<BoundProperty, ValueSeparator> separators = new HashMap<>(methods.length);
+    Method[] methods = schema.getDeclaredMethods();
+    Map<BoundProperty, ValueConverter> converters = new HashMap<>(methods.length);
+    Map<BoundProperty, DefaultValue> defaults = new HashMap<>(methods.length);
+    Map<BoundProperty, ValueSeparator> separators = new HashMap<>(methods.length);
 
-        for (Method each : methods) {
-            BoundProperty key = propertyMarkerFor(each);
-            collectSeparatorIfAggregateType(separators, each, key);
-            collectConverter(converters, separators, each, key);
-            collectDefaultValue(defaults, converters.get(key), each, key);
-        }
-
-        return new ValidatedSchema<>(schema, defaults, converters);
+    for (Method each : methods) {
+      BoundProperty key = propertyMarkerFor(each);
+      collectSeparatorIfAggregateType(separators, each, key);
+      collectConverter(converters, separators, each, key);
+      collectDefaultValue(defaults, converters.get(key), each, key);
     }
 
-    private static void ensureInterface(Class<?> schema) {
-        if (!schema.isInterface())
-            throw new BoundTypeNotAnInterfaceException(schema);
+    return new ValidatedSchema<>(schema, defaults, converters);
+  }
+
+  private static void ensureInterface(Class<?> schema) {
+    if (!schema.isInterface())
+      throw new BoundTypeNotAnInterfaceException(schema);
+  }
+
+  private static void ensureNoSuperinterfaces(Class<?> schema) {
+    if (schema.getInterfaces().length != 0)
+      throw new InterfaceHasSuperinterfacesException(schema);
+  }
+
+  private void collectSeparatorIfAggregateType(
+    Map<BoundProperty, ValueSeparator> separators,
+    Method method,
+    BoundProperty key) {
+
+    boolean isAggregate = isAggregateType(method.getReturnType());
+    ValuesSeparatedBy separator = method.getAnnotation(ValuesSeparatedBy.class);
+    if (separator != null) {
+      if (!isAggregate)
+        throw new AppliedSeparatorToNonAggregateTypeException(method);
+
+      if (!(isDefaultPattern(separator) || isDefaultSeparatorValueOf(separator))) {
+        throw new MultipleSeparatorSpecificationException(separator, method);
+      }
     }
 
-    private static void ensureNoSuperinterfaces(Class<?> schema) {
-        if (schema.getInterfaces().length != 0)
-            throw new InterfaceHasSuperinterfacesException(schema);
-    }
+    if (isAggregate)
+      separators.put(key, separatorFactory.createSeparator(separator, method));
+  }
 
-    private void collectSeparatorIfAggregateType(
-        Map<BoundProperty, ValueSeparator> separators,
-        Method method,
-        BoundProperty key) {
+  private void collectConverter(
+    Map<BoundProperty, ValueConverter> converters,
+    Map<BoundProperty, ValueSeparator> separators,
+    Method method,
+    BoundProperty key) {
 
-        boolean isAggregate = isAggregateType(method.getReturnType());
-        ValuesSeparatedBy separator = method.getAnnotation(ValuesSeparatedBy.class);
-        if (separator != null) {
-            if (!isAggregate)
-                throw new AppliedSeparatorToNonAggregateTypeException(method);
+    converters.put(key, converterFactory.createConverter(method, separators.get(key)));
+  }
 
-            if (!(isDefaultPattern(separator) || isDefaultSeparatorValueOf(separator))) {
-                throw new MultipleSeparatorSpecificationException(separator, method);
-            }
-        }
+  private void collectDefaultValue(
+    Map<BoundProperty, DefaultValue> defaults,
+    ValueConverter converter,
+    Method method,
+    BoundProperty key) {
 
-        if (isAggregate)
-            separators.put(key, separatorFactory.createSeparator(separator, method));
-    }
+    DefaultValue defaultValue = createDefaultValue(method, converter);
+    if (defaultValue != null)
+      defaults.put(key, defaultValue);
+  }
 
-    private void collectConverter(
-        Map<BoundProperty, ValueConverter> converters,
-        Map<BoundProperty, ValueSeparator> separators,
-        Method method,
-        BoundProperty key) {
+  private DefaultValue createDefaultValue(Method method, ValueConverter converter) {
+    DefaultsTo spec = method.getAnnotation(DefaultsTo.class);
+    if (spec == null)
+      return null;
 
-        converters.put(key, converterFactory.createConverter(method, separators.get(key)));
-    }
+    boolean valueIsDefault = isDefaultDefaultValue(spec);
+    boolean valueOfIsDefault = isDefaultDefaultValueOf(spec);
+    if (!(valueIsDefault || valueOfIsDefault))
+      throw new MultipleDefaultValueSpecificationException(spec, method);
+    if (valueIsDefault && valueOfIsDefault)
+      throw new NoDefaultValueSpecificationException(method);
 
-    private void collectDefaultValue(
-        Map<BoundProperty, DefaultValue> defaults,
-        ValueConverter converter,
-        Method method,
-        BoundProperty key) {
+    return defaultValueFactory.createDefaultValue(spec, converter, method);
+  }
 
-        DefaultValue defaultValue = createDefaultValue(method, converter);
-        if (defaultValue != null)
-            defaults.put(key, defaultValue);
-    }
-
-    private DefaultValue createDefaultValue(Method method, ValueConverter converter) {
-        DefaultsTo spec = method.getAnnotation(DefaultsTo.class);
-        if (spec == null)
-            return null;
-
-        boolean valueIsDefault = isDefaultDefaultValue(spec);
-        boolean valueOfIsDefault = isDefaultDefaultValueOf(spec);
-        if (!(valueIsDefault || valueOfIsDefault))
-            throw new MultipleDefaultValueSpecificationException(spec, method);
-        if (valueIsDefault && valueOfIsDefault)
-            throw new NoDefaultValueSpecificationException(method);
-
-        return defaultValueFactory.createDefaultValue(spec, converter, method);
-    }
-
-    public static boolean isAggregateType(Class<?> clazz) {
-        return clazz.isArray() || Collection.class.isAssignableFrom(clazz);
-    }
+  public static boolean isAggregateType(Class<?> clazz) {
+    return clazz.isArray() || Collection.class.isAssignableFrom(clazz);
+  }
 }
