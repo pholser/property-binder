@@ -156,10 +156,7 @@ public class ValueConverterFactory {
   }
 
   private static Class<?> targetTypeFor(Method method) {
-    Class<?> returnType = method.getReturnType();
-    return returnType.isPrimitive()
-      ? wrapperIfPrimitive(returnType)
-      : returnType;
+    return wrapperIfPrimitive(method.getReturnType());
   }
 
   private static Class<?> wrapperIfPrimitive(Class<?> clazz) {

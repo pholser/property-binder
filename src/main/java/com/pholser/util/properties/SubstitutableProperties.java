@@ -25,6 +25,7 @@
 
 package com.pholser.util.properties;
 
+import java.util.Enumeration;
 import java.util.Properties;
 
 import static com.pholser.util.properties.internal.Substitutions.substitute;
@@ -69,5 +70,20 @@ public class SubstitutableProperties extends Properties
     return key.suppressSubstitution()
       ? super.getProperty(key.value())
       : getProperty(key.value());
+  }
+
+  @Override public synchronized String toString() {
+    StringBuilder buffer = new StringBuilder("{");
+
+    for (Enumeration<?> en = propertyNames(); en.hasMoreElements();) {
+      String key = (String) en.nextElement();
+      buffer.append(key).append('=').append(getProperty(key));
+      if (en.hasMoreElements()) {
+        buffer.append(", ");
+      }
+    }
+
+    buffer.append('}');
+    return buffer.toString();
   }
 }
