@@ -51,7 +51,7 @@ public final class Substitutions {
     return substituted;
   }
 
-  public static Object maybeSubstitute(
+  static Object maybeSubstitute(
     PropertySource properties,
     BoundProperty key,
     Object value) {
@@ -65,15 +65,19 @@ public final class Substitutions {
     PropertySource properties,
     CharSequence value) {
 
+    StringBuilder buffer = new StringBuilder(value.length() * 2);
+
     Matcher matcher = REFERENCE.matcher(value);
-    StringBuffer buffer = new StringBuffer(value.length() * 2);
     while (matcher.find()) {
       String reference =
         (String) properties.propertyFor(
           new InternalBoundProperty(matcher.group(1)));
-      matcher.appendReplacement(buffer, reference == null ? "" : reference);
+      matcher.appendReplacement(
+        buffer,
+        reference == null ? "" : reference);
     }
     matcher.appendTail(buffer);
+
     return buffer.toString();
   }
 }

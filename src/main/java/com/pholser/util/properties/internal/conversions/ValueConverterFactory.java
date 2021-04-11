@@ -97,8 +97,9 @@ public class ValueConverterFactory {
     }
 
     ValueConverter constructor = constructorConverter(returnType);
-    if (constructor != null)
+    if (constructor != null) {
       return constructor;
+    }
 
     if (defaults != null || (separator != null && !separator.isDefault())) {
       throw new UnsupportedValueTypeException(valueType);

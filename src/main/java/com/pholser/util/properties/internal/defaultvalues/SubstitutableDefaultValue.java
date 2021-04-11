@@ -55,6 +55,7 @@ class SubstitutableDefaultValue implements DefaultValue {
 
   @Override public void resolve(PropertySource properties) {
     String substituted = substitute(properties, spec.valueOf());
-    converted = ConvertedDefaultValue.fromValue(substituted, converter, method);
+    converted =
+      ConvertedDefaultValue.fromValue(substituted, converter, method);
   }
 }

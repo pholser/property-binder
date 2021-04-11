@@ -52,9 +52,11 @@ class ArrayValueConverter extends AggregateValueConverter {
 
   @Override public Object convert(String raw, Object... args) {
     String[] pieces = separate(raw);
+
     Object array = Array.newInstance(componentType, pieces.length);
-    for (int i = 0; i < pieces.length; ++i)
+    for (int i = 0; i < pieces.length; ++i) {
       Array.set(array, i, scalarConverter.convert(pieces[i], args));
+    }
 
     return array;
   }

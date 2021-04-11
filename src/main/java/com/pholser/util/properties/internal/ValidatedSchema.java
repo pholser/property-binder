@@ -35,6 +35,7 @@ import java.util.Map;
 
 import static com.pholser.util.properties.internal.Schemata.propertyMarkerFor;
 import static java.lang.reflect.Proxy.newProxyInstance;
+import static java.util.Objects.requireNonNull;
 
 public class ValidatedSchema<T> {
   private final Class<T> schema;
@@ -52,9 +53,7 @@ public class ValidatedSchema<T> {
   }
 
   public T evaluate(PropertySource properties) {
-    if (properties == null) {
-      throw new NullPointerException("null properties source");
-    }
+    requireNonNull(properties, "null properties source");
 
     resolveConverters(properties);
     resolveDefaultValues(properties);
@@ -66,11 +65,13 @@ public class ValidatedSchema<T> {
     ValueConverter converter = converters.get(key);
 
     Object value = properties.propertyFor(key);
-    if (value != null)
+    if (value != null) {
       return converter.convertRaw(value, args);
-    if (defaults.containsKey(key))
-      return defaults.get(key).evaluate();
-    return converter.nilValue();
+    }
+
+    return defaults.containsKey(key)
+      ? defaults.get(key).evaluate()
+      : converter.nilValue();
   }
 
   String getName() {
@@ -78,19 +79,22 @@ public class ValidatedSchema<T> {
   }
 
   private void resolveConverters(PropertySource properties) {
-    for (ValueConverter each : converters.values())
+    for (ValueConverter each : converters.values()) {
       each.resolve(properties);
+    }
   }
 
   private void resolveDefaultValues(PropertySource properties) {
-    for (DefaultValue each : defaults.values())
+    for (DefaultValue each : defaults.values()) {
       each.resolve(properties);
+    }
   }
 
   private T createTypedProxyFor(PropertySource properties) {
-    return schema.cast(newProxyInstance(
-      schema.getClassLoader(),
-      new Class<?>[] {schema},
-      new PropertyBinderInvocationHandler(properties, this)));
+    return schema.cast(
+      newProxyInstance(
+        schema.getClassLoader(),
+        new Class<?>[] {schema},
+        new PropertyBinderInvocationHandler(properties, this)));
   }
 }

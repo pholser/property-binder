@@ -31,14 +31,13 @@ import com.pholser.util.properties.PropertySource;
 import java.util.Map;
 
 import static com.pholser.util.properties.internal.Substitutions.maybeSubstitute;
+import static java.util.Objects.requireNonNull;
 
 public class MapPropertySource implements PropertySource {
   private final Map<String, ?> backing;
 
   public MapPropertySource(Map<String, ?> backing) {
-    if (backing == null) {
-      throw new NullPointerException("null backing");
-    }
+    requireNonNull(backing, "null backing");
 
     this.backing = backing;
   }

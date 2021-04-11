@@ -32,14 +32,13 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 import static com.pholser.util.properties.internal.Substitutions.maybeSubstitute;
+import static java.util.Objects.requireNonNull;
 
 public class ResourceBundlePropertySource implements PropertySource {
   private final ResourceBundle backing;
 
   public ResourceBundlePropertySource(ResourceBundle backing) {
-    if (backing == null) {
-      throw new NullPointerException("null backing");
-    }
+    requireNonNull(backing, "null backing");
 
     this.backing = backing;
   }
