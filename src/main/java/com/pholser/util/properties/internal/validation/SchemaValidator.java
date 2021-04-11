@@ -54,18 +54,24 @@ import static com.pholser.util.properties.internal.Schemata.isDefaultSeparatorVa
 import static com.pholser.util.properties.internal.Schemata.propertyMarkerFor;
 
 public class SchemaValidator {
-  private final ValueConverterFactory converterFactory = new ValueConverterFactory();
-  private final ValueSeparatorFactory separatorFactory = new ValueSeparatorFactory();
-  private final DefaultValueFactory defaultValueFactory = new DefaultValueFactory();
+  private final ValueConverterFactory converterFactory =
+    new ValueConverterFactory();
+  private final ValueSeparatorFactory separatorFactory =
+    new ValueSeparatorFactory();
+  private final DefaultValueFactory defaultValueFactory =
+    new DefaultValueFactory();
 
   public <T> ValidatedSchema<T> validate(Class<T> schema) {
     ensureInterface(schema);
     ensureNoSuperinterfaces(schema);
 
     Method[] methods = schema.getDeclaredMethods();
-    Map<BoundProperty, ValueConverter> converters = new HashMap<>(methods.length);
-    Map<BoundProperty, DefaultValue> defaults = new HashMap<>(methods.length);
-    Map<BoundProperty, ValueSeparator> separators = new HashMap<>(methods.length);
+    Map<BoundProperty, ValueConverter> converters =
+      new HashMap<>(methods.length);
+    Map<BoundProperty, DefaultValue> defaults =
+      new HashMap<>(methods.length);
+    Map<BoundProperty, ValueSeparator> separators =
+      new HashMap<>(methods.length);
 
     for (Method each : methods) {
       BoundProperty key = propertyMarkerFor(each);
@@ -78,13 +84,15 @@ public class SchemaValidator {
   }
 
   private static void ensureInterface(Class<?> schema) {
-    if (!schema.isInterface())
+    if (!schema.isInterface()) {
       throw new BoundTypeNotAnInterfaceException(schema);
+    }
   }
 
   private static void ensureNoSuperinterfaces(Class<?> schema) {
-    if (schema.getInterfaces().length != 0)
+    if (schema.getInterfaces().length != 0) {
       throw new InterfaceHasSuperinterfacesException(schema);
+    }
   }
 
   private void collectSeparatorIfAggregateType(
@@ -93,18 +101,24 @@ public class SchemaValidator {
     BoundProperty key) {
 
     boolean isAggregate = isAggregateType(method.getReturnType());
-    ValuesSeparatedBy separator = method.getAnnotation(ValuesSeparatedBy.class);
-    if (separator != null) {
-      if (!isAggregate)
-        throw new AppliedSeparatorToNonAggregateTypeException(method);
 
-      if (!(isDefaultPattern(separator) || isDefaultSeparatorValueOf(separator))) {
+    ValuesSeparatedBy separator =
+      method.getAnnotation(ValuesSeparatedBy.class);
+    if (separator != null) {
+      if (!isAggregate) {
+        throw new AppliedSeparatorToNonAggregateTypeException(method);
+      }
+
+      if (!(isDefaultPattern(separator)
+        || isDefaultSeparatorValueOf(separator))) {
+
         throw new MultipleSeparatorSpecificationException(separator, method);
       }
     }
 
-    if (isAggregate)
+    if (isAggregate) {
       separators.put(key, separatorFactory.createSeparator(separator, method));
+    }
   }
 
   private void collectConverter(
@@ -113,7 +127,9 @@ public class SchemaValidator {
     Method method,
     BoundProperty key) {
 
-    converters.put(key, converterFactory.createConverter(method, separators.get(key)));
+    converters.put(
+      key,
+      converterFactory.createConverter(method, separators.get(key)));
   }
 
   private void collectDefaultValue(
@@ -123,26 +139,33 @@ public class SchemaValidator {
     BoundProperty key) {
 
     DefaultValue defaultValue = createDefaultValue(method, converter);
-    if (defaultValue != null)
+    if (defaultValue != null) {
       defaults.put(key, defaultValue);
+    }
   }
 
-  private DefaultValue createDefaultValue(Method method, ValueConverter converter) {
+  private DefaultValue createDefaultValue(
+    Method method,
+    ValueConverter converter) {
+
     DefaultsTo spec = method.getAnnotation(DefaultsTo.class);
-    if (spec == null)
+    if (spec == null) {
       return null;
+    }
 
     boolean valueIsDefault = isDefaultDefaultValue(spec);
     boolean valueOfIsDefault = isDefaultDefaultValueOf(spec);
-    if (!(valueIsDefault || valueOfIsDefault))
+    if (!(valueIsDefault || valueOfIsDefault)) {
       throw new MultipleDefaultValueSpecificationException(spec, method);
-    if (valueIsDefault && valueOfIsDefault)
+    }
+    if (valueIsDefault && valueOfIsDefault) {
       throw new NoDefaultValueSpecificationException(method);
+    }
 
     return defaultValueFactory.createDefaultValue(spec, converter, method);
   }
 
-  public static boolean isAggregateType(Class<?> clazz) {
+  private static boolean isAggregateType(Class<?> clazz) {
     return clazz.isArray() || Collection.class.isAssignableFrom(clazz);
   }
 }

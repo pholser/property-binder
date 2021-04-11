@@ -37,8 +37,12 @@ public class MalformedSeparatorException extends IllegalArgumentException {
     Method method,
     Throwable cause) {
 
-    super("Cannot convert pattern [" + separator + "] of @" + ValuesSeparatedBy.class.getSimpleName()
-      + " for method " + method.getName() + " on " + method.getDeclaringClass()
-      + " to " + method.getReturnType(), cause);
+    super(
+      "Cannot convert pattern [" + separator
+        + "] of @" + ValuesSeparatedBy.class.getSimpleName()
+        + " for method " + method.getName()
+        + " on " + method.getDeclaringClass()
+        + " to " + method.getReturnType(),
+      cause);
   }
 }

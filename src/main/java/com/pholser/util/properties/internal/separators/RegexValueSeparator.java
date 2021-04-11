@@ -55,6 +55,7 @@ class RegexValueSeparator implements ValueSeparator {
   }
 
   @Override public boolean isDefault() {
-    return regex.pattern().equals(annotationDefault(ValuesSeparatedBy.class, "pattern"));
+    return regex.pattern()
+      .equals(annotationDefault(ValuesSeparatedBy.class, "pattern"));
   }
 }

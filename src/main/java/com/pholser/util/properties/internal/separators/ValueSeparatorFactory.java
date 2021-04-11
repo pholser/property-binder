@@ -38,7 +38,8 @@ public class ValueSeparatorFactory {
     ValuesSeparatedBy spec,
     Method method) {
 
-    Object patternDefault = annotationDefault(ValuesSeparatedBy.class, "pattern");
+    Object patternDefault =
+      annotationDefault(ValuesSeparatedBy.class, "pattern");
     return spec == null
       ? new RegexValueSeparator(patternDefault.toString(), method)
       : createSeparatorBasedOnSpec(spec, method);
@@ -48,8 +49,8 @@ public class ValueSeparatorFactory {
     ValuesSeparatedBy spec,
     Method method) {
 
-    if (isDefaultPattern(spec) && !isDefaultSeparatorValueOf(spec))
-      return new SubstitutableRegexValueSeparator(spec.valueOf(), method);
-    return new RegexValueSeparator(spec.pattern(), method);
+    return isDefaultPattern(spec) && !isDefaultSeparatorValueOf(spec)
+      ? new SubstitutableRegexValueSeparator(spec.valueOf(), method)
+      : new RegexValueSeparator(spec.pattern(), method);
   }
 }

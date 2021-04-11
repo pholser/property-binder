@@ -29,11 +29,16 @@ import com.pholser.util.properties.DefaultsTo;
 
 import java.lang.reflect.Method;
 
-public class NoDefaultValueSpecificationException extends IllegalArgumentException {
+public class NoDefaultValueSpecificationException
+  extends IllegalArgumentException {
+
   private static final long serialVersionUID = 1L;
 
   public NoDefaultValueSpecificationException(Method method) {
-    super("Marker @" + DefaultsTo.class.getSimpleName() + " on method " + method.getName()
-      + " of " + method.getDeclaringClass() + " specifies neither a value nor valueOf");
+    super(
+      "Marker @" + DefaultsTo.class.getSimpleName()
+        + " on method " + method.getName()
+        + " of " + method.getDeclaringClass()
+        + " specifies neither a value nor valueOf");
   }
 }

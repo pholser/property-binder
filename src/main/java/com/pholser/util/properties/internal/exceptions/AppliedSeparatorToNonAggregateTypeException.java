@@ -29,13 +29,17 @@ import com.pholser.util.properties.ValuesSeparatedBy;
 
 import java.lang.reflect.Method;
 
-public class AppliedSeparatorToNonAggregateTypeException extends IllegalArgumentException {
+public class AppliedSeparatorToNonAggregateTypeException
+  extends IllegalArgumentException {
+
   private static final long serialVersionUID = 1L;
 
   public AppliedSeparatorToNonAggregateTypeException(Method method) {
-    super("Applied @" + ValuesSeparatedBy.class.getSimpleName() + " to method " + method.getName()
-      + " on " + method.getDeclaringClass()
-      + ", which is not declared to return a supported aggregate type (returns "
-      + method.getReturnType().getSimpleName() + ')');
+    super(
+      "Applied @" + ValuesSeparatedBy.class.getSimpleName()
+        + " to method " + method.getName()
+        + " on " + method.getDeclaringClass()
+        + ", which is not declared to return a supported aggregate type"
+        + " (returns " + method.getReturnType().getSimpleName() + ')');
   }
 }

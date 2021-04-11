@@ -29,7 +29,9 @@ import com.pholser.util.properties.DefaultsTo;
 
 import java.lang.reflect.Method;
 
-public class MalformedDefaultValueException extends IllegalArgumentException {
+public class MalformedDefaultValueException
+  extends IllegalArgumentException {
+
   private static final long serialVersionUID = 1L;
 
   public MalformedDefaultValueException(
@@ -37,8 +39,12 @@ public class MalformedDefaultValueException extends IllegalArgumentException {
     Method method,
     Throwable cause) {
 
-    super("Cannot convert value [" + defaultValue + " of @" + DefaultsTo.class.getSimpleName()
-      + " for method " + method.getName() + " on " + method.getDeclaringClass()
-      + " to " + method.getReturnType(), cause);
+    super(
+      "Cannot convert value [" + defaultValue
+        + " of @" + DefaultsTo.class.getSimpleName()
+        + " for method " + method.getName()
+        + " on " + method.getDeclaringClass()
+        + " to " + method.getReturnType(),
+      cause);
   }
 }

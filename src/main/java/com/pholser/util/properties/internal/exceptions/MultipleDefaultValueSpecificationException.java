@@ -29,15 +29,20 @@ import com.pholser.util.properties.DefaultsTo;
 
 import java.lang.reflect.Method;
 
-public class MultipleDefaultValueSpecificationException extends IllegalArgumentException {
+public class MultipleDefaultValueSpecificationException
+  extends IllegalArgumentException {
+
   private static final long serialVersionUID = 1L;
 
   public MultipleDefaultValueSpecificationException(
     DefaultsTo defaultValue,
     Method method) {
 
-    super("Marker @" + DefaultsTo.class.getSimpleName() + " on method " + method.getName()
-      + " of " + method.getDeclaringClass() + " specifies both a value [" + defaultValue.value()
-      + "] and valueOf [" + defaultValue.valueOf() + ']');
+    super(
+      "Marker @" + DefaultsTo.class.getSimpleName()
+        + " on method " + method.getName()
+        + " of " + method.getDeclaringClass()
+        + " specifies both a value [" + defaultValue.value()
+        + "] and valueOf [" + defaultValue.valueOf() + ']');
   }
 }
