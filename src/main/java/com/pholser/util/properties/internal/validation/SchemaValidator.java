@@ -28,6 +28,7 @@ package com.pholser.util.properties.internal.validation;
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ValuesSeparatedBy;
+import com.pholser.util.properties.internal.Reflection;
 import com.pholser.util.properties.internal.ValidatedSchema;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
 import com.pholser.util.properties.internal.conversions.ValueConverterFactory;
@@ -35,6 +36,7 @@ import com.pholser.util.properties.internal.defaultvalues.DefaultValue;
 import com.pholser.util.properties.internal.defaultvalues.DefaultValueFactory;
 import com.pholser.util.properties.internal.exceptions.AppliedSeparatorToNonAggregateTypeException;
 import com.pholser.util.properties.internal.exceptions.BoundTypeNotAnInterfaceException;
+import com.pholser.util.properties.internal.exceptions.DuplicatePropertyKeyException;
 import com.pholser.util.properties.internal.exceptions.InterfaceHasSuperinterfacesException;
 import com.pholser.util.properties.internal.exceptions.MultipleDefaultValueSpecificationException;
 import com.pholser.util.properties.internal.exceptions.MultipleSeparatorSpecificationException;
@@ -43,15 +45,20 @@ import com.pholser.util.properties.internal.separators.ValueSeparator;
 import com.pholser.util.properties.internal.separators.ValueSeparatorFactory;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static com.pholser.util.properties.internal.Schemata.isDefaultDefaultValue;
 import static com.pholser.util.properties.internal.Schemata.isDefaultDefaultValueOf;
 import static com.pholser.util.properties.internal.Schemata.isDefaultPattern;
 import static com.pholser.util.properties.internal.Schemata.isDefaultSeparatorValueOf;
 import static com.pholser.util.properties.internal.Schemata.propertyMarkerFor;
+import static java.util.stream.Collectors.toList;
 
 public class SchemaValidator {
   private final ValueConverterFactory converterFactory =
@@ -65,16 +72,23 @@ public class SchemaValidator {
     ensureInterface(schema);
     ensureNoSuperinterfaces(schema);
 
-    Method[] methods = schema.getDeclaredMethods();
+    List<Method> methods =
+      Arrays.stream(schema.getDeclaredMethods())
+        .filter(Reflection::acceptablePropertyMethodAccessLevel)
+        .collect(toList());
     Map<BoundProperty, ValueConverter> converters =
-      new HashMap<>(methods.length);
+      new HashMap<>(methods.size());
     Map<BoundProperty, DefaultValue> defaults =
-      new HashMap<>(methods.length);
+      new HashMap<>(methods.size());
     Map<BoundProperty, ValueSeparator> separators =
-      new HashMap<>(methods.length);
+      new HashMap<>(methods.size());
 
     for (Method each : methods) {
       BoundProperty key = propertyMarkerFor(each);
+      if (converters.containsKey(key)) {
+        throw new DuplicatePropertyKeyException(schema, each, key);
+      }
+
       collectSeparatorIfAggregateType(separators, each, key);
       collectConverter(converters, separators, each, key);
       collectDefaultValue(defaults, converters.get(key), each, key);

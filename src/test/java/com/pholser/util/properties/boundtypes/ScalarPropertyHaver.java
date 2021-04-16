@@ -32,6 +32,7 @@ import com.pholser.util.properties.ParsedAs;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.Optional;
 
 public interface ScalarPropertyHaver {
   @BoundProperty("string.property")
@@ -176,12 +177,15 @@ public interface ScalarPropertyHaver {
   @BoundProperty("enum.property")
   Ternary enumProperty();
 
-  @BoundProperty("enum.property")
+  @BoundProperty("enum.property.with.default")
   @DefaultsTo("YES")
   Ternary enumPropertyWithDefault();
 
   @BoundProperty("missing.property")
   String missingProperty();
+
+  @BoundProperty("missing.property.opt")
+  Optional<String> missingPropertyOpt();
 
   @BoundProperty("missing.date.property")
   @ParsedAs("yyyy-MM-dd")
@@ -206,4 +210,19 @@ public interface ScalarPropertyHaver {
     value = "need.to.suppress.substitution",
     suppressSubstitution = true)
   String regex();
+
+  @BoundProperty("static.methods.not.bound")
+  static String staticMethodsNotBound() {
+    return "static methods not bound";
+  }
+
+  @BoundProperty("private.methods.not.bound")
+  private String privateMethodsNotBound() {
+    return "private methods not bound";
+  }
+
+  @BoundProperty("default.methods.not.bound")
+  default String defaultMethodsNotBound() {
+    return privateMethodsNotBound() + " and default methods not bound";
+  }
 }

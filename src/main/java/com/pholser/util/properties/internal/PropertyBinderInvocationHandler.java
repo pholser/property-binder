@@ -27,6 +27,8 @@ package com.pholser.util.properties.internal;
 
 import com.pholser.util.properties.PropertySource;
 
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
@@ -44,25 +46,48 @@ class PropertyBinderInvocationHandler implements InvocationHandler {
     this.validated = validated;
   }
 
-  @Override public Object invoke(Object proxy, Method method, Object[] args) {
-    return Object.class.equals(method.getDeclaringClass())
-      ? handleObjectMethod(proxy, method, args)
-      : validated.convert(properties, method, args);
-  }
+  @Override public Object invoke(Object proxy, Method method, Object[] args)
+    throws Throwable {
 
-  private Object handleObjectMethod(
-    Object proxy,
-    Method method,
-    Object[] args) {
-
-    if ("equals".equals(method.getName())) {
+    if (isEquals(method)) {
       return proxy == args[0];
     }
-    if ("hashCode".equals(method.getName())) {
+    if (isHashCode(method)) {
       return identityHashCode(proxy);
     }
+    if (isToString(method)) {
+      return handleToString();
+    }
 
-    return handleToString();
+    if (method.isDefault()) {
+      return MethodHandles.lookup()
+        .findSpecial(
+          method.getDeclaringClass(),
+          method.getName(),
+          MethodType.methodType(
+            method.getReturnType(),
+            method.getParameterTypes()),
+          method.getDeclaringClass())
+        .bindTo(proxy)
+        .invokeWithArguments(args);    }
+
+    return validated.convert(properties, method, args);
+  }
+
+  private boolean isEquals(Method method) {
+    return "equals".equals(method.getName())
+      && method.getParameterCount() == 1
+      && Object.class.equals(method.getParameterTypes()[0]);
+  }
+
+  private boolean isHashCode(Method method) {
+    return "hashCode".equals(method.getName())
+      && method.getParameterCount() == 0;
+  }
+
+  private boolean isToString(Method method) {
+    return "toString".equals(method.getName())
+      && method.getParameterCount() == 0;
   }
 
   private String handleToString() {

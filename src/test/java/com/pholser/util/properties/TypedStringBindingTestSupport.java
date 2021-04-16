@@ -25,11 +25,17 @@
 
 package com.pholser.util.properties;
 
+import com.pholser.util.properties.internal.Reflection;
+import com.pholser.util.properties.internal.validation.SchemaValidator;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.pholser.util.properties.ArbitraryArrays.assertReflectArrayEquals;
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 abstract class TypedStringBindingTestSupport<T>
@@ -48,7 +54,11 @@ abstract class TypedStringBindingTestSupport<T>
   void assertPropertiesEqual(Object expected, Object actual)
     throws Exception {
 
-    for (Method each : boundType().getDeclaredMethods()) {
+    List<Method> methods =
+      Arrays.stream(boundType().getDeclaredMethods())
+        .filter(Reflection::acceptablePropertyMethodAccessLevel)
+        .collect(toList());
+    for (Method each : methods) {
       Object boundExpected = each.invoke(expected);
       Object boundActual = each.invoke(actual);
 

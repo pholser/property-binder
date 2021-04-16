@@ -32,9 +32,13 @@ import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeExcep
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.lang.reflect.WildcardType;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static java.lang.reflect.Modifier.isPublic;
 import static java.lang.reflect.Modifier.isStatic;
@@ -60,25 +64,38 @@ public class ValueConverterFactory {
     ParsedAs patterns = propertyMethod.getAnnotation(ParsedAs.class);
     DefaultsTo defaults = propertyMethod.getAnnotation(DefaultsTo.class);
 
+    if (Optional.class.equals(valueType)) {
+      return new OptionalValueConverter(
+        createScalarConverter(
+          deduceElementType(propertyMethod.getGenericReturnType()),
+          patterns,
+          defaults,
+          separator));
+    }
     if (valueType.isArray()) {
       return new ArrayValueConverter(
-        valueType,
+        valueType.getComponentType(),
         separator,
-        patterns,
-        defaults);
+        createScalarConverter(
+          valueType.getComponentType(),
+          patterns,
+          defaults,
+          separator));
     }
     if (List.class.equals(valueType)) {
       return new ListValueConverter(
-        propertyMethod.getGenericReturnType(),
         separator,
-        patterns,
-        defaults);
+        createScalarConverter(
+          deduceElementType(propertyMethod.getGenericReturnType()),
+          patterns,
+          defaults,
+          separator));
     }
 
     return createScalarConverter(valueType, patterns, defaults, separator);
   }
 
-  static ValueConverter createScalarConverter(
+  private ValueConverter createScalarConverter(
     Class<?> valueType,
     ParsedAs patterns,
     DefaultsTo defaults,
@@ -108,7 +125,7 @@ public class ValueConverterFactory {
     return new RawValueConverter();
   }
 
-  private static ValueConverter parsePatternsConverter(
+  private ValueConverter parsePatternsConverter(
     Class<?> valueType,
     ParsedAs patterns) {
 
@@ -122,7 +139,7 @@ public class ValueConverterFactory {
     throw new UnsupportedParsedAsTypeException(valueType);
   }
 
-  private static ValueConverter valueOfConverter(Class<?> valueType) {
+  private ValueConverter valueOfConverter(Class<?> valueType) {
     if (Character.class.equals(valueType)) {
       return new CharacterValueOfConverter();
     }
@@ -137,7 +154,7 @@ public class ValueConverterFactory {
     }
   }
 
-  private static ValueConverter constructorConverter(Class<?> valueType) {
+  private ValueConverter constructorConverter(Class<?> valueType) {
     try {
       return new ConstructorInvokingValueConverter(
         valueType.getConstructor(String.class));
@@ -146,7 +163,7 @@ public class ValueConverterFactory {
     }
   }
 
-  private static boolean isPotentialConverter(
+  private boolean isPotentialConverter(
     Method method,
     Class<?> expectedReturnType) {
 
@@ -154,6 +171,29 @@ public class ValueConverterFactory {
     return isPublic(modifiers)
       && isStatic(modifiers)
       && expectedReturnType.equals(method.getReturnType());
+  }
+
+  private Class<?> deduceElementType(Type type) {
+    if (type instanceof Class<?>) {
+      return String.class;
+    }
+
+    ParameterizedType parameterized = (ParameterizedType) type;
+    Type generic = parameterized.getActualTypeArguments()[0];
+    if (generic instanceof Class<?>) {
+      return (Class<?>) generic;
+    }
+
+    if (generic instanceof WildcardType) {
+      WildcardType wildcard = (WildcardType) generic;
+      if (wildcard.getLowerBounds().length == 0
+        && Object.class.equals(wildcard.getUpperBounds()[0])) {
+
+        return String.class;
+      }
+    }
+
+    throw new UnsupportedValueTypeException(type);
   }
 
   private static Class<?> targetTypeFor(Method method) {

@@ -31,31 +31,27 @@ import com.pholser.util.properties.internal.separators.ValueSeparator;
 
 import java.lang.reflect.Array;
 
-import static com.pholser.util.properties.internal.conversions.ValueConverterFactory.createScalarConverter;
-
 class ArrayValueConverter extends AggregateValueConverter {
   private final Class<?> componentType;
-  private final ValueConverter scalarConverter;
+  private final ValueConverter elementConverter;
 
   ArrayValueConverter(
-    Class<?> arrayType,
+    Class<?> componentType,
     ValueSeparator separator,
-    ParsedAs patterns,
-    DefaultsTo defaults) {
+    ValueConverter elementConverter) {
 
     super(separator);
-
-    componentType = arrayType.getComponentType();
-    scalarConverter =
-      createScalarConverter(componentType, patterns, defaults, separator);
+    this.componentType = componentType;
+    this.elementConverter = elementConverter;
   }
 
   @Override public Object convert(String raw, Object... args) {
     String[] pieces = separate(raw);
 
     Object array = Array.newInstance(componentType, pieces.length);
+
     for (int i = 0; i < pieces.length; ++i) {
-      Array.set(array, i, scalarConverter.convert(pieces[i], args));
+      Array.set(array, i, elementConverter.convert(pieces[i], args));
     }
 
     return array;

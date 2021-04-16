@@ -25,67 +25,28 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import com.pholser.util.properties.DefaultsTo;
-import com.pholser.util.properties.ParsedAs;
-import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.pholser.util.properties.internal.conversions.ValueConverterFactory.createScalarConverter;
-
 class ListValueConverter extends AggregateValueConverter {
-  private final ValueConverter scalarConverter;
+  private final ValueConverter elementConverter;
 
   ListValueConverter(
-    Type valueType,
     ValueSeparator separator,
-    ParsedAs patterns,
-    DefaultsTo defaults) {
+    ValueConverter elementConverter) {
 
     super(separator);
-
-    scalarConverter =
-      createScalarConverter(
-        deduceElementType(valueType),
-        patterns,
-        defaults,
-        separator);
+    this.elementConverter = elementConverter;
   }
 
   @Override public List<Object> convert(String raw, Object... args) {
     return Arrays.stream(separate(raw))
-      .map(piece -> scalarConverter.convert(piece, args))
+      .map(piece -> elementConverter.convert(piece, args))
       .collect(Collectors.toList());
-  }
-
-  private static Class<?> deduceElementType(Type type) {
-    if (!(type instanceof ParameterizedType)) {
-      return String.class;
-    }
-
-    ParameterizedType parameterized = (ParameterizedType) type;
-    Type generic = parameterized.getActualTypeArguments()[0];
-    if (generic instanceof Class<?>) {
-      return (Class<?>) generic;
-    }
-
-    if (generic instanceof WildcardType) {
-      WildcardType wildcard = (WildcardType) generic;
-      if (wildcard.getLowerBounds().length == 0
-        && Object.class.equals(wildcard.getUpperBounds()[0])) {
-
-        return String.class;
-      }
-    }
-
-    throw new UnsupportedValueTypeException(type);
   }
 
   @Override public Object nilValue() {

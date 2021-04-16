@@ -33,8 +33,10 @@ import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 
 import static com.pholser.util.properties.boundtypes.Ternary.MAYBE;
+import static com.pholser.util.properties.boundtypes.Ternary.YES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -45,6 +47,10 @@ class BindingScalarPropertiesToTypedInterfacesTest
 
   @Test void missingStringProperty() {
     assertNull(bound.missingProperty());
+  }
+
+  @Test void missingStringPropertyOpt() {
+    assertEquals(Optional.empty(), bound.missingPropertyOpt());
   }
 
   @Test void missingDateProperty() {
@@ -235,7 +241,7 @@ class BindingScalarPropertiesToTypedInterfacesTest
   }
 
   @Test void defaultForEnumValuedProperty() {
-    assertEquals(MAYBE, bound.enumPropertyWithDefault());
+    assertEquals(YES, bound.enumPropertyWithDefault());
   }
 
   @Test void bindingDateValuedPropertyToDateMethodUsingParsePatterns()
@@ -258,6 +264,18 @@ class BindingScalarPropertiesToTypedInterfacesTest
 
   @Test void canSuppressPropertySubstitutionWhenAsked() {
     assertEquals("^27[78]{1}[0-9]{8}$", bound.regex());
+  }
+
+  @Test void staticMethodsAreNotBound() {
+    assertEquals(
+      "static methods not bound",
+      ScalarPropertyHaver.staticMethodsNotBound());
+  }
+
+  @Test void defaultAndPrivateMethodsAreNotBound() {
+    assertEquals(
+      "private methods not bound and default methods not bound",
+      bound.defaultMethodsNotBound());
   }
 
   @Override protected Class<ScalarPropertyHaver> boundType() {
