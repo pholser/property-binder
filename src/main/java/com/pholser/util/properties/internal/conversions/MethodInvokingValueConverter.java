@@ -40,10 +40,9 @@ class MethodInvokingValueConverter extends ScalarValueConverter {
     this.clazz = clazz;
   }
 
-  @Override public Object convert(String raw, Object... args) {
+  @Override public Object convert(String formatted) {
     try {
-      return clazz.cast(
-        invokeQuietly(method, null, String.format(raw, args)));
+      return clazz.cast(invokeQuietly(method, null, formatted));
     } catch (ClassCastException ex) {
       throw new ValueConversionException(ex);
     }

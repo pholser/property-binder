@@ -28,12 +28,12 @@ package com.pholser.util.properties.internal.conversions;
 import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 class CharacterValueOfConverter extends ScalarValueConverter {
-  @Override public Object convert(String raw, Object... args) {
-    if (raw.length() != 1) {
+  @Override public Object convert(String formatted) {
+    if (formatted.length() != 1) {
       throw new ValueConversionException(
-        "cannot convert [" + raw + "] to " + Character.class);
+        "cannot convert [" + formatted + "] to " + Character.class);
     }
 
-    return raw.charAt(0);
+    return formatted.charAt(0);
   }
 }

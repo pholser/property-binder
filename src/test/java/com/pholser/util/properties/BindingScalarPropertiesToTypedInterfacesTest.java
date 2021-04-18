@@ -57,6 +57,12 @@ class BindingScalarPropertiesToTypedInterfacesTest
     assertNull(bound.missingDateProperty());
   }
 
+  @Test void missingDatePropertyOptWithDefaultAndParseAs() throws Exception {
+    assertEquals(
+      Optional.of(yyyymmdd("2021-11-28")),
+      bound.missingDatePropertyOpt());
+  }
+
   @Test void missingPrimitiveWrapperProperty() {
     assertNull(bound.missingPrimitiveWrapperProperty());
   }
@@ -284,5 +290,9 @@ class BindingScalarPropertiesToTypedInterfacesTest
 
   private Date yyyy(String raw) throws ParseException {
     return new SimpleDateFormat("yyyy").parse(raw);
+  }
+
+  private Date yyyymmdd(String raw) throws ParseException {
+    return new SimpleDateFormat("yyyy-MM-dd").parse(raw);
   }
 }

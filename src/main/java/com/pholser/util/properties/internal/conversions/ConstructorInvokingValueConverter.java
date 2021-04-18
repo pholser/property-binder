@@ -37,9 +37,9 @@ class ConstructorInvokingValueConverter extends ScalarValueConverter {
     this.ctor = ctor;
   }
 
-  @Override public Object convert(String raw, Object... args) {
+  @Override public Object convert(String formatted) {
     try {
-      return ctor.newInstance(String.format(raw, args));
+      return ctor.newInstance(formatted);
     } catch (InstantiationException
       | IllegalAccessException
       | IllegalArgumentException ex) {

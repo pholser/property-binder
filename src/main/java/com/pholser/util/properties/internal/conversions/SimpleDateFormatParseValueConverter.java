@@ -41,19 +41,19 @@ class SimpleDateFormatParseValueConverter extends ScalarValueConverter {
     this.patterns = patterns;
   }
 
-  @Override public Object convert(String raw, Object... args) {
+  @Override public Object convert(String formatted) {
     for (String each : patterns.value()) {
       try {
         DateFormat formatter = new SimpleDateFormat(each);
         formatter.setLenient(false);
-        return formatter.parse(String.format(raw, args));
+        return formatter.parse(formatted);
       } catch (ParseException ex) {
         // try the next pattern
       }
     }
 
     throw new ValueConversionException(
-      "Could not parse value [" + raw
+      "Could not parse value [" + formatted
         + "] using any of the patterns: " + asList(patterns.value()));
   }
 }

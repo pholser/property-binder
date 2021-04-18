@@ -32,6 +32,7 @@ import org.junit.jupiter.api.Test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.IllegalFormatConversionException;
 
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -58,7 +59,7 @@ class BindingScalarPropertiesWithArgsToTypedInterfacesTest
 
   @Test void illTypedArgumentsToPropertyMethodsWithArgs() {
     assertThrows(
-      ValueConversionException.class,
+      IllegalFormatConversionException.class,
       () ->
         bound.stringPropertyWithIllTypedArguments(
           10,

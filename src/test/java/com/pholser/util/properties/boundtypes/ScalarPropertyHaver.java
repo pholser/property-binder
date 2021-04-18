@@ -191,6 +191,11 @@ public interface ScalarPropertyHaver {
   @ParsedAs("yyyy-MM-dd")
   Date missingDateProperty();
 
+  @BoundProperty("missing.date.property.opt")
+  @ParsedAs("yyyy-MM-dd")
+  @DefaultsTo("2021-11-28")
+  Optional<Date> missingDatePropertyOpt();
+
   @BoundProperty("missing.primitive.wrapper.property")
   Integer missingPrimitiveWrapperProperty();
 

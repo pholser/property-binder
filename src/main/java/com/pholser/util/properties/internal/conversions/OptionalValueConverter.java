@@ -11,8 +11,8 @@ class OptionalValueConverter extends AbstractValueConverter {
     this.elementConverter = elementConverter;
   }
 
-  @Override public Object convert(String raw, Object... args) {
-    return Optional.ofNullable(elementConverter.convert(raw, args));
+  @Override public Object convert(String formatted) {
+    return Optional.ofNullable(elementConverter.convert(formatted));
   }
 
   @Override public Object nilValue() {

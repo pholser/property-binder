@@ -43,9 +43,9 @@ class ListValueConverter extends AggregateValueConverter {
     this.elementConverter = elementConverter;
   }
 
-  @Override public List<Object> convert(String raw, Object... args) {
-    return Arrays.stream(separate(raw))
-      .map(piece -> elementConverter.convert(piece, args))
+  @Override public List<Object> convert(String formatted) {
+    return Arrays.stream(separate(formatted))
+      .map(elementConverter::convert)
       .collect(Collectors.toList());
   }
 

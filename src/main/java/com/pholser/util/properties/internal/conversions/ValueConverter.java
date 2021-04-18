@@ -30,7 +30,7 @@ import com.pholser.util.properties.PropertySource;
 public interface ValueConverter {
   Object convertRaw(Object raw, Object... args);
 
-  Object convert(String raw, Object... args);
+  Object convert(String formatted);
 
   Object nilValue();
 

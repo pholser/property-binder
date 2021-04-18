@@ -45,13 +45,11 @@ import com.pholser.util.properties.internal.separators.ValueSeparator;
 import com.pholser.util.properties.internal.separators.ValueSeparatorFactory;
 
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static com.pholser.util.properties.internal.Schemata.isDefaultDefaultValue;
 import static com.pholser.util.properties.internal.Schemata.isDefaultDefaultValueOf;

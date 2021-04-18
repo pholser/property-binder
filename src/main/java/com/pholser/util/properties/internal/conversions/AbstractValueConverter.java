@@ -28,7 +28,7 @@ package com.pholser.util.properties.internal.conversions;
 abstract class AbstractValueConverter implements ValueConverter {
   @Override public Object convertRaw(Object raw, Object... args) {
     return raw instanceof String
-      ? convert((String) raw, args)
+      ? convert(String.format((String) raw, args))
       : raw;
   }
 }
