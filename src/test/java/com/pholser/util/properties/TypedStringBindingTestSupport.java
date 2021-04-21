@@ -26,13 +26,11 @@
 package com.pholser.util.properties;
 
 import com.pholser.util.properties.internal.Reflection;
-import com.pholser.util.properties.internal.validation.SchemaValidator;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.pholser.util.properties.ArbitraryArrays.assertReflectArrayEquals;
 import static java.util.stream.Collectors.toList;

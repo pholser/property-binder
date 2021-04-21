@@ -25,14 +25,25 @@
 
 package com.pholser.util.properties.internal.conversions;
 
+import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.PropertySource;
 
-abstract class ScalarValueConverter extends AbstractValueConverter {
+abstract class ScalarValueConverter extends ValueConverter {
+  private final ParsedAs patterns;
+
+  ScalarValueConverter(ParsedAs patterns) {
+    this.patterns = patterns;
+  }
+
   @Override public final Object nilValue() {
     return null;
   }
 
   @Override public final void resolve(PropertySource properties) {
     // scalars do not resolve
+  }
+
+  protected ParsedAs patterns() {
+    return patterns;
   }
 }

@@ -26,6 +26,7 @@
 package com.pholser.util.properties.internal.validation;
 
 import com.pholser.util.properties.BoundProperty;
+import com.pholser.util.properties.Conversion;
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ValuesSeparatedBy;
 import com.pholser.util.properties.internal.Reflection;
@@ -48,6 +49,7 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -59,12 +61,15 @@ import static com.pholser.util.properties.internal.Schemata.propertyMarkerFor;
 import static java.util.stream.Collectors.toList;
 
 public class SchemaValidator {
-  private final ValueConverterFactory converterFactory =
-    new ValueConverterFactory();
-  private final ValueSeparatorFactory separatorFactory =
-    new ValueSeparatorFactory();
-  private final DefaultValueFactory defaultValueFactory =
-    new DefaultValueFactory();
+  private final ValueConverterFactory converterFactory;
+  private final ValueSeparatorFactory separatorFactory;
+  private final DefaultValueFactory defaultValueFactory;
+
+  public SchemaValidator(Iterator<Conversion> loaded) {
+    converterFactory = new ValueConverterFactory(loaded);
+    separatorFactory = new ValueSeparatorFactory();
+    defaultValueFactory = new DefaultValueFactory();
+  }
 
   public <T> ValidatedSchema<T> validate(Class<T> schema) {
     ensureInterface(schema);

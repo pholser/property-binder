@@ -26,8 +26,8 @@
 package com.pholser.util.properties.internal.conversions;
 
 class RawValueConverter extends ScalarValueConverter {
-  @Override public Object convertRaw(Object raw, Object... args) {
-    return raw;
+  RawValueConverter() {
+    super(null);
   }
 
   @Override public Object convert(String formatted) {

@@ -37,6 +37,7 @@ import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.ServiceLoader;
 
 /**
  * <p>Creates proxies that provide typed access to values in
@@ -134,7 +135,8 @@ public class PropertyBinder<T> {
    * is invalid in any way
    */
   public PropertyBinder(Class<T> schema) {
-    validated = new SchemaValidator().validate(schema);
+    ServiceLoader<Conversion> loader = ServiceLoader.load(Conversion.class);
+    validated = new SchemaValidator(loader.iterator()).validate(schema);
   }
 
   /**

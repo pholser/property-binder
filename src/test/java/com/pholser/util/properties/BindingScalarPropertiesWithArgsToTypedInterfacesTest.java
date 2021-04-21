@@ -26,7 +26,6 @@
 package com.pholser.util.properties;
 
 import com.pholser.util.properties.boundtypes.ScalarPropertyWithArgsHaver;
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;

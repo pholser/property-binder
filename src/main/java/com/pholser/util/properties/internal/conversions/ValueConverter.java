@@ -27,12 +27,16 @@ package com.pholser.util.properties.internal.conversions;
 
 import com.pholser.util.properties.PropertySource;
 
-public interface ValueConverter {
-  Object convertRaw(Object raw, Object... args);
+public abstract class ValueConverter {
+  public Object convertRaw(Object raw, Object... args) {
+    return raw instanceof String
+      ? convert(String.format((String) raw, args))
+      : raw;
+  }
 
-  Object convert(String formatted);
+  public abstract Object convert(String formatted);
 
-  Object nilValue();
+  public abstract Object nilValue();
 
-  void resolve(PropertySource properties);
+  public abstract void resolve(PropertySource properties);
 }

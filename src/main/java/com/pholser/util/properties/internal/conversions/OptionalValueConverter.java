@@ -4,7 +4,7 @@ import com.pholser.util.properties.PropertySource;
 
 import java.util.Optional;
 
-class OptionalValueConverter extends AbstractValueConverter {
+class OptionalValueConverter extends ValueConverter {
   private final ValueConverter elementConverter;
 
   OptionalValueConverter(ValueConverter elementConverter) {
