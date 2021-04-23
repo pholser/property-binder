@@ -132,7 +132,7 @@ public class ValueConverterFactory {
       throw new UnsupportedValueTypeException(valueType);
     }
 
-    return new RawValueConverter();
+    return new RawValueConverter(valueType);
   }
 
   private Class<?> deduceElementType(Type type) {

@@ -25,13 +25,17 @@
 
 package com.pholser.util.properties.internal.conversions;
 
+import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
+
 class RawValueConverter extends ScalarValueConverter {
-  RawValueConverter() {
+  private final Class<?> valueType;
+
+  RawValueConverter(Class<?> valueType) {
     super(null);
+    this.valueType = valueType;
   }
 
   @Override public Object convert(String formatted) {
-    throw new AssertionError(
-      "RawValueConverter should not be asked to convert value as a String");
+    throw new UnsupportedValueTypeException(valueType);
   }
 }

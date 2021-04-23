@@ -25,14 +25,17 @@
 
 package com.pholser.util.properties.internal.conversions;
 
+import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ErrorsThatOccurWhenTryingToConvertARawValueAsAStringTest {
   @Test void rejectingAttemptsToConvertAString() {
-    RawValueConverter converter = new RawValueConverter();
+    RawValueConverter converter = new RawValueConverter(Object.class);
 
-    assertThrows(AssertionError.class, () -> converter.convert(""));
+    assertThrows(
+      UnsupportedValueTypeException.class,
+      () -> converter.convert(""));
   }
 }
