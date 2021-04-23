@@ -72,22 +72,15 @@ import java.util.ServiceLoader;
  * in runtime type errors.</p>
  *
  * <p>In order for a given property value to be converted from a string,
- * the associated schema method should have a return type that is a
- * value type, an array of value types, or a {@link java.util.List}
- * of value types. A <dfn>value type</dfn> is any primitive type,
- * primitive wrapper type, or type which possesses either:</p>
+ * the associated schema method should have a return type which:
  *
  * <ul>
- * <li>a {@code public static} method called {@code valueOf} which takes
- * one argument, of type {@link String}, and whose return type is
- * the type itself</li>
- * <li>a {@code public} constructor which takes one argument, of type
- * {@link String}</li>
+ *   <li>has a {@link Conversion} made available as a {@link ServiceLoader}
+ *   service</li>
+ *   <li>an array of such types</li>
+ *   <li>a {@link java.util.List} of such types</li>
+ *   <li>a {@link java.util.Optional} of such types</li>
  * </ul>
- *
- * <p>If a value type has both of these, the {@code valueOf} method
- * takes priority over the constructor. Note that {@code enum}s have
- * a {@code valueOf} method.</p>
  *
  * <p>The {@link ValuesSeparatedBy} annotation can be applied only to
  * schema methods with an aggregate return type, and must specify
@@ -106,9 +99,10 @@ import java.util.ServiceLoader;
  * before the entire value is converted. If the property's value is not
  * a string, any arguments to the schema method are ignored.</p>
  *
- * <p>Schema methods returning {@link java.util.Date} can be annotated
- * with {@link ParsedAs} to indicate that the corresponding property's
- * value(s) should be parsed using the given
+ * <p>A schema method can be annotated with {@link ParsedAs} to indicate
+ * that the corresponding property's value(s) may be parsed by a matching
+ * {@link Conversion} using the given patterns. For example, a conversion
+ * to {@link java.util.Date} might treat such patterns as
  * {@linkplain java.text.SimpleDateFormat date patterns}.
  *
  * <p>After binding, invoking a schema method returns the value
@@ -189,11 +183,9 @@ public class PropertyBinder<T> {
   }
 
   /**
-   * Makes a new proxy bound to the given properties.
-   * <p>
-   * If, after binding, the caller alters the contents of the properties
-   * object via her reference to it, the properties that the proxy refers
-   * to are affected.
+   * Makes a new proxy bound to the given properties. If, after binding,
+   * the caller alters the contents of the properties object via her reference
+   * to it, the properties that the proxy refers to are affected.
    *
    * @param properties the properties to be bound
    * @return a proxy bound to the properties
@@ -204,10 +196,8 @@ public class PropertyBinder<T> {
 
   /**
    * Makes a new proxy bound to the properties in the given map.
-   * <p>
-   * If, after binding, the caller alters the contents of the map via
-   * her reference to it, the properties that the proxy refers to
-   * are affected.
+   * If, after binding, the caller alters the contents of the map via her
+   * reference to it, the properties that the proxy refers to are affected.
    *
    * @param properties the properties to be bound
    * @return a proxy bound to the properties
@@ -219,7 +209,6 @@ public class PropertyBinder<T> {
 
   /**
    * Makes a new proxy bound to the properties in the given resource bundle.
-   * <p>
    * If, after binding, the caller alters the contents of the resource bundle,
    * the properties that the proxy refers to are affected.
    *
@@ -233,10 +222,9 @@ public class PropertyBinder<T> {
 
   /**
    * Makes a new proxy bound to the properties represented by the given
-   * property source.
-   * <p>
-   * If, after binding, the caller affects the responses the property
-   * source gives, the properties that the schema refers to are affected.
+   * property source. If, after binding, the caller affects the responses
+   * the property source gives, the properties that the schema refers to
+   * are affected.
    *
    * @param source the property source to be bound
    * @return a proxy bound to the property source

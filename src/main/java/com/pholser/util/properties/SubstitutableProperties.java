@@ -40,7 +40,8 @@ import static com.pholser.util.properties.internal.Substitutions.substitute;
  *
  * @author <a href="mailto:pholser@alumni.rice.edu">Paul Holser</a>
  */
-public class SubstitutableProperties extends Properties
+public class SubstitutableProperties
+  extends Properties
   implements PropertySource {
 
   private static final long serialVersionUID = 1L;

@@ -1,3 +1,28 @@
+/*
+ The MIT License
+
+ Copyright (c) 2009-2021 Paul R. Holser, Jr.
+
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
+
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
 package com.pholser.util.properties.conversions.java.util;
 
 import com.pholser.util.properties.Conversion;
@@ -15,10 +40,10 @@ public class SimpleDateFormatDateConversion extends Conversion<Date> {
     super(Date.class);
   }
 
-  @Override public Date convert(String formatted, ParsedAs patterns) {
+  @Override public Date convert(String value, ParsedAs patterns) {
     if (patterns == null) {
       throw new IllegalArgumentException(
-        "Could not parse value [" + formatted
+        "Could not parse value [" + value
           + "], need to specify @" + ParsedAs.class.getSimpleName());
     }
 
@@ -26,14 +51,14 @@ public class SimpleDateFormatDateConversion extends Conversion<Date> {
       try {
         DateFormat formatter = new SimpleDateFormat(each);
         formatter.setLenient(false);
-        return formatter.parse(formatted);
+        return formatter.parse(value);
       } catch (ParseException ex) {
         // try the next pattern
       }
     }
 
     throw new IllegalArgumentException(
-      "Could not parse value [" + formatted
+      "Could not parse value [" + value
         + "] using any of the patterns: " + asList(patterns.value()));
   }
 }

@@ -4,10 +4,12 @@
 
 Changes in version 4.0
 
-    * A <<<PropertySource>>> now accepts a <<<BoundProperty>>> as the argument to <<<propertyFor()>>>.
+    * A <<<PropertySource>>> now accepts a <<<BoundProperty>>> as
+    the argument to <<<propertyFor()>>>.
 
-    * Resolved {{{https://github.com/pholser/property-binder/issues/1} gh-1}} by adding the
-    <<<suppressSubstitution>>> attribute to annotation <<<BoundProperty>>>.
+    * Resolved {{{https://github.com/pholser/property-binder/issues/1} gh-1}}
+    by adding the <<<suppressSubstitution>>> attribute to annotation
+    <<<BoundProperty>>>.
 
 Changes in version 3.1
 
@@ -15,13 +17,15 @@ Changes in version 3.1
 
 Changes in version 3.0
 
-    * Admitting any kind of string-to-object source of property configuration, including <<<Map>>>,
-    <<<ResourceBundle>>>, and any implementer of new interface <<<PropertySource>>>.
+    * Admitting any kind of string-to-object source of property configuration,
+    including <<<Map>>>, <<<ResourceBundle>>>, and any implementer of
+    new interface <<<PropertySource>>>.
 
     * Removed method <<<SubstitutableProperties.substitute()>>>.
 
-    * Clarified in the Javadoc that after binding to a <<<Properties>>>, <<<Map>>>, <<<ResourceBundle>>>,
-    or <<<PropertySource>>>, if the caller modifies the contents of the bound source of property configuration,
+    * Clarified in the Javadoc that after binding to a <<<Properties>>>,
+    <<<Map>>>, <<<ResourceBundle>>>, or <<<PropertySource>>>, if the caller
+    modifies the contents of the bound source of property configuration,
     the responses given by the proxy can be affected.
 
     * Internal repackaging/refactoring.
@@ -30,26 +34,31 @@ Changes in version 2.0
 
     * Adding <<<@ParsedAs>>> annotation for <<<Date>>>-returning PICA methods.
 
-    * PICA methods which accept one or more arguments expect that their property values are string format specifiers
-    as in <<<String.format()>>>. Arguments are substituted into the format specifier in order prior to the result's
-    conversion to the PICA method's return type.
+    * PICA methods which accept one or more arguments expect that their
+    property values are string format specifiers as in <<<String.format()>>>.
+    Arguments are substituted into the format specifier in order prior to
+    the result's conversion to the PICA method's return type.
 
-    * Publishing the constructor of <<<PropertyBinder>>> that the static factory method calls, so as to afford those
-    who would use Property Binder a seam for testing purposes.
+    * Publishing the constructor of <<<PropertyBinder>>> that the static
+    factory method calls, so as to afford those who would use Property Binder
+    a seam for testing purposes.
 
     * Adding a zero-arg ctor to <<<SubstitutableProperties>>>.
 
-    * Subtle change in <<<SubstitutableProperties(Properties)>>> -- the properties handed to the ctor become the
-    "defaults" rather than hard-and-fast values.
+    * Subtle change in <<<SubstitutableProperties(Properties)>>> --
+    the properties handed to the ctor become the "defaults" rather than
+    hard-and-fast values.
 
     * Publishing method <<<PropertyBinder.bind(Properties)>>>.
 
     * Adding method <<<PropertyBinder.bind(Map<String, String>)>>>.
 
-    * <<<SubstitutableProperties.substitute()>>> now an instance method. The internals of Property Binder deal in
-    <<<SubstitutableProperties>>> throughout now.
+    * <<<SubstitutableProperties.substitute()>>> now an instance method.
+    The internals of Property Binder deal in <<<SubstitutableProperties>>>
+    throughout now.
 
-    * Removing dependency on commons-io. Why bring in the whole library just for <<<IOUtils.closeQuietly()>>>?
+    * Removing dependency on commons-io. Why bring in the whole library
+    just for <<<IOUtils.closeQuietly()>>>?
 
     * Internal repackaging/refactoring.
 
