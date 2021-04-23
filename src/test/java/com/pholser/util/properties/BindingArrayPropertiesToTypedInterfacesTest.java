@@ -34,6 +34,7 @@ import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import static com.pholser.util.properties.boundtypes.Ternary.MAYBE;
 import static com.pholser.util.properties.boundtypes.Ternary.NO;
@@ -583,6 +584,44 @@ class BindingArrayPropertiesToTypedInterfacesTest
     assertArrayEquals(
       new Date[] {MMM("Nov"), MMM("Dec")},
       bound.dateArrayPropertyWithDefaultAndSeparatorWithParsePatterns());
+  }
+
+  @Test void separatedUuidPropertyToUuidArrayMethod() {
+    assertArrayEquals(
+      new UUID[] {
+        UUID.fromString("f7b469d0-0074-405c-ad55-3a0c76f98144"),
+        UUID.fromString("f5d1128e-eb65-4d9d-8fdf-3df474e39e82")
+      },
+      bound.uuidArrayProperty());
+  }
+
+  @Test void separatedUuidPropertyWithCustomSeparatorToUuidArrayMethod() {
+    assertArrayEquals(
+      new UUID[] {
+        UUID.fromString("f85b6a7e-5b40-437b-8e5f-a3b453ec13b9"),
+        UUID.fromString("738708df-fadd-4a3c-b263-34166764add5"),
+        UUID.fromString("cb56f88d-f545-4574-b3f3-1f708afc85ac")
+      },
+      bound.uuidArrayPropertyWithCustomSeparator());
+  }
+
+  @Test void defaultForUuidArrayProperty() {
+    assertArrayEquals(
+      new UUID[] {
+        UUID.fromString("4abfa655-eabe-4699-9ea9-d7651244c4f9"),
+        UUID.fromString("d432a18b-cf25-4221-a206-2d44728f1165")
+      },
+      bound.uuidArrayPropertyWithDefault());
+  }
+
+  @Test void defaultForUuidArrayPropertyWithCustomSeparator() {
+    assertArrayEquals(
+      new UUID[] {
+        UUID.fromString("00d72078-51c6-4686-93d3-d4ee3cc342ce"),
+        UUID.fromString("3fab0521-d395-44dd-8464-e88b2c4ff3dc"),
+        UUID.fromString("83107da3-4f70-4873-b8df-373b44c3f6db")
+      },
+      bound.uuidArrayPropertyWithDefaultAndSeparator());
   }
 
   @Test void givingZeroLengthArrayForMissingPrimitiveArrayProperty() {

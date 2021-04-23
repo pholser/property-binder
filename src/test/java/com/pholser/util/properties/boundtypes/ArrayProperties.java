@@ -33,6 +33,7 @@ import com.pholser.util.properties.ValuesSeparatedBy;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.UUID;
 
 public interface ArrayProperties {
   @BoundProperty("string.array.property")
@@ -354,6 +355,22 @@ public interface ArrayProperties {
   @DefaultsTo("NO|MAYBE|YES|MAYBE")
   @ValuesSeparatedBy(pattern = "\\|")
   Ternary[] enumArrayPropertyWithDefaultAndSeparator();
+
+  @BoundProperty("uuid.array.property")
+  UUID[] uuidArrayProperty();
+
+  @BoundProperty("uuid.array.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  UUID[] uuidArrayPropertyWithCustomSeparator();
+
+  @BoundProperty("uuid.array.property.with.default")
+  @DefaultsTo("4abfa655-eabe-4699-9ea9-d7651244c4f9,d432a18b-cf25-4221-a206-2d44728f1165")
+  UUID[] uuidArrayPropertyWithDefault();
+
+  @BoundProperty("uuid.array.property.with.default.and.custom.separator")
+  @DefaultsTo("00d72078-51c6-4686-93d3-d4ee3cc342ce/3fab0521-d395-44dd-8464-e88b2c4ff3dc/83107da3-4f70-4873-b8df-373b44c3f6db")
+  @ValuesSeparatedBy(pattern = "/")
+  UUID[] uuidArrayPropertyWithDefaultAndSeparator();
 
   @BoundProperty("missing.primitive.array.property")
   int[] missingPrimitiveArrayProperty();
