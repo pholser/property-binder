@@ -33,7 +33,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.Optional;
-import java.util.Random;
+import java.util.UUID;
 
 public interface ScalarProperties {
   @BoundProperty("string.property")
@@ -201,13 +201,41 @@ public interface ScalarProperties {
   Integer missingPrimitiveWrapperProperty();
 
   @BoundProperty("date.property.with.parse.patterns")
-  @ParsedAs({"yyyy"})
+  @ParsedAs("yyyy")
   Date datePropertyWithParsePatterns();
 
   @BoundProperty("date.property.with.default.with.parse.patterns")
-  @ParsedAs({"yyyy"})
+  @ParsedAs("yyyy")
   @DefaultsTo("2003")
   Date datePropertyWithDefaultWithParsePatterns();
+
+  @BoundProperty("uuid.property")
+  UUID uuidProperty();
+
+  @BoundProperty("missing.uuid.property")
+  UUID missingUuidProperty();
+
+  @BoundProperty("optional.uuid.property")
+  Optional<UUID> optionalUuidProperty();
+
+  @BoundProperty("missing.optional.uuid.property")
+  Optional<UUID> missingOptionalUuidProperty();
+
+  @BoundProperty("uuid.property.with.default")
+  @DefaultsTo("dddeec43-63c8-4513-8cdf-a9b4e49e479a")
+  UUID uuidPropertyWithDefault();
+
+  @BoundProperty("missing.uuid.property.with.default")
+  @DefaultsTo("c30377fa-7050-4a84-9ce5-007826101485")
+  UUID missingUuidPropertyWithDefault();
+
+  @BoundProperty("optional.uuid.property.with.default")
+  @DefaultsTo("65fd2d5c-9807-47bd-bcd2-deeae0eda574")
+  Optional<UUID> optionalUuidPropertyWithDefault();
+
+  @BoundProperty("missing.optional.uuid.property.with.default")
+  @DefaultsTo("e1eb72d7-31bb-41a1-9d95-63130c613874")
+  Optional<UUID> missingOptionalUuidPropertyWithDefault();
 
   @BoundProperty("with.substitution")
   String substituted();

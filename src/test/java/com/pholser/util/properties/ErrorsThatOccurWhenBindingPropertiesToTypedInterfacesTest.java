@@ -142,7 +142,8 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
 
   @Test void unconvertibleScalar() throws Exception {
     UnconvertibleScalar bound =
-      PropertyBinder.forType(UnconvertibleScalar.class).bind(propertiesFile);
+      PropertyBinder.forType(UnconvertibleScalar.class)
+        .bind(propertiesFile);
 
     assertThrows(
       UnsupportedValueTypeException.class,

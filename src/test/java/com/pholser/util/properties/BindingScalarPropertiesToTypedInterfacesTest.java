@@ -34,6 +34,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 import static com.pholser.util.properties.boundtypes.Ternary.MAYBE;
 import static com.pholser.util.properties.boundtypes.Ternary.YES;
@@ -262,6 +263,50 @@ class BindingScalarPropertiesToTypedInterfacesTest
     assertEquals(
       yyyy("2003"),
       bound.datePropertyWithDefaultWithParsePatterns());
+  }
+
+  @Test void uuidProperty() {
+    assertEquals(
+      UUID.fromString("1929c9fd-19e4-4224-8221-0b56cf7be970"),
+      bound.uuidProperty());
+  }
+
+  @Test void optionalUuidProperty() {
+    assertEquals(
+      Optional.of(UUID.fromString("aedadd6d-1d29-4778-b0fc-99cb2bca5c63")),
+      bound.optionalUuidProperty());
+  }
+
+  @Test void missingUuidProperty() {
+    assertNull(bound.missingUuidProperty());
+  }
+
+  @Test void missingOptionalUuidProperty() {
+    assertEquals(Optional.empty(), bound.missingOptionalUuidProperty());
+  }
+
+  @Test void uuidPropertyWithDefault() {
+    assertEquals(
+      UUID.fromString("dddeec43-63c8-4513-8cdf-a9b4e49e479a"),
+      bound.uuidPropertyWithDefault());
+  }
+
+  @Test void optionalUuidPropertyWithDefault() {
+    assertEquals(
+      Optional.of(UUID.fromString("65fd2d5c-9807-47bd-bcd2-deeae0eda574")),
+      bound.optionalUuidPropertyWithDefault());
+  }
+
+  @Test void missingUuidPropertyWithDefault() {
+    assertEquals(
+      UUID.fromString("c30377fa-7050-4a84-9ce5-007826101485"),
+      bound.missingUuidPropertyWithDefault());
+  }
+
+  @Test void missingOptionalUuidPropertyWithDefault() {
+    assertEquals(
+      Optional.of(UUID.fromString("e1eb72d7-31bb-41a1-9d95-63130c613874")),
+      bound.missingOptionalUuidPropertyWithDefault());
   }
 
   @Test void substitution() {
