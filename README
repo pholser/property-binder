@@ -2,14 +2,6 @@ Please see http://pholser.github.com/property-binder for information.
 
 TODO:
 * Substitutable `ParsedAs` patterns
-* Pluggable String -> Object converters, discovered via Service Loader.
-  These take precedence over any ctor/valueOf converters.
-* We handle primitives, primitive wrappers, lists, arrays, enums, Optional.
-  * If you have an accessible single-String ctor, or an accessible
-    static valueOf(String) method returning the type itself, no need
-    to register a conversion.
-* If you register a conversion, what will property-binder give it?
-  Just a formatted string? Also annotations?
-
 * UUID
+* java.util.regex.Pattern
 * Java 8 date/time artifacts

@@ -46,6 +46,7 @@ import com.pholser.util.properties.boundtypes.SeparatorOnNonAggregateType;
 import com.pholser.util.properties.boundtypes.TypeWithNonPublicValueOfProperties;
 import com.pholser.util.properties.boundtypes.TypeWithNonStaticValueOfProperties;
 import com.pholser.util.properties.boundtypes.TypeWithValueOfWithBadReturnTypeProperties;
+import com.pholser.util.properties.boundtypes.UnconvertibleScalar;
 import com.pholser.util.properties.boundtypes.UnsupportedAggregateTypeProperties;
 import com.pholser.util.properties.boundtypes.UpperBoundedList;
 import com.pholser.util.properties.internal.exceptions.AppliedSeparatorToNonAggregateTypeException;
@@ -137,6 +138,15 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
       () ->
         PropertyBinder.forType(
           CharacterPropertyWithTooLongDefault.class));
+  }
+
+  @Test void unconvertibleScalar() throws Exception {
+    UnconvertibleScalar bound =
+      PropertyBinder.forType(UnconvertibleScalar.class).bind(propertiesFile);
+
+    assertThrows(
+      UnsupportedValueTypeException.class,
+      bound::unconvertible);
   }
 
   @Test void upperBoundedListType() {
