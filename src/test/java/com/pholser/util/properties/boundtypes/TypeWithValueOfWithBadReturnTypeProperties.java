@@ -26,10 +26,16 @@
 package com.pholser.util.properties.boundtypes;
 
 import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.ValuesSeparatedBy;
+import com.pholser.util.properties.DefaultsTo;
 
-public interface ListOfUnconvertibleTypeWithSeparatorPropertyHaver {
-  @BoundProperty("list.of.unconvertible.type.property")
-  @ValuesSeparatedBy(pattern = "/")
-  Object[] listOfUnconvertibleTypeProperty();
+public interface TypeWithValueOfWithBadReturnTypeProperties {
+  @BoundProperty("type.with.value.of.with.bad.return.type.property")
+  @DefaultsTo("boo")
+  TypeWithValueOfWithBadReturnType typeWithValueOfWithBadReturnType();
+
+  class TypeWithValueOfWithBadReturnType {
+    public static String valueOf(String value) {
+      return value;
+    }
+  }
 }

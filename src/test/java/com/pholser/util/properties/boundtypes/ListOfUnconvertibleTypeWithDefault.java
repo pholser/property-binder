@@ -26,8 +26,10 @@
 package com.pholser.util.properties.boundtypes;
 
 import com.pholser.util.properties.BoundProperty;
+import com.pholser.util.properties.DefaultsTo;
 
-public interface IntPropertyHaver {
-  @BoundProperty("i")
-  int i();
+public interface ListOfUnconvertibleTypeWithDefault {
+  @BoundProperty("list.of.unconvertible.type.property")
+  @DefaultsTo("boo")
+  Object[] listOfUnconvertibleTypeProperty();
 }

@@ -29,9 +29,9 @@ import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ValuesSeparatedBy;
 
-public interface BadValueSeparatorPropertyHaver {
-  @BoundProperty("bad.value.separator.property")
-  @DefaultsTo("1")
-  @ValuesSeparatedBy(pattern = "*!&@^#(*!@&")
-  int[] badDefaultValueProperty();
+public interface SeparatorOnNonAggregateType {
+  @BoundProperty("separator.on.non.aggregate.type.property")
+  @DefaultsTo("boo")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  String aProperty();
 }

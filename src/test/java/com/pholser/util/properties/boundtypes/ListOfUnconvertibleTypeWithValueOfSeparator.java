@@ -26,10 +26,10 @@
 package com.pholser.util.properties.boundtypes;
 
 import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.ValuesSeparatedBy;
 
-public interface ListOfUnconvertibleTypeWithDefaultPropertyHaver {
+public interface ListOfUnconvertibleTypeWithValueOfSeparator {
   @BoundProperty("list.of.unconvertible.type.property")
-  @DefaultsTo("boo")
+  @ValuesSeparatedBy(valueOf = "[some.other.property]")
   Object[] listOfUnconvertibleTypeProperty();
 }

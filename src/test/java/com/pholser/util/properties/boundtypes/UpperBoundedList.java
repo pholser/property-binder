@@ -26,8 +26,12 @@
 package com.pholser.util.properties.boundtypes;
 
 import com.pholser.util.properties.BoundProperty;
+import com.pholser.util.properties.DefaultsTo;
 
-public interface MissingPrimitivePropertyHaver {
-  @BoundProperty("missing.character.property")
-  char missingCharacterProperty();
+import java.util.List;
+
+public interface UpperBoundedList {
+  @BoundProperty("upper.bounded.list")
+  @DefaultsTo("1,2")
+  List<? extends Number> upperBoundedList();
 }

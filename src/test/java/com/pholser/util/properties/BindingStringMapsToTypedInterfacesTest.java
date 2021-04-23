@@ -25,7 +25,7 @@
 
 package com.pholser.util.properties;
 
-import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
+import com.pholser.util.properties.boundtypes.ScalarProperties;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,11 +39,11 @@ import static com.pholser.util.properties.IO.closeQuietly;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class BindingStringMapsToTypedInterfacesTest
-  extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
+  extends TypedStringBindingTestSupport<ScalarProperties> {
 
   private InputStream inputStream;
   private Map<String, String> asStringMap;
-  private ScalarPropertyHaver fromMap;
+  private ScalarProperties fromMap;
 
   @SuppressWarnings("unchecked")
   @BeforeEach final void initializeProperties() throws Exception {
@@ -60,7 +60,7 @@ class BindingStringMapsToTypedInterfacesTest
   }
 
   @Test void loadingFromPropertiesObject() throws Exception {
-    ScalarPropertyHaver fromFile = binder.bind(propertiesFile);
+    ScalarProperties fromFile = binder.bind(propertiesFile);
 
     assertPropertiesEqual(fromFile, fromMap);
   }
@@ -73,7 +73,7 @@ class BindingStringMapsToTypedInterfacesTest
       () -> fromMap.primitiveIntegerProperty());
   }
 
-  @Override protected Class<ScalarPropertyHaver> boundType() {
-    return ScalarPropertyHaver.class;
+  @Override protected Class<ScalarProperties> boundType() {
+    return ScalarProperties.class;
   }
 }

@@ -25,28 +25,29 @@
 
 package com.pholser.util.properties;
 
-import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypeWithDefaultPropertyHaver;
-import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypeWithSeparatorPropertyHaver;
-import com.pholser.util.properties.boundtypes.BadDefaultValuePropertyHaver;
-import com.pholser.util.properties.boundtypes.BadValueSeparatorPropertyHaver;
-import com.pholser.util.properties.boundtypes.CharacterPropertyHaverWithTooLongDefault;
-import com.pholser.util.properties.boundtypes.DatePropertyWithNonLenientValueHaver;
+import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypeWithDefault;
+import com.pholser.util.properties.boundtypes.ArrayOfUnconvertibleTypeWithSeparator;
+import com.pholser.util.properties.boundtypes.BadDefaultValue;
+import com.pholser.util.properties.boundtypes.BadValueSeparator;
+import com.pholser.util.properties.boundtypes.CharacterPropertyWithTooLongDefault;
+import com.pholser.util.properties.boundtypes.DateWithNonLenientValue;
 import com.pholser.util.properties.boundtypes.DefaultValueWithBothValueAndValueOf;
 import com.pholser.util.properties.boundtypes.DefaultValueWithNeitherValueNorValueOf;
 import com.pholser.util.properties.boundtypes.InterfaceWithSuperinterfaces;
-import com.pholser.util.properties.boundtypes.ListOfArrayPropertyHaver;
-import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithDefaultPropertyHaver;
-import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithSeparatorPropertyHaver;
-import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithValueOfSeparatorPropertyHaver;
-import com.pholser.util.properties.boundtypes.LowerBoundedListPropertyHaver;
-import com.pholser.util.properties.boundtypes.MissingPrimitivePropertyHaver;
-import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
-import com.pholser.util.properties.boundtypes.SeparatedPropertyHaverWithBothPatternAndValueOf;
-import com.pholser.util.properties.boundtypes.SeparatorOnNonAggregateTypePropertyHaver;
-import com.pholser.util.properties.boundtypes.TypeWithNonPublicValueOfPropertyHaver;
-import com.pholser.util.properties.boundtypes.TypeWithNonStaticValueOfPropertyHaver;
-import com.pholser.util.properties.boundtypes.TypeWithValueOfWithBadReturnTypePropertyHaver;
-import com.pholser.util.properties.boundtypes.UpperBoundedListPropertyHaver;
+import com.pholser.util.properties.boundtypes.ListOfArrayProperties;
+import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithDefault;
+import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithSeparator;
+import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithValueOfSeparator;
+import com.pholser.util.properties.boundtypes.LowerBoundedListProperty;
+import com.pholser.util.properties.boundtypes.MissingPrimitiveProperty;
+import com.pholser.util.properties.boundtypes.ScalarProperties;
+import com.pholser.util.properties.boundtypes.SeparatedWithBothPatternAndValueOf;
+import com.pholser.util.properties.boundtypes.SeparatorOnNonAggregateType;
+import com.pholser.util.properties.boundtypes.TypeWithNonPublicValueOfProperties;
+import com.pholser.util.properties.boundtypes.TypeWithNonStaticValueOfProperties;
+import com.pholser.util.properties.boundtypes.TypeWithValueOfWithBadReturnTypeProperties;
+import com.pholser.util.properties.boundtypes.UnsupportedAggregateTypeProperties;
+import com.pholser.util.properties.boundtypes.UpperBoundedList;
 import com.pholser.util.properties.internal.exceptions.AppliedSeparatorToNonAggregateTypeException;
 import com.pholser.util.properties.internal.exceptions.BoundTypeNotAnInterfaceException;
 import com.pholser.util.properties.internal.exceptions.InterfaceHasSuperinterfacesException;
@@ -70,10 +71,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
   extends StringBindingTestSupport {
 
-  private PropertyBinder<ScalarPropertyHaver> scalar;
+  private PropertyBinder<ScalarProperties> scalar;
 
   @BeforeEach void setUp() {
-    scalar = PropertyBinder.forType(ScalarPropertyHaver.class);
+    scalar = PropertyBinder.forType(ScalarProperties.class);
   }
 
   @Test void nonInterfaceClass() {
@@ -135,25 +136,25 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
       MalformedDefaultValueException.class,
       () ->
         PropertyBinder.forType(
-          CharacterPropertyHaverWithTooLongDefault.class));
+          CharacterPropertyWithTooLongDefault.class));
   }
 
   @Test void upperBoundedListType() {
     assertThrows(
       UnsupportedValueTypeException.class,
-      () -> PropertyBinder.forType(UpperBoundedListPropertyHaver.class));
+      () -> PropertyBinder.forType(UpperBoundedList.class));
   }
 
   @Test void lowerBoundedListType() {
     assertThrows(
       UnsupportedValueTypeException.class,
-      () -> PropertyBinder.forType(LowerBoundedListPropertyHaver.class));
+      () -> PropertyBinder.forType(LowerBoundedListProperty.class));
   }
 
   @Test void listOfArrayType() {
     assertThrows(
       UnsupportedValueTypeException.class,
-      () -> PropertyBinder.forType(ListOfArrayPropertyHaver.class));
+      () -> PropertyBinder.forType(ListOfArrayProperties.class));
   }
 
   @Test void arrayOfUnconvertibleTypeWithDefault() {
@@ -161,7 +162,7 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
       UnsupportedValueTypeException.class,
       () ->
         PropertyBinder.forType(
-          ArrayOfUnconvertibleTypeWithDefaultPropertyHaver.class));
+          ArrayOfUnconvertibleTypeWithDefault.class));
   }
 
   @Test void arrayOfUnconvertibleTypeWithSeparator() {
@@ -169,7 +170,7 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
       UnsupportedValueTypeException.class,
       () ->
         PropertyBinder.forType(
-          ArrayOfUnconvertibleTypeWithSeparatorPropertyHaver.class));
+          ArrayOfUnconvertibleTypeWithSeparator.class));
   }
 
   @Test void listOfUnconvertibleTypeWithDefault() {
@@ -177,7 +178,7 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
       UnsupportedValueTypeException.class,
       () ->
         PropertyBinder.forType(
-          ListOfUnconvertibleTypeWithDefaultPropertyHaver.class));
+          ListOfUnconvertibleTypeWithDefault.class));
   }
 
   @Test void listOfUnconvertibleTypeWithSeparator() {
@@ -185,7 +186,7 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
       UnsupportedValueTypeException.class,
       () ->
         PropertyBinder.forType(
-          ListOfUnconvertibleTypeWithSeparatorPropertyHaver.class));
+          ListOfUnconvertibleTypeWithSeparator.class));
   }
 
   @Test void listOfUnconvertibleTypeWithValueOfSeparator() {
@@ -193,21 +194,22 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
       UnsupportedValueTypeException.class,
       () ->
         PropertyBinder.forType(
-          ListOfUnconvertibleTypeWithValueOfSeparatorPropertyHaver.class));
+          ListOfUnconvertibleTypeWithValueOfSeparator.class));
   }
 
   @Test void typeWithNonPublicValueOf() {
     assertThrows(
       UnsupportedValueTypeException.class,
       () ->
-        PropertyBinder.forType(TypeWithNonPublicValueOfPropertyHaver.class));
+        PropertyBinder.forType(
+          TypeWithNonPublicValueOfProperties.class));
   }
 
   @Test void typeWithNonStaticValueOf() {
     assertThrows(
       UnsupportedValueTypeException.class,
       () ->
-        PropertyBinder.forType(TypeWithNonStaticValueOfPropertyHaver.class));
+        PropertyBinder.forType(TypeWithNonStaticValueOfProperties.class));
   }
 
   @Test void typeWithValueOfWithBadReturnType() {
@@ -215,13 +217,13 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
       UnsupportedValueTypeException.class,
       () ->
         PropertyBinder.forType(
-          TypeWithValueOfWithBadReturnTypePropertyHaver.class));
+          TypeWithValueOfWithBadReturnTypeProperties.class));
   }
 
   @Test void missingPrimitiveProperty() throws Exception {
-    PropertyBinder<MissingPrimitivePropertyHaver> binder =
-      PropertyBinder.forType(MissingPrimitivePropertyHaver.class);
-    MissingPrimitivePropertyHaver bound = binder.bind(propertiesFile);
+    PropertyBinder<MissingPrimitiveProperty> binder =
+      PropertyBinder.forType(MissingPrimitiveProperty.class);
+    MissingPrimitiveProperty bound = binder.bind(propertiesFile);
 
     assertThrows(NullPointerException.class, bound::missingCharacterProperty);
   }
@@ -229,13 +231,13 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
   @Test void badDefaultValue() {
     assertThrows(
       MalformedDefaultValueException.class,
-      () -> PropertyBinder.forType(BadDefaultValuePropertyHaver.class));
+      () -> PropertyBinder.forType(BadDefaultValue.class));
   }
 
   @Test void badValueSeparator() {
     assertThrows(
       MalformedSeparatorException.class,
-      () -> PropertyBinder.forType(BadValueSeparatorPropertyHaver.class));
+      () -> PropertyBinder.forType(BadValueSeparator.class));
   }
 
   @Test void applyingSeparatorToNonAggregateType() {
@@ -243,7 +245,7 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
       AppliedSeparatorToNonAggregateTypeException.class,
       () ->
         PropertyBinder.forType(
-          SeparatorOnNonAggregateTypePropertyHaver.class));
+          SeparatorOnNonAggregateType.class));
   }
 
   @Test void separatorWithBothPatternAndValueOf() {
@@ -251,7 +253,7 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
       MultipleSeparatorSpecificationException.class,
       () ->
         PropertyBinder.forType(
-          SeparatedPropertyHaverWithBothPatternAndValueOf.class));
+          SeparatedWithBothPatternAndValueOf.class));
   }
 
   @Test void typeWithSuperinterfaces() {
@@ -276,12 +278,19 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
   @Test void datePropertiesThatWouldNotPassNonLenientDateFormats()
     throws Exception {
 
-    DatePropertyWithNonLenientValueHaver bound =
-      PropertyBinder.forType(DatePropertyWithNonLenientValueHaver.class)
+    DateWithNonLenientValue bound =
+      PropertyBinder.forType(DateWithNonLenientValue.class)
         .bind(propertiesFile);
 
     assertThrows(
       IllegalArgumentException.class,
       bound::datePropertyWithNonLenientValue);
+  }
+
+  @Test void unsupportedAggregateType() {
+    assertThrows(
+      UnsupportedValueTypeException.class,
+      () ->
+        PropertyBinder.forType(UnsupportedAggregateTypeProperties.class));
   }
 }

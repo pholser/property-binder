@@ -25,7 +25,7 @@
 
 package com.pholser.util.properties;
 
-import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
+import com.pholser.util.properties.boundtypes.ScalarProperties;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -43,7 +43,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BindingScalarPropertiesToTypedInterfacesTest
-  extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
+  extends TypedStringBindingTestSupport<ScalarProperties> {
 
   @Test void missingStringProperty() {
     assertNull(bound.missingProperty());
@@ -275,7 +275,7 @@ class BindingScalarPropertiesToTypedInterfacesTest
   @Test void staticMethodsAreNotBound() {
     assertEquals(
       "static methods not bound",
-      ScalarPropertyHaver.staticMethodsNotBound());
+      ScalarProperties.staticMethodsNotBound());
   }
 
   @Test void defaultAndPrivateMethodsAreNotBound() {
@@ -284,8 +284,8 @@ class BindingScalarPropertiesToTypedInterfacesTest
       bound.defaultMethodsNotBound());
   }
 
-  @Override protected Class<ScalarPropertyHaver> boundType() {
-    return ScalarPropertyHaver.class;
+  @Override protected Class<ScalarProperties> boundType() {
+    return ScalarProperties.class;
   }
 
   private Date yyyy(String raw) throws ParseException {

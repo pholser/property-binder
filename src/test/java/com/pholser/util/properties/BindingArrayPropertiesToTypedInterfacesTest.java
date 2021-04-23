@@ -25,7 +25,7 @@
 
 package com.pholser.util.properties;
 
-import com.pholser.util.properties.boundtypes.ArrayPropertyHaver;
+import com.pholser.util.properties.boundtypes.ArrayProperties;
 import com.pholser.util.properties.boundtypes.Ternary;
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +41,7 @@ import static com.pholser.util.properties.boundtypes.Ternary.YES;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class BindingArrayPropertiesToTypedInterfacesTest
-  extends TypedStringBindingTestSupport<ArrayPropertyHaver> {
+  extends TypedStringBindingTestSupport<ArrayProperties> {
 
   @Test void separatedStringPropertyToStringArrayMethod() {
     assertArrayEquals(
@@ -594,8 +594,8 @@ class BindingArrayPropertiesToTypedInterfacesTest
   }
 
   @Override
-  protected Class<ArrayPropertyHaver> boundType() {
-    return ArrayPropertyHaver.class;
+  protected Class<ArrayProperties> boundType() {
+    return ArrayProperties.class;
   }
 
   private static Date MMM(String raw) throws ParseException {

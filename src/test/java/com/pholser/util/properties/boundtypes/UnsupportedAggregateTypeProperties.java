@@ -26,10 +26,12 @@
 package com.pholser.util.properties.boundtypes;
 
 import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.ValuesSeparatedBy;
+import com.pholser.util.properties.DefaultsTo;
 
-public interface ListOfUnconvertibleTypeWithValueOfSeparatorPropertyHaver {
-  @BoundProperty("list.of.unconvertible.type.property")
-  @ValuesSeparatedBy(valueOf = "[some.other.property]")
-  Object[] listOfUnconvertibleTypeProperty();
+import java.util.Collection;
+
+public interface UnsupportedAggregateTypeProperties {
+  @BoundProperty("unsupported.aggregate.type.property")
+  @DefaultsTo("1,2")
+  Collection<Integer> collection();
 }

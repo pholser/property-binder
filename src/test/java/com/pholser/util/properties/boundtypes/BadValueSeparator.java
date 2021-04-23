@@ -27,11 +27,11 @@ package com.pholser.util.properties.boundtypes;
 
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.ValuesSeparatedBy;
 
-import java.util.List;
-
-public interface ListOfArrayPropertyHaver {
-  @BoundProperty("list.of.int.array")
-  @DefaultsTo("1,2")
-  List<int[]> listOfArray();
+public interface BadValueSeparator {
+  @BoundProperty("bad.value.separator.property")
+  @DefaultsTo("1")
+  @ValuesSeparatedBy(pattern = "*!&@^#(*!@&")
+  int[] badDefaultValueProperty();
 }

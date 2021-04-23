@@ -28,8 +28,15 @@ package com.pholser.util.properties.boundtypes;
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
-public interface ArrayOfUnconvertibleTypeWithSeparatorPropertyHaver {
-  @BoundProperty("array.of.unconvertible.type.property")
+public interface TypeWithNonStaticValueOfProperties {
+  @BoundProperty("type.with.non.static.value.of.property")
   @DefaultsTo("boo")
-  Object[] arrayOfUnconvertibleTypeProperty();
+  TypeWithNonStaticValueOf typeWithNonStaticValueOfProperty();
+
+  @SuppressWarnings("all")
+  class TypeWithNonStaticValueOf {
+    public TypeWithNonStaticValueOf valueOf(String value) {
+      return null;
+    }
+  }
 }

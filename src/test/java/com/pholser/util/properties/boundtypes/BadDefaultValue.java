@@ -28,10 +28,8 @@ package com.pholser.util.properties.boundtypes;
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
-import java.util.List;
-
-public interface UpperBoundedListPropertyHaver {
-  @BoundProperty("upper.bounded.list")
-  @DefaultsTo("1,2")
-  List<? extends Number> upperBoundedList();
+public interface BadDefaultValue {
+  @BoundProperty("bad.default.value.property")
+  @DefaultsTo("!@#")
+  int badDefaultValueProperty();
 }

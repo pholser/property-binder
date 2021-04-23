@@ -26,12 +26,12 @@
 package com.pholser.util.properties.boundtypes;
 
 import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.ParsedAs;
+import com.pholser.util.properties.DefaultsTo;
 
-import java.util.Date;
+import java.util.List;
 
-public interface DatePropertyWithNonLenientValueHaver {
-  @BoundProperty("date.property.with.non.lenient.value")
-  @ParsedAs("MM/dd/yyyy")
-  Date datePropertyWithNonLenientValue();
+public interface LowerBoundedListProperty {
+  @BoundProperty("lower.bounded.list")
+  @DefaultsTo("3,4")
+  List<? super Number> lowerBoundedList();
 }

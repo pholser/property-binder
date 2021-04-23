@@ -25,7 +25,7 @@
 
 package com.pholser.util.properties;
 
-import com.pholser.util.properties.boundtypes.ListPropertyHaver;
+import com.pholser.util.properties.boundtypes.ListProperties;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -42,7 +42,7 @@ import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BindingListPropertiesToTypedInterfacesTest
-  extends TypedStringBindingTestSupport<ListPropertyHaver> {
+  extends TypedStringBindingTestSupport<ListProperties> {
 
   @Test void separatedStringPropertyToStringListMethod() {
     assertEquals(asList("aaa", "bbb", "ccc"), bound.stringListProperty());
@@ -423,8 +423,8 @@ class BindingListPropertiesToTypedInterfacesTest
     assertEquals(emptyList(), bound.missingListProperty());
   }
 
-  @Override protected Class<ListPropertyHaver> boundType() {
-    return ListPropertyHaver.class;
+  @Override protected Class<ListProperties> boundType() {
+    return ListProperties.class;
   }
 
   private static Date M(String raw) throws ParseException {

@@ -27,16 +27,13 @@ package com.pholser.util.properties.boundtypes;
 
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.ValuesSeparatedBy;
 
-public interface TypeWithNonStaticValueOfPropertyHaver {
-  @BoundProperty("type.with.non.static.value.of.property")
-  @DefaultsTo("boo")
-  TypeWithNonStaticValueOf typeWithNonStaticValueOfProperty();
+import java.util.List;
 
-  @SuppressWarnings("all")
-  class TypeWithNonStaticValueOf {
-    public TypeWithNonStaticValueOf valueOf(String value) {
-      return null;
-    }
-  }
+public interface SeparatedWithBothPatternAndValueOf {
+  @BoundProperty("separated.property.with.both.pattern.and.valueOf")
+  @DefaultsTo("2")
+  @ValuesSeparatedBy(pattern = ";", valueOf = ":")
+  List<Integer> badSeparatorProperty();
 }

@@ -25,7 +25,7 @@
 
 package com.pholser.util.properties;
 
-import com.pholser.util.properties.boundtypes.ScalarPropertyWithArgsHaver;
+import com.pholser.util.properties.boundtypes.ScalarPropertiesWithArgs;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
@@ -39,7 +39,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class BindingScalarPropertiesWithArgsToTypedInterfacesTest
-  extends TypedStringBindingTestSupport<ScalarPropertyWithArgsHaver> {
+  extends TypedStringBindingTestSupport<ScalarPropertiesWithArgs> {
 
   @Test void passingArgumentsToPropertyMethodAndFormattingOnResult() {
     assertEquals(
@@ -88,8 +88,8 @@ class BindingScalarPropertiesWithArgsToTypedInterfacesTest
       bound.dateListPropertyWithArgumentsAndSeparator(3, 23, 2010));
   }
 
-  @Override protected Class<ScalarPropertyWithArgsHaver> boundType() {
-    return ScalarPropertyWithArgsHaver.class;
+  @Override protected Class<ScalarPropertiesWithArgs> boundType() {
+    return ScalarPropertiesWithArgs.class;
   }
 
   private static Date mmddyyyy(String raw) throws ParseException {

@@ -26,14 +26,8 @@
 package com.pholser.util.properties.boundtypes;
 
 import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.DefaultsTo;
-import com.pholser.util.properties.ValuesSeparatedBy;
 
-import java.util.List;
-
-public interface SeparatedPropertyHaverWithBothPatternAndValueOf {
-  @BoundProperty("separated.property.with.both.pattern.and.valueOf")
-  @DefaultsTo("2")
-  @ValuesSeparatedBy(pattern = ";", valueOf = ":")
-  List<Integer> badSeparatorProperty();
+public interface MissingPrimitiveProperty {
+  @BoundProperty("missing.character.property")
+  char missingCharacterProperty();
 }

@@ -25,7 +25,7 @@
 
 package com.pholser.util.properties;
 
-import com.pholser.util.properties.boundtypes.IntPropertyHaver;
+import com.pholser.util.properties.boundtypes.IntProperty;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -35,18 +35,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ErrorsThatOccurWhenBindingUntypedMapsToTypedInterfacesTest {
   @Test void returnTypeAndUnderlyingPropertyTypeDisagree() {
     Map<String, Object> items = Map.of("i", new Object());
-    PropertyBinder<IntPropertyHaver> binder =
-      PropertyBinder.forType(IntPropertyHaver.class);
-    IntPropertyHaver bound = binder.bind(items);
+    PropertyBinder<IntProperty> binder =
+      PropertyBinder.forType(IntProperty.class);
+    IntProperty bound = binder.bind(items);
 
     assertThrows(ClassCastException.class, bound::i);
   }
 
   @Test void primitiveWidening() {
     Map<String, Object> items = Map.of("i", Short.valueOf("2"));
-    PropertyBinder<IntPropertyHaver> binder =
-      PropertyBinder.forType(IntPropertyHaver.class);
-    IntPropertyHaver bound = binder.bind(items);
+    PropertyBinder<IntProperty> binder =
+      PropertyBinder.forType(IntProperty.class);
+    IntProperty bound = binder.bind(items);
 
     assertThrows(ClassCastException.class, bound::i);
   }

@@ -25,7 +25,7 @@
 
 package com.pholser.util.properties;
 
-import com.pholser.util.properties.boundtypes.IntPropertyHaver;
+import com.pholser.util.properties.boundtypes.IntProperty;
 import org.junit.jupiter.api.Test;
 
 import java.util.ResourceBundle;
@@ -36,18 +36,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ErrorsThatOccurWhenBindingUntypedResourceBundlesToTypedInterfacesTest {
   @Test void returnTypeAndUnderlyingPropertyTypeDisagree() {
     ResourceBundle bundle = bundleWith("i", new Object());
-    PropertyBinder<IntPropertyHaver> binder =
-      PropertyBinder.forType(IntPropertyHaver.class);
-    IntPropertyHaver bound = binder.bind(bundle);
+    PropertyBinder<IntProperty> binder =
+      PropertyBinder.forType(IntProperty.class);
+    IntProperty bound = binder.bind(bundle);
 
     assertThrows(ClassCastException.class, bound::i);
   }
 
   @Test void primitiveWidening() {
     ResourceBundle bundle = bundleWith("i", Byte.valueOf("2"));
-    PropertyBinder<IntPropertyHaver> binder =
-      PropertyBinder.forType(IntPropertyHaver.class);
-    IntPropertyHaver bound = binder.bind(bundle);
+    PropertyBinder<IntProperty> binder =
+      PropertyBinder.forType(IntProperty.class);
+    IntProperty bound = binder.bind(bundle);
 
     assertThrows(ClassCastException.class, bound::i);
   }

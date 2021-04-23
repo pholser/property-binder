@@ -28,10 +28,10 @@ package com.pholser.util.properties.boundtypes;
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
-import java.util.Collection;
+import java.util.List;
 
-public interface UnsupportedAggregateTypePropertyHaver {
-  @BoundProperty("unsupported.aggregate.type.property")
+public interface ListOfArrayProperties {
+  @BoundProperty("list.of.int.array")
   @DefaultsTo("1,2")
-  Collection<Integer> collection();
+  List<int[]> listOfArray();
 }

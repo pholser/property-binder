@@ -25,7 +25,7 @@
 
 package com.pholser.util.properties;
 
-import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
+import com.pholser.util.properties.boundtypes.ScalarProperties;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,7 @@ import java.io.InputStream;
 import static com.pholser.util.properties.IO.closeQuietly;
 
 class BindingPropertiesReadFromInputStreamTest
-  extends TypedStringBindingTestSupport<ScalarPropertyHaver> {
+  extends TypedStringBindingTestSupport<ScalarProperties> {
 
   private InputStream inputStream;
 
@@ -49,12 +49,12 @@ class BindingPropertiesReadFromInputStreamTest
   }
 
   @Test void loadingFromInputStream() throws Exception {
-    ScalarPropertyHaver fromInputStream = binder.bind(inputStream);
+    ScalarProperties fromInputStream = binder.bind(inputStream);
 
     assertPropertiesEqual(bound, fromInputStream);
   }
 
-  @Override protected Class<ScalarPropertyHaver> boundType() {
-    return ScalarPropertyHaver.class;
+  @Override protected Class<ScalarProperties> boundType() {
+    return ScalarProperties.class;
   }
 }

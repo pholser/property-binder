@@ -35,7 +35,7 @@ import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
-public interface ListPropertyHaver {
+public interface ListProperties {
   @BoundProperty("string.list.property")
   List<String> stringListProperty();
 

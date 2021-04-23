@@ -38,61 +38,62 @@ class BindingUntypedResourceBundlesToTypedInterfacesTest {
   @Test void nonValueType() {
     Object value = new Object();
     ResourceBundle bundle = bundleWith("any.old.type", value);
-    PropertyBinder<NonValueTypeHaver> binder =
-      PropertyBinder.forType(NonValueTypeHaver.class);
+    PropertyBinder<NonValueTypeProperties> binder =
+      PropertyBinder.forType(NonValueTypeProperties.class);
 
-    NonValueTypeHaver bound = binder.bind(bundle);
+    NonValueTypeProperties bound = binder.bind(bundle);
 
     assertSame(value, bound.anyOldType());
   }
 
-  interface NonValueTypeHaver {
+  interface NonValueTypeProperties {
     @BoundProperty("any.old.type") Object anyOldType();
   }
 
   @Test void arrayOfUnconvertibleType() {
     Object[] array = new Object[0];
     ResourceBundle bundle = bundleWith("array.of.unconvertible.type", array);
-    PropertyBinder<ArrayOfUnconvertibleTypeHaver> binder =
-      PropertyBinder.forType(ArrayOfUnconvertibleTypeHaver.class);
+    PropertyBinder<ArrayOfUnconvertibleTypeProperties> binder =
+      PropertyBinder.forType(ArrayOfUnconvertibleTypeProperties.class);
 
-    ArrayOfUnconvertibleTypeHaver bound = binder.bind(bundle);
+    ArrayOfUnconvertibleTypeProperties bound = binder.bind(bundle);
 
     assertSame(array, bound.array());
   }
 
-  interface ArrayOfUnconvertibleTypeHaver {
+  interface ArrayOfUnconvertibleTypeProperties {
     @BoundProperty("array.of.unconvertible.type") Object[] array();
   }
 
   @Test void listOfUnconvertibleType() {
     List<Object> list = new ArrayList<>();
     ResourceBundle bundle = bundleWith("list.of.unconvertible.type", list);
-    PropertyBinder<ListOfUnconvertibleTypeHaver> binder =
-      PropertyBinder.forType(ListOfUnconvertibleTypeHaver.class);
+    PropertyBinder<ListOfUnconvertibleTypeProperties> binder =
+      PropertyBinder.forType(ListOfUnconvertibleTypeProperties.class);
 
-    ListOfUnconvertibleTypeHaver bound = binder.bind(bundle);
+    ListOfUnconvertibleTypeProperties bound = binder.bind(bundle);
 
     assertSame(list, bound.list());
   }
 
-  interface ListOfUnconvertibleTypeHaver {
+  interface ListOfUnconvertibleTypeProperties {
     @BoundProperty("list.of.unconvertible.type")
     List<Object> list();
   }
 
   @Test void nonPublicValueOf() {
-    NonPublicValueOfHaver.Thing thing = new NonPublicValueOfHaver.Thing();
+    NonPublicValueOfProperties.Thing thing =
+      new NonPublicValueOfProperties.Thing();
     ResourceBundle bundle = bundleWith("non.public.value.of", thing);
-    PropertyBinder<NonPublicValueOfHaver> binder =
-      PropertyBinder.forType(NonPublicValueOfHaver.class);
+    PropertyBinder<NonPublicValueOfProperties> binder =
+      PropertyBinder.forType(NonPublicValueOfProperties.class);
 
-    NonPublicValueOfHaver bound = binder.bind(bundle);
+    NonPublicValueOfProperties bound = binder.bind(bundle);
 
     assertSame(thing, bound.thing());
   }
 
-  interface NonPublicValueOfHaver {
+  interface NonPublicValueOfProperties {
     @BoundProperty("non.public.value.of") Thing thing();
 
     class Thing {
@@ -104,17 +105,18 @@ class BindingUntypedResourceBundlesToTypedInterfacesTest {
   }
 
   @Test void nonStaticValueOf() {
-    NonStaticValueOfHaver.Thing thing = new NonStaticValueOfHaver.Thing();
+    NonStaticValueOfProperties.Thing thing =
+      new NonStaticValueOfProperties.Thing();
     ResourceBundle bundle = bundleWith("non.static.value.of", thing);
-    PropertyBinder<NonStaticValueOfHaver> binder =
-      PropertyBinder.forType(NonStaticValueOfHaver.class);
+    PropertyBinder<NonStaticValueOfProperties> binder =
+      PropertyBinder.forType(NonStaticValueOfProperties.class);
 
-    NonStaticValueOfHaver bound = binder.bind(bundle);
+    NonStaticValueOfProperties bound = binder.bind(bundle);
 
     assertSame(thing, bound.thing());
   }
 
-  interface NonStaticValueOfHaver {
+  interface NonStaticValueOfProperties {
     @BoundProperty("non.static.value.of") Thing thing();
 
     class Thing {
@@ -126,17 +128,18 @@ class BindingUntypedResourceBundlesToTypedInterfacesTest {
   }
 
   @Test void badValueOfReturnType() {
-    BadValueOfTypeHaver.Thing thing = new BadValueOfTypeHaver.Thing();
+    BadValueOfTypeProperties.Thing thing =
+      new BadValueOfTypeProperties.Thing();
     ResourceBundle bundle = bundleWith("bad.value.of.type", thing);
-    PropertyBinder<BadValueOfTypeHaver> binder =
-      PropertyBinder.forType(BadValueOfTypeHaver.class);
+    PropertyBinder<BadValueOfTypeProperties> binder =
+      PropertyBinder.forType(BadValueOfTypeProperties.class);
 
-    BadValueOfTypeHaver bound = binder.bind(bundle);
+    BadValueOfTypeProperties bound = binder.bind(bundle);
 
     assertSame(thing, bound.thing());
   }
 
-  interface BadValueOfTypeHaver {
+  interface BadValueOfTypeProperties {
     @BoundProperty("bad.value.of.type") Thing thing();
 
     class Thing {

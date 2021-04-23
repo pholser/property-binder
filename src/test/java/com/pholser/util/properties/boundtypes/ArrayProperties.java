@@ -34,7 +34,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 
-public interface ArrayPropertyHaver {
+public interface ArrayProperties {
   @BoundProperty("string.array.property")
   String[] stringArrayProperty();
 

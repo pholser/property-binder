@@ -26,10 +26,12 @@
 package com.pholser.util.properties.boundtypes;
 
 import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.ParsedAs;
 
-public interface CharacterPropertyHaverWithTooLongDefault {
-  @BoundProperty("char.property")
-  @DefaultsTo("ab")
-  char charProperty();
+import java.util.Date;
+
+public interface DateWithNonLenientValue {
+  @BoundProperty("date.property.with.non.lenient.value")
+  @ParsedAs("MM/dd/yyyy")
+  Date datePropertyWithNonLenientValue();
 }

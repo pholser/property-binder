@@ -28,8 +28,15 @@ package com.pholser.util.properties.boundtypes;
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
-public interface BadDefaultValuePropertyHaver {
-  @BoundProperty("bad.default.value.property")
-  @DefaultsTo("!@#")
-  int badDefaultValueProperty();
+public interface TypeWithNonPublicValueOfProperties {
+  @BoundProperty("type.with.non.public.value.of.property")
+  @DefaultsTo("boo")
+  TypeWithNonPublicValueOf typeWithNonPublicValueOfProperty();
+
+  @SuppressWarnings("all")
+  class TypeWithNonPublicValueOf {
+    static TypeWithNonPublicValueOf valueOf(String value) {
+      return null;
+    }
+  }
 }

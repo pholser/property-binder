@@ -33,8 +33,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.Optional;
+import java.util.Random;
 
-public interface ScalarPropertyHaver {
+public interface ScalarProperties {
   @BoundProperty("string.property")
   String stringProperty();
 

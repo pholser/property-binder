@@ -26,12 +26,10 @@
 package com.pholser.util.properties.boundtypes;
 
 import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ValuesSeparatedBy;
 
-public interface SeparatorOnNonAggregateTypePropertyHaver {
-  @BoundProperty("separator.on.non.aggregate.type.property")
-  @DefaultsTo("boo")
-  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
-  String aProperty();
+public interface ArrayOfUnconvertibleTypeWithDefault {
+  @BoundProperty("array.of.unconvertible.type.property")
+  @ValuesSeparatedBy(pattern = "--")
+  Object[] arrayOfUnconvertibleTypeProperty();
 }

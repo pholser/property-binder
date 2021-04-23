@@ -28,14 +28,8 @@ package com.pholser.util.properties.boundtypes;
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.DefaultsTo;
 
-public interface TypeWithValueOfWithBadReturnTypePropertyHaver {
-  @BoundProperty("type.with.value.of.with.bad.return.type.property")
+public interface ArrayOfUnconvertibleTypeWithSeparator {
+  @BoundProperty("array.of.unconvertible.type.property")
   @DefaultsTo("boo")
-  TypeWithValueOfWithBadReturnType typeWithValueOfWithBadReturnType();
-
-  class TypeWithValueOfWithBadReturnType {
-    public static String valueOf(String value) {
-      return value;
-    }
-  }
+  Object[] arrayOfUnconvertibleTypeProperty();
 }
