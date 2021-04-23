@@ -30,36 +30,52 @@ import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
-import static com.pholser.util.properties.internal.conversions.Classes.wrapperIfPrimitive;
-
 public class ValueConverterFactory {
-  private final Map<Class<?>, List<Conversion<?>>> scalars = new HashMap<>();
+  private static final Logger LOGGER =
+    LoggerFactory.getLogger(ValueConverterFactory.class);
 
-  public ValueConverterFactory(Iterator<Conversion<?>> loaded) {
-    loaded.forEachRemaining(conv ->
-      conv.valueTypes().forEach(type ->
-        scalars.computeIfAbsent(type, k -> new ArrayList<>())
-          .add(conv)));
+  private final Map<Class<?>, Conversion<?>> scalars = new HashMap<>();
+
+  public ValueConverterFactory(Iterator<Conversion> loaded) {
+    loaded.forEachRemaining(this::register);
+  }
+
+  private void register(Conversion conversion) {
+    @SuppressWarnings("unchecked")
+    List<Class<?>> valueTypes = conversion.valueTypes();
+
+    valueTypes.forEach(type -> register(conversion, type));
+  }
+
+  private void register(Conversion conversion, Class<?> type) {
+    if (scalars.containsKey(type)) {
+      LOGGER.info(
+        "Ignoring {} as conversion for {}", conversion.getClass(), type);
+    } else {
+      LOGGER.info(
+        "Registering {} as conversion for {}", conversion.getClass(), type);
+      scalars.put(type, conversion);
+    }
   }
 
   public ValueConverter createConverter(
     Method propertyMethod,
     ValueSeparator separator) {
 
-    Class<?> valueType = wrapperIfPrimitive(propertyMethod.getReturnType());
+    Class<?> valueType = propertyMethod.getReturnType();
     ParsedAs patterns = propertyMethod.getAnnotation(ParsedAs.class);
     DefaultsTo defaults = propertyMethod.getAnnotation(DefaultsTo.class);
 
@@ -100,11 +116,16 @@ public class ValueConverterFactory {
     DefaultsTo defaults,
     ValueSeparator separator) {
 
-    Class<?> returnType = wrapperIfPrimitive(valueType);
-
-    Conversion<?> loaded = scalars.get(returnType);
+    Conversion<?> loaded = scalars.get(valueType);
     if (loaded != null) {
       return new LoadedValueConverter(patterns, loaded);
+    }
+
+    if (valueType.isEnum()) {
+      @SuppressWarnings("unchecked")
+      Class<Enum> enumType = (Class<Enum>) valueType;
+
+      return new EnumConverter<>(patterns, enumType);
     }
 
     if (defaults != null || (separator != null && !separator.isDefault())) {
@@ -136,5 +157,4 @@ public class ValueConverterFactory {
 
     throw new UnsupportedValueTypeException(type);
   }
-
 }

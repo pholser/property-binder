@@ -40,7 +40,6 @@ import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithSeparat
 import com.pholser.util.properties.boundtypes.ListOfUnconvertibleTypeWithValueOfSeparatorPropertyHaver;
 import com.pholser.util.properties.boundtypes.LowerBoundedListPropertyHaver;
 import com.pholser.util.properties.boundtypes.MissingPrimitivePropertyHaver;
-import com.pholser.util.properties.boundtypes.ParsedAsOnMethodOfImproperType;
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
 import com.pholser.util.properties.boundtypes.SeparatedPropertyHaverWithBothPatternAndValueOf;
 import com.pholser.util.properties.boundtypes.SeparatorOnNonAggregateTypePropertyHaver;
@@ -56,9 +55,7 @@ import com.pholser.util.properties.internal.exceptions.MalformedSeparatorExcepti
 import com.pholser.util.properties.internal.exceptions.MultipleDefaultValueSpecificationException;
 import com.pholser.util.properties.internal.exceptions.MultipleSeparatorSpecificationException;
 import com.pholser.util.properties.internal.exceptions.NoDefaultValueSpecificationException;
-import com.pholser.util.properties.internal.exceptions.UnsupportedParsedAsTypeException;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -284,13 +281,7 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
         .bind(propertiesFile);
 
     assertThrows(
-      ValueConversionException.class,
+      IllegalArgumentException.class,
       bound::datePropertyWithNonLenientValue);
-  }
-
-  @Test void parsedAsIfAppliedToTypeOtherThanDate() {
-    assertThrows(
-      UnsupportedParsedAsTypeException.class,
-      () -> PropertyBinder.forType(ParsedAsOnMethodOfImproperType.class));
   }
 }

@@ -26,7 +26,6 @@
 package com.pholser.util.properties;
 
 import com.pholser.util.properties.boundtypes.ScalarPropertyHaver;
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -70,7 +69,7 @@ class BindingStringMapsToTypedInterfacesTest
     asStringMap.put("primitive.integer.property", "!@#!@#!@#!@#!@#");
 
     assertThrows(
-      ValueConversionException.class,
+      NumberFormatException.class,
       () -> fromMap.primitiveIntegerProperty());
   }
 

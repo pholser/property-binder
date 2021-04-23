@@ -25,8 +25,6 @@
 
 package com.pholser.util.properties.internal;
 
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -60,10 +58,10 @@ public final class Reflection {
 
     try {
       return method.invoke(target, args);
-    } catch (IllegalAccessException | IllegalArgumentException ex) {
-      throw new ValueConversionException(ex);
+    } catch (IllegalAccessException ex) {
+      throw new IllegalArgumentException(ex);
     } catch (InvocationTargetException ex) {
-      throw new ValueConversionException(ex.getTargetException());
+      throw new IllegalArgumentException(ex.getTargetException());
     }
   }
 
@@ -71,9 +69,9 @@ public final class Reflection {
     if (method.isDefault()) {
       return false;
     }
+
     int mods = method.getModifiers();
     return isPublic(mods) && isAbstract(mods)
       && !isStatic(mods) && !isPrivate(mods);
   }
-
 }

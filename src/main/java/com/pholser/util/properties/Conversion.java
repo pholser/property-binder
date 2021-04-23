@@ -2,10 +2,10 @@ package com.pholser.util.properties;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static java.util.Collections.singletonList;
 import static java.util.Collections.unmodifiableList;
+import static java.util.Objects.requireNonNull;
 
 public abstract class Conversion<T> {
   private final List<Class<T>> valueTypes;
@@ -15,16 +15,14 @@ public abstract class Conversion<T> {
   }
 
   protected Conversion(List<Class<T>> valueTypes) {
-    if (valueTypes == null
-      || valueTypes.stream().anyMatch(Objects::isNull)) {
-
-      throw new NullPointerException("null value types list or elements");
-    }
+    requireNonNull(valueTypes, "need non-null list of value types");
+    valueTypes.forEach(t -> requireNonNull(t, "null value type"));
 
     this.valueTypes = new ArrayList<>(valueTypes);
   }
 
-  public abstract T convert(String formatted, ParsedAs patterns);
+  public abstract T convert(String formatted, ParsedAs patterns)
+    throws IllegalArgumentException;
 
   public final List<Class<T>> valueTypes() {
     return unmodifiableList(valueTypes);

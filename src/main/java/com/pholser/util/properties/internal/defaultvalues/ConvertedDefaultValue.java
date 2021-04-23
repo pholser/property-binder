@@ -28,7 +28,6 @@ package com.pholser.util.properties.internal.defaultvalues;
 import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
 import com.pholser.util.properties.internal.exceptions.MalformedDefaultValueException;
-import com.pholser.util.properties.internal.exceptions.ValueConversionException;
 
 import java.lang.reflect.Method;
 
@@ -42,7 +41,7 @@ final class ConvertedDefaultValue implements DefaultValue {
 
     try {
       converted = converter.convert(value);
-    } catch (ValueConversionException ex) {
+    } catch (IllegalArgumentException ex) {
       throw new MalformedDefaultValueException(value, method, ex);
     }
   }
