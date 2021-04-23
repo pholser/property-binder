@@ -34,6 +34,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public interface ListProperties {
   @BoundProperty("string.list.property")
@@ -228,6 +229,23 @@ public interface ListProperties {
   @DefaultsTo("NO|MAYBE|YES|MAYBE")
   @ValuesSeparatedBy(pattern = "\\|")
   List<Ternary> enumListPropertyWithDefaultAndSeparator();
+
+  @BoundProperty("uuid.list.property")
+  List<UUID> uuidListProperty();
+
+  @BoundProperty("uuid.list.property.with.custom.separator")
+  @ValuesSeparatedBy(pattern = "\\s*,\\s*")
+  List<UUID> uuidListPropertyWithCustomSeparator();
+
+  @BoundProperty("uuid.list.property.with.default")
+  @DefaultsTo("4abfa655-eabe-4699-9ea9-d7651244c4f9,d432a18b-cf25-4221-a206-2d44728f1165")
+  @ValuesSeparatedBy
+  List<UUID> uuidListPropertyWithDefault();
+
+  @BoundProperty("uuid.list.property.with.default.and.custom.separator")
+  @DefaultsTo("00d72078-51c6-4686-93d3-d4ee3cc342ce\u00003fab0521-d395-44dd-8464-e88b2c4ff3dc\u000083107da3-4f70-4873-b8df-373b44c3f6db")
+  @ValuesSeparatedBy(pattern = "\u0000")
+  List<UUID> uuidListPropertyWithDefaultAndSeparator();
 
   @SuppressWarnings("unchecked")
   @BoundProperty("raw.list.property")
