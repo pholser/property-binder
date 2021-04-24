@@ -86,16 +86,15 @@ public class SchemaValidator {
     Map<BoundProperty, ValueSeparator> separators =
       new HashMap<>(methods.size());
 
-    for (Method each : methods) {
-      BoundProperty key = propertyMarkerFor(each);
+    methods.forEach(m -> {
+      BoundProperty key = propertyMarkerFor(m);
       if (converters.containsKey(key)) {
-        throw new DuplicatePropertyKeyException(schema, each, key);
+        throw new DuplicatePropertyKeyException(schema, m, key);
       }
-
-      collectSeparatorIfAggregateType(separators, each, key);
-      collectConverter(converters, separators, each, key);
-      collectDefaultValue(defaults, converters.get(key), each, key);
-    }
+      collectSeparatorIfAggregateType(separators, m, key);
+      collectConverter(converters, separators, m, key);
+      collectDefaultValue(defaults, converters.get(key), m, key);
+    });
 
     return new ValidatedSchema<>(schema, defaults, converters);
   }

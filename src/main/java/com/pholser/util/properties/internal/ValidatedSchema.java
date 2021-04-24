@@ -32,6 +32,7 @@ import com.pholser.util.properties.internal.defaultvalues.DefaultValue;
 
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.Optional;
 
 import static com.pholser.util.properties.internal.Schemata.propertyMarkerFor;
 import static java.lang.reflect.Proxy.newProxyInstance;
@@ -64,14 +65,12 @@ public class ValidatedSchema<T> {
     BoundProperty key = propertyMarkerFor(method);
     ValueConverter converter = converters.get(key);
 
-    Object value = properties.propertyFor(key);
-    if (value != null) {
-      return converter.convertRaw(value, args);
-    }
-
-    return defaults.containsKey(key)
-      ? defaults.get(key).evaluate()
-      : converter.nilValue();
+    return Optional.ofNullable(properties.propertyFor(key))
+      .map(v -> converter.convertRaw(v, args))
+      .orElse(
+        Optional.ofNullable(defaults.get(key))
+          .map(DefaultValue::evaluate)
+          .orElse(converter.nilValue()));
   }
 
   String getName() {
@@ -79,15 +78,11 @@ public class ValidatedSchema<T> {
   }
 
   private void resolveConverters(PropertySource properties) {
-    for (ValueConverter each : converters.values()) {
-      each.resolve(properties);
-    }
+    converters.values().forEach(c -> c.resolve(properties));
   }
 
   private void resolveDefaultValues(PropertySource properties) {
-    for (DefaultValue each : defaults.values()) {
-      each.resolve(properties);
-    }
+    defaults.values().forEach(d -> d.resolve(properties));
   }
 
   private T createTypedProxyFor(PropertySource properties) {
