@@ -23,11 +23,24 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/**
- * A scheme for typed access to Java properties files.
- * <p>
- * Inspired by <a href="http://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/">this blog entry</a>.
- */
+package com.pholser.util.properties.conversions.java.net;
 
-package com.pholser.util.properties;
+import com.pholser.util.properties.Conversion;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+
+public class URIConversion extends Conversion<URI> {
+  public URIConversion() {
+    super(URI.class);
+  }
+
+  @Override public URI convert(String value, List<String> patterns) {
+    try {
+      return new URI(value);
+    } catch (URISyntaxException ex) {
+      throw new IllegalArgumentException(ex);
+    }
+  }
+}

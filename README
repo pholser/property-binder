@@ -7,3 +7,8 @@ TODO:
   * Class<? extends T> where T is a java.lang.Class (no other j.l.r.Type)
   * raw Class
 * Modularize
+* Chained conversions (e.g. Path <- URI <- String)
+* Allow conversions to generic types, if methods allowed
+  * e.g. Set<PosixFilePermissions> from PosixFilePermissions.fromString(s)
+  * TypeTokens?
+
