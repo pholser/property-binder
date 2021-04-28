@@ -1,5 +1,9 @@
 Please see http://pholser.github.com/property-binder for information.
 
 TODO:
-* java.util.regex.Pattern, array/list/opt
-* Java 8 date/time artifacts
+* java.util.regex.Pattern (+ array/list/opt) tests
+* Java 8 date/time artifacts (+ array/list/opt) and tests
+* java.lang.Class (+ array/list/opt) and tests
+  * Class<? extends T> where T is a java.lang.Class (no other j.l.r.Type)
+  * raw Class
+* Modularize
