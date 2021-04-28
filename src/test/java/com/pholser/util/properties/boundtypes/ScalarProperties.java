@@ -205,7 +205,7 @@ public interface ScalarProperties {
   Date datePropertyWithParsePatterns();
 
   @BoundProperty("date.property.with.default.with.parse.patterns")
-  @ParsedAs("yyyy")
+  @ParsedAs(valueOf = "yy[date.property.two.digit.year]")
   @DefaultsTo("2003")
   Date datePropertyWithDefaultWithParsePatterns();
 

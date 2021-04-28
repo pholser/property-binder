@@ -25,12 +25,12 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import com.pholser.util.properties.ParsedAs;
+import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
 class EnumConverter<T extends Enum<T>> extends ScalarValueConverter {
   private final Class<T> valueType;
 
-  EnumConverter(ParsedAs patterns, Class<T> valueType) {
+  EnumConverter(ParsePatterns patterns, Class<T> valueType) {
     super(patterns);
     this.valueType = valueType;
   }

@@ -27,8 +27,8 @@ package com.pholser.util.properties.internal.conversions;
 
 import com.pholser.util.properties.Conversion;
 import com.pholser.util.properties.DefaultsTo;
-import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
+import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,18 +49,22 @@ public class ValueConverterFactory {
 
   private final Map<Class<?>, Conversion<?>> scalars = new HashMap<>();
 
+  @SuppressWarnings("rawtypes")
   public ValueConverterFactory(Iterator<Conversion> loaded) {
     loaded.forEachRemaining(this::register);
   }
 
-  private void register(Conversion conversion) {
+  private void register(@SuppressWarnings("rawtypes") Conversion conversion) {
     @SuppressWarnings("unchecked")
     List<Class<?>> valueTypes = conversion.valueTypes();
 
     valueTypes.forEach(type -> register(conversion, type));
   }
 
-  private void register(Conversion conversion, Class<?> type) {
+  private void register(
+    @SuppressWarnings("rawtypes") Conversion conversion,
+    Class<?> type) {
+
     if (scalars.containsKey(type)) {
       LOGGER.info(
         "Ignoring {} as conversion for {}", conversion.getClass(), type);
@@ -73,10 +77,10 @@ public class ValueConverterFactory {
 
   public ValueConverter createConverter(
     Method propertyMethod,
-    ValueSeparator separator) {
+    ValueSeparator separator,
+    ParsePatterns patterns) {
 
     Class<?> valueType = propertyMethod.getReturnType();
-    ParsedAs patterns = propertyMethod.getAnnotation(ParsedAs.class);
     DefaultsTo defaults = propertyMethod.getAnnotation(DefaultsTo.class);
 
     if (Optional.class.equals(valueType)) {
@@ -112,7 +116,7 @@ public class ValueConverterFactory {
 
   private ValueConverter createScalarConverter(
     Class<?> valueType,
-    ParsedAs patterns,
+    ParsePatterns patterns,
     DefaultsTo defaults,
     ValueSeparator separator) {
 

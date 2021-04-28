@@ -32,16 +32,6 @@ import static java.util.Collections.singletonList;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
-/**
- * Represents a conversion from a string value to a scalar.
- *
- * {@link PropertyBinder} loads instances of concrete subtypes of this class
- * via the {@link java.util.ServiceLoader} mechanism.
- *
- * @param <T> type of values convered
- * @see PropertyBinder
- * @see java.util.ServiceLoader
- */
 public abstract class Conversion<T> {
   private final List<Class<T>> valueTypes;
 
@@ -56,17 +46,7 @@ public abstract class Conversion<T> {
     this.valueTypes = new ArrayList<>(valueTypes);
   }
 
-  /**
-   * Converts a string value to an instance of the value type. Concrete
-   * subclasses may use the given patterns to attempt the conversion.
-   * Concrete subclasses should raise {@link IllegalArgumentException} if
-   * the value cannot be converted.
-   *
-   * @param value a string to convert
-   * @param patterns patterns that may be used to perform the conversion
-   * @return conversion result
-   */
-  public abstract T convert(String value, ParsedAs patterns)
+  public abstract T convert(String value, List<String> patterns)
     throws IllegalArgumentException;
 
   public final List<Class<T>> valueTypes() {

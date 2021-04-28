@@ -28,6 +28,8 @@ package com.pholser.util.properties.conversions.java.lang;
 import com.pholser.util.properties.Conversion;
 import com.pholser.util.properties.ParsedAs;
 
+import java.util.List;
+
 import static java.util.Arrays.asList;
 
 public class IntegerConversion extends Conversion<Integer> {
@@ -35,7 +37,7 @@ public class IntegerConversion extends Conversion<Integer> {
     super(asList(int.class, Integer.class));
   }
 
-  @Override public Integer convert(String value, ParsedAs patterns) {
+  @Override public Integer convert(String value, List<String> patterns) {
     return Integer.valueOf(value);
   }
 }

@@ -32,25 +32,11 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-/**
- * Mark an interface method with this annotation to indicate that values
- * for the property represented by the method may be parsed according to
- * the given patterns. For example, {@link java.util.Date}-returning methods,
- * you might specify patterns as described in
- * {@link java.text.SimpleDateFormat}.
- *
- * @author <a href="mailto:pholser@alumni.rice.edu">Paul Holser</a>
- * @see BoundProperty
- * @see Conversion
- */
 @Documented
 @Target(METHOD)
 @Retention(RUNTIME)
 public @interface ParsedAs {
-  /**
-   * Patterns with which a property value might be parsed.
-   *
-   * @return patterns
-   */
-  String[] value();
+  String[] value() default {};
+
+  String[] valueOf() default {};
 }

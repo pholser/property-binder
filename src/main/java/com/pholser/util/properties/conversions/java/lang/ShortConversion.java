@@ -26,7 +26,8 @@
 package com.pholser.util.properties.conversions.java.lang;
 
 import com.pholser.util.properties.Conversion;
-import com.pholser.util.properties.ParsedAs;
+
+import java.util.List;
 
 import static java.util.Arrays.asList;
 
@@ -35,7 +36,7 @@ public class ShortConversion extends Conversion<Short> {
     super(asList(short.class, Short.class));
   }
 
-  @Override public Short convert(String value, ParsedAs patterns) {
+  @Override public Short convert(String value, List<String> patterns) {
     return Short.valueOf(value);
   }
 }

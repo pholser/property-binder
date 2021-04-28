@@ -26,16 +26,16 @@
 package com.pholser.util.properties.conversions.java.io;
 
 import com.pholser.util.properties.Conversion;
-import com.pholser.util.properties.ParsedAs;
 
 import java.io.File;
+import java.util.List;
 
 public class FileConversion extends Conversion<File> {
   public FileConversion() {
     super(File.class);
   }
 
-  @Override public File convert(String value, ParsedAs patterns) {
+  @Override public File convert(String value, List<String> patterns) {
     return new File(value);
   }
 }

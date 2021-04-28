@@ -26,16 +26,16 @@
 package com.pholser.util.properties.conversions.java.io;
 
 import com.pholser.util.properties.Conversion;
-import com.pholser.util.properties.ParsedAs;
 
 import java.math.BigInteger;
+import java.util.List;
 
 public class BigIntegerConversion extends Conversion<BigInteger> {
   public BigIntegerConversion() {
     super(BigInteger.class);
   }
 
-  @Override public BigInteger convert(String value, ParsedAs patterns) {
+  @Override public BigInteger convert(String value, List<String> patterns) {
     return new BigInteger(value);
   }
 }

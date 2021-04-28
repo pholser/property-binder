@@ -28,6 +28,7 @@ package com.pholser.util.properties.internal.defaultvalues;
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
+import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
 import java.lang.reflect.Method;
 
@@ -37,15 +38,18 @@ class SubstitutableDefaultValue implements DefaultValue {
   private final DefaultsTo spec;
   private final ValueConverter converter;
   private final Method method;
+  private final ParsePatterns patterns;
   private ConvertedDefaultValue converted;
 
   SubstitutableDefaultValue(
     DefaultsTo spec,
     ValueConverter converter,
+    ParsePatterns patterns,
     Method method) {
 
     this.spec = spec;
     this.converter = converter;
+    this.patterns = patterns;
     this.method = method;
   }
 

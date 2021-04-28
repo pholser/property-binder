@@ -26,7 +26,8 @@
 package com.pholser.util.properties.conversions.java.lang;
 
 import com.pholser.util.properties.Conversion;
-import com.pholser.util.properties.ParsedAs;
+
+import java.util.List;
 
 import static java.util.Arrays.asList;
 
@@ -35,7 +36,7 @@ public class CharacterConversion extends Conversion<Character> {
     super(asList(char.class, Character.class));
   }
 
-  @Override public Character convert(String value, ParsedAs patterns) {
+  @Override public Character convert(String value, List<String> patterns) {
     if (value.length() != 1) {
       throw new IllegalArgumentException(
         "cannot convert [" + value + "] to " + Character.class);

@@ -33,19 +33,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 class ListValueConverter extends AggregateValueConverter {
-  private final ValueConverter elementConverter;
-
   ListValueConverter(
     ValueSeparator separator,
     ValueConverter elementConverter) {
 
-    super(separator);
-    this.elementConverter = elementConverter;
+    super(separator, elementConverter);
   }
 
   @Override public List<Object> convert(String formatted) {
     return Arrays.stream(separate(formatted))
-      .map(elementConverter::convert)
+      .map(elementConverter()::convert)
       .collect(Collectors.toList());
   }
 

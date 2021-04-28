@@ -28,6 +28,7 @@ package com.pholser.util.properties.internal.validation;
 import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.Conversion;
 import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.ValuesSeparatedBy;
 import com.pholser.util.properties.internal.Reflection;
 import com.pholser.util.properties.internal.ValidatedSchema;
@@ -42,6 +43,7 @@ import com.pholser.util.properties.internal.exceptions.InterfaceHasSuperinterfac
 import com.pholser.util.properties.internal.exceptions.MultipleDefaultValueSpecificationException;
 import com.pholser.util.properties.internal.exceptions.MultipleSeparatorSpecificationException;
 import com.pholser.util.properties.internal.exceptions.NoDefaultValueSpecificationException;
+import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 import com.pholser.util.properties.internal.separators.ValueSeparatorFactory;
 
@@ -65,7 +67,9 @@ public class SchemaValidator {
   private final ValueSeparatorFactory separatorFactory;
   private final DefaultValueFactory defaultValueFactory;
 
-  public SchemaValidator(Iterator<Conversion> loaded) {
+  public SchemaValidator(
+    @SuppressWarnings("rawtypes") Iterator<Conversion> loaded) {
+
     converterFactory = new ValueConverterFactory(loaded);
     separatorFactory = new ValueSeparatorFactory();
     defaultValueFactory = new DefaultValueFactory();
@@ -85,18 +89,32 @@ public class SchemaValidator {
       new HashMap<>(methods.size());
     Map<BoundProperty, ValueSeparator> separators =
       new HashMap<>(methods.size());
+    Map<BoundProperty, ParsePatterns> patterns =
+      new HashMap<>(methods.size());
 
     methods.forEach(m -> {
       BoundProperty key = propertyMarkerFor(m);
       if (converters.containsKey(key)) {
         throw new DuplicatePropertyKeyException(schema, m, key);
       }
+
       collectSeparatorIfAggregateType(separators, m, key);
-      collectConverter(converters, separators, m, key);
-      collectDefaultValue(defaults, converters.get(key), m, key);
+      collectParsePatterns(patterns, m, key);
+      collectConverter(
+        converters,
+        separators.get(key),
+        patterns.get(key),
+        m,
+        key);
+      collectDefaultValue(
+        defaults,
+        converters.get(key),
+        patterns.get(key),
+        m,
+        key);
     });
 
-    return new ValidatedSchema<>(schema, defaults, converters);
+    return new ValidatedSchema<>(schema, defaults, converters, patterns);
   }
 
   private static void ensureInterface(Class<?> schema) {
@@ -133,28 +151,33 @@ public class SchemaValidator {
     }
 
     if (isAggregate) {
-      separators.put(key, separatorFactory.createSeparator(separator, method));
+      separators.put(
+        key,
+        separatorFactory.createSeparator(separator, method));
     }
   }
 
   private void collectConverter(
     Map<BoundProperty, ValueConverter> converters,
-    Map<BoundProperty, ValueSeparator> separators,
+    ValueSeparator separator,
+    ParsePatterns patterns,
     Method method,
     BoundProperty key) {
 
     converters.put(
       key,
-      converterFactory.createConverter(method, separators.get(key)));
+      converterFactory.createConverter(method, separator, patterns));
   }
 
   private void collectDefaultValue(
     Map<BoundProperty, DefaultValue> defaults,
     ValueConverter converter,
+    ParsePatterns patterns,
     Method method,
     BoundProperty key) {
 
-    DefaultValue defaultValue = createDefaultValue(method, converter);
+    DefaultValue defaultValue =
+      createDefaultValue(method, converter, patterns);
     if (defaultValue != null) {
       defaults.put(key, defaultValue);
     }
@@ -162,7 +185,8 @@ public class SchemaValidator {
 
   private DefaultValue createDefaultValue(
     Method method,
-    ValueConverter converter) {
+    ValueConverter converter,
+    ParsePatterns patterns) {
 
     DefaultsTo spec = method.getAnnotation(DefaultsTo.class);
     if (spec == null) {
@@ -176,12 +200,32 @@ public class SchemaValidator {
     }
     if (valueIsDefault && valueOfIsDefault) {
       throw new NoDefaultValueSpecificationException(method);
+
     }
 
-    return defaultValueFactory.createDefaultValue(spec, converter, method);
+    return defaultValueFactory.createDefaultValue(
+      spec,
+      converter,
+      patterns,
+      method);
   }
 
   private static boolean isAggregateType(Class<?> clazz) {
     return clazz.isArray() || Collection.class.isAssignableFrom(clazz);
+  }
+
+  private void collectParsePatterns(
+    Map<BoundProperty, ParsePatterns> patternsByProperty,
+    Method method,
+    BoundProperty key) {
+
+    ParsePatterns patterns = new ParsePatterns();
+
+    ParsedAs spec = method.getAnnotation(ParsedAs.class);
+    if (spec != null) {
+      patterns.load(spec);
+    }
+
+    patternsByProperty.put(key, patterns);
   }
 }

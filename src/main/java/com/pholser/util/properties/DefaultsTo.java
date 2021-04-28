@@ -32,40 +32,11 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-/**
- * Mark an interface method with this annotation to indicate a default value
- * for the property source key represented by the method. If no property
- * is associated with the key for the method, the default value will be
- * returned instead. The default can be a plain value given by
- * {@link #value()} or a value composed in whole or in part of the values
- * of other properties, given by {@link #valueOf()}. References to other
- * properties in a {@code valueOf()} expression are delimited by
- * {@code [} and {@code ]}.
- * <p>
- * Default values for aggregate types can use a separator given by
- * {@link ValuesSeparatedBy}.
- *
- * @author <a href="mailto:pholser@alumni.rice.edu">Paul Holser</a>
- * @see BoundProperty
- */
 @Documented
 @Target(METHOD)
 @Retention(RUNTIME)
 public @interface DefaultsTo {
-  /**
-   * String representation of the default value for the property source key
-   * associated with the marked method.
-   *
-   * @return a default value
-   */
   String value() default "";
 
-  /**
-   * Expression to give the string representation of a default value
-   * for the properties file key associated with the marked method.
-   * This expression can be given in terms of property references.
-   *
-   * @return a default value expression
-   */
   String valueOf() default "";
 }

@@ -28,6 +28,8 @@ package com.pholser.util.properties.conversions.java.lang;
 import com.pholser.util.properties.Conversion;
 import com.pholser.util.properties.ParsedAs;
 
+import java.util.List;
+
 import static java.util.Arrays.asList;
 
 public class FloatConversion extends Conversion<Float> {
@@ -35,7 +37,7 @@ public class FloatConversion extends Conversion<Float> {
     super(asList(float.class, Float.class));
   }
 
-  @Override public Float convert(String value, ParsedAs patterns) {
+  @Override public Float convert(String value, List<String> patterns) {
     return Float.valueOf(value);
   }
 }

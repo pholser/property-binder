@@ -31,16 +31,14 @@ import java.lang.reflect.Array;
 
 class ArrayValueConverter extends AggregateValueConverter {
   private final Class<?> componentType;
-  private final ValueConverter elementConverter;
 
   ArrayValueConverter(
     Class<?> componentType,
     ValueSeparator separator,
     ValueConverter elementConverter) {
 
-    super(separator);
+    super(separator, elementConverter);
     this.componentType = componentType;
-    this.elementConverter = elementConverter;
   }
 
   @Override public Object convert(String formatted) {
@@ -49,7 +47,7 @@ class ArrayValueConverter extends AggregateValueConverter {
     Object array = Array.newInstance(componentType, pieces.length);
 
     for (int i = 0; i < pieces.length; ++i) {
-      Array.set(array, i, elementConverter.convert(pieces[i]));
+      Array.set(array, i, elementConverter().convert(pieces[i]));
     }
 
     return array;

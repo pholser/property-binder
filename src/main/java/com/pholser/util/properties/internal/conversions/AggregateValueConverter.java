@@ -26,13 +26,19 @@
 package com.pholser.util.properties.internal.conversions;
 
 import com.pholser.util.properties.PropertySource;
+import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
 
 abstract class AggregateValueConverter extends ValueConverter {
   private final ValueSeparator separator;
+  private final ValueConverter elementConverter;
 
-  AggregateValueConverter(ValueSeparator separator) {
+  AggregateValueConverter(
+    ValueSeparator separator,
+    ValueConverter elementConverter) {
+
     this.separator = separator;
+    this.elementConverter = elementConverter;
   }
 
   final String[] separate(String raw) {
@@ -41,5 +47,13 @@ abstract class AggregateValueConverter extends ValueConverter {
 
   @Override public final void resolve(PropertySource properties) {
     separator.resolve(properties);
+  }
+
+  @Override public final ParsePatterns parsePatterns() {
+    return elementConverter.parsePatterns();
+  }
+
+  protected ValueConverter elementConverter() {
+    return elementConverter;
   }
 }

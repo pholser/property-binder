@@ -247,21 +247,21 @@ public interface ListProperties {
   @ValuesSeparatedBy(pattern = "\u0000")
   List<UUID> uuidListPropertyWithDefaultAndSeparator();
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings("rawtypes")
   @BoundProperty("raw.list.property")
   List rawListProperty();
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings("rawtypes")
   @BoundProperty("raw.list.property.with.custom.separator")
   @ValuesSeparatedBy(pattern = "\\s*,\\s*")
   List rawListPropertyWithCustomSeparator();
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings("rawtypes")
   @BoundProperty("raw.list.property.with.default")
   @DefaultsTo("YES,NO,NO,MAYBE,YES")
   List rawListPropertyWithDefault();
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings("rawtypes")
   @BoundProperty("raw.list.property.with.default.and.separator")
   @DefaultsTo("NO|MAYBE|YES|MAYBE")
   @ValuesSeparatedBy(pattern = "\\|")

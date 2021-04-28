@@ -26,17 +26,17 @@
 package com.pholser.util.properties.conversions.java.net;
 
 import com.pholser.util.properties.Conversion;
-import com.pholser.util.properties.ParsedAs;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 public class URLConversion extends Conversion<URL> {
   public URLConversion() {
     super(URL.class);
   }
 
-  @Override public URL convert(String value, ParsedAs patterns) {
+  @Override public URL convert(String value, List<String> patterns) {
     try {
       return new URL(value);
     } catch (MalformedURLException ex) {

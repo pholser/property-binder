@@ -1,7 +1,5 @@
 Please see http://pholser.github.com/property-binder for information.
 
 TODO:
-* Substitutable `ParsedAs` patterns
-* UUID (and array/list/opt)
-* java.util.regex.Pattern (and array/list/opt)
+* java.util.regex.Pattern, array/list/opt
 * Java 8 date/time artifacts

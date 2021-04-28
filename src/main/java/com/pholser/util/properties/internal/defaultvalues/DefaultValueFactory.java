@@ -27,6 +27,7 @@ package com.pholser.util.properties.internal.defaultvalues;
 
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
+import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
 import java.lang.reflect.Method;
 
@@ -36,10 +37,11 @@ public class DefaultValueFactory {
   public DefaultValue createDefaultValue(
     DefaultsTo spec,
     ValueConverter converter,
+    ParsePatterns patterns,
     Method method) {
 
     if (isDefaultDefaultValue(spec)) {
-      return new SubstitutableDefaultValue(spec, converter, method);
+      return new SubstitutableDefaultValue(spec, converter, patterns, method);
     }
 
     return ConvertedDefaultValue.fromValue(spec.value(), converter, method);

@@ -32,35 +32,11 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-/**
- * Mark an interface method with this annotation to indicate that it should
- * return the value associated with a given key from a property source,
- * converted to the type indicated by the method's return type.
- *
- * @author <a href="mailto:pholser@alumni.rice.edu">Paul Holser</a>
- * @see DefaultsTo
- * @see ValuesSeparatedBy
- * @see ParsedAs
- */
 @Documented
 @Target(METHOD)
 @Retention(RUNTIME)
 public @interface BoundProperty {
-  /**
-   * The property source key to associate with the marked method.
-   *
-   * @return a property key
-   */
   String value();
 
-  /**
-   * <p>Tells whether substitution should be suppressed when resolving
-   * this property.</p>
-   *
-   * <p>This would be useful if, for example, you expect the value of
-   * your property to be a regex.</p>
-   *
-   * @return {@code true} if substitution should be suppressed
-   */
   boolean suppressSubstitution() default false;
 }

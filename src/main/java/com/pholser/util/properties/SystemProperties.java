@@ -30,12 +30,6 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
 
-/**
- * Schema interface for the standard {@link System#getProperties()
- * system properties}.
- *
- * @author <a href="mailto:pholser@alumni.rice.edu">Paul Holser</a>
- */
 public interface SystemProperties {
   @BoundProperty("java.version")
   String javaVersion();

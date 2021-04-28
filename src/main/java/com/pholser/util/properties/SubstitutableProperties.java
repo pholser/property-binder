@@ -30,35 +30,16 @@ import java.util.Properties;
 
 import static com.pholser.util.properties.internal.Substitutions.substitute;
 
-/**
- * Properties class with support for property values which can be composed
- * of the values of other properties. Such values specify other property keys
- * delimited by {@code [} and {@code ]}.
- * <p>
- * Inspired by <a href="http://www2.sys-con.com/ITSG/virtualcd/Java/archives/0612/mair/index.html">Enabling
- * Constant Substitution in Property Values</a>.
- *
- * @author <a href="mailto:pholser@alumni.rice.edu">Paul Holser</a>
- */
 public class SubstitutableProperties
   extends Properties
   implements PropertySource {
 
   private static final long serialVersionUID = 1L;
 
-  /**
-   * Creates an empty substitutable properties set.
-   */
   public SubstitutableProperties() {
     // nothing to do here
   }
 
-  /**
-   * Creates a substitutable properties set with defaults set to
-   * the keys and values of another properties set.
-   *
-   * @param defaults the default values for the new property set
-   */
   public SubstitutableProperties(Properties defaults) {
     super(defaults);
   }

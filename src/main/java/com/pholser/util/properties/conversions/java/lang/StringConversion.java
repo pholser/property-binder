@@ -26,14 +26,15 @@
 package com.pholser.util.properties.conversions.java.lang;
 
 import com.pholser.util.properties.Conversion;
-import com.pholser.util.properties.ParsedAs;
+
+import java.util.List;
 
 public class StringConversion extends Conversion<String> {
   public StringConversion() {
     super(String.class);
   }
 
-  @Override public String convert(String value, ParsedAs patterns) {
+  @Override public String convert(String value, List<String> patterns) {
     return value;
   }
 }

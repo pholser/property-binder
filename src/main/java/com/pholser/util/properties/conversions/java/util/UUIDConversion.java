@@ -1,8 +1,8 @@
 package com.pholser.util.properties.conversions.java.util;
 
 import com.pholser.util.properties.Conversion;
-import com.pholser.util.properties.ParsedAs;
 
+import java.util.List;
 import java.util.UUID;
 
 public class UUIDConversion extends Conversion<UUID> {
@@ -10,7 +10,7 @@ public class UUIDConversion extends Conversion<UUID> {
     super(UUID.class);
   }
 
-  @Override public UUID convert(String value, ParsedAs patterns) {
+  @Override public UUID convert(String value, List<String> patterns) {
     return UUID.fromString(value);
   }
 }

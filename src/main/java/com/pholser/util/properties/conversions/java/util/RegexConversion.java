@@ -26,19 +26,16 @@
 package com.pholser.util.properties.conversions.java.util;
 
 import com.pholser.util.properties.Conversion;
-import com.pholser.util.properties.ParsedAs;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
-public class PatternConversion extends Conversion<Pattern> {
-  public PatternConversion() {
+public class RegexConversion extends Conversion<Pattern> {
+  public RegexConversion() {
     super(Pattern.class);
   }
 
-  @Override public Pattern convert(
-    String value,
-    ParsedAs patterns) {
-
+  @Override public Pattern convert(String value, List<String> patterns) {
     return Pattern.compile(value);
   }
 }

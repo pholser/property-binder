@@ -26,6 +26,7 @@
 package com.pholser.util.properties.internal.conversions;
 
 import com.pholser.util.properties.PropertySource;
+import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
 import java.util.Optional;
 
@@ -42,6 +43,10 @@ class OptionalValueConverter extends ValueConverter {
 
   @Override public Object nilValue() {
     return Optional.empty();
+  }
+
+  @Override public ParsePatterns parsePatterns() {
+    return elementConverter.parsePatterns();
   }
 
   @Override public void resolve(PropertySource properties) {

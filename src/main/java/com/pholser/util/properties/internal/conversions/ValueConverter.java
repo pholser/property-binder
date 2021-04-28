@@ -26,6 +26,7 @@
 package com.pholser.util.properties.internal.conversions;
 
 import com.pholser.util.properties.PropertySource;
+import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
 public abstract class ValueConverter {
   public Object convertRaw(Object raw, Object... args) {
@@ -37,6 +38,8 @@ public abstract class ValueConverter {
   public abstract Object convert(String formatted);
 
   public abstract Object nilValue();
+
+  public abstract ParsePatterns parsePatterns();
 
   public abstract void resolve(PropertySource properties);
 }

@@ -26,16 +26,16 @@
 package com.pholser.util.properties.conversions.java.io;
 
 import com.pholser.util.properties.Conversion;
-import com.pholser.util.properties.ParsedAs;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class BigDecimalConversion extends Conversion<BigDecimal> {
   public BigDecimalConversion() {
     super(BigDecimal.class);
   }
 
-  @Override public BigDecimal convert(String value, ParsedAs patterns) {
+  @Override public BigDecimal convert(String value, List<String> patterns) {
     return new BigDecimal(value);
   }
 }

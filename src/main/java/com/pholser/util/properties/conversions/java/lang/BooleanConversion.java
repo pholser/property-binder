@@ -26,7 +26,8 @@
 package com.pholser.util.properties.conversions.java.lang;
 
 import com.pholser.util.properties.Conversion;
-import com.pholser.util.properties.ParsedAs;
+
+import java.util.List;
 
 import static java.util.Arrays.asList;
 
@@ -35,7 +36,7 @@ public class BooleanConversion extends Conversion<Boolean> {
     super(asList(boolean.class, Boolean.class));
   }
 
-  @Override public Boolean convert(String value, ParsedAs patterns) {
+  @Override public Boolean convert(String value, List<String> patterns) {
     return Boolean.valueOf(value);
   }
 }

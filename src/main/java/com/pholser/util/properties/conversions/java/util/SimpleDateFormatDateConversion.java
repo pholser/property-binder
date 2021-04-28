@@ -32,22 +32,21 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static java.util.Arrays.asList;
+import java.util.List;
 
 public class SimpleDateFormatDateConversion extends Conversion<Date> {
   public SimpleDateFormatDateConversion() {
     super(Date.class);
   }
 
-  @Override public Date convert(String value, ParsedAs patterns) {
-    if (patterns == null) {
+  @Override public Date convert(String value, List<String> patterns) {
+    if (patterns.isEmpty()) {
       throw new IllegalArgumentException(
         "Could not parse value [" + value
           + "], need to specify @" + ParsedAs.class.getSimpleName());
     }
 
-    for (String each : patterns.value()) {
+    for (String each : patterns) {
       try {
         DateFormat formatter = new SimpleDateFormat(each);
         formatter.setLenient(false);
@@ -59,6 +58,6 @@ public class SimpleDateFormatDateConversion extends Conversion<Date> {
 
     throw new IllegalArgumentException(
       "Could not parse value [" + value
-        + "] using any of the patterns: " + asList(patterns.value()));
+        + "] using any of the patterns: " + patterns);
   }
 }

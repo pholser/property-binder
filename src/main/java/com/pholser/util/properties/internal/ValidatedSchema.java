@@ -29,6 +29,7 @@ import com.pholser.util.properties.BoundProperty;
 import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
 import com.pholser.util.properties.internal.defaultvalues.DefaultValue;
+import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -42,20 +43,24 @@ public class ValidatedSchema<T> {
   private final Class<T> schema;
   private final Map<BoundProperty, DefaultValue> defaults;
   private final Map<BoundProperty, ValueConverter> converters;
+  private final Map<BoundProperty, ParsePatterns> patterns;
 
   public ValidatedSchema(
     Class<T> schema,
     Map<BoundProperty, DefaultValue> defaults,
-    Map<BoundProperty, ValueConverter> converters) {
+    Map<BoundProperty, ValueConverter> converters,
+    Map<BoundProperty, ParsePatterns> patterns) {
 
     this.schema = schema;
     this.defaults = defaults;
     this.converters = converters;
+    this.patterns = patterns;
   }
 
   public T evaluate(PropertySource properties) {
     requireNonNull(properties, "null properties source");
 
+    resolveParsePatterns(properties);
     resolveConverters(properties);
     resolveDefaultValues(properties);
     return createTypedProxyFor(properties);
@@ -75,6 +80,10 @@ public class ValidatedSchema<T> {
 
   String getName() {
     return schema.getName();
+  }
+
+  private void resolveParsePatterns(PropertySource properties) {
+    patterns.values().forEach(p -> p.resolve(properties));
   }
 
   private void resolveConverters(PropertySource properties) {

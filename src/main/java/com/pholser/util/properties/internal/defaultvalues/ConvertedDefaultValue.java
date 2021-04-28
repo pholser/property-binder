@@ -28,21 +28,43 @@ package com.pholser.util.properties.internal.defaultvalues;
 import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
 import com.pholser.util.properties.internal.exceptions.MalformedDefaultValueException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 
 final class ConvertedDefaultValue implements DefaultValue {
-  private final Object converted;
+  private static final Logger LOGGER =
+    LoggerFactory.getLogger(ConvertedDefaultValue.class);
+
+  private final String value;
+  private final ValueConverter converter;
+  private final Method method;
+
+  private boolean conversionOccurred;
+  private Object converted;
 
   private ConvertedDefaultValue(
     String value,
     ValueConverter converter,
     Method method) {
 
+    this.value = value;
+    this.converter = converter;
+    this.method = method;
+
     try {
-      converted = converter.convert(value);
+      // Convert with any raw patterns available first.
+      attemptConversion();
     } catch (IllegalArgumentException ex) {
-      throw new MalformedDefaultValueException(value, method, ex);
+      if (converter.parsePatterns().hasSubstitutions()) {
+        LOGGER.info(
+          "Couldn't convert default value,"
+            + " will try again after pattern resolution",
+          ex);
+      } else {
+        throw new MalformedDefaultValueException(value, method, ex);
+      }
     }
   }
 
@@ -55,10 +77,26 @@ final class ConvertedDefaultValue implements DefaultValue {
   }
 
   @Override public Object evaluate() {
-    return converted;
+    if (conversionOccurred) {
+      return converted;
+    }
+
+    try {
+      // Try again with any resolved patterns.
+      attemptConversion();
+
+      return converted;
+    } catch (IllegalArgumentException ex) {
+      throw new MalformedDefaultValueException(value, method, ex);
+    }
   }
 
   @Override public void resolve(PropertySource properties) {
     // nothing to do here
+  }
+
+  private void attemptConversion() {
+    converted = converter.convert(value);
+    conversionOccurred = true;
   }
 }
