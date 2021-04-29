@@ -25,7 +25,7 @@
 
 package com.pholser.util.properties.conversions.java.io;
 
-import com.pholser.util.properties.Conversion;
+import com.pholser.util.properties.conversions.Conversion;
 
 import java.io.File;
 import java.util.List;

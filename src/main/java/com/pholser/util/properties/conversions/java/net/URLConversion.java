@@ -25,7 +25,7 @@
 
 package com.pholser.util.properties.conversions.java.net;
 
-import com.pholser.util.properties.Conversion;
+import com.pholser.util.properties.conversions.Conversion;
 
 import java.net.MalformedURLException;
 import java.net.URL;

@@ -1,6 +1,6 @@
 package com.pholser.util.properties.conversions.java.lang;
 
-import com.pholser.util.properties.Conversion;
+import com.pholser.util.properties.conversions.Conversion;
 
 import java.util.List;
 

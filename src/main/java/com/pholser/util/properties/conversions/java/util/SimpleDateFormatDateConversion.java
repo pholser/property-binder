@@ -25,7 +25,7 @@
 
 package com.pholser.util.properties.conversions.java.util;
 
-import com.pholser.util.properties.Conversion;
+import com.pholser.util.properties.conversions.Conversion;
 import com.pholser.util.properties.ParsedAs;
 
 import java.text.DateFormat;

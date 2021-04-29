@@ -1,6 +1,6 @@
 package com.pholser.util.properties.conversions.java.nio;
 
-import com.pholser.util.properties.Conversion;
+import com.pholser.util.properties.conversions.Conversion;
 
 import java.nio.charset.Charset;
 import java.nio.charset.IllegalCharsetNameException;

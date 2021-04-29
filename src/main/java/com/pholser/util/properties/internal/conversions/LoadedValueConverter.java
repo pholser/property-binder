@@ -1,6 +1,6 @@
 package com.pholser.util.properties.internal.conversions;
 
-import com.pholser.util.properties.Conversion;
+import com.pholser.util.properties.conversions.Conversion;
 import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
 class LoadedValueConverter extends ScalarValueConverter {

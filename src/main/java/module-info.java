@@ -1,3 +1,4 @@
+import com.pholser.util.properties.conversions.Conversion;
 import com.pholser.util.properties.conversions.java.io.BigDecimalConversion;
 import com.pholser.util.properties.conversions.java.io.BigIntegerConversion;
 import com.pholser.util.properties.conversions.java.io.FileConversion;
@@ -21,18 +22,14 @@ import com.pholser.util.properties.conversions.java.util.UUIDConversion;
 
 module com.pholser.util.properties.propertybinder {
   exports com.pholser.util.properties;
-  exports com.pholser.util.properties.conversions.java.io;
-  exports com.pholser.util.properties.conversions.java.lang;
-  exports com.pholser.util.properties.conversions.java.net;
-  exports com.pholser.util.properties.conversions.java.nio;
-  exports com.pholser.util.properties.conversions.java.util;
+//  exports com.pholser.util.properties.conversions;
 
   requires org.slf4j;
   requires transitive java.xml;
 
-  uses com.pholser.util.properties.Conversion;
+  uses Conversion;
 
-  provides com.pholser.util.properties.Conversion
+  provides Conversion
     with BigDecimalConversion,
       BigIntegerConversion,
       FileConversion,

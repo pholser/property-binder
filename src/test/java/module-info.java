@@ -1,3 +1,4 @@
+import com.pholser.util.properties.conversions.Conversion;
 import com.pholser.util.properties.conversions.java.io.BigDecimalConversion;
 import com.pholser.util.properties.conversions.java.io.BigIntegerConversion;
 import com.pholser.util.properties.conversions.java.io.FileConversion;
@@ -21,6 +22,7 @@ import com.pholser.util.properties.conversions.java.util.UUIDConversion;
 
 open module com.pholser.util.properties.propertybinder {
   exports com.pholser.util.properties;
+//  exports com.pholser.util.properties.conversions;
   exports com.pholser.util.properties.conversions.java.io;
   exports com.pholser.util.properties.conversions.java.lang;
   exports com.pholser.util.properties.conversions.java.net;
@@ -33,9 +35,9 @@ open module com.pholser.util.properties.propertybinder {
   requires transitive org.junit.jupiter.api;
   requires transitive org.junit.jupiter.engine;
 
-  uses com.pholser.util.properties.Conversion;
+  uses Conversion;
 
-  provides com.pholser.util.properties.Conversion
+  provides Conversion
     with BigDecimalConversion,
       BigIntegerConversion,
       FileConversion,

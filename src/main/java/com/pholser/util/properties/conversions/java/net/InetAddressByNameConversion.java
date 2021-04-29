@@ -1,6 +1,6 @@
 package com.pholser.util.properties.conversions.java.net;
 
-import com.pholser.util.properties.Conversion;
+import com.pholser.util.properties.conversions.Conversion;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

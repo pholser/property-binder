@@ -25,7 +25,7 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import com.pholser.util.properties.Conversion;
+import com.pholser.util.properties.conversions.Conversion;
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;

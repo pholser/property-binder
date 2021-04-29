@@ -25,6 +25,7 @@
 
 package com.pholser.util.properties;
 
+import com.pholser.util.properties.conversions.Conversion;
 import com.pholser.util.properties.internal.MapPropertySource;
 import com.pholser.util.properties.internal.ResourceBundlePropertySource;
 import com.pholser.util.properties.internal.ValidatedSchema;

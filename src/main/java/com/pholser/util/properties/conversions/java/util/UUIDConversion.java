@@ -1,6 +1,6 @@
 package com.pholser.util.properties.conversions.java.util;
 
-import com.pholser.util.properties.Conversion;
+import com.pholser.util.properties.conversions.Conversion;
 
 import java.util.List;
 import java.util.UUID;
