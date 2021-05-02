@@ -12,3 +12,7 @@ TODO:
   * e.g. Set<PosixFilePermissions> from PosixFilePermissions.fromString(s)
   * TypeTokens?
 
+* Write a small program more or less duplicating a test
+  * put PB jar on module path
+  * put PB jar on class path
+  * how do these differ?
