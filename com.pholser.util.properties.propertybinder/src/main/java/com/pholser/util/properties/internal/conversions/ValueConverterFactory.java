@@ -66,10 +66,10 @@ public class ValueConverterFactory {
     Class<?> type) {
 
     if (scalars.containsKey(type)) {
-      LOGGER.info(
+      LOGGER.trace(
         "Ignoring {} as conversion for {}", conversion.getClass(), type);
     } else {
-      LOGGER.info(
+      LOGGER.trace(
         "Registering {} as conversion for {}", conversion.getClass(), type);
       scalars.put(type, conversion);
     }

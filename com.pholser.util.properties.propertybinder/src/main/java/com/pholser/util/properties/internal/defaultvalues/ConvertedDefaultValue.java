@@ -58,7 +58,7 @@ final class ConvertedDefaultValue implements DefaultValue {
       attemptConversion();
     } catch (IllegalArgumentException ex) {
       if (converter.parsePatterns().hasSubstitutions()) {
-        LOGGER.info(
+        LOGGER.trace(
           "Couldn't convert default value,"
             + " will try again after pattern resolution",
           ex);
