@@ -109,7 +109,6 @@ public class SchemaValidator {
       collectDefaultValue(
         defaults,
         converters.get(key),
-        patterns.get(key),
         m,
         key);
     });
@@ -172,12 +171,11 @@ public class SchemaValidator {
   private void collectDefaultValue(
     Map<BoundProperty, DefaultValue> defaults,
     ValueConverter converter,
-    ParsePatterns patterns,
     Method method,
     BoundProperty key) {
 
     DefaultValue defaultValue =
-      createDefaultValue(method, converter, patterns);
+      createDefaultValue(method, converter);
     if (defaultValue != null) {
       defaults.put(key, defaultValue);
     }
@@ -185,8 +183,7 @@ public class SchemaValidator {
 
   private DefaultValue createDefaultValue(
     Method method,
-    ValueConverter converter,
-    ParsePatterns patterns) {
+    ValueConverter converter) {
 
     DefaultsTo spec = method.getAnnotation(DefaultsTo.class);
     if (spec == null) {
@@ -206,7 +203,6 @@ public class SchemaValidator {
     return defaultValueFactory.createDefaultValue(
       spec,
       converter,
-      patterns,
       method);
   }
 

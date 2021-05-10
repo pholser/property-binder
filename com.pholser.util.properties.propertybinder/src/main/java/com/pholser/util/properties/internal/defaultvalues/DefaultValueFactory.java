@@ -37,11 +37,10 @@ public class DefaultValueFactory {
   public DefaultValue createDefaultValue(
     DefaultsTo spec,
     ValueConverter converter,
-    ParsePatterns patterns,
     Method method) {
 
     if (isDefaultDefaultValue(spec)) {
-      return new SubstitutableDefaultValue(spec, converter, patterns, method);
+      return new SubstitutableDefaultValue(spec, converter, method);
     }
 
     return ConvertedDefaultValue.fromValue(spec.value(), converter, method);

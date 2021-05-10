@@ -9,13 +9,19 @@
     <version>5.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>com-pholser-util-properties-propertybinder-it</artifactId>
+  <artifactId>modular-user-tests</artifactId>
   <packaging>jar</packaging>
 
   <dependencies>
     <dependency>
       <groupId>com.pholser</groupId>
       <artifactId>com-pholser-util-properties-propertybinder</artifactId>
+      <version>5.0-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.pholser</groupId>
+      <artifactId>modular-user</artifactId>
       <version>5.0-SNAPSHOT</version>
     </dependency>
 
@@ -50,18 +56,5 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>11</source>
-          <target>11</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>

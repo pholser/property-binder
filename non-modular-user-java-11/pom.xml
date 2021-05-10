@@ -9,7 +9,7 @@
     <version>5.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>com-pholser-util-properties-propertybinder-it</artifactId>
+  <artifactId>non-modular-user-java-11</artifactId>
   <packaging>jar</packaging>
 
   <dependencies>
@@ -60,6 +60,11 @@
           <source>11</source>
           <target>11</target>
         </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>eu.somatik.serviceloader-maven-plugin</groupId>
+        <artifactId>serviceloader-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

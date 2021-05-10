@@ -65,7 +65,7 @@ public final class Substitutions {
     PropertySource properties,
     CharSequence value) {
 
-    StringBuilder buffer = new StringBuilder(value.length() * 2);
+    StringBuffer buffer = new StringBuffer(value.length() * 2);
 
     Matcher matcher = REFERENCE.matcher(value);
     while (matcher.find()) {
