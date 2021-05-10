@@ -6,13 +6,12 @@ TODO:
 * java.lang.Class (+ array/list/opt) and tests
   * Class<? extends T> where T is a java.lang.Class (no other j.l.r.Type)
   * raw Class
-* Modularize
+* Target Java 11 exclusively?
+* Allow multiple providers of Conversion<X>...try them as encountered
+  * catch only IllegalArgException?
 * Chained conversions (e.g. Path <- URI <- String)
 * Allow conversions to generic types, if methods allowed
   * e.g. Set<PosixFilePermissions> from PosixFilePermissions.fromString(s)
   * TypeTokens?
-
-* Write a small program more or less duplicating a test
-  * put PB jar on module path
-  * put PB jar on class path
-  * how do these differ?
+* Get jar publishing, site plugin, etc. back for release
+  * test out locally? dry run?
