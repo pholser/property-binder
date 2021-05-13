@@ -23,19 +23,19 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.conversions.java.io;
+package com.pholser.util.properties.conversions.java.util.regex;
 
 import com.pholser.util.properties.conversions.Conversion;
 
-import java.math.BigInteger;
 import java.util.List;
+import java.util.regex.Pattern;
 
-public class BigIntegerConversion extends Conversion<BigInteger> {
-  public BigIntegerConversion() {
-    super(BigInteger.class);
+public class RegexConversion extends Conversion<Pattern> {
+  public RegexConversion() {
+    super(Pattern.class);
   }
 
-  @Override public BigInteger convert(String value, List<String> patterns) {
-    return new BigInteger(value);
+  @Override public Pattern convert(String value, List<String> patterns) {
+    return Pattern.compile(value);
   }
 }

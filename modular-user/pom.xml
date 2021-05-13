@@ -54,8 +54,11 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>eu.somatik.serviceloader-maven-plugin</groupId>
-        <artifactId>serviceloader-maven-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <release>11</release>
+        </configuration>
       </plugin>
     </plugins>
   </build>
