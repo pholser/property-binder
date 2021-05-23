@@ -26,7 +26,6 @@
 package com.pholser.util.properties.conversions.java.util;
 
 import com.pholser.util.properties.conversions.Conversion;
-import com.pholser.util.properties.ParsedAs;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -41,9 +40,7 @@ public class SimpleDateFormatDateConversion extends Conversion<Date> {
 
   @Override public Date convert(String value, List<String> patterns) {
     if (patterns.isEmpty()) {
-      throw new IllegalArgumentException(
-        "Could not parse value [" + value
-          + "], need to specify @" + ParsedAs.class.getSimpleName());
+      return new Date(value);
     }
 
     for (String each : patterns) {

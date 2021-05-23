@@ -27,6 +27,9 @@ module com.pholser.util.properties.propertybinder {
       com.pholser.util.properties.conversions.java.net.URLConversion,
       com.pholser.util.properties.conversions.java.nio.CharsetConversion,
       com.pholser.util.properties.conversions.java.nio.file.attribute.PosixFilePermissionsConversion,
+      com.pholser.util.properties.conversions.java.time.DurationConversion,
+      com.pholser.util.properties.conversions.java.time.InstantConversion,
+      com.pholser.util.properties.conversions.java.time.LocalDateConversion,
       com.pholser.util.properties.conversions.java.util.SimpleDateFormatDateConversion,
       com.pholser.util.properties.conversions.java.util.UUIDConversion,
       com.pholser.util.properties.conversions.java.util.regex.RegexConversion;
