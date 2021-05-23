@@ -36,6 +36,20 @@ public class RegexConversion extends Conversion<Pattern> {
   }
 
   @Override public Pattern convert(String value, List<String> patterns) {
-    return Pattern.compile(value);
+    return Pattern.compile(value, parseFlags(patterns));
+  }
+
+  private int parseFlags(List<String> patterns) {
+    return patterns.stream()
+      .mapToInt(this::flagForPatternFieldNamed)
+      .reduce(0, (f1, f2) -> f1 | f2);
+  }
+
+  private int flagForPatternFieldNamed(String name) {
+    try {
+      return Pattern.class.getField(name).getInt(null);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      throw new IllegalArgumentException(e);
+    }
   }
 }

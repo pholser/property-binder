@@ -36,6 +36,7 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 public interface ScalarProperties {
   @BoundProperty("string.property")
@@ -245,7 +246,13 @@ public interface ScalarProperties {
   @BoundProperty(
     value = "need.to.suppress.substitution",
     suppressSubstitution = true)
-  String regex();
+  String regexAsString();
+
+  @BoundProperty(value = "regex")
+  @ParsedAs(
+    value = {"CASE_INSENSITIVE", "COMMENTS"},
+    valueOf = "[regex.flag]")
+  Pattern regex();
 
   @BoundProperty(value = "file.permissions")
   Set<PosixFilePermission> filePermissions();

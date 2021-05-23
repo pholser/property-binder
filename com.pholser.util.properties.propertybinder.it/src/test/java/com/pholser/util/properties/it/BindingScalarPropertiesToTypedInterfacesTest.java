@@ -26,6 +26,7 @@
 package com.pholser.util.properties.it;
 
 import com.pholser.util.properties.it.boundtypes.ScalarProperties;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -38,6 +39,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 import static com.pholser.util.properties.it.boundtypes.Ternary.MAYBE;
 import static com.pholser.util.properties.it.boundtypes.Ternary.YES;
@@ -47,6 +49,10 @@ import static java.nio.file.attribute.PosixFilePermission.OTHERS_WRITE;
 import static java.nio.file.attribute.PosixFilePermission.OWNER_EXECUTE;
 import static java.nio.file.attribute.PosixFilePermission.OWNER_READ;
 import static java.nio.file.attribute.PosixFilePermission.OWNER_WRITE;
+import static java.util.regex.Pattern.CASE_INSENSITIVE;
+import static java.util.regex.Pattern.COMMENTS;
+import static java.util.regex.Pattern.MULTILINE;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -323,7 +329,19 @@ class BindingScalarPropertiesToTypedInterfacesTest
   }
 
   @Test void canSuppressPropertySubstitutionWhenAsked() {
-    assertEquals("^27[78]{1}[0-9]{8}$", bound.regex());
+    assertEquals("^27[78]{1}[0-9]{8}$", bound.regexAsString());
+  }
+
+  @Test void regexWithFlags() {
+    Pattern regex = bound.regex();
+
+    assertAll(
+      () ->
+        assertEquals("AbCD   # this is a regex comment", regex.pattern()),
+      () ->
+        assertEquals(CASE_INSENSITIVE | COMMENTS | MULTILINE, regex.flags()),
+      () -> assertTrue(regex.matcher("  ABCd  ").find())
+    );
   }
 
   @Test void filePermissionsProperty() {

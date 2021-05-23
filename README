@@ -1,17 +1,12 @@
 Please see http://pholser.github.com/property-binder for information.
 
 TODO:
-* java.util.regex.Pattern (+ array/list/opt) tests
 * Java 8 date/time artifacts (+ array/list/opt) and tests
 * java.lang.Class (+ array/list/opt) and tests
   * Class<? extends T> where T is a java.lang.Class (no other j.l.r.Type)
   * raw Class
-* Target Java 11 exclusively?
 * Allow multiple providers of Conversion<X>...try them as encountered
   * catch only IllegalArgException?
-* Chained conversions (e.g. Path <- URI <- String)
-* Allow conversions to generic types, if methods allowed
-  * e.g. Set<PosixFilePermissions> from PosixFilePermissions.fromString(s)
-  * TypeTokens?
+* Chained conversions (e.g. Path <- URI <- String)?
 * Get jar publishing, site plugin, etc. back for release
   * test out locally? dry run?
