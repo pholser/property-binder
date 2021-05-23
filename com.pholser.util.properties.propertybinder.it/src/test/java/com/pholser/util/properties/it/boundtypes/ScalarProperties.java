@@ -31,8 +31,10 @@ import com.pholser.util.properties.ParsedAs;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.nio.file.attribute.PosixFilePermission;
 import java.util.Date;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 public interface ScalarProperties {
@@ -244,6 +246,9 @@ public interface ScalarProperties {
     value = "need.to.suppress.substitution",
     suppressSubstitution = true)
   String regex();
+
+  @BoundProperty(value = "file.permissions")
+  Set<PosixFilePermission> filePermissions();
 
   @BoundProperty("static.methods.not.bound")
   static String staticMethodsNotBound() {

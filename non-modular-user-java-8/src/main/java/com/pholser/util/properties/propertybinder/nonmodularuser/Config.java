@@ -7,8 +7,10 @@ import com.pholser.util.properties.ParsedAs;
 import javax.crypto.SecretKey;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.nio.file.attribute.PosixFilePermission;
 import java.util.Date;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 public interface Config {
@@ -220,6 +222,9 @@ public interface Config {
     value = "need.to.suppress.substitution",
     suppressSubstitution = true)
   String regex();
+
+  @BoundProperty(value = "file.permissions")
+  Set<PosixFilePermission> filePermissions();
 
   @BoundProperty("aes.key")
   @ParsedAs("AES")

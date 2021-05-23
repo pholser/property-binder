@@ -27,10 +27,12 @@ package com.pholser.util.properties.internal.conversions;
 
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 
-class RawValueConverter extends ScalarValueConverter {
-  private final Class<?> valueType;
+import java.lang.reflect.Type;
 
-  RawValueConverter(Class<?> valueType) {
+class RawValueConverter extends ScalarValueConverter {
+  private final Type valueType;
+
+  RawValueConverter(Type valueType) {
     super(null);
     this.valueType = valueType;
   }

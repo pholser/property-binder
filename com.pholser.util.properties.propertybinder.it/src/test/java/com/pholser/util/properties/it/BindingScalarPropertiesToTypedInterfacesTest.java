@@ -33,12 +33,20 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.UUID;
 
 import static com.pholser.util.properties.it.boundtypes.Ternary.MAYBE;
 import static com.pholser.util.properties.it.boundtypes.Ternary.YES;
+import static java.nio.file.attribute.PosixFilePermission.GROUP_EXECUTE;
+import static java.nio.file.attribute.PosixFilePermission.GROUP_READ;
+import static java.nio.file.attribute.PosixFilePermission.OTHERS_WRITE;
+import static java.nio.file.attribute.PosixFilePermission.OWNER_EXECUTE;
+import static java.nio.file.attribute.PosixFilePermission.OWNER_READ;
+import static java.nio.file.attribute.PosixFilePermission.OWNER_WRITE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -316,6 +324,15 @@ class BindingScalarPropertiesToTypedInterfacesTest
 
   @Test void canSuppressPropertySubstitutionWhenAsked() {
     assertEquals("^27[78]{1}[0-9]{8}$", bound.regex());
+  }
+
+  @Test void filePermissionsProperty() {
+    assertEquals(
+      new HashSet<>(
+        Arrays.asList(
+          OWNER_READ, OWNER_WRITE, OWNER_EXECUTE,
+          GROUP_READ, GROUP_EXECUTE, OTHERS_WRITE)),
+      bound.filePermissions());
   }
 
   @Test void staticMethodsAreNotBound() {

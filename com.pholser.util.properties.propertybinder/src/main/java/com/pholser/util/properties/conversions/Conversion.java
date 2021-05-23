@@ -25,15 +25,19 @@
 
 package com.pholser.util.properties.conversions;
 
+import com.google.common.reflect.TypeToken;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.Collections.singletonList;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
 public abstract class Conversion<T> {
-  private final List<Class<T>> valueTypes;
+  private final List<TypeToken<T>> valueTypes;
 
   protected Conversion(Class<T> valueType) {
     this(singletonList(valueType));
@@ -43,13 +47,27 @@ public abstract class Conversion<T> {
     requireNonNull(valueTypes, "need non-null list of value types");
     valueTypes.forEach(t -> requireNonNull(t, "null value type"));
 
+    this.valueTypes =
+      valueTypes.stream()
+        .map(TypeToken::of)
+        .collect(Collectors.toCollection(ArrayList::new));
+  }
+
+  protected Conversion(TypeToken<T> valueType) {
+    this(singletonList(valueType));
+  }
+
+  protected Conversion(Collection<TypeToken<T>> valueTypes) {
+    requireNonNull(valueTypes, "need non-null list of value types");
+    valueTypes.forEach(t -> requireNonNull(t, "null value type"));
+
     this.valueTypes = new ArrayList<>(valueTypes);
   }
 
   public abstract T convert(String value, List<String> patterns)
     throws IllegalArgumentException;
 
-  public final List<Class<T>> valueTypes() {
+  public final List<TypeToken<T>> valueTypes() {
     return unmodifiableList(valueTypes);
   }
 }

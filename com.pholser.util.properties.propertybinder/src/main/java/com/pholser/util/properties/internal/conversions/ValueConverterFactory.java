@@ -25,11 +25,13 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import com.pholser.util.properties.conversions.Conversion;
+import com.google.common.reflect.TypeToken;
 import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.conversions.Conversion;
 import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeException;
 import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 import com.pholser.util.properties.internal.separators.ValueSeparator;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,7 +49,7 @@ public class ValueConverterFactory {
   private static final Logger LOGGER =
     LoggerFactory.getLogger(ValueConverterFactory.class);
 
-  private final Map<Class<?>, Conversion<?>> scalars = new HashMap<>();
+  private final Map<Type, Conversion<?>> registrants = new HashMap<>();
 
   @SuppressWarnings("rawtypes")
   public ValueConverterFactory(Iterator<Conversion> loaded) {
@@ -56,76 +58,97 @@ public class ValueConverterFactory {
 
   private void register(@SuppressWarnings("rawtypes") Conversion conversion) {
     @SuppressWarnings("unchecked")
-    List<Class<?>> valueTypes = conversion.valueTypes();
+    List<TypeToken<?>> valueTypes = conversion.valueTypes();
 
-    valueTypes.forEach(type -> register(conversion, type));
+    valueTypes.stream()
+      .map(TypeToken::getType)
+      .forEach(type -> register(conversion, type));
   }
 
   private void register(
     @SuppressWarnings("rawtypes") Conversion conversion,
-    Class<?> type) {
+    Type type) {
 
-    if (scalars.containsKey(type)) {
+    if (registrants.containsKey(type)) {
       LOGGER.trace(
         "Ignoring {} as conversion for {}", conversion.getClass(), type);
     } else {
       LOGGER.trace(
         "Registering {} as conversion for {}", conversion.getClass(), type);
-      scalars.put(type, conversion);
+      registrants.put(type, conversion);
     }
   }
 
+  @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
   public ValueConverter createConverter(
     Method propertyMethod,
     ValueSeparator separator,
     ParsePatterns patterns) {
 
-    Class<?> valueType = propertyMethod.getReturnType();
-    DefaultsTo defaults = propertyMethod.getAnnotation(DefaultsTo.class);
+    TypeToken<?> valueType =
+      TypeToken.of(propertyMethod.getGenericReturnType());
 
-    if (Optional.class.equals(valueType)) {
-      return new OptionalValueConverter(
-        createScalarConverter(
-          deduceElementType(propertyMethod.getGenericReturnType()),
-          patterns,
-          defaults,
-          separator));
-    }
-    if (valueType.isArray()) {
-      return new ArrayValueConverter(
-        valueType.getComponentType(),
-        separator,
-        createScalarConverter(
-          valueType.getComponentType(),
-          patterns,
-          defaults,
-          separator));
-    }
-    if (List.class.equals(valueType)) {
-      return new ListValueConverter(
-        separator,
-        createScalarConverter(
-          deduceElementType(propertyMethod.getGenericReturnType()),
-          patterns,
-          defaults,
-          separator));
-    }
-
-    return createScalarConverter(valueType, patterns, defaults, separator);
-  }
-
-  private ValueConverter createScalarConverter(
-    Class<?> valueType,
-    ParsePatterns patterns,
-    DefaultsTo defaults,
-    ValueSeparator separator) {
-
-    Conversion<?> loaded = scalars.get(valueType);
+    Conversion<?> loaded = registrants.get(valueType.getType());
     if (loaded != null) {
       return new LoadedValueConverter(patterns, loaded);
     }
 
-    if (valueType.isEnum()) {
+    DefaultsTo defaults = propertyMethod.getAnnotation(DefaultsTo.class);
+
+    if (Optional.class.equals(valueType.getRawType())) {
+      return new OptionalValueConverter(
+        createScalarConverter(
+          typeArgumentOf(valueType.getType()),
+          patterns,
+          defaults,
+          separator));
+    }
+
+    if (valueType.isArray()) {
+      TypeToken<?> componentType = valueType.getComponentType();
+
+      @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
+      Class<?> componentClass = componentType.getRawType();
+
+      return new ArrayValueConverter(
+        componentClass,
+        separator,
+        createScalarConverter(
+          componentType.getType(),
+          patterns,
+          defaults,
+          separator));
+    }
+
+    if (List.class.equals(valueType.getRawType())) {
+      return new ListValueConverter(
+        separator,
+        createScalarConverter(
+          typeArgumentOf(valueType.getType()),
+          patterns,
+          defaults,
+          separator));
+    }
+
+    return createScalarConverter(
+      valueType.getType(),
+      patterns,
+      defaults,
+      separator);
+  }
+
+  private ValueConverter createScalarConverter(
+    Type valueType,
+    ParsePatterns patterns,
+    DefaultsTo defaults,
+    ValueSeparator separator) {
+
+    Conversion<?> loaded = registrants.get(valueType);
+    if (loaded != null) {
+      return new LoadedValueConverter(patterns, loaded);
+    }
+
+    if (valueType instanceof Class<?> && ((Class<?>) valueType).isEnum()) {
       @SuppressWarnings("unchecked")
       Class<Enum> enumType = (Class<Enum>) valueType;
 
@@ -139,7 +162,7 @@ public class ValueConverterFactory {
     return new RawValueConverter(valueType);
   }
 
-  private Class<?> deduceElementType(Type type) {
+  private Class<?> typeArgumentOf(Type type) {
     if (type instanceof Class<?>) {
       return String.class;
     }
