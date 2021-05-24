@@ -36,14 +36,14 @@ import static java.util.Collections.singletonList;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
 
-public abstract class Conversion<T> {
-  private final List<TypeToken<T>> valueTypes;
+public abstract class Conversion<V> {
+  private final List<TypeToken<V>> valueTypes;
 
-  protected Conversion(Class<T> valueType) {
+  protected Conversion(Class<V> valueType) {
     this(singletonList(valueType));
   }
 
-  protected Conversion(List<Class<T>> valueTypes) {
+  protected Conversion(List<Class<V>> valueTypes) {
     requireNonNull(valueTypes, "need non-null list of value types");
     valueTypes.forEach(t -> requireNonNull(t, "null value type"));
 
@@ -53,21 +53,21 @@ public abstract class Conversion<T> {
         .collect(Collectors.toCollection(ArrayList::new));
   }
 
-  protected Conversion(TypeToken<T> valueType) {
+  protected Conversion(TypeToken<V> valueType) {
     this(singletonList(valueType));
   }
 
-  protected Conversion(Collection<TypeToken<T>> valueTypes) {
+  protected Conversion(Collection<TypeToken<V>> valueTypes) {
     requireNonNull(valueTypes, "need non-null list of value types");
     valueTypes.forEach(t -> requireNonNull(t, "null value type"));
 
     this.valueTypes = new ArrayList<>(valueTypes);
   }
 
-  public abstract T convert(String value, List<String> patterns)
+  public abstract V convert(String value, List<String> patterns)
     throws IllegalArgumentException;
 
-  public final List<TypeToken<T>> valueTypes() {
+  public final List<TypeToken<V>> valueTypes() {
     return unmodifiableList(valueTypes);
   }
 }
