@@ -7,8 +7,6 @@ TODO:
   * raw Class
 * List<String> patterns -> List<U>, where U is another converted thing?
   (DateTimeFormatter? SimpleDateFormat? Pattern? ...)
-* Allow multiple providers of Conversion<X>...try them as encountered
-  * catch only IllegalArgException?
 * Chained conversions (e.g. Path <- URI <- String)?
 * Get jar publishing, site plugin, etc. back for release
   * test out locally? dry run?
