@@ -32,6 +32,7 @@ import com.pholser.util.properties.ValuesSeparatedBy;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -305,4 +306,8 @@ public interface ListProperties {
   @DefaultsTo("10?11")
   @ValuesSeparatedBy(pattern = "\\?")
   List<Date> dateListPropertyWithDefaultAndSeparator();
+
+  @BoundProperty("date.time.formatters")
+  @ExcludeFromEqualsCheck
+  List<DateTimeFormatter> dateTimeFormatters();
 }

@@ -32,7 +32,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import static com.pholser.util.properties.it.boundtypes.Ternary.MAYBE;
@@ -40,7 +42,6 @@ import static com.pholser.util.properties.it.boundtypes.Ternary.NO;
 import static com.pholser.util.properties.it.boundtypes.Ternary.YES;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BindingListPropertiesToTypedInterfacesTest
@@ -457,6 +458,10 @@ class BindingListPropertiesToTypedInterfacesTest
 
   @Test void givingEmptyListForMissingListProperty() {
     assertEquals(emptyList(), bound.missingListProperty());
+  }
+
+  @Test void multipleConversionsForDateTimeFormatter() {
+    assertEquals(2, bound.dateTimeFormatters().size());
   }
 
   @Override protected Class<ListProperties> boundType() {

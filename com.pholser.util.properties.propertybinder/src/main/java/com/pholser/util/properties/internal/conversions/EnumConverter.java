@@ -27,7 +27,7 @@ package com.pholser.util.properties.internal.conversions;
 
 import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
-class EnumConverter<T extends Enum<T>> extends ScalarValueConverter {
+class EnumConverter<T extends Enum<T>> extends SingularValueConverter {
   private final Class<T> valueType;
 
   EnumConverter(ParsePatterns patterns, Class<T> valueType) {

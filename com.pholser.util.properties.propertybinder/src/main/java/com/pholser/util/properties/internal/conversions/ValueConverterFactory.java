@@ -39,6 +39,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -49,7 +50,7 @@ public class ValueConverterFactory {
   private static final Logger LOGGER =
     LoggerFactory.getLogger(ValueConverterFactory.class);
 
-  private final Map<Type, Conversion<?>> registrants = new HashMap<>();
+  private final Map<Type, List<Conversion<?>>> registrants = new HashMap<>();
 
   @SuppressWarnings("rawtypes")
   public ValueConverterFactory(Iterator<Conversion> loaded) {
@@ -69,14 +70,10 @@ public class ValueConverterFactory {
     @SuppressWarnings("rawtypes") Conversion conversion,
     Type type) {
 
-    if (registrants.containsKey(type)) {
-      LOGGER.trace(
-        "Ignoring {} as conversion for {}", conversion.getClass(), type);
-    } else {
-      LOGGER.trace(
-        "Registering {} as conversion for {}", conversion.getClass(), type);
-      registrants.put(type, conversion);
-    }
+    LOGGER.trace(
+      "Registering {} as conversion for {}", conversion.getClass(), type);
+    registrants.computeIfAbsent(type, t -> new ArrayList<>())
+      .add(conversion);
   }
 
   @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
@@ -88,7 +85,7 @@ public class ValueConverterFactory {
     TypeToken<?> valueType =
       TypeToken.of(propertyMethod.getGenericReturnType());
 
-    Conversion<?> loaded = registrants.get(valueType.getType());
+    List<Conversion<?>> loaded = registrants.get(valueType.getType());
     if (loaded != null) {
       return new LoadedValueConverter(patterns, loaded);
     }
@@ -97,7 +94,7 @@ public class ValueConverterFactory {
 
     if (Optional.class.equals(valueType.getRawType())) {
       return new OptionalValueConverter(
-        createScalarConverter(
+        createSingularConverter(
           typeArgumentOf(valueType.getType()),
           patterns,
           defaults,
@@ -113,7 +110,7 @@ public class ValueConverterFactory {
       return new ArrayValueConverter(
         componentClass,
         separator,
-        createScalarConverter(
+        createSingularConverter(
           componentType.getType(),
           patterns,
           defaults,
@@ -123,27 +120,27 @@ public class ValueConverterFactory {
     if (List.class.equals(valueType.getRawType())) {
       return new ListValueConverter(
         separator,
-        createScalarConverter(
+        createSingularConverter(
           typeArgumentOf(valueType.getType()),
           patterns,
           defaults,
           separator));
     }
 
-    return createScalarConverter(
+    return createSingularConverter(
       valueType.getType(),
       patterns,
       defaults,
       separator);
   }
 
-  private ValueConverter createScalarConverter(
+  private ValueConverter createSingularConverter(
     Type valueType,
     ParsePatterns patterns,
     DefaultsTo defaults,
     ValueSeparator separator) {
 
-    Conversion<?> loaded = registrants.get(valueType);
+    List<Conversion<?>> loaded = registrants.get(valueType);
     if (loaded != null) {
       return new LoadedValueConverter(patterns, loaded);
     }

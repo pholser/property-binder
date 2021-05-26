@@ -66,7 +66,7 @@ class BindingPropertiesObjectsToTypedInterfacesTest
     props.setProperty("big.decimal.property", "!@#!@#!@#!@#!@#");
 
     assertThrows(
-      NumberFormatException.class,
+      IllegalArgumentException.class,
       () -> fromObject.bigDecimalProperty());
   }
 

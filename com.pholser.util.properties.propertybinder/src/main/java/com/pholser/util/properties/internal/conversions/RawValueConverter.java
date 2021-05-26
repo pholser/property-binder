@@ -29,7 +29,7 @@ import com.pholser.util.properties.internal.exceptions.UnsupportedValueTypeExcep
 
 import java.lang.reflect.Type;
 
-class RawValueConverter extends ScalarValueConverter {
+class RawValueConverter extends SingularValueConverter {
   private final Type valueType;
 
   RawValueConverter(Type valueType) {

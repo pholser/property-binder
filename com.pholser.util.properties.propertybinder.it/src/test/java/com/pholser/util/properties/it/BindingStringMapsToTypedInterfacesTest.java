@@ -69,7 +69,7 @@ class BindingStringMapsToTypedInterfacesTest
     asStringMap.put("primitive.integer.property", "!@#!@#!@#!@#!@#");
 
     assertThrows(
-      NumberFormatException.class,
+      IllegalArgumentException.class,
       () -> fromMap.primitiveIntegerProperty());
   }
 

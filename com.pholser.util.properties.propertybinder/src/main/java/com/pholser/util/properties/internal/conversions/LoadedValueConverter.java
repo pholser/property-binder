@@ -3,15 +3,36 @@ package com.pholser.util.properties.internal.conversions;
 import com.pholser.util.properties.conversions.Conversion;
 import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
-class LoadedValueConverter extends ScalarValueConverter {
-  private final Conversion<?> loaded;
+import java.util.ArrayList;
+import java.util.List;
 
-  LoadedValueConverter(ParsePatterns patterns, Conversion<?> loaded) {
+import static java.util.stream.Collectors.joining;
+
+class LoadedValueConverter extends SingularValueConverter {
+  private final List<Conversion<?>> loaded;
+
+  LoadedValueConverter(ParsePatterns patterns, List<Conversion<?>> loaded) {
     super(patterns);
     this.loaded = loaded;
   }
 
   @Override public Object convert(String formatted) {
-    return loaded.convert(formatted, parsePatterns().resolved());
+    List<String> resolvedPatterns = parsePatterns().resolved();
+    List<IllegalArgumentException> exceptions = new ArrayList<>();
+
+    for (Conversion<?> each : loaded) {
+      try {
+        return each.convert(formatted, resolvedPatterns);
+      } catch (IllegalArgumentException ex) {
+        exceptions.add(ex);
+        // try the next conversion
+      }
+    }
+
+    throw new IllegalArgumentException(
+      "Could not convert [" + formatted + "]: "
+        + exceptions.stream()
+          .map(Object::toString)
+          .collect(joining()));
   }
 }

@@ -252,6 +252,7 @@ public interface ScalarProperties {
   @ParsedAs(
     value = {"CASE_INSENSITIVE", "COMMENTS"},
     valueOf = "[regex.flag]")
+  @ExcludeFromEqualsCheck
   Pattern regex();
 
   @BoundProperty(value = "file.permissions")

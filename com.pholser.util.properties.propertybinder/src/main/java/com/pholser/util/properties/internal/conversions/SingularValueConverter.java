@@ -28,10 +28,10 @@ package com.pholser.util.properties.internal.conversions;
 import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
-abstract class ScalarValueConverter extends ValueConverter {
+abstract class SingularValueConverter extends ValueConverter {
   private final ParsePatterns patterns;
 
-  ScalarValueConverter(ParsePatterns patterns) {
+  SingularValueConverter(ParsePatterns patterns) {
     this.patterns = patterns;
   }
 

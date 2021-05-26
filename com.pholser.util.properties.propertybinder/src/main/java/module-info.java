@@ -2,7 +2,7 @@ module com.pholser.util.properties.propertybinder {
   exports com.pholser.util.properties;
   exports com.pholser.util.properties.conversions;
 
-  requires com.google.common;
+  requires transitive com.google.common;
   requires org.slf4j;
   requires static com.github.spotbugs.annotations;
 
@@ -27,9 +27,14 @@ module com.pholser.util.properties.propertybinder {
       com.pholser.util.properties.conversions.java.net.URLConversion,
       com.pholser.util.properties.conversions.java.nio.CharsetConversion,
       com.pholser.util.properties.conversions.java.nio.file.attribute.PosixFilePermissionsConversion,
+      com.pholser.util.properties.conversions.java.text.SimpleDateFormatConversion,
+      com.pholser.util.properties.conversions.java.time.DateTimeFormatterBuilderConversion,
+      com.pholser.util.properties.conversions.java.time.DateTimeFormatterClassConstantConversion,
+      com.pholser.util.properties.conversions.java.time.DateTimeFormatterConversion,
       com.pholser.util.properties.conversions.java.time.DurationConversion,
       com.pholser.util.properties.conversions.java.time.InstantConversion,
       com.pholser.util.properties.conversions.java.time.LocalDateConversion,
+      com.pholser.util.properties.conversions.java.util.CurrencyConversion,
       com.pholser.util.properties.conversions.java.util.SimpleDateFormatDateConversion,
       com.pholser.util.properties.conversions.java.util.UUIDConversion,
       com.pholser.util.properties.conversions.java.util.regex.RegexConversion;

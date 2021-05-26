@@ -26,6 +26,7 @@
 package com.pholser.util.properties.it;
 
 import com.pholser.util.properties.PropertyBinder;
+import com.pholser.util.properties.it.boundtypes.ExcludeFromEqualsCheck;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.lang.reflect.Method;
@@ -55,6 +56,8 @@ abstract class TypedStringBindingTestSupport<T>
     List<Method> methods =
       Arrays.stream(boundType().getDeclaredMethods())
         .filter(Reflection::acceptablePropertyMethodAccessLevel)
+        .filter(m ->
+          m.getDeclaredAnnotation(ExcludeFromEqualsCheck.class) == null)
         .collect(toList());
     for (Method each : methods) {
       Object boundExpected = each.invoke(expected);
