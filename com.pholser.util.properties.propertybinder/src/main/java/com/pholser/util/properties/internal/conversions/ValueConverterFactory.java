@@ -45,6 +45,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 public class ValueConverterFactory {
   private static final Logger LOGGER =
@@ -96,6 +99,33 @@ public class ValueConverterFactory {
       return new OptionalValueConverter(
         createSingularConverter(
           typeArgumentOf(valueType.getType()),
+          patterns,
+          defaults,
+          separator));
+    }
+
+    if (OptionalInt.class.equals(valueType.getType())) {
+      return new OptionalIntValueConverter(
+        createSingularConverter(
+          int.class,
+          patterns,
+          defaults,
+          separator));
+    }
+
+    if (OptionalDouble.class.equals(valueType.getType())) {
+      return new OptionalDoubleValueConverter(
+        createSingularConverter(
+          double.class,
+          patterns,
+          defaults,
+          separator));
+    }
+
+    if (OptionalLong.class.equals(valueType.getType())) {
+      return new OptionalLongValueConverter(
+        createSingularConverter(
+          long.class,
           patterns,
           defaults,
           separator));
