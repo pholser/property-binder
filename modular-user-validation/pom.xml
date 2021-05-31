@@ -9,7 +9,7 @@
     <version>5.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>modular-user</artifactId>
+  <artifactId>modular-user-validation</artifactId>
   <packaging>jar</packaging>
 
   <dependencies>

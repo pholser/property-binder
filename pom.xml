@@ -52,6 +52,8 @@
     <module>non-modular-user-java-11</module>
     <module>modular-user</module>
     <module>modular-user-tests</module>
+    <module>modular-user-validation</module>
+    <module>modular-user-validation-tests</module>
   </modules>
 
   <dependencyManagement>
