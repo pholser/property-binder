@@ -26,10 +26,10 @@
 package com.pholser.util.properties.internal.validation;
 
 import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.conversions.Conversion;
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.ValuesSeparatedBy;
+import com.pholser.util.properties.conversions.Conversion;
 import com.pholser.util.properties.internal.Reflection;
 import com.pholser.util.properties.internal.ValidatedSchema;
 import com.pholser.util.properties.internal.conversions.ValueConverter;

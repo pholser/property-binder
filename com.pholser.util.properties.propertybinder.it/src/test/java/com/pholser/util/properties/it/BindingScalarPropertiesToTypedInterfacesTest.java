@@ -26,7 +26,6 @@
 package com.pholser.util.properties.it;
 
 import com.pholser.util.properties.it.boundtypes.ScalarProperties;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 

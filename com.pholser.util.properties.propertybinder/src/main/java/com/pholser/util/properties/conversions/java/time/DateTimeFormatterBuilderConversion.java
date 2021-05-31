@@ -2,7 +2,6 @@ package com.pholser.util.properties.conversions.java.time;
 
 import com.pholser.util.properties.conversions.Conversion;
 
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 

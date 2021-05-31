@@ -29,8 +29,6 @@ import com.pholser.util.properties.SubstitutableProperties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 class CreatingEmptySubstitutablePropertiesTest {
   @Test void empty() {
     Assertions.assertTrue(new SubstitutableProperties().isEmpty());

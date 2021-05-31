@@ -27,7 +27,6 @@ package com.pholser.util.properties.internal.defaultvalues;
 
 import com.pholser.util.properties.DefaultsTo;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
-import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
 import java.lang.reflect.Method;
 

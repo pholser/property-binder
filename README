@@ -11,3 +11,4 @@ TODO:
 * Chained conversions (e.g. Path <- URI <- String)?
 * Get jar publishing, site plugin, etc. back for release
   * test out locally? dry run?
+* Checking with annotations? (non-null, etc)?
