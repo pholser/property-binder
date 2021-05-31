@@ -42,6 +42,10 @@ class BindingStringResourceBundlesToTypedInterfacesTest
   private InputStream inputStream;
   private ScalarProperties fromBundle;
 
+  BindingStringResourceBundlesToTypedInterfacesTest() {
+    super("/test.properties", "test", "properties");
+  }
+
   @BeforeEach final void initializeProperties() throws Exception {
     inputStream = new FileInputStream(propertiesFile);
     fromBundle = binder.bind(new PropertyResourceBundle(inputStream));

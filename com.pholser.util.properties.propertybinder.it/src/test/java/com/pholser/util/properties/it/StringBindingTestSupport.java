@@ -35,10 +35,24 @@ import java.io.InputStream;
 abstract class StringBindingTestSupport {
   protected File propertiesFile;
 
+  private final String propertiesResourcePath;
+  private final String basename;
+  private final String extension;
+
+  protected StringBindingTestSupport(
+    String propertiesResourcePath,
+    String basename,
+    String extension) {
+
+    this.propertiesResourcePath = propertiesResourcePath;
+    this.basename = basename;
+    this.extension = extension;
+  }
+
   @BeforeEach final void initializePropertiesFile() throws IOException {
     InputStream propertiesIn =
-      getClass().getResourceAsStream("/test.properties");
-    File tempFile = File.createTempFile("test", "properties");
+      getClass().getResourceAsStream(propertiesResourcePath);
+    File tempFile = File.createTempFile(basename, extension);
     propertiesIn.transferTo(new FileOutputStream(tempFile));
     propertiesFile = tempFile;
   }

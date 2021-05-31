@@ -44,6 +44,10 @@ class BindingPropertiesObjectsToTypedInterfacesTest
   private Properties props;
   private ScalarProperties fromObject;
 
+  BindingPropertiesObjectsToTypedInterfacesTest() {
+    super("/test.properties", "test", "properties");
+  }
+
   @BeforeEach final void initializeProperties() throws Exception {
     inputStream = new FileInputStream(propertiesFile);
     props = new Properties();

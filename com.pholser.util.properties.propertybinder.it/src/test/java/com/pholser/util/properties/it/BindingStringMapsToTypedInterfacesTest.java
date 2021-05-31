@@ -45,6 +45,10 @@ class BindingStringMapsToTypedInterfacesTest
   private Map<String, String> asStringMap;
   private ScalarProperties fromMap;
 
+  BindingStringMapsToTypedInterfacesTest() {
+    super("/test.properties", "test", "properties");
+  }
+
   @SuppressWarnings("unchecked")
   @BeforeEach final void initializeProperties() throws Exception {
     inputStream = new FileInputStream(propertiesFile);

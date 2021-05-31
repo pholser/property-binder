@@ -40,6 +40,10 @@ class BindingPropertiesReadFromInputStreamTest
 
   private InputStream inputStream;
 
+  BindingPropertiesReadFromInputStreamTest() {
+    super("/test.properties", "test", "properties");
+  }
+
   @BeforeEach final void initializeInputStream() throws Exception {
     inputStream = new FileInputStream(propertiesFile);
   }

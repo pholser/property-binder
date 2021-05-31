@@ -67,6 +67,10 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
 
   private PropertyBinder<ScalarProperties> scalar;
 
+  ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest() {
+    super("/test.properties", "test", "properties");
+  }
+
   @BeforeEach void setUp() {
     scalar = PropertyBinder.forType(ScalarProperties.class);
   }

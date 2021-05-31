@@ -60,6 +60,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class BindingScalarPropertiesToTypedInterfacesTest
   extends TypedStringBindingTestSupport<ScalarProperties> {
 
+  BindingScalarPropertiesToTypedInterfacesTest() {
+    super("/test.properties", "test", "properties");
+  }
+
   @Test void missingStringProperty() {
     assertNull(bound.missingProperty());
   }

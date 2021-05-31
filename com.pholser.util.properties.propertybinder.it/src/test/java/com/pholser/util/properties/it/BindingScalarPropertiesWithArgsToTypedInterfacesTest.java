@@ -41,6 +41,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class BindingScalarPropertiesWithArgsToTypedInterfacesTest
   extends TypedStringBindingTestSupport<ScalarPropertiesWithArgs> {
 
+  BindingScalarPropertiesWithArgsToTypedInterfacesTest() {
+    super("/test.properties", "test", "properties");
+  }
+
   @Test void passingArgumentsToPropertyMethodAndFormattingOnResult() {
     assertEquals(
       "foo to the bar",

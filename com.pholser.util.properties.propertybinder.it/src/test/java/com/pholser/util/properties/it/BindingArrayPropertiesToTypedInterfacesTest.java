@@ -44,6 +44,10 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 class BindingArrayPropertiesToTypedInterfacesTest
   extends TypedStringBindingTestSupport<ArrayProperties> {
 
+  BindingArrayPropertiesToTypedInterfacesTest() {
+    super("/test.properties", "test", "properties");
+  }
+
   @Test void separatedStringPropertyToStringArrayMethod() {
     assertArrayEquals(
       new String[] {"aaa", "bbb", "ccc"},

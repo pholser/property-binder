@@ -45,6 +45,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class BindingListPropertiesToTypedInterfacesTest
   extends TypedStringBindingTestSupport<ListProperties> {
 
+  BindingListPropertiesToTypedInterfacesTest() {
+    super("/test.properties", "test", "properties");
+  }
+
   @Test void separatedStringPropertyToStringListMethod() {
     assertEquals(asList("aaa", "bbb", "ccc"), bound.stringListProperty());
   }

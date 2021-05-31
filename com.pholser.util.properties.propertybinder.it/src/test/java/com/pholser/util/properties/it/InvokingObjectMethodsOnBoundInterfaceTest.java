@@ -37,6 +37,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 class InvokingObjectMethodsOnBoundInterfaceTest
   extends TypedStringBindingTestSupport<InvokingObjectMethodsOnBoundInterfaceTest.PropertyFacade> {
 
+  InvokingObjectMethodsOnBoundInterfaceTest() {
+    super("/test.properties", "test", "properties");
+  }
+
   @Test void answeringEquals() throws Exception {
     PropertyFacade second = binder.bind(propertiesFile);
     assertEquals(bound, bound);

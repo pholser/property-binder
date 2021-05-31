@@ -43,6 +43,14 @@ abstract class TypedStringBindingTestSupport<T>
   protected PropertyBinder<T> binder;
   protected T bound;
 
+  protected TypedStringBindingTestSupport(
+    String propertiesResourcePath,
+    String basename,
+    String extension) {
+
+    super(propertiesResourcePath, basename, extension);
+  }
+
   @BeforeEach final void initializeBinderAndBoundType() throws Exception {
     binder = new PropertyBinder<>(boundType());
     bound = binder.bind(propertiesFile);
