@@ -12,3 +12,5 @@ TODO:
 * Chained conversions (e.g. Path <- URI <- String)?
 * Get jar publishing, site plugin, etc. back for release
   * test out locally? dry run?
+* Clarify in documentation whether modifying the underlying config
+  store affects the answers a proxy gives
