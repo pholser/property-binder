@@ -30,11 +30,11 @@ import com.google.common.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.Collections.singletonList;
 import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.requireNonNull;
+import static java.util.stream.Collectors.toCollection;
 
 public abstract class Conversion<V> {
   private final List<TypeToken<V>> valueTypes;
@@ -50,7 +50,7 @@ public abstract class Conversion<V> {
     this.valueTypes =
       valueTypes.stream()
         .map(TypeToken::of)
-        .collect(Collectors.toCollection(ArrayList::new));
+        .collect(toCollection(ArrayList::new));
   }
 
   protected Conversion(TypeToken<V> valueType) {

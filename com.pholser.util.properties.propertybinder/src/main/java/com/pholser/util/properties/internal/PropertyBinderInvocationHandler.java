@@ -36,17 +36,18 @@ import static java.lang.System.identityHashCode;
 
 class PropertyBinderInvocationHandler implements InvocationHandler {
   private final PropertySource properties;
-  private final ValidatedSchema<?> validated;
+  private final Schema<?> schema;
 
   PropertyBinderInvocationHandler(
     PropertySource properties,
-    ValidatedSchema<?> validated) {
+    Schema<?> schema) {
 
     this.properties = properties;
-    this.validated = validated;
+    this.schema = schema;
   }
 
-  @Override public Object invoke(Object proxy, Method method, Object[] args)
+  @Override
+  public Object invoke(Object proxy, Method method, Object[] args)
     throws Throwable {
 
     if (isEquals(method)) {
@@ -72,7 +73,7 @@ class PropertyBinderInvocationHandler implements InvocationHandler {
         .invokeWithArguments(args);
     }
 
-    return validated.convert(properties, method, args);
+    return schema.convert(proxy, properties, method, args);
   }
 
   private boolean isEquals(Method method) {
@@ -92,6 +93,6 @@ class PropertyBinderInvocationHandler implements InvocationHandler {
   }
 
   private String handleToString() {
-    return validated.getName() + '[' + properties + ']';
+    return schema.getName() + '[' + properties + ']';
   }
 }

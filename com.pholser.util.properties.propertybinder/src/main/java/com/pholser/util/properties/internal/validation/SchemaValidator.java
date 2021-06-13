@@ -31,7 +31,7 @@ import com.pholser.util.properties.ParsedAs;
 import com.pholser.util.properties.ValuesSeparatedBy;
 import com.pholser.util.properties.conversions.Conversion;
 import com.pholser.util.properties.internal.Reflection;
-import com.pholser.util.properties.internal.ValidatedSchema;
+import com.pholser.util.properties.internal.Schema;
 import com.pholser.util.properties.internal.conversions.ValueConverter;
 import com.pholser.util.properties.internal.conversions.ValueConverterFactory;
 import com.pholser.util.properties.internal.defaultvalues.DefaultValue;
@@ -75,7 +75,7 @@ public class SchemaValidator {
     defaultValueFactory = new DefaultValueFactory();
   }
 
-  public <T> ValidatedSchema<T> validate(Class<T> schema) {
+  public <T> Schema<T> validate(Class<T> schema) {
     ensureInterface(schema);
     ensureNoSuperinterfaces(schema);
 
@@ -83,6 +83,7 @@ public class SchemaValidator {
       Arrays.stream(schema.getDeclaredMethods())
         .filter(Reflection::acceptablePropertyMethodAccessLevel)
         .collect(toList());
+
     Map<BoundProperty, ValueConverter> converters =
       new HashMap<>(methods.size());
     Map<BoundProperty, DefaultValue> defaults =
@@ -113,7 +114,12 @@ public class SchemaValidator {
         key);
     });
 
-    return new ValidatedSchema<>(schema, defaults, converters, patterns);
+    return new Schema<>(
+      methods,
+      schema,
+      defaults,
+      converters,
+      patterns);
   }
 
   private static void ensureInterface(Class<?> schema) {

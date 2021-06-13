@@ -23,35 +23,13 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.conversions.java.time;
+package com.pholser.util.properties.it.boundtypes;
 
-import com.pholser.util.properties.conversions.Conversion;
+import com.pholser.util.properties.BoundProperty;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.List;
+import javax.validation.constraints.Positive;
 
-public class LocalTimeConversion extends Conversion<LocalTime> {
-  public LocalTimeConversion() {
-    super(LocalTime.class);
-  }
-
-  @Override public LocalTime convert(String value, List<String> patterns) {
-    if (patterns.isEmpty()) {
-      return LocalTime.parse(value);
-    }
-
-    for (String each : patterns) {
-      try {
-        return LocalTime.parse(value, DateTimeFormatter.ofPattern(each));
-      } catch (DateTimeParseException ex) {
-        // try the next pattern
-      }
-    }
-
-    throw new IllegalArgumentException(
-      "Could not parse value [" + value
-        + "] using any of the patterns: " + patterns);
-  }
+public interface InvalidArgs {
+  @BoundProperty("argufied")
+  int composed(@Positive int x, @Positive int y);
 }

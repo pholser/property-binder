@@ -28,7 +28,7 @@ package com.pholser.util.properties;
 import com.pholser.util.properties.conversions.Conversion;
 import com.pholser.util.properties.internal.MapPropertySource;
 import com.pholser.util.properties.internal.ResourceBundlePropertySource;
-import com.pholser.util.properties.internal.ValidatedSchema;
+import com.pholser.util.properties.internal.Schema;
 import com.pholser.util.properties.internal.validation.SchemaValidator;
 
 import java.io.File;
@@ -41,17 +41,23 @@ import java.util.ResourceBundle;
 import java.util.ServiceLoader;
 
 public class PropertyBinder<T> {
-  private final ValidatedSchema<T> validated;
+  private final Schema<T> schema;
 
   public PropertyBinder(Class<T> schema) {
     @SuppressWarnings("rawtypes")
     ServiceLoader<Conversion> loader = ServiceLoader.load(Conversion.class);
 
-    validated = new SchemaValidator(loader.iterator()).validate(schema);
+    this.schema =
+      new SchemaValidator(loader.iterator()).validate(schema);
   }
 
   public static <U> PropertyBinder<U> forType(Class<U> schema) {
     return new PropertyBinder<>(schema);
+  }
+
+  public PropertyBinder<T> validated() {
+    schema.validateWhenPropertiesBecomeBound();
+    return this;
   }
 
   public T bind(InputStream propertyInput) throws IOException {
@@ -81,7 +87,8 @@ public class PropertyBinder<T> {
   }
 
   private T evaluate(PropertySource source) {
-    return validated.evaluate(source);
+    T mapped = schema.evaluate(source);
+    return schema.validate(mapped);
   }
 
   public static SystemProperties getSystemProperties() {

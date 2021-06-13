@@ -23,35 +23,52 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.conversions.java.time;
+package com.pholser.util.properties.internal;
 
-import com.pholser.util.properties.conversions.Conversion;
+import javax.validation.ConstraintViolation;
+import javax.validation.executable.ExecutableValidator;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.Set;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.List;
+import static java.util.Collections.emptySet;
 
-public class LocalTimeConversion extends Conversion<LocalTime> {
-  public LocalTimeConversion() {
-    super(LocalTime.class);
+public class NilExecutableValidator implements ExecutableValidator {
+  @Override
+  public <T> Set<ConstraintViolation<T>> validateParameters(
+    T object,
+    Method method,
+    Object[] args,
+    Class<?>... groups) {
+
+    return emptySet();
   }
 
-  @Override public LocalTime convert(String value, List<String> patterns) {
-    if (patterns.isEmpty()) {
-      return LocalTime.parse(value);
-    }
+  @Override
+  public <T> Set<ConstraintViolation<T>> validateReturnValue(
+    T object,
+    Method method,
+    Object returnValue,
+    Class<?>... groups) {
 
-    for (String each : patterns) {
-      try {
-        return LocalTime.parse(value, DateTimeFormatter.ofPattern(each));
-      } catch (DateTimeParseException ex) {
-        // try the next pattern
-      }
-    }
+    return emptySet();
+  }
 
-    throw new IllegalArgumentException(
-      "Could not parse value [" + value
-        + "] using any of the patterns: " + patterns);
+  @Override
+  public <T> Set<ConstraintViolation<T>> validateConstructorParameters(
+    Constructor<? extends T> ctor,
+    Object[] args,
+    Class<?>... groups) {
+
+    return emptySet();
+  }
+
+  @Override
+  public <T> Set<ConstraintViolation<T>> validateConstructorReturnValue(
+    Constructor<? extends T> ctor,
+    T createdObject,
+    Class<?>... groups) {
+
+    return emptySet();
   }
 }

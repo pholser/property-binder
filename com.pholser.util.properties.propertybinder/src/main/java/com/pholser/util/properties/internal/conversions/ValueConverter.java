@@ -29,7 +29,7 @@ import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
 public abstract class ValueConverter {
-  public Object convertRaw(Object raw, Object... args) {
+  public Object convertRaw(Object raw, Object[] args) {
     return raw instanceof String
       ? convert(String.format((String) raw, args))
       : raw;
