@@ -25,11 +25,11 @@
 
 package com.pholser.util.properties.propertybinder.nonmodularuser;
 
-import java.io.InputStream;
-import java.lang.reflect.Method;
-
 import com.pholser.util.properties.PropertyBinder;
 import org.junit.jupiter.api.Test;
+
+import java.io.InputStream;
+import java.lang.reflect.Method;
 
 class NonModularUserTest {
   @Test void exerciseProperties() throws Exception {
