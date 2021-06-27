@@ -25,35 +25,31 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import com.pholser.util.properties.internal.separators.ValueSeparator;
+import com.pholser.util.properties.PropertySource;
+import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
-import java.lang.reflect.Array;
+import java.util.OptionalInt;
 
-class ArrayValueConverter extends AggregateValueConverter {
-  private final Class<?> componentType;
+class OptionalIntConverter extends ValueConverter {
+  private final ValueConverter elementConverter;
 
-  ArrayValueConverter(
-    Class<?> componentType,
-    ValueSeparator separator,
-    ValueConverter elementConverter) {
-
-    super(separator, elementConverter);
-    this.componentType = componentType;
+  OptionalIntConverter(ValueConverter elementConverter) {
+    this.elementConverter = elementConverter;
   }
 
   @Override public Object convert(String formatted) {
-    String[] pieces = separate(formatted);
-
-    Object array = Array.newInstance(componentType, pieces.length);
-
-    for (int i = 0; i < pieces.length; ++i) {
-      Array.set(array, i, elementConverter().convert(pieces[i]));
-    }
-
-    return array;
+    return OptionalInt.of((int) elementConverter.convert(formatted));
   }
 
   @Override public Object nilValue() {
-    return Array.newInstance(componentType, 0);
+    return OptionalInt.empty();
+  }
+
+  @Override public ParsePatterns parsePatterns() {
+    return elementConverter.parsePatterns();
+  }
+
+  @Override public void resolve(PropertySource properties) {
+    // optionals do not resolve
   }
 }

@@ -28,21 +28,21 @@ package com.pholser.util.properties.internal.conversions;
 import com.pholser.util.properties.PropertySource;
 import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
-import java.util.OptionalDouble;
+import java.util.OptionalLong;
 
-class OptionalDoubleValueConverter extends ValueConverter {
+class OptionalLongConverter extends ValueConverter {
   private final ValueConverter elementConverter;
 
-  OptionalDoubleValueConverter(ValueConverter elementConverter) {
+  OptionalLongConverter(ValueConverter elementConverter) {
     this.elementConverter = elementConverter;
   }
 
   @Override public Object convert(String formatted) {
-    return OptionalDouble.of((double) elementConverter.convert(formatted));
+    return OptionalLong.of((long) elementConverter.convert(formatted));
   }
 
   @Override public Object nilValue() {
-    return OptionalDouble.empty();
+    return OptionalLong.empty();
   }
 
   @Override public ParsePatterns parsePatterns() {

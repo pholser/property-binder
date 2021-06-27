@@ -23,33 +23,13 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal.conversions;
+package com.pholser.util.properties.it.boundtypes;
 
-import com.pholser.util.properties.PropertySource;
-import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
+import com.pholser.util.properties.BoundProperty;
 
-import java.util.OptionalLong;
+import java.io.Serializable;
 
-class OptionalLongValueConverter extends ValueConverter {
-  private final ValueConverter elementConverter;
-
-  OptionalLongValueConverter(ValueConverter elementConverter) {
-    this.elementConverter = elementConverter;
-  }
-
-  @Override public Object convert(String formatted) {
-    return OptionalLong.of((long) elementConverter.convert(formatted));
-  }
-
-  @Override public Object nilValue() {
-    return OptionalLong.empty();
-  }
-
-  @Override public ParsePatterns parsePatterns() {
-    return elementConverter.parsePatterns();
-  }
-
-  @Override public void resolve(PropertySource properties) {
-    // optionals do not resolve
-  }
+public interface GenericArrayTypeUpperBoundClassProperty {
+  @BoundProperty("generic.array.type.upper.bound.class")
+  <T extends Serializable> Class<? extends T[]> genericArrayTypeClass();
 }

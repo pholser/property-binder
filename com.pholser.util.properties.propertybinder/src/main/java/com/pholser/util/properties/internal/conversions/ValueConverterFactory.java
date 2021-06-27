@@ -49,6 +49,9 @@ import java.util.OptionalDouble;
 import java.util.OptionalInt;
 import java.util.OptionalLong;
 
+import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
+
 public class ValueConverterFactory {
   private static final Logger LOGGER =
     LoggerFactory.getLogger(ValueConverterFactory.class);
@@ -95,17 +98,23 @@ public class ValueConverterFactory {
 
     DefaultsTo defaults = propertyMethod.getAnnotation(DefaultsTo.class);
 
+    if (Class.class.equals(valueType.getRawType())) {
+      return new ClassConverter(
+        patterns,
+        upperBoundsFor(valueType.getType()));
+    }
+
     if (Optional.class.equals(valueType.getRawType())) {
       return new OptionalValueConverter(
         createSingularConverter(
-          typeArgumentOf(valueType.getType()),
+          elementTypeOf(valueType.getType()),
           patterns,
           defaults,
           separator));
     }
 
     if (OptionalInt.class.equals(valueType.getType())) {
-      return new OptionalIntValueConverter(
+      return new OptionalIntConverter(
         createSingularConverter(
           int.class,
           patterns,
@@ -114,7 +123,7 @@ public class ValueConverterFactory {
     }
 
     if (OptionalDouble.class.equals(valueType.getType())) {
-      return new OptionalDoubleValueConverter(
+      return new OptionalDoubleConverter(
         createSingularConverter(
           double.class,
           patterns,
@@ -123,7 +132,7 @@ public class ValueConverterFactory {
     }
 
     if (OptionalLong.class.equals(valueType.getType())) {
-      return new OptionalLongValueConverter(
+      return new OptionalLongConverter(
         createSingularConverter(
           long.class,
           patterns,
@@ -137,7 +146,7 @@ public class ValueConverterFactory {
       @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
       Class<?> componentClass = componentType.getRawType();
 
-      return new ArrayValueConverter(
+      return new ArrayConverter(
         componentClass,
         separator,
         createSingularConverter(
@@ -148,10 +157,10 @@ public class ValueConverterFactory {
     }
 
     if (List.class.equals(valueType.getRawType())) {
-      return new ListValueConverter(
+      return new ListConverter(
         separator,
         createSingularConverter(
-          typeArgumentOf(valueType.getType()),
+          elementTypeOf(valueType.getType()),
           patterns,
           defaults,
           separator));
@@ -189,7 +198,7 @@ public class ValueConverterFactory {
     return new RawValueConverter(valueType);
   }
 
-  private Class<?> typeArgumentOf(Type type) {
+  private Class<?> elementTypeOf(Type type) {
     if (type instanceof Class<?>) {
       return String.class;
     }
@@ -206,6 +215,42 @@ public class ValueConverterFactory {
         && Object.class.equals(wildcard.getUpperBounds()[0])) {
 
         return String.class;
+      }
+    }
+
+    throw new UnsupportedValueTypeException(type);
+  }
+
+  private List<Class<?>> upperBoundsFor(Type type) {
+    if (type instanceof Class<?>) {
+      return singletonList(Object.class);
+    }
+
+    if (type instanceof ParameterizedType) {
+      ParameterizedType parameterized = (ParameterizedType) type;
+
+      Type typeArg = parameterized.getActualTypeArguments()[0];
+      if (typeArg instanceof Class<?>) {
+        return singletonList((Class<?>) typeArg);
+      }
+
+      if (typeArg instanceof WildcardType) {
+        WildcardType wildcard = (WildcardType) typeArg;
+        Type[] upperBounds = wildcard.getUpperBounds();
+        Type[] lowerBounds = wildcard.getLowerBounds();
+        if (upperBounds.length > 0
+          && lowerBounds.length == 0
+          && upperBounds[0] instanceof Class<?>) {
+
+          Class<?>[] upperBoundsClasses = new Class<?>[upperBounds.length];
+          System.arraycopy(
+            upperBounds,
+            0,
+            upperBoundsClasses,
+            0,
+            upperBounds.length);
+          return asList(upperBoundsClasses);
+        }
       }
     }
 

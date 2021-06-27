@@ -23,15 +23,34 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.it.boundtypes;
+package com.pholser.util.properties.internal.conversions;
 
-import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public interface LowerBoundedListProperty {
-  @BoundProperty("type.variable")
-  @DefaultsTo("3,4")
-  List<? super Number> lowerBoundedList();
+class ClassConverter extends SingularValueConverter {
+  private final List<Class<?>> upperBounds = new ArrayList<>();
+
+  ClassConverter(ParsePatterns patterns, List<Class<?>> upperBounds) {
+    super(patterns);
+    this.upperBounds.addAll(upperBounds);
+  }
+
+  @Override public Object convert(String formatted) {
+    try {
+      Class<?> converted = Class.forName(formatted);
+      if (!upperBounds.stream().allMatch(
+        b -> b.isAssignableFrom(converted))) {
+
+        throw new IllegalArgumentException(
+          formatted + " not assignable to " + upperBounds);
+      }
+
+      return converted;
+    } catch (ClassNotFoundException ex) {
+      throw new IllegalArgumentException(ex);
+    }
+  }
 }

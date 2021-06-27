@@ -25,28 +25,31 @@
 
 package com.pholser.util.properties.internal.conversions;
 
-import com.pholser.util.properties.internal.separators.ValueSeparator;
+import com.pholser.util.properties.PropertySource;
+import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.OptionalDouble;
 
-class ListValueConverter extends AggregateValueConverter {
-  ListValueConverter(
-    ValueSeparator separator,
-    ValueConverter elementConverter) {
+class OptionalDoubleConverter extends ValueConverter {
+  private final ValueConverter elementConverter;
 
-    super(separator, elementConverter);
+  OptionalDoubleConverter(ValueConverter elementConverter) {
+    this.elementConverter = elementConverter;
   }
 
-  @Override public List<Object> convert(String formatted) {
-    return Arrays.stream(separate(formatted))
-      .map(elementConverter()::convert)
-      .collect(Collectors.toList());
+  @Override public Object convert(String formatted) {
+    return OptionalDouble.of((double) elementConverter.convert(formatted));
   }
 
   @Override public Object nilValue() {
-    return new ArrayList<>(0);
+    return OptionalDouble.empty();
+  }
+
+  @Override public ParsePatterns parsePatterns() {
+    return elementConverter.parsePatterns();
+  }
+
+  @Override public void resolve(PropertySource properties) {
+    // optionals do not resolve
   }
 }

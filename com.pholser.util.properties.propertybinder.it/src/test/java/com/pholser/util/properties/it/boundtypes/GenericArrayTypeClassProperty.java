@@ -26,12 +26,8 @@
 package com.pholser.util.properties.it.boundtypes;
 
 import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.DefaultsTo;
 
-import java.util.List;
-
-public interface LowerBoundedListProperty {
-  @BoundProperty("type.variable")
-  @DefaultsTo("3,4")
-  List<? super Number> lowerBoundedList();
+public interface GenericArrayTypeClassProperty {
+  @BoundProperty("generic.array.type.class")
+  <T> Class<T[]> genericArrayTypeClass();
 }

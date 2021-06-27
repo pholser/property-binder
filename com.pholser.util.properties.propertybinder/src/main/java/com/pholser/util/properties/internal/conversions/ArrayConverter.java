@@ -23,15 +23,37 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.it.boundtypes;
+package com.pholser.util.properties.internal.conversions;
 
-import com.pholser.util.properties.BoundProperty;
-import com.pholser.util.properties.DefaultsTo;
+import com.pholser.util.properties.internal.separators.ValueSeparator;
 
-import java.util.List;
+import java.lang.reflect.Array;
 
-public interface LowerBoundedListProperty {
-  @BoundProperty("type.variable")
-  @DefaultsTo("3,4")
-  List<? super Number> lowerBoundedList();
+class ArrayConverter extends AggregateValueConverter {
+  private final Class<?> componentType;
+
+  ArrayConverter(
+    Class<?> componentType,
+    ValueSeparator separator,
+    ValueConverter elementConverter) {
+
+    super(separator, elementConverter);
+    this.componentType = componentType;
+  }
+
+  @Override public Object convert(String formatted) {
+    String[] pieces = separate(formatted);
+
+    Object array = Array.newInstance(componentType, pieces.length);
+
+    for (int i = 0; i < pieces.length; ++i) {
+      Array.set(array, i, elementConverter().convert(pieces[i]));
+    }
+
+    return array;
+  }
+
+  @Override public Object nilValue() {
+    return Array.newInstance(componentType, 0);
+  }
 }

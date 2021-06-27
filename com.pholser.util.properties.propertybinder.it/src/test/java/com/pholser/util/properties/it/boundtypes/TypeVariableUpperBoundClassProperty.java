@@ -23,33 +23,11 @@
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.pholser.util.properties.internal.conversions;
+package com.pholser.util.properties.it.boundtypes;
 
-import com.pholser.util.properties.PropertySource;
-import com.pholser.util.properties.internal.parsepatterns.ParsePatterns;
+import com.pholser.util.properties.BoundProperty;
 
-import java.util.OptionalInt;
-
-class OptionalIntValueConverter extends ValueConverter {
-  private final ValueConverter elementConverter;
-
-  OptionalIntValueConverter(ValueConverter elementConverter) {
-    this.elementConverter = elementConverter;
-  }
-
-  @Override public Object convert(String formatted) {
-    return OptionalInt.of((int) elementConverter.convert(formatted));
-  }
-
-  @Override public Object nilValue() {
-    return OptionalInt.empty();
-  }
-
-  @Override public ParsePatterns parsePatterns() {
-    return elementConverter.parsePatterns();
-  }
-
-  @Override public void resolve(PropertySource properties) {
-    // optionals do not resolve
-  }
+public interface TypeVariableUpperBoundClassProperty {
+  @BoundProperty("type.variable")
+  <T> Class<T> typeVariable();
 }
