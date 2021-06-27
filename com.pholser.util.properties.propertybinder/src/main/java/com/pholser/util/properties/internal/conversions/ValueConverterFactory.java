@@ -143,7 +143,6 @@ public class ValueConverterFactory {
     if (valueType.isArray()) {
       TypeToken<?> componentType = valueType.getComponentType();
 
-      @SuppressFBWarnings("NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
       Class<?> componentClass = componentType.getRawType();
 
       return new ArrayConverter(

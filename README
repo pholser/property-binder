@@ -4,9 +4,7 @@ Please see http://pholser.github.com/property-binder for information.
 TODO:
 * Java 8 date/time artifacts (+ array/list/opt) tests
 * Optional(Int|Long|Double) (+ array/list/opt) tests
-* java.lang.Class (+ array/list/opt) tests
-  * Class<? extends T> where T is a java.lang.Class (no other j.l.r.Type)
-  * raw Class
+* Allow for simple reflective cases? One-arg String ctor, valueOf?
 * List<String> patterns -> List<U>, where U is another converted thing?
   (DateTimeFormatter? SimpleDateFormat? Pattern? ...)
 * Chained conversions (e.g. Path <- URI <- String)?
