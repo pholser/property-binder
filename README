@@ -8,7 +8,10 @@ TODO:
 * List<String> patterns -> List<U>, where U is another converted thing?
   (DateTimeFormatter? SimpleDateFormat? Pattern? ...)
 * Chained conversions (e.g. Path <- URI <- String)?
-* Get jar publishing, site plugin, etc. back for release
-  * test out locally? dry run?
 * Clarify in documentation whether modifying the underlying config
   store affects the answers a proxy gives
+
+* Get rid of site stuff
+* Make README be the docs
+* Publish Javadocs in gh-pages only
+* Current Maven version in README
