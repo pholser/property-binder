@@ -11,7 +11,7 @@ TODO:
 * Clarify in documentation whether modifying the underlying config
   store affects the answers a proxy gives
 
-* Get rid of site stuff
 * Make README be the docs
-* Publish Javadocs in gh-pages only
+* Restore Javadocs
+* Publish Javadocs via javadocs.io
 * Current Maven version in README
