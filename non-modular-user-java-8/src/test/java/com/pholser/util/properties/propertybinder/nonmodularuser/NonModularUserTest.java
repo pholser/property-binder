@@ -27,11 +27,16 @@ package com.pholser.util.properties.propertybinder.nonmodularuser;
 
 import com.pholser.util.properties.PropertyBinder;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.lang.reflect.Method;
 
 class NonModularUserTest {
+  private static final Logger LOG =
+    LoggerFactory.getLogger(NonModularUserTest.class);
+
   @Test void exerciseProperties() throws Exception {
     InputStream propsIn =
       NonModularUserTest.class.getResourceAsStream("/test.properties");
@@ -40,7 +45,7 @@ class NonModularUserTest {
     Config config = binder.bind(propsIn);
 
     for (Method each : Config.class.getMethods()) {
-      System.out.println(each + " = " + each.invoke(config));
+      LOG.info("{} = {}", each, each.invoke(config));
     }
   }
 }

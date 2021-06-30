@@ -28,11 +28,16 @@ package com.pholser.util.properties.propertybinder.modularuser.tests;
 import com.pholser.util.properties.PropertyBinder;
 import com.pholser.util.properties.propertybinder.modularuser.Config;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.lang.reflect.Method;
 
 class ModularUserTest {
+  private static final Logger LOG =
+    LoggerFactory.getLogger(ModularUserTest.class);
+
   @Test void exerciseProperties() throws Exception {
     InputStream propsIn =
       ModularUserTest.class.getResourceAsStream("/test.properties");
@@ -41,7 +46,7 @@ class ModularUserTest {
     Config config = binder.bind(propsIn);
 
     for (Method each : Config.class.getMethods()) {
-      System.out.println(each + " = " + each.invoke(config));
+      LOG.info("{} = {}", each, each.invoke(config));
     }
   }
 }
