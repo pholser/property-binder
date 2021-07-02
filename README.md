@@ -11,10 +11,6 @@ what default value(s) it should assume if the property is not present,
 what pattern separates the individual values of multi-valued properties,
 and what formatting hints to use, if any.
 
-Property Binder admits properties files, resource bundles, and string-keyed
-maps out of the box. You can bind other types of string-keyed configuration
-by providing an implementation of interface `PropertySource`.
-
 Property Binder builds on work described in
 [this blog post](https://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/).
 That post, along with a similar technique used in
@@ -37,6 +33,7 @@ of your interface.
 * Stamp out instances of your interface that are bound to specific
 configuration sources using `bind()`.
 
+
 ## Examples
 
 Given this properties file:
@@ -51,11 +48,33 @@ Then the following tests should pass:
 
 https://github.com/pholser/property-binder/blob/7d38472ab4918d1b0f7b98f5b4612c9cb64432f2/com.pholser.util.properties.propertybinder.it/src/test/java/com/pholser/util/properties/examples/ExampleTest.java
 
+
+## So?
+
+By presenting bits of configuration to your application as instances of
+a Java interface, you decouple the things that use the configuration
+from the means by which they're read/stored. You thereby enable easier testing
+of those pieces of your application that use the configuration -- supply
+mocks or stubs of the interface that answer different values for
+the configuration properties.
+
+By letting Property Binder create instances of those interfaces for you,
+you relieve your application of the grunt work of converting configuration
+values to sensible Java types, supplying default values, and so forth.
+
+
+## Other sources of configuration
+
+Property Binder admits properties files, resource bundles, and string-keyed
+maps out of the box. You can bind other types of string-keyed configuration
+by providing an implementation of interface `PropertySource`.
+
+
 ### TODO:
 * Java 8 date/time artifacts (+ array/list/opt) tests
 * Optional(Int|Long|Double) (+ array/list/opt) tests
 * Allow for simple reflective cases? One-arg String ctor, valueOf?
-* List<String> patterns -> List<U>, where U is another converted thing?
+* `List<String> patterns` -> `List<U>`, where U is another converted thing?
   (DateTimeFormatter? SimpleDateFormat? Pattern? ...)
 * Chained conversions (e.g. Path <- URI <- String)?
 * Clarify in documentation whether modifying the underlying config
