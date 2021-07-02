@@ -37,6 +37,19 @@ of your interface.
 * Stamp out instances of your interface that are bound to specific
 configuration sources using `bind()`.
 
+## Examples
+
+Given this properties file:
+
+https://github.com/pholser/property-binder/blob/555f94d49fabe48645b722f6dc53e7f6a98fd285/com.pholser.util.properties.propertybinder.it/src/test/resources/example.properties
+
+and this interface:
+
+https://github.com/pholser/property-binder/blob/7d38472ab4918d1b0f7b98f5b4612c9cb64432f2/com.pholser.util.properties.propertybinder.it/src/test/java/com/pholser/util/properties/examples/ExampleSchema.java
+
+Then the following tests should pass:
+
+https://github.com/pholser/property-binder/blob/7d38472ab4918d1b0f7b98f5b4612c9cb64432f2/com.pholser.util.properties.propertybinder.it/src/test/java/com/pholser/util/properties/examples/ExampleTest.java
 
 ### TODO:
 * Java 8 date/time artifacts (+ array/list/opt) tests
