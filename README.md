@@ -1,6 +1,6 @@
 # Property Binder: Typed access to sources of configuration in Java
 
-![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.pholser/property-binder/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.pholser/property-binder)
+![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.pholser/property-binder/badge.svg?style=plastic)
 
 The Property Binder Java library provides typed access to entries
 in properties files or other sources of configuration. It offers such access
