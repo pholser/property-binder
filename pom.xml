@@ -204,6 +204,7 @@
             <show>public</show>
             <excludePackageNames>com.pholser.util.properties.internal.*:com.pholser.properties.conversions.java.*
             </excludePackageNames>
+            <detectLinks>true</detectLinks>
             <detectJavaApiLink>false</detectJavaApiLink>
             <bottom>
               <![CDATA[<i>&copy; Copyright 2009-2021 Paul R. Holser, Jr. All rights reserved. Licensed under The MIT License. pholser@alumni.rice.edu</i>]]></bottom>
@@ -247,6 +248,12 @@
             <releaseProfiles>release</releaseProfiles>
             <goals>deploy</goals>
           </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>3.0.0-M1</version>
         </plugin>
       </plugins>
     </pluginManagement>

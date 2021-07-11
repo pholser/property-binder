@@ -62,9 +62,18 @@
       </plugin>
 
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+
+      <plugin>
         <groupId>eu.somatik.serviceloader-maven-plugin</groupId>
         <artifactId>serviceloader-maven-plugin</artifactId>
       </plugin>
+
     </plugins>
   </build>
 
