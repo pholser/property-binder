@@ -253,11 +253,6 @@
   </build>
 
   <distributionManagement>
-    <site>
-      <id>github-project-site</id>
-      <url>gitsite:git@github.com/pholser/property-binder.git</url>
-    </site>
-
     <snapshotRepository>
       <id>ossrh</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
