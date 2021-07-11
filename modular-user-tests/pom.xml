@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.pholser</groupId>
     <artifactId>property-binder</artifactId>
-    <version>5.0-alpha-2-SNAPSHOT</version>
+    <version>5.0-alpha-2</version>
   </parent>
 
   <artifactId>modular-user-tests</artifactId>
@@ -18,13 +18,13 @@
     <dependency>
       <groupId>com.pholser</groupId>
       <artifactId>com-pholser-util-properties-propertybinder</artifactId>
-      <version>5.0-alpha-2-SNAPSHOT</version>
+      <version>5.0-alpha-2</version>
     </dependency>
 
     <dependency>
       <groupId>com.pholser</groupId>
       <artifactId>modular-user</artifactId>
-      <version>5.0-alpha-2-SNAPSHOT</version>
+      <version>5.0-alpha-2</version>
     </dependency>
 
     <dependency>
