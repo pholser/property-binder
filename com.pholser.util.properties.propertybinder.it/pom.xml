@@ -10,6 +10,10 @@
   <artifactId>com-pholser-util-properties-propertybinder-it</artifactId>
   <packaging>jar</packaging>
 
+  <properties>
+    <maven.javadoc.skip>true</maven.javadoc.skip>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.pholser</groupId>
