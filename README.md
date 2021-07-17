@@ -11,6 +11,10 @@ what default value(s) it should assume if the property is not present,
 what pattern separates the individual values of multi-valued properties,
 and what formatting hints to use, if any.
 
+Property Binder is built using JDK 8, and its JAR includes JPMS metadata.
+Thus, you can use Property Binder as a module on the module path, or as a
+regular JAR on the class path.
+
 Property Binder builds on work described in
 [this blog post](https://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/).
 That post, along with a similar technique used in
@@ -63,6 +67,33 @@ you relieve your application of the grunt work of converting configuration
 values to sensible Java types, supplying default values, and so forth.
 
 
+## Converting values
+
+Out of the box, Property Binder can convert property values to these and
+more types:
+
+* all the Java primitives and their object counterparts
+* any `enum` type
+* `java.math.Big(Decimal|Integer)`
+* `java.util.Date`
+* many date/time concepts from `java.time`
+* `java.io.File`
+* `java.net.(InetAddress|URI|URL)`
+* `java.lang.Class`
+* arrays of the above
+* `java.util.List`s of the above
+* `Optional` of the above; also `OptionalLong`, `OptionalDouble`
+
+To convert different kinds of values, or to complement the conversions
+for supported types, register subclasses of `Conversion` as a
+[service](https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html)
+of type `com.pholser.util.properties.conversions.Conversion`.
+
+When converting a given property value, Property Binder tries the
+registered conversions in an unspecified order until one succeeds.
+If none succeeds, Property Binder raises an exception.
+
+
 ## Other sources of configuration
 
 Property Binder admits properties files, resource bundles, and string-keyed
@@ -72,15 +103,16 @@ by providing an implementation of interface `PropertySource`.
 
 ### TODO:
 * Java 8 date/time artifacts (+ array/list/opt) tests
-* Optional(Int|Long|Double) (+ array/list/opt) tests
+* `Optional(Int|Long|Double)` (+ array/list/opt) tests
 * Allow for simple reflective cases? One-arg String ctor, valueOf?
 * `List<String> patterns` -> `List<U>`, where U is another converted thing?
   (DateTimeFormatter? SimpleDateFormat? Pattern? ...)
 * Chained conversions (e.g. Path <- URI <- String)?
-* Clarify in documentation whether modifying the underlying config
-  store affects the answers a proxy gives
 
-* Make README be the docs
-* Restore Javadocs
-* Publish Javadocs via javadocs.io
-* Current Maven version in README
+* Docs:
+  * validation
+  * Clarify in documentation whether modifying the underlying config
+    store affects the answers a proxy gives
+  * Make README be the docs
+  * Restore Javadocs
+  * Publish Javadocs via javadocs.io

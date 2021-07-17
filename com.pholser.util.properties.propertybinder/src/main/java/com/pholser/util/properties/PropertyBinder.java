@@ -86,13 +86,13 @@ public class PropertyBinder<T> {
     return evaluate(source);
   }
 
+  public static SystemProperties getSystemProperties() {
+    return forType(SystemProperties.class).bind(System.getProperties());
+  }
+
   private T evaluate(PropertySource source) {
     T mapped = schema.evaluate(source);
     return schema.validate(mapped);
-  }
-
-  public static SystemProperties getSystemProperties() {
-    return forType(SystemProperties.class).bind(System.getProperties());
   }
 
   private static PropertySource loadProperties(InputStream input)
