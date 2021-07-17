@@ -82,7 +82,7 @@ more types:
 * `java.lang.Class`
 * arrays of the above
 * `java.util.List`s of the above
-* `Optional` of the above; also `OptionalLong`, `OptionalDouble`
+* `Optional` of the above; also `Optional(Int|Long|Double)`
 
 To convert different kinds of values, or to complement the conversions
 for supported types, register subclasses of `Conversion` as a
@@ -91,7 +91,10 @@ of type `com.pholser.util.properties.conversions.Conversion`.
 
 When converting a given property value, Property Binder tries the
 registered conversions in an unspecified order until one succeeds.
-If none succeeds, Property Binder raises an exception.
+If none succeeds, Property Binder raises an `IllegalArgumentException`.
+For congruency with the supported conversions, you should arrange for
+your custom conversions to raise `IllegalArgumentException` if something
+goes wrong during the conversion of a property value.
 
 
 ## Other sources of configuration
@@ -99,6 +102,18 @@ If none succeeds, Property Binder raises an exception.
 Property Binder admits properties files, resource bundles, and string-keyed
 maps out of the box. You can bind other types of string-keyed configuration
 by providing an implementation of interface `PropertySource`.
+
+
+## Validation
+
+You may mark return types and/or parameter types of interface methods with
+Bean Validation API annotations. To enforce the validations, call fluent
+method `validated()` on your instance of `PropertyBinder`. Then:
+
+* Any zero-arg methods will have their corresponding property values validated
+when the instance `bind()`s a source of configuration
+* Any methods with parameters, upon invocation, will validate the corresponding
+arguments and resulting property value.
 
 
 ### TODO:
@@ -110,9 +125,7 @@ by providing an implementation of interface `PropertySource`.
 * Chained conversions (e.g. Path <- URI <- String)?
 
 * Docs:
-  * validation
-  * Clarify in documentation whether modifying the underlying config
+  * Clarify in documentation/tests whether modifying the underlying config
     store affects the answers a proxy gives
-  * Make README be the docs
   * Restore Javadocs
   * Publish Javadocs via javadocs.io
