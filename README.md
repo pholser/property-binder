@@ -11,9 +11,9 @@ what default value(s) it should assume if the property is not present,
 what pattern separates the individual values of multi-valued properties,
 and what formatting hints to use, if any.
 
-Property Binder is built using JDK 8, and its JAR includes JPMS metadata.
-Thus, you can use Property Binder as a module on the module path, or as a
-regular JAR on the class path.
+Property Binder is compatible with JDK 8 or better, and its JAR includes JPMS
+metadata. Thus, you can use Property Binder as a module on the module path,
+or as a regular JAR on the class path.
 
 Property Binder builds on work described in
 [this blog post](https://lemnik.wordpress.com/2007/03/28/code-at-runtime-in-java-56/).

@@ -28,6 +28,7 @@ open module com.pholser.util.properties.propertybinder.it {
 
   requires static org.hibernate.validator;
   requires com.fasterxml.classmate;
+  requires java.validation;
 
   requires org.assertj.core;
   requires org.junit.jupiter.api;
