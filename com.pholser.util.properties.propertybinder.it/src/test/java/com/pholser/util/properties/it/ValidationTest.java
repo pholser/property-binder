@@ -62,6 +62,4 @@ class ValidationTest {
       .matches(m -> m.contains("composed.y: must be greater than 0"))
       .matches(m -> m.contains("composed.x: must be greater than 0"));
   }
-
-  // TODO: move these tests to main tests. eliminate these modules.
 }
