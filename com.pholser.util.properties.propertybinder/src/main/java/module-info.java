@@ -27,8 +27,8 @@ module com.pholser.util.properties.propertybinder {
   exports com.pholser.util.properties;
   exports com.pholser.util.properties.conversions;
 
-  requires transitive com.google.common;
-  requires transitive java.validation;
+  requires com.google.common;
+  requires java.validation;
   requires org.slf4j;
   requires static com.github.spotbugs.annotations;
 
