@@ -32,11 +32,34 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+/**
+ * Mark an interface method with this annotation to indicate that values
+ * for the property represented by the method are parsed according to the
+ * given patterns.
+ *
+ * The patterns are passed to a
+ * {@link com.pholser.util.properties.conversions.Conversion} to be
+ * interpret in a conversion-specific way (or not at all). For example, a
+ * conversion for {@link java.time.LocalDateTime} might treat the patterns
+ * as those accepted by {@link java.time.format.DateTimeFormatter}.
+ *
+ * The patterns can be a plain values given by {@link #value()}, or values
+ * composed in whole or in part of the values of other properties,
+ * given by {@link #valueOf()}. References to other properties in a `valueOf`
+ * expression are delimited by {@code [} and {@code ]}.
+ */
 @Documented
 @Target(METHOD)
 @Retention(RUNTIME)
 public @interface ParsedAs {
+  /**
+   * @return patterns with which to parse a property value
+   */
   String[] value() default {};
 
+  /**
+   * @return expressions from which to build patterns with which to parse
+   * a property value
+   */
   String[] valueOf() default {};
 }

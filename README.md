@@ -6,10 +6,11 @@ The Property Binder Java library provides typed access to entries
 in properties files or other sources of configuration. It offers such access
 by allowing a programmer to provide it a Java interface whose methods
 represent the keys of the properties file. Programmers annotate these methods
-can be annotated to indicate what property the method represents,
-what default value(s) it should assume if the property is not present,
-what pattern separates the individual values of multi-valued properties,
-and what formatting hints to use, if any.
+to indicate:
+  * What property the method represents
+  * What default value(s) it should assume if the property is not present
+  * What pattern separates the individual values of multi-valued properties,
+    and what formatting hints to use, if any
 
 Property Binder is compatible with JDK 8 or better, and its JAR includes JPMS
 metadata. Thus, you can use Property Binder as a module on the module path,
@@ -22,8 +23,8 @@ That post, along with a similar technique used in
 [Preon](https://github.com/preon/preon), demonstrate a means of declarative
 programming in Java that seemed unique and powerful and enough to deserve
 its own name: PICA (Proxied Interfaces Configured with Annotations).
-The PICA technique and the beginnings of Property Binder are described
-in [this article](http://www.devx.com/Java/Article/42492).
+[This article](http://www.devx.com/Java/Article/42492) describes the PICA
+technique and the beginnings of Property Binder.
 
 
 ## TL;DR
@@ -110,10 +111,10 @@ You may mark return types and/or parameter types of interface methods with
 Bean Validation API annotations. To enforce the validations, call fluent
 method `validated()` on your instance of `PropertyBinder`. Then:
 
-* Any zero-arg methods will have their corresponding property values validated
-when the instance `bind()`s a source of configuration
-* Any methods with parameters, upon invocation, will validate the corresponding
-arguments and resulting property value.
+* Any zero-parameter methods will have their corresponding property values
+  validated when the instance `bind()`s a source of configuration
+* Any methods with one or more parameters, upon invocation, will validate
+  the corresponding arguments and resulting property value.
 
 
 ### TODO:
@@ -125,7 +126,6 @@ arguments and resulting property value.
 * Chained conversions (e.g. Path <- URI <- String)?
 
 * Docs:
-  * Clarify in documentation/tests whether modifying the underlying config
+  * Demonstrate in tests whether modifying the underlying config
     store affects the answers a proxy gives
-  * Restore Javadocs
   * Publish Javadocs via javadocs.io

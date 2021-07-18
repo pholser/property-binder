@@ -30,6 +30,11 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
 
+/**
+ * Interface for the
+ * <a href="https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html">
+ * standard JVM properties</a>.
+ */
 public interface SystemProperties {
   @BoundProperty("java.version")
   String javaVersion();

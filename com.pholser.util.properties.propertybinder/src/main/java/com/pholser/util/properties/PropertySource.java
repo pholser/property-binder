@@ -25,6 +25,17 @@
 
 package com.pholser.util.properties;
 
+/**
+ * Implement this interface to present a source of key-value properties
+ * (other than {@link java.util.Properties}, {@link java.util.Map}, and
+ * {@link java.util.ResourceBundle}) to {@link PropertyBinder}.
+ */
 public interface PropertySource {
+  /**
+   * Gives the property value associated with the given key.
+   *
+   * @param key the key to look up
+   * @return associated value, if any; else {@code null}
+   */
   Object propertyFor(BoundProperty key);
 }
