@@ -4,7 +4,7 @@
 
   <groupId>com.pholser</groupId>
   <artifactId>property-binder</artifactId>
-  <version>5.0-alpha-3-SNAPSHOT</version>
+  <version>5.0-alpha-3</version>
   <packaging>pom</packaging>
 
   <name>property-binder</name>
@@ -23,7 +23,7 @@
     <connection>scm:git:git://github.com/pholser/property-binder.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/pholser/property-binder.git</developerConnection>
     <url>http://github.com/pholser/property-binder</url>
-    <tag>HEAD</tag>
+    <tag>property-binder-5.0-alpha-3</tag>
   </scm>
 
   <issueManagement>
