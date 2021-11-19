@@ -166,7 +166,6 @@ public class PropertyBinder<T> {
    * @return a proxy bound to the properties
    * @throws IOException if there is a problem reading from the reader
    * @throws NullPointerException if {@code propertyInput} is {@code null}
-   * @see #bind(File)
    */
   public T bind(Reader propertyInput) throws IOException {
     return evaluate(loadProperties(propertyInput));
