@@ -32,7 +32,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Method;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 class ModularUserTest {
   private static final Logger LOG =
@@ -43,7 +46,7 @@ class ModularUserTest {
       ModularUserTest.class.getResourceAsStream("/test.properties");
     PropertyBinder<Config> binder = PropertyBinder.forType(Config.class);
 
-    Config config = binder.bind(propsIn);
+    Config config = binder.bind(new InputStreamReader(propsIn, UTF_8));
 
     for (Method each : Config.class.getMethods()) {
       LOG.info("{} = {}", each, each.invoke(config));

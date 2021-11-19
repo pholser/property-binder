@@ -32,8 +32,10 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import static com.pholser.util.properties.it.IO.closeQuietly;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 class BindingPropertiesReadFromInputStreamTest
   extends TypedStringBindingTestSupport<ScalarProperties> {
@@ -53,7 +55,8 @@ class BindingPropertiesReadFromInputStreamTest
   }
 
   @Test void loadingFromInputStream() throws Exception {
-    ScalarProperties fromInputStream = binder.bind(inputStream);
+    ScalarProperties fromInputStream =
+      binder.bind(new InputStreamReader(inputStream, UTF_8));
 
     assertPropertiesEqual(bound, fromInputStream);
   }

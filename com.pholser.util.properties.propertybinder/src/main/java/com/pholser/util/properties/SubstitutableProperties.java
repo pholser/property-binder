@@ -26,9 +26,7 @@
 package com.pholser.util.properties;
 
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.Properties;
-import java.util.stream.Collectors;
 
 import static com.pholser.util.properties.internal.Substitutions.substitute;
 import static java.util.stream.Collectors.joining;

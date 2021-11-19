@@ -31,10 +31,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.util.PropertyResourceBundle;
 
 import static com.pholser.util.properties.it.IO.closeQuietly;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 class BindingStringResourceBundlesToTypedInterfacesTest
   extends TypedStringBindingTestSupport<ScalarProperties> {
@@ -56,7 +58,8 @@ class BindingStringResourceBundlesToTypedInterfacesTest
   }
 
   @Test void loadingFromPropertiesObject() throws Exception {
-    ScalarProperties fromFile = binder.bind(propertiesFile);
+    ScalarProperties fromFile =
+      binder.bind(new FileReader(propertiesFile, UTF_8));
 
     assertPropertiesEqual(fromFile, fromBundle);
   }

@@ -30,13 +30,8 @@ import com.pholser.util.properties.internal.MapPropertySource;
 import com.pholser.util.properties.internal.ResourceBundlePropertySource;
 import com.pholser.util.properties.internal.Schema;
 import com.pholser.util.properties.internal.validation.SchemaValidator;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Map;
 import java.util.Properties;
@@ -169,44 +164,6 @@ public class PropertyBinder<T> {
    */
   public T bind(Reader propertyInput) throws IOException {
     return evaluate(loadProperties(propertyInput));
-  }
-
-  /**
-   * Makes a new proxy bound to the properties purported to be in the given
-   * input stream.
-   *
-   * @param propertyInput an input stream containing properties to be bound
-   * @return a proxy bound to the properties
-   * @throws IOException if there is a problem reading from the input stream
-   * @throws NullPointerException if {@code propertyInput} is {@code null}
-   * @see #bind(Reader)
-   * @deprecated Use {@link #bind(Reader)} instead.
-   */
-  @Deprecated
-  @SuppressFBWarnings("DM_DEFAULT_ENCODING")
-  public T bind(InputStream propertyInput) throws IOException {
-    try (InputStreamReader reader = new InputStreamReader(propertyInput)) {
-      return bind(reader);
-    }
-  }
-
-  /**
-   * Makes a new proxy bound to the properties purported to be in the given
-   * file.
-   *
-   * @param propertiesFile a file containing properties to be bound
-   * @return a proxy bound to the properties
-   * @throws IOException if there is a problem reading from the file
-   * @throws NullPointerException if {@code propertiesFile} is {@code null}
-   * @see #bind(Reader)
-   * @deprecated Use {@link #bind(Reader)} instead.
-   */
-  @Deprecated
-  @SuppressFBWarnings("DM_DEFAULT_ENCODING")
-  public T bind(File propertiesFile) throws IOException {
-    try (FileReader reader = new FileReader(propertiesFile)) {
-      return bind(reader);
-    }
   }
 
   /**

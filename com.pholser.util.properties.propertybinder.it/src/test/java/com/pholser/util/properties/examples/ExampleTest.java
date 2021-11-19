@@ -4,7 +4,7 @@ import com.pholser.util.properties.PropertyBinder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
+import java.io.FileReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +13,7 @@ import static com.pholser.util.properties.it.boundtypes.Ternary.MAYBE;
 import static com.pholser.util.properties.it.boundtypes.Ternary.NO;
 import static com.pholser.util.properties.it.boundtypes.Ternary.YES;
 import static java.math.BigDecimal.TEN;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,7 +24,9 @@ class ExampleTest {
   @BeforeEach void initializeFixture() throws Exception {
     PropertyBinder<ExampleSchema> binder =
       PropertyBinder.forType(ExampleSchema.class);
-    bound = binder.bind(new File("src/test/resources/example.properties"));
+    bound =
+      binder.bind(
+        new FileReader("src/test/resources/example.properties", UTF_8));
   }
 
   @Test void bindingToPropertyWithMethodName() {

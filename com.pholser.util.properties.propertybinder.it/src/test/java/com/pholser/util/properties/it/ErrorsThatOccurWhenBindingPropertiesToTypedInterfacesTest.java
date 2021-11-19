@@ -54,12 +54,11 @@ import com.pholser.util.properties.it.boundtypes.UpperBoundedList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.FileReader;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
@@ -85,24 +84,6 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
     assertThrows(
       IllegalArgumentException.class,
       () -> PropertyBinder.forType(SuppressWarnings.class));
-  }
-
-  @Test void nullFile() {
-    assertThrows(
-      NullPointerException.class,
-      () -> scalar.bind((File) null));
-  }
-
-  @Test void missingFile() {
-    assertThrows(
-      FileNotFoundException.class,
-      () -> scalar.bind(new File("!(@#*&!@(*#&")));
-  }
-
-  @Test void nullInputStream() {
-    assertThrows(
-      NullPointerException.class,
-      () -> scalar.bind((InputStream) null));
   }
 
   @Test void nullMap() {
@@ -140,7 +121,7 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
   @Test void unconvertibleScalar() throws Exception {
     UnconvertibleScalar bound =
       PropertyBinder.forType(UnconvertibleScalar.class)
-        .bind(propertiesFile);
+        .bind(new FileReader(propertiesFile, UTF_8));
 
     assertThrows(
       IllegalArgumentException.class,
@@ -226,7 +207,8 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
   @Test void missingPrimitiveProperty() throws Exception {
     PropertyBinder<MissingPrimitiveProperty> binder =
       PropertyBinder.forType(MissingPrimitiveProperty.class);
-    MissingPrimitiveProperty bound = binder.bind(propertiesFile);
+    MissingPrimitiveProperty bound =
+      binder.bind(new FileReader(propertiesFile, UTF_8));
 
     assertThrows(NullPointerException.class, bound::missingCharacterProperty);
   }
@@ -282,7 +264,7 @@ class ErrorsThatOccurWhenBindingPropertiesToTypedInterfacesTest
 
     DateWithNonLenientValue bound =
       PropertyBinder.forType(DateWithNonLenientValue.class)
-        .bind(propertiesFile);
+        .bind(new FileReader(propertiesFile, UTF_8));
 
     assertThrows(
       IllegalArgumentException.class,

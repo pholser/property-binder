@@ -29,11 +29,13 @@ import com.pholser.util.properties.PropertyBinder;
 import com.pholser.util.properties.it.boundtypes.ExcludeFromEqualsCheck;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.io.FileReader;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
 import static com.pholser.util.properties.it.ArbitraryArrays.assertReflectArrayEquals;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -53,7 +55,7 @@ abstract class TypedStringBindingTestSupport<T>
 
   @BeforeEach final void initializeBinderAndBoundType() throws Exception {
     binder = new PropertyBinder<>(boundType());
-    bound = binder.bind(propertiesFile);
+    bound = binder.bind(new FileReader(propertiesFile, UTF_8));
   }
 
   protected abstract Class<T> boundType();

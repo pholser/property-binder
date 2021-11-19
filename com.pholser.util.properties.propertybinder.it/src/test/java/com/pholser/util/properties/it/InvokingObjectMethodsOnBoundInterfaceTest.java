@@ -29,7 +29,10 @@ package com.pholser.util.properties.it;
 import com.pholser.util.properties.BoundProperty;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileReader;
+
 import static java.lang.System.identityHashCode;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -42,7 +45,9 @@ class InvokingObjectMethodsOnBoundInterfaceTest
   }
 
   @Test void answeringEquals() throws Exception {
-    PropertyFacade second = binder.bind(propertiesFile);
+    PropertyFacade second =
+      binder.bind(new FileReader(propertiesFile, UTF_8));
+
     assertEquals(bound, bound);
     assertNotEquals(bound, second);
     assertEquals(second, second);

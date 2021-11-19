@@ -30,6 +30,9 @@ import com.pholser.util.properties.it.boundtypes.InvalidArgs;
 import com.pholser.util.properties.it.boundtypes.InvalidZeroArgReturnValue;
 import org.junit.jupiter.api.Test;
 
+import java.io.InputStreamReader;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -41,7 +44,10 @@ class ValidationTest {
         () ->
           PropertyBinder.forType(InvalidZeroArgReturnValue.class)
             .validated()
-            .bind(getClass().getResourceAsStream("/v8n.properties")));
+            .bind(
+              new InputStreamReader(
+                getClass().getResourceAsStream("/v8n.properties"),
+                UTF_8)));
 
     assertThat(thrown.getMessage())
       .matches("present.*must not be null");
@@ -51,7 +57,10 @@ class ValidationTest {
     InvalidArgs bound =
       PropertyBinder.forType(InvalidArgs.class)
         .validated()
-        .bind(getClass().getResourceAsStream("/v8n.properties"));
+        .bind(
+          new InputStreamReader(
+            getClass().getResourceAsStream("/v8n.properties"),
+            UTF_8));
 
     IllegalArgumentException thrown =
       assertThrows(
